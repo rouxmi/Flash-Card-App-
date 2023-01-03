@@ -30,4 +30,9 @@ public class AccueilControleur implements Initializable, Observateur {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    public void ajouterNouveauPaquet(){
+        paquet.add(new PaquetDeCartes());
+        paquet.get(paquet.size()-1).ajouterObservateur(this);
+    }
 }
