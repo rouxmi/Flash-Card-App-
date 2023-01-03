@@ -1,0 +1,9 @@
+@startuml diag
+hide empty members
+
+class Carte {
+    +string question
+    +string reponse
+}
+
+
