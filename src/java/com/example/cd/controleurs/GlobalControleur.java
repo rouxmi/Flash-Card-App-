@@ -42,7 +42,7 @@ public class GlobalControleur implements Observateur {
     }
 
     public void InitialisationChangeurScene() throws IOException {
-        changeurScene=new ChangeurScene(paquets, null, null);
+        changeurScene=new ChangeurScene(paquets, paquet, carte);
         changeurScene.changeSceneAcceuil();
         changeurScene.execute();
     }
@@ -78,5 +78,18 @@ public class GlobalControleur implements Observateur {
     }
     public AccueilControleur getAccueil(){
         return this.accueil;
+    }
+
+    public void setCarte(Carte carte) {
+        this.carte = carte;
+    }
+
+    public void setPaquet(PaquetDeCartes paquet) {
+        this.paquet = paquet;
+    }
+
+    public void setPaquetActuelAccueil(){
+        changeurScene.setPaquet(accueil.getPaquetActuel());
+
     }
 }

@@ -40,14 +40,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         //paquet.ajouterCarte(new Carte());
         GlobalControleur.changeSceneVersCreation();
     }
-    @FXML
-    public void quitterAppli() {
-        (new quitterApplicationCommande()).execute();
-    }
-    @FXML
-    public void allerAccueil() throws Exception {
-        GlobalControleur.changeSceneVersAccueil();
-    }
+
 
     @FXML
     public void versEntrainement() throws Exception {

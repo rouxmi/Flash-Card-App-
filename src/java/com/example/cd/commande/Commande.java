@@ -19,6 +19,15 @@ public abstract class Commande {
         this.carte = carte;
         this.paquet = paquet;
     }
+
+    public void setPaquet(PaquetDeCartes paquet) {
+        this.paquetDeCartes = paquet;
+    }
+
+    public void setCarte(Carte carte) {
+        this.carte = carte;
+    }
+
     public abstract void execute() throws IOException;
 
 }
