@@ -47,6 +47,17 @@ public class AccueilControleur implements Initializable, Observateur {
     }
 
     @FXML
+    public void utiliserPaquet() throws Exception {
+        if ( toggleButton.isSelected() ) {
+            toggleButton.setText("Gestion");
+            GlobalControleur.changeSceneVersGestion();
+        } else if ( !toggleButton.isSelected() ) {
+            toggleButton.setText("Entrainement");
+            GlobalControleur.changeSceneVersEntrainement();
+        }
+    }
+
+    @FXML
     public void quitterAppli() throws Exception {
         executerCommande(new quitterApplicationCommand());
     }
