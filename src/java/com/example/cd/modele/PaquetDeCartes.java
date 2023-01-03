@@ -1,7 +1,6 @@
 package com.example.cd.modele;
 
 import com.example.cd.SujetObserve;
-import com.example.cd.modele.Carte;
 import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;

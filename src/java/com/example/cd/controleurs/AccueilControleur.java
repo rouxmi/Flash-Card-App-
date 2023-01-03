@@ -4,6 +4,10 @@ import com.example.cd.Observateur;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -11,6 +15,8 @@ import java.util.ResourceBundle;
 
 public class AccueilControleur implements Initializable, Observateur {
     private ArrayList<PaquetDeCartes> paquets;
+    @FXML
+    private GridPane table;
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquet){
         this.paquets = paquet;
@@ -26,7 +32,7 @@ public class AccueilControleur implements Initializable, Observateur {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        creationBoutons();
     }
 
     @FXML
@@ -37,5 +43,48 @@ public class AccueilControleur implements Initializable, Observateur {
         //        paquetActuel.ajouterObservateur(this);
         GlobalControleur.changeSceneVersGestion();
 
+    }
+
+    public void creationBoutons() {
+        int nbBoutons = 20;
+        //int nbBoutons = paquets.size()+1;
+        int nbLignes = 0;
+        int nbColonnes = 3;
+
+        while (nbColonnes * nbLignes < nbBoutons) {
+            nbLignes++;
+        }
+        if (nbLignes > table.getRowConstraints().size()) {
+            for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {
+                RowConstraints row = new RowConstraints();
+                row.setVgrow(Priority.SOMETIMES);
+                row.setMinHeight(10);
+                row.setPrefHeight(100);
+                table.getRowConstraints().add(row);
+            }
+        }
+
+        for (int i = 0; i < nbBoutons; i++) {
+            Button button;
+            button = new Button();
+            button.setText("lola");
+            if (i == nbBoutons - 1) {
+                button.setText("+");
+                button.setOnAction(event -> {
+                    try {
+                        ajouterNouveauPaquet();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+            button.setPrefSize(100, 100);
+            button.setMaxHeight(1.7976931348623157E308);
+            button.setMaxWidth(1.7976931348623157E308);
+            button.setMnemonicParsing(false);
+            table.add(button, i % nbColonnes, i / nbColonnes);
+        }
+        table.setHgap(10);
+        table.setVgap(10);
     }
 }
