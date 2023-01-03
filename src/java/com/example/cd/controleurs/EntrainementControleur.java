@@ -4,15 +4,19 @@ import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.PaquetDeCartes;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.transform.Rotate;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EntrainementControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
-
+    @FXML
+    private ToggleButton toggleFlashCard;
     private GlobalControleur globalControleur;
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleu){
         this.paquet=paquet;
@@ -54,6 +58,12 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void majFlashCard() {
         // TODO : modifier avec le paquet courant
+        RotateTransition rotate = new RotateTransition();
+        rotate.setNode(toggleFlashCard);
+        rotate.setDuration(javafx.util.Duration.seconds(1));
+        rotate.setAxis(Rotate.Y_AXIS);
+        rotate.setByAngle(180);
+        rotate.play();
         if (toggleFlashCard.isSelected()) {
             toggleFlashCard.setText("Question");
         } else {

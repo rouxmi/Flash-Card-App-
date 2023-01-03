@@ -18,6 +18,7 @@ public class SceneGestion implements ChangeScene {
         GestionControleur gestionControleur = new GestionControleur(paquetDeCartes, globalControleur);
         fxmlLoader.setController(gestionControleur);
         newScene = new Scene(fxmlLoader.load());
+
     }
     @Override
     public void changetoScene() {

@@ -3,3 +3,4 @@ out/
 *.jar
 *.json
 *.iml
+/src/ressources/META-INF/MANIFEST.MF
