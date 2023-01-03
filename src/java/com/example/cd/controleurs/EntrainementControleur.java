@@ -11,7 +11,7 @@ public class EntrainementControleur implements Initializable, Observateur {
     private PaquetDeCartes paquet;
     public EntrainementControleur(PaquetDeCartes paquet){
         this.paquet=paquet;
-     //   paquet.ajouterObservateur(this);
+     // paquet.ajouterObservateur(this);
     }
     @Override
     public void reagir() {
