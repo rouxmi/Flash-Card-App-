@@ -11,9 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="435.0" prefWidth="671.0">
@@ -42,20 +39,7 @@
             </MenuBar>
          </top>
          <left>
-            <ScrollPane prefHeight="403.0" prefWidth="414.0" BorderPane.alignment="CENTER">
-               <content>
-                  <GridPane fx:id="table">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="0.0" prefWidth="115.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="0.0" prefWidth="85.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="43.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                  </GridPane>
-               </content></ScrollPane>
+            <ScrollPane prefHeight="403.0" prefWidth="414.0" BorderPane.alignment="CENTER" />
          </left>
          <right>
             <VBox prefHeight="403.0" prefWidth="259.0" BorderPane.alignment="CENTER">
