@@ -6,7 +6,7 @@ import com.example.cd.modele.PaquetDeCartes;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public abstract class Command {
+public abstract class Commande {
 
     public PaquetDeCartes paquetDeCartes;
     public Carte carte;
@@ -14,8 +14,7 @@ public abstract class Command {
     public ArrayList<PaquetDeCartes> paquet;
 
 
-
-    public Command(ArrayList<PaquetDeCartes> paquet,PaquetDeCartes paquetDeCartes, Carte carte) {
+    public Commande(ArrayList<PaquetDeCartes> paquet, PaquetDeCartes paquetDeCartes, Carte carte) {
         this.paquetDeCartes = paquetDeCartes;
         this.carte = carte;
         this.paquet = paquet;

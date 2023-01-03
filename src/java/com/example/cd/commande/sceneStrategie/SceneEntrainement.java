@@ -12,7 +12,6 @@ public class SceneEntrainement implements ChangeScene {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Entrainement.fxml"));
         fxmlLoader.setController(new com.example.cd.controleurs.EntrainementControleur(paquetDeCartes));
         newScene = new Scene(fxmlLoader.load());
-        Main.mainStage.setResizable(false);
     }
     @Override
     public void changetoScene() {
