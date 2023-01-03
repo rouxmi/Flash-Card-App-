@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EntrainementControleur extends GlobalControleur {
+public class EntrainementControleur implements Initializable, Observateur {
     private PaquetDeCartes paquet;
     public EntrainementControleur(PaquetDeCartes paquet){
         this.paquet=paquet;

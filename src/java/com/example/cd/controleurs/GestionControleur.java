@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GestionControleur extends GlobalControleur {
+public class GestionControleur implements Initializable, Observateur {
     private PaquetDeCartes paquet;
 
     public GestionControleur(PaquetDeCartes paquet){

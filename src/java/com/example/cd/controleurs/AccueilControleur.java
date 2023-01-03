@@ -8,7 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AccueilControleur extends GlobalControleur {
+public class AccueilControleur implements Initializable, Observateur {
 
     private ArrayList<PaquetDeCartes> paquet;
 

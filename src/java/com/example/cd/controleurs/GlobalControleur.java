@@ -8,16 +8,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class GlobalControleur implements Observateur, Initializable {
+public class GlobalControleur{
     private ArrayList<PaquetDeCartes> paquets;
+    private AccueilControleur accueil;
+    private CreationControleur creation;
+    private EntrainementControleur entrainement;
+    private GestionControleur gestion;
 
-    @Override
-    public void reagir() {
-
+    public GlobalControleur(){
+        this.paquets = new ArrayList<PaquetDeCartes>();
+        this.accueil = new AccueilControleur(paquets);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 }
