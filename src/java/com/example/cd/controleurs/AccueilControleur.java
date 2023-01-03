@@ -2,6 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
+import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,11 +49,17 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void majToggle() {
+        // TODO : verifier que ca part pas quand on remet la toolbar
         if ( toggleBouton.isSelected() ) {
             toggleBouton.setText("Gestion");
         } else {
             toggleBouton.setText("Entrainement");
         }
+    }
+    @FXML
+    public void quitterAppli() {
+        // TODO : relier  toolbar quand remi aura fini le responsive
+        (new quitterApplicationCommande()).execute();
     }
 
     public void creationBoutons() {
