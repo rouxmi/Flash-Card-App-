@@ -18,14 +18,17 @@ import java.util.ResourceBundle;
 public class AccueilControleur extends SujetObserve implements Initializable, Observateur {
     private ArrayList<PaquetDeCartes> paquets;
 
+    private GlobalControleur globalControleur;
+
     private PaquetDeCartes paquetActuel;
     @FXML
     private GridPane table;
     @FXML
     private ToggleButton toggleBouton;
 
-    public AccueilControleur(ArrayList<PaquetDeCartes> paquet){
+    public AccueilControleur(ArrayList<PaquetDeCartes> paquet, GlobalControleur globalControleur){
         this.paquets = paquet;
+        this.globalControleur = globalControleur;
         for(int i=0; i< paquet.size();i++){
             paquet.get(i).ajouterObservateur(this);
         }
@@ -47,7 +50,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         PaquetDeCartes paquetActuel = paquets.get(paquets.size()-1);
         // TODO :
         //        paquetActuel.ajouterObservateur(this);
-        GlobalControleur.changeSceneVersGestion();
+        globalControleur.changeSceneVersGestion();
     }
     @FXML
     public void majToggle() {
@@ -67,7 +70,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void visiterPaquet() throws Exception{
 
-        GlobalControleur.changeSceneVersGestion();
+        globalControleur.changeSceneVersGestion();
     }
 
     public void creationBoutons() {
@@ -107,7 +110,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                 int finalI = i;
                 button.setOnAction(event -> {
                     try {
-                        paquetActuel=paquets.get(finalI);
+                        this.paquetActuel=paquets.get(finalI);
                         visiterPaquet();
                     }catch (Exception e){
                         e.printStackTrace();
@@ -115,6 +118,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                 });
             }
             button.setPrefSize(100, 100);
+            button.setMinSize(100,100);
             button.setMaxHeight(1.7976931348623157E308);
             button.setMaxWidth(1.7976931348623157E308);
             button.setMnemonicParsing(false);

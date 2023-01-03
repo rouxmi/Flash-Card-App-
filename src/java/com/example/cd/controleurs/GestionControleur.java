@@ -17,11 +17,14 @@ import java.util.ResourceBundle;
 
 public class GestionControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
+
+    private GlobalControleur globalControleur;
     @FXML
     private GridPane table;
 
-    public GestionControleur(PaquetDeCartes paquet){
+    public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
+        this.globalControleur = globalControleur;
         //paquet.ajouterObservateur(this);
     }
 
@@ -38,21 +41,21 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void versCreation() throws Exception{
         //paquet.ajouterCarte(new Carte());
-        GlobalControleur.changeSceneVersCreation();
+        globalControleur.changeSceneVersCreation();
     }
 
 
     @FXML
     public void versEntrainement() throws Exception {
-        GlobalControleur.changeSceneVersEntrainement();
+        globalControleur.changeSceneVersEntrainement();
     }
     @FXML
     public void quitterAppli() {
-        (new quitterApplicationCommande()).execute();
+                new quitterApplicationCommande().execute();
     }
     @FXML
     public void allerAccueil() throws Exception {
-        GlobalControleur.changeSceneVersAccueil();
+        globalControleur.changeSceneVersAccueil();
     }
     public void affichageCartes() {
         if (this.paquet !=null) {
@@ -61,15 +64,6 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
             int nbLignes = 0;
             while (nbColonnes * nbLignes < nbBoutons) {
                 nbLignes++;
-            }
-            if (nbLignes > table.getRowConstraints().size()) {
-                for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {
-                    RowConstraints row = new RowConstraints();
-                    row.setVgrow(Priority.SOMETIMES);
-                    row.setMinHeight(10);
-                    row.setPrefHeight(100);
-                    table.getRowConstraints().add(row);
-                }
             }
             if (nbLignes > table.getRowConstraints().size()) {
                 for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {

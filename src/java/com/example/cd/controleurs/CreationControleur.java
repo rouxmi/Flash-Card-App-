@@ -12,15 +12,19 @@ import java.util.ResourceBundle;
 
 public class CreationControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
+
+    private GlobalControleur globalControleur;
     private int indice;
-    public CreationControleur(PaquetDeCartes paquet){
+    public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
         this.indice=0;
+        this.globalControleur=globalControleur;
         //paquet.ajouterObservateur(this);
     }
-    public CreationControleur(PaquetDeCartes paquet,int indice){
+    public CreationControleur(PaquetDeCartes paquet,int indice,GlobalControleur globalControleur){
         this.paquet=paquet;
         this.indice=indice;
+        this.globalControleur=globalControleur;
         paquet.ajouterObservateur(this);
     }
 
@@ -48,11 +52,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void allerAccueil() throws Exception {
-        GlobalControleur.changeSceneVersAccueil();
+        globalControleur.changeSceneVersAccueil();
     }
     @FXML
     public void voirPaquet() throws Exception {
         // TODO : verifier le paquet courant
-        GlobalControleur.changeSceneVersGestion();
+        globalControleur.changeSceneVersGestion();
     }
 }

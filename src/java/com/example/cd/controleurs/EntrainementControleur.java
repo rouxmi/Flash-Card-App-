@@ -12,9 +12,20 @@ import java.util.ResourceBundle;
 
 public class EntrainementControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
-    public EntrainementControleur(PaquetDeCartes paquet){
+
+    private GlobalControleur globalControleur;
+    public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleu){
         this.paquet=paquet;
      // paquet.ajouterObservateur(this);
+    }
+    public Observateur observateur;
+
+    public void setObservateur(Observateur observateur) {
+        this.observateur = observateur;
+    }
+
+    public void notifierObservateur() {
+        observateur.reagir();
     }
     @Override
     public void reagir() {
@@ -32,11 +43,11 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @FXML
     public void allerAccueil() throws Exception {
-        GlobalControleur.changeSceneVersAccueil();
+        globalControleur.changeSceneVersAccueil();
     }
     @FXML
     public void voirPaquet() throws Exception {
         // TODO : verifier le paquet courant
-        GlobalControleur.changeSceneVersGestion();
+        globalControleur.changeSceneVersGestion();
     }
 }
