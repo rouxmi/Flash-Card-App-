@@ -2,6 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.modele.PaquetDeCartes;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -22,6 +23,11 @@ public class GestionControleur implements Initializable, Observateur {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    @FXML
+    public void versCreation(){
 
     }
 }
