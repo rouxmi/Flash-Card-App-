@@ -1,13 +1,14 @@
 package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
+import com.example.cd.SujetObserve;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreationControleur implements Initializable, Observateur {
+public class CreationControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
     private int indice;
     public CreationControleur(PaquetDeCartes paquet){

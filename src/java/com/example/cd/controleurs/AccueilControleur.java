@@ -1,6 +1,7 @@
 package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
+import com.example.cd.SujetObserve;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AccueilControleur implements Initializable, Observateur {
+public class AccueilControleur extends SujetObserve implements Initializable, Observateur {
     private ArrayList<PaquetDeCartes> paquets;
     @FXML
     private GridPane table;
@@ -46,8 +47,7 @@ public class AccueilControleur implements Initializable, Observateur {
     }
 
     public void creationBoutons() {
-        int nbBoutons = 20;
-        //int nbBoutons = paquets.size()+1;
+        int nbBoutons = paquets.size()+1;
         int nbLignes = 0;
         int nbColonnes = 3;
 
@@ -67,7 +67,7 @@ public class AccueilControleur implements Initializable, Observateur {
         for (int i = 0; i < nbBoutons; i++) {
             Button button;
             button = new Button();
-            button.setText("lola");
+
             if (i == nbBoutons - 1) {
                 button.setText("+");
                 button.setOnAction(event -> {
@@ -77,6 +77,9 @@ public class AccueilControleur implements Initializable, Observateur {
                         e.printStackTrace();
                     }
                 });
+            }
+            else {
+                button.setText(paquets.get(i).getTitre());
             }
             button.setPrefSize(100, 100);
             button.setMaxHeight(1.7976931348623157E308);

@@ -1,5 +1,6 @@
 package com.example.cd.controleurs;
 
+import com.example.cd.Observateur;
 import com.example.cd.Sauvegarde;
 import com.example.cd.commande.ChangeurScene;
 import com.example.cd.modele.PaquetDeCartes;
@@ -7,7 +8,7 @@ import com.example.cd.modele.PaquetDeCartes;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GlobalControleur{
+public class GlobalControleur implements Observateur {
     private ArrayList<PaquetDeCartes> paquets;
 
     private static ChangeurScene changeurScene;
@@ -31,6 +32,7 @@ public class GlobalControleur{
         }
         Sauvegarde.sauvegardeToutPaquets(paquets);*/
          this.accueil = new AccueilControleur(paquets);
+         this.accueil.ajouterObservateur(this);
         InitialisationChangeurScene();
 
     }
@@ -61,4 +63,8 @@ public class GlobalControleur{
         changeurScene.execute();
     }
 
+    @Override
+    public void reagir() {
+
+    }
 }
