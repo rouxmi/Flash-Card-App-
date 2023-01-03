@@ -46,7 +46,14 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public void versEntrainement() throws Exception {
         GlobalControleur.changeSceneVersEntrainement();
     }
-
+    @FXML
+    public void quitterAppli() {
+        (new quitterApplicationCommande()).execute();
+    }
+    @FXML
+    public void allerAccueil() throws Exception {
+        GlobalControleur.changeSceneVersAccueil();
+    }
     public void affichageCartes() {
         if (this.paquet !=null) {
             int nbBoutons = paquet.taillePaquet();
