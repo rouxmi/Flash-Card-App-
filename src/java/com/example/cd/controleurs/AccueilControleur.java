@@ -1,6 +1,8 @@
 package com.example.cd.controleurs;
 
+import com.example.cd.Main;
 import com.example.cd.Observateur;
+import com.example.cd.commande.ChangeurScene;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.Initializable;
 
@@ -9,17 +11,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AccueilControleur implements Initializable, Observateur {
-
-    private ArrayList<PaquetDeCartes> paquet;
+    private ArrayList<PaquetDeCartes> paquets;
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquet){
-        this.paquet = paquet;
+        this.paquets = paquet;
         for(int i=0; i< paquet.size();i++){
             paquet.get(i).ajouterObservateur(this);
         }
-
     }
-
 
     @Override
     public void reagir() {
@@ -31,8 +30,11 @@ public class AccueilControleur implements Initializable, Observateur {
 
     }
 
-    public void ajouterNouveauPaquet(){
-        paquet.add(new PaquetDeCartes());
-        paquet.get(paquet.size()-1).ajouterObservateur(this);
+    public void ajouterNouveauPaquet() throws Exception {
+        paquets.add(new PaquetDeCartes());
+        PaquetDeCartes paquetActuel = paquets.get(paquets.size()-1);
+        paquetActuel.ajouterObservateur(this);
+        GlobalControleur.changeSceneVersGestion();
+
     }
 }
