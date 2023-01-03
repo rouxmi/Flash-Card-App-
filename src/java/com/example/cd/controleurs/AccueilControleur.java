@@ -1,9 +1,8 @@
 package com.example.cd.controleurs;
 
-import com.example.cd.Main;
 import com.example.cd.Observateur;
-import com.example.cd.commande.ChangeurScene;
 import com.example.cd.modele.PaquetDeCartes;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -30,10 +29,12 @@ public class AccueilControleur implements Initializable, Observateur {
 
     }
 
+    @FXML
     public void ajouterNouveauPaquet() throws Exception {
         paquets.add(new PaquetDeCartes());
         PaquetDeCartes paquetActuel = paquets.get(paquets.size()-1);
-        paquetActuel.ajouterObservateur(this);
+        // TODO :
+        //        paquetActuel.ajouterObservateur(this);
         GlobalControleur.changeSceneVersGestion();
 
     }

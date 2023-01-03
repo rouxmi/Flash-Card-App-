@@ -19,7 +19,6 @@ public class GlobalControleur{
         this.paquets = new ArrayList<PaquetDeCartes>();
         this.accueil = new AccueilControleur(paquets);
         InitialisationChangeurScene();
-
     }
 
     public void InitialisationChangeurScene() throws IOException {
