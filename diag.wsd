@@ -36,7 +36,7 @@ class AccueilControleur{
 }
 
 interface Initializable{
-    {method} initialize
+    {method} void initialize()
 }
 
 PaquetDeCartes "*" -- "*" Carte : contient
