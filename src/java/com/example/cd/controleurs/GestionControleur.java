@@ -2,6 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
+import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
@@ -41,49 +42,60 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     }
 
     @FXML
+    public void quitterAppli() {
+        (new quitterApplicationCommande()).execute();
+    }
+    @FXML
+    public void allerAccueil() throws Exception {
+        GlobalControleur.changeSceneVersAccueil();
+    }
+
+    @FXML
     public void versEntrainement() throws Exception {
         GlobalControleur.changeSceneVersEntrainement();
     }
 
-    public void affichageCartes(){
-        int nbBoutons= paquet.taillePaquet();
-        int nbColonnes =1;
-        int nbLignes=0;
-        while (nbColonnes * nbLignes < nbBoutons) {
-            nbLignes++;
-        }
-        if (nbLignes > table.getRowConstraints().size()) {
-            for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {
-                RowConstraints row = new RowConstraints();
-                row.setVgrow(Priority.SOMETIMES);
-                row.setMinHeight(10);
-                row.setPrefHeight(100);
-                table.getRowConstraints().add(row);
+    public void affichageCartes() {
+        if (this.paquet !=null) {
+            int nbBoutons = paquet.taillePaquet();
+            int nbColonnes = 1;
+            int nbLignes = 0;
+            while (nbColonnes * nbLignes < nbBoutons) {
+                nbLignes++;
             }
-        }
-        if (nbLignes > table.getRowConstraints().size()) {
-            for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {
-                RowConstraints row = new RowConstraints();
-                row.setVgrow(Priority.SOMETIMES);
-                row.setMinHeight(10);
-                row.setPrefHeight(100);
-                table.getRowConstraints().add(row);
+            if (nbLignes > table.getRowConstraints().size()) {
+                for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {
+                    RowConstraints row = new RowConstraints();
+                    row.setVgrow(Priority.SOMETIMES);
+                    row.setMinHeight(10);
+                    row.setPrefHeight(100);
+                    table.getRowConstraints().add(row);
+                }
             }
+            if (nbLignes > table.getRowConstraints().size()) {
+                for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {
+                    RowConstraints row = new RowConstraints();
+                    row.setVgrow(Priority.SOMETIMES);
+                    row.setMinHeight(10);
+                    row.setPrefHeight(100);
+                    table.getRowConstraints().add(row);
+                }
+            }
+
+            for (int i = 0; i < nbBoutons; i++) {
+                Button button;
+                button = new Button();
+
+                button.setText(paquet.getCarte(i).getQuestion());
+
+                button.setPrefSize(100, 100);
+                button.setMaxHeight(1.7976931348623157E308);
+                button.setMaxWidth(1.7976931348623157E308);
+                button.setMnemonicParsing(false);
+                table.add(button, i % nbColonnes, i / nbColonnes);
+            }
+            table.setVgap(10);
+
         }
-
-        for (int i = 0; i < nbBoutons; i++) {
-            Button button;
-            button = new Button();
-
-            button.setText(paquet.getCarte(i).getQuestion());
-
-            button.setPrefSize(100, 100);
-            button.setMaxHeight(1.7976931348623157E308);
-            button.setMaxWidth(1.7976931348623157E308);
-            button.setMnemonicParsing(false);
-            table.add(button, i % nbColonnes, i / nbColonnes);
-        }
-        table.setVgap(10);
-
     }
 }

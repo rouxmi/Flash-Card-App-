@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
 
 public class AccueilControleur extends SujetObserve implements Initializable, Observateur {
     private ArrayList<PaquetDeCartes> paquets;
+
+    private PaquetDeCartes paquetActuel;
     @FXML
     private GridPane table;
 
@@ -28,7 +30,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     @Override
     public void reagir() {
-        // TODO Auto-generated method stub
+
     }
 
     @Override
@@ -44,6 +46,12 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         //        paquetActuel.ajouterObservateur(this);
         GlobalControleur.changeSceneVersGestion();
 
+    }
+
+    @FXML
+    public void visiterPaquet() throws Exception{
+
+        GlobalControleur.changeSceneVersGestion();
     }
 
     public void creationBoutons() {
@@ -80,6 +88,15 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             }
             else {
                 button.setText(paquets.get(i).getTitre());
+                int finalI = i;
+                button.setOnAction(event -> {
+                    try {
+                        paquetActuel=paquets.get(finalI);
+                        visiterPaquet();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                });
             }
             button.setPrefSize(100, 100);
             button.setMaxHeight(1.7976931348623157E308);
@@ -89,5 +106,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         }
         table.setHgap(10);
         table.setVgap(10);
+    }
+
+    public PaquetDeCartes getPaquetActuel() {
+        return paquetActuel;
     }
 }
