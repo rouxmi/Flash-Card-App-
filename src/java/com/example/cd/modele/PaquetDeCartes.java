@@ -1,4 +1,7 @@
-package com.example.cd;
+package com.example.cd.modele;
+
+import com.example.cd.SujetObserve;
+import com.example.cd.modele.Carte;
 
 import java.util.ArrayList;
 

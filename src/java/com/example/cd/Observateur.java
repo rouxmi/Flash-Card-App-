@@ -1,5 +1,5 @@
 package com.example.cd;
 
-interface Observateur {
-    void reagir();
+public interface Observateur {
+    public void reagir();
 }
