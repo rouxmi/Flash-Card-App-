@@ -10,7 +10,7 @@ class Carte {
     {method} void setReponse(String reponse)
 }
 
-class PaquetDeCarte {
+class PaquetDeCartes {
     {field} String titre
     {field} String auteur
     {method} String getTitre()
@@ -18,6 +18,8 @@ class PaquetDeCarte {
     {method} void setTitre(String titre)
     {method} void setCartes(ArrayList<Carte> cartes)
 }
+
+
 
 interface Observateur{
     {method} void reagir()
@@ -28,15 +30,22 @@ class SujetObserve{
     {method} void notifierObservateur()
 }
 
-class Controleur{}
+class AccueilControleur{
 
-PaquetDeCarte "*" -- "*" Carte : contient
 
-SujetObserve <|-- PaquetDeCarte
+}
+
+interface Initializable{
+    {method} initialize
+}
+
+PaquetDeCartes "*" -- "*" Carte : contient
+
+SujetObserve <|-- PaquetDeCartes
 SujetObserve "1"--"*" Observateur
-Controleur ..|> Observateur
-PaquetDeCarte -->"*" Controleur
-VueAbstraite --"1" Controleur
+AccueilControleur ..|> Observateur
+AccueilControleur --"1" PaquetDeCartes
+AccueilControleur ..|> Initializable
 
 
 @enduml
