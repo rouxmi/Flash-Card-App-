@@ -1,14 +1,14 @@
 package com.example.cd.controleurs;
 
+import com.example.cd.Observateur;
 import com.example.cd.Sauvegarde;
 import com.example.cd.commande.ChangeurScene;
-import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GlobalControleur{
+public class GlobalControleur implements Observateur {
     private ArrayList<PaquetDeCartes> paquets;
 
     private static ChangeurScene changeurScene;
@@ -18,7 +18,10 @@ public class GlobalControleur{
     private GestionControleur gestion;
 
     public GlobalControleur() throws IOException {
-        this.paquets = Sauvegarde.chargerToutPaquets();
+        this.paquets = Sauvegarde.chargerTousPaquets();
+        for (PaquetDeCartes paquet : paquets) {
+            System.out.println(paquet.getTitre());
+        }
         /*ArrayList<PaquetDeCartes> paquets = new ArrayList<PaquetDeCartes>();
         for (int i=0;i<10;i++){
             PaquetDeCartes paquet = new PaquetDeCartes("paquet"+i,"auteur"+i);
@@ -29,6 +32,7 @@ public class GlobalControleur{
         }
         Sauvegarde.sauvegardeToutPaquets(paquets);*/
          this.accueil = new AccueilControleur(paquets);
+         this.accueil.ajouterObservateur(this);
         InitialisationChangeurScene();
 
     }
@@ -59,4 +63,8 @@ public class GlobalControleur{
         changeurScene.execute();
     }
 
+    @Override
+    public void reagir() {
+
+    }
 }

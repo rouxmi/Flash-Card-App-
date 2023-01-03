@@ -1,6 +1,7 @@
 package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
+import com.example.cd.SujetObserve;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
@@ -9,7 +10,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GestionControleur implements Initializable, Observateur {
+public class GestionControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
 
     public GestionControleur(PaquetDeCartes paquet){

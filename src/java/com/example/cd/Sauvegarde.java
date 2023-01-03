@@ -38,7 +38,7 @@ public class Sauvegarde {
         fileWriter.close();
     }
 
-    public static void sauvegardeToutPaquets(ArrayList<PaquetDeCartes> paquets) throws IOException {
+    public static void sauvegardeTousPaquets(ArrayList<PaquetDeCartes> paquets) throws IOException {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
@@ -79,7 +79,7 @@ public class Sauvegarde {
     }
 
 
-    public static ArrayList<PaquetDeCartes> chargerToutPaquets(){
+    public static ArrayList<PaquetDeCartes> chargerTousPaquets(){
         ArrayList<PaquetDeCartes> paquets = new ArrayList<>();
         File file = new File("src/ressources/donnees.json");
         if (file.isFile()) {
@@ -87,9 +87,7 @@ public class Sauvegarde {
                 String json = Files.readAllLines(file.toPath()).get(0);
                 Gson gson = new Gson();
                 Listpaquets listPaquets = gson.fromJson(json, Listpaquets.class);
-                for (int i = 0; i < listPaquets.paquets.size(); i++) {
-                    paquets.add(listPaquets.paquets.get(i));
-                }
+                paquets.addAll(listPaquets.paquets);
             } catch (IOException e) {
                 e.printStackTrace();
             }
