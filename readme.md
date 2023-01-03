@@ -9,7 +9,7 @@
 
 ## Description du projet
 
-Ce projet implémente une application de Flash Cards. Les Flash Cards sont un système d'apprentissage qui utilise des cartes avec d'un côté une question et la réponse associée au dos. L'intérêt de cette méthode est de la pratiquer régulièrement, en triant les cartes et en mettant en premier celles avec lesquelles on 
+Ce projet implémente une application de Flash Cards. Les Flash Cards sont un système d'apprentissage qui utilise des cartes avec d'un côté une question et la réponse associée au dos. L'intérêt de cette méthode est de la pratiquer régulièrement, en triant les cartes et en mettant en premier celles 
 
 [Le sujet détaillé est disponible en version PDF](./Documents/CodingWeek%202022-2023%20-%20Sujet.pdf)
 ### Comment utiliser notre programme
