@@ -5,7 +5,7 @@ import com.example.cd.SujetObserve;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
@@ -18,6 +18,8 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     private ArrayList<PaquetDeCartes> paquets;
     @FXML
     private GridPane table;
+    @FXML
+    private ToggleButton toggleBouton;
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquet){
         this.paquets = paquet;
@@ -43,7 +45,14 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         // TODO :
         //        paquetActuel.ajouterObservateur(this);
         GlobalControleur.changeSceneVersGestion();
-
+    }
+    @FXML
+    public void majToggle() {
+        if ( toggleBouton.isSelected() ) {
+            toggleBouton.setText("Gestion");
+        } else {
+            toggleBouton.setText("Entrainement");
+        }
     }
 
     public void creationBoutons() {
