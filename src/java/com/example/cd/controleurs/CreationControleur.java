@@ -6,21 +6,32 @@ import com.example.cd.commande.*;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CreationControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
+
+    private GlobalControleur globalControleur;
     private int indice;
-    public CreationControleur(PaquetDeCartes paquet){
+
+    @FXML
+    private TextArea question;
+    @FXML
+    private TextArea reponse;
+
+    public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
         this.indice=0;
+        this.globalControleur=globalControleur;
         //paquet.ajouterObservateur(this);
     }
-    public CreationControleur(PaquetDeCartes paquet,int indice){
+    public CreationControleur(PaquetDeCartes paquet,int indice,GlobalControleur globalControleur){
         this.paquet=paquet;
         this.indice=indice;
+        this.globalControleur=globalControleur;
         paquet.ajouterObservateur(this);
     }
 
@@ -48,11 +59,19 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void allerAccueil() throws Exception {
-        GlobalControleur.changeSceneVersAccueil();
+        globalControleur.changeSceneVersAccueil();
     }
     @FXML
     public void voirPaquet() throws Exception {
         // TODO : verifier le paquet courant
-        GlobalControleur.changeSceneVersGestion();
+        globalControleur.changeSceneVersGestion();
     }
+
+    @FXML
+    public void validerCarte() throws Exception {
+        //this.paquet.getCarte(this.indice).setQuestion(question.getText());
+        //this.paquet.getCarte(this.indice).setReponse(reponse.getText());
+        globalControleur.changeSceneVersCreation();
+    }
+
 }

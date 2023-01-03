@@ -2,6 +2,7 @@ package com.example.cd.commande;
 
 
 import com.example.cd.commande.sceneStrategie.*;
+import com.example.cd.controleurs.GlobalControleur;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 
@@ -9,10 +10,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ChangeurScene extends Commande {
+    private final GlobalControleur globalControleur;
     private ChangeScene changeScene;
 
-    public ChangeurScene(ArrayList<PaquetDeCartes> paquet, PaquetDeCartes paquetDeCartes, Carte carte) {
+    public ChangeurScene(ArrayList<PaquetDeCartes> paquet, PaquetDeCartes paquetDeCartes, Carte carte, GlobalControleur globalControleur) throws IOException {
         super(paquet,paquetDeCartes, carte);
+        this.globalControleur = globalControleur;
     }
 
     public void setChangeScene(ChangeScene changeScene) {
@@ -20,19 +23,19 @@ public class ChangeurScene extends Commande {
     }
 
     public void changeSceneAcceuil() throws IOException {
-        setChangeScene(new SceneAccueil(paquet));
+        setChangeScene(new SceneAccueil(paquet,globalControleur));
     }
 
     public void changeSceneCreation() throws Exception {
-        setChangeScene(new SceneCreation(paquetDeCartes));
+        setChangeScene(new SceneCreation(paquetDeCartes,globalControleur));
     }
 
     public void changeSceneEntrainement() throws Exception {
-        setChangeScene(new SceneEntrainement(paquetDeCartes));
+        setChangeScene(new SceneEntrainement(paquetDeCartes,globalControleur));
     }
 
     public void changeSceneGestion() throws Exception {
-        setChangeScene(new SceneGestion(paquetDeCartes));
+        setChangeScene(new SceneGestion(paquetDeCartes,globalControleur));
     }
 
 

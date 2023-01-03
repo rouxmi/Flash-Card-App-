@@ -15,17 +15,15 @@ public class GlobalControleur implements Observateur {
     private PaquetDeCartes paquet=null;
     private Carte carte=null;
 
-    private static ChangeurScene changeurScene;
-    private AccueilControleur accueil;
+    private  ChangeurScene changeurScene;
+
+    private  AccueilControleur accueil;
     private CreationControleur creation;
     private EntrainementControleur entrainement;
     private GestionControleur gestion;
 
     public GlobalControleur() throws IOException {
         this.paquets = Sauvegarde.chargerTousPaquets();
-        for (PaquetDeCartes paquet : paquets) {
-            System.out.println(paquet.getTitre());
-        }
         /*ArrayList<PaquetDeCartes> paquets = new ArrayList<PaquetDeCartes>();
         for (int i=0;i<10;i++){
             PaquetDeCartes paquet = new PaquetDeCartes("paquet"+i,"auteur"+i);
@@ -35,35 +33,35 @@ public class GlobalControleur implements Observateur {
             paquets.add(paquet);
         }
         Sauvegarde.sauvegardeToutPaquets(paquets);*/
-         this.accueil = new AccueilControleur(paquets);
+         this.accueil = new AccueilControleur(paquets,this);
          this.accueil.ajouterObservateur(this);
         InitialisationChangeurScene();
 
     }
 
     public void InitialisationChangeurScene() throws IOException {
-        changeurScene=new ChangeurScene(paquets, paquet, carte);
+        changeurScene=new ChangeurScene(paquets, paquet, carte,this);
         changeurScene.changeSceneAcceuil();
         changeurScene.execute();
     }
 
-    public static void changeSceneVersCreation() throws Exception {
+    public  void changeSceneVersCreation() throws Exception {
         changeurScene.changeSceneCreation();
         changeurScene.execute();
     }
 
-    public static void changeSceneVersEntrainement() throws Exception {
+    public  void changeSceneVersEntrainement() throws Exception {
         changeurScene.changeSceneEntrainement();
         changeurScene.execute();
     }
 
-    public static void changeSceneVersGestion() throws Exception {
-
+    public void changeSceneVersGestion() throws Exception {
+        setPaquetActuelAccueil();
         changeurScene.changeSceneGestion();
         changeurScene.execute();
     }
 
-    public static void changeSceneVersAccueil() throws Exception {
+    public void changeSceneVersAccueil() throws Exception {
         changeurScene.changeSceneAcceuil();
         changeurScene.execute();
     }
@@ -91,5 +89,29 @@ public class GlobalControleur implements Observateur {
     public void setPaquetActuelAccueil(){
         changeurScene.setPaquet(accueil.getPaquetActuel());
 
+    }
+
+    public void setAccueil(AccueilControleur accueil) {
+        this.accueil = accueil;
+    }
+
+    public CreationControleur getCreation() {
+        return creation;
+    }
+
+    public void setCreation(CreationControleur creation) {
+        this.creation = creation;
+    }
+
+    public EntrainementControleur getEntrainement() {
+        return entrainement;
+    }
+
+    public void setEntrainement(EntrainementControleur entrainement) {
+        this.entrainement = entrainement;
+    }
+
+    public void setGestion(GestionControleur gestion) {
+        this.gestion = gestion;
     }
 }
