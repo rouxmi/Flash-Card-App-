@@ -14,7 +14,7 @@
       <ToolBar prefHeight="32.0" prefWidth="600.0">
          <items>
             <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
-            <ToggleButton mnemonicParsing="false" text="ToggleButton" />
+            <ToggleButton fx:id="toggleBouton" mnemonicParsing="false" onAction="#majToggle" text="Gestion" />
          </items>
       </ToolBar>
        <ScrollPane layoutY="32.0" prefHeight="370.0" prefWidth="600.0">
