@@ -22,4 +22,6 @@ public class EntrainementControleur implements Initializable, Observateur {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    
 }
