@@ -2,13 +2,17 @@ package com.example.cd.modele;
 
 import com.example.cd.SujetObserve;
 import com.example.cd.modele.Carte;
+import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 
 public class PaquetDeCartes extends SujetObserve {
 
+    @Expose
     private String titre;
+    @Expose
     private String auteur;
+    @Expose
     private ArrayList<Carte> cartes;
 
     public PaquetDeCartes(ArrayList<Carte> cartes, String titre, String auteur){
