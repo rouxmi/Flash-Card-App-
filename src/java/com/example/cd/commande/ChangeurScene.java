@@ -2,7 +2,7 @@ package com.example.cd.commande;
 
 
 import com.example.cd.commande.sceneStrategie.ChangeScene;
-import com.example.cd.commande.sceneStrategie.SceneAcceuil;
+import com.example.cd.commande.sceneStrategie.SceneAccueil;
 import com.example.cd.commande.sceneStrategie.SceneCreation;
 import com.example.cd.commande.sceneStrategie.SceneEntrainement;
 import com.example.cd.modele.Carte;
@@ -23,7 +23,7 @@ public class ChangeurScene extends Command {
     }
 
     public void changeSceneAcceuil() throws IOException {
-        setChangeScene(new SceneAcceuil(paquet));
+        setChangeScene(new SceneAccueil(paquet));
     }
 
     public void changeSceneCreation() throws Exception {
