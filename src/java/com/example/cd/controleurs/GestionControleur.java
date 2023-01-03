@@ -13,7 +13,7 @@ public class GestionControleur implements Initializable, Observateur {
 
     public GestionControleur(PaquetDeCartes paquet){
         this.paquet = paquet;
-        paquet.ajouterObservateur(this);
+        //paquet.ajouterObservateur(this);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class GestionControleur implements Initializable, Observateur {
     }
 
     @FXML
-    public void versEntrainement(){
-
+    public void versEntrainement() throws Exception {
+        GlobalControleur.changeSceneVersEntrainement();
     }
 }

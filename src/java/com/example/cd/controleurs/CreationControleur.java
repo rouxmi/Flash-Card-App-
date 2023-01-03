@@ -13,7 +13,7 @@ public class CreationControleur implements Initializable, Observateur {
     public CreationControleur(PaquetDeCartes paquet){
         this.paquet=paquet;
         this.indice=0;
-        paquet.ajouterObservateur(this);
+        //paquet.ajouterObservateur(this);
     }
     public CreationControleur(PaquetDeCartes paquet,int indice){
         this.paquet=paquet;
