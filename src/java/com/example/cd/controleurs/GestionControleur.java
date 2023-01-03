@@ -1,6 +1,7 @@
 package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
+import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,8 +28,9 @@ public class GestionControleur implements Initializable, Observateur {
     }
 
     @FXML
-    public void versCreation(){
-
+    public void versCreation() throws Exception{
+        //paquet.ajouterCarte(new Carte());
+        GlobalControleur.changeSceneVersCreation();
     }
 
     @FXML

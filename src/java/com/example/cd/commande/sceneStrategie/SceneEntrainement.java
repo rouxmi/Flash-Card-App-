@@ -9,7 +9,7 @@ public class SceneEntrainement implements ChangeScene {
     Scene newScene;
 
     public SceneEntrainement(PaquetDeCartes paquetDeCartes) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Gestion.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Entrainement.fxml"));
         fxmlLoader.setController(new com.example.cd.controleurs.EntrainementControleur(paquetDeCartes));
         newScene = new Scene(fxmlLoader.load());
         Main.mainStage.setResizable(false);
@@ -17,7 +17,7 @@ public class SceneEntrainement implements ChangeScene {
     @Override
     public void changetoScene() {
         Main.mainStage.setScene(newScene);
-        Main.mainStage.setTitle("Gestion");
+        Main.mainStage.setTitle("Entrainement");
         Main.mainStage.show();
     }
 

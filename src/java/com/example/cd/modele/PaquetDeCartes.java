@@ -58,6 +58,7 @@ public class PaquetDeCartes extends SujetObserve {
     //methodes concernant la liste de cartes
     public void ajouterCarte(Carte carte){
         cartes.add(carte);
+        notifierObservateur();
     }
 
     public void supprimerCarte(Carte carte){

@@ -1,10 +1,7 @@
 package com.example.cd.commande;
 
 
-import com.example.cd.commande.sceneStrategie.ChangeScene;
-import com.example.cd.commande.sceneStrategie.SceneAccueil;
-import com.example.cd.commande.sceneStrategie.SceneCreation;
-import com.example.cd.commande.sceneStrategie.SceneEntrainement;
+import com.example.cd.commande.sceneStrategie.*;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 
@@ -35,7 +32,7 @@ public class ChangeurScene extends Command {
     }
 
     public void changeSceneGestion() throws Exception {
-        setChangeScene(new SceneEntrainement(paquetDeCartes));
+        setChangeScene(new SceneGestion(paquetDeCartes));
     }
 
 
