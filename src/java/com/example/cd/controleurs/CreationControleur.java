@@ -21,7 +21,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private TextArea question;
     @FXML
     private TextArea reponse;
-    public CreationControleur(PaquetDeCartes paquet){
+
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
         this.indice=0;
@@ -71,7 +71,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     public void validerCarte() throws Exception {
         //this.paquet.getCarte(this.indice).setQuestion(question.getText());
         //this.paquet.getCarte(this.indice).setReponse(reponse.getText());
-        GlobalControleur.changeSceneVersCreation();
+        globalControleur.changeSceneVersCreation();
     }
 
 }
