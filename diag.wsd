@@ -2,10 +2,43 @@
 hide empty members
 
 class Carte {
-    +string question
-    +string reponse
+    {field} String question
+    {field} String reponse
+    {method} String getQuestion()
+    {method} String getReponse()
+    {method} void setQuestion(String question)
+    {method} void setReponse(String reponse)
 }
 
+class PaquetDeCarte {
+    {field} String titre
+    {field} String auteur
+    {method} String getTitre()
+    {method} ArrayList<Carte> getCartes()
+    {method} void setTitre(String titre)
+    {method} void setCartes(ArrayList<Carte> cartes)
+}
 
+interface Observateur{
+    {method} void reagir()
+}
+
+class SujetObserve{
+    {method} void ajouterObservateur()
+    {method} void notifierObservateur()
+}
+
+class Controleur{}
+
+PaquetDeCarte "*" -- "*" Carte : contient
+
+SujetObserve <|-- PaquetDeCarte
+SujetObserve "1"--"*" Observateur
+Controleur ..|> Observateur
+PaquetDeCarte -->"*" Controleur
+VueAbstraite --"1" Controleur
+
+
+@enduml
 
 
