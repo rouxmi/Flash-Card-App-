@@ -47,6 +47,8 @@ public class PaquetDeCartes extends SujetObserve {
         return cartes;
     }
 
+    public Carte getCarte(int indice){ return cartes.get(indice);}
+
     //setters
     public void setTitre(String titre) {
         this.titre = titre;
@@ -70,6 +72,10 @@ public class PaquetDeCartes extends SujetObserve {
 
     public void supprimerCarteSelonIndex(int index){
         cartes.remove(index);
+    }
+
+    public int taillePaquet(){
+        return this.cartes.size();
     }
 
 
