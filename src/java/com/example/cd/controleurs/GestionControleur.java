@@ -30,4 +30,9 @@ public class GestionControleur implements Initializable, Observateur {
     public void versCreation(){
 
     }
+
+    @FXML
+    public void versEntrainement(){
+
+    }
 }
