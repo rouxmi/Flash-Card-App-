@@ -1,5 +1,7 @@
-package com.example.cd;
+package com.example.cd.controleurs;
 
+import com.example.cd.Observateur;
+import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.Initializable;
 
 import java.net.URL;

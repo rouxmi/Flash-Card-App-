@@ -1,4 +1,4 @@
-package com.example.cd;
+package com.example.cd.modele;
 
 public class Carte {
     private String question;
