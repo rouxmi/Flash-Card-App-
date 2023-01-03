@@ -8,7 +8,7 @@ import com.example.cd.modele.PaquetDeCartes;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ChangeurScene extends Command {
+public class ChangeurScene extends Commande {
     private ChangeScene changeScene;
 
     public ChangeurScene(ArrayList<PaquetDeCartes> paquet, PaquetDeCartes paquetDeCartes, Carte carte) {
