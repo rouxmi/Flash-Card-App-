@@ -32,6 +32,16 @@ class SujetObserve{
 
 class AccueilControleur{
 
+}
+
+class CreationControleur{
+
+}
+class EntrainementControleur{
+
+}
+
+class GestionControleur{
 
 }
 
@@ -40,14 +50,20 @@ interface Initializable{
 }
 
 PaquetDeCartes "*" -- "*" Carte : contient
-
+AccueilControleur --"*" PaquetDeCartes
+CreationControleur --"1" PaquetDeCartes
+EntrainementControleur --"1" PaquetDeCartes
+GestionControleur --"1" PaquetDeCartes
 SujetObserve <|-- PaquetDeCartes
 SujetObserve "1"--"*" Observateur
 AccueilControleur ..|> Observateur
-AccueilControleur --"1" PaquetDeCartes
 AccueilControleur ..|> Initializable
-
-
+CreationControleur ..|> Observateur
+CreationControleur ..|> Initializable
+EntrainementControleur ..|> Observateur
+EntrainementControleur ..|> Initializable
+GestionControleur ..|> Observateur
+GestionControleur ..|> Initializable
 @enduml
 
 

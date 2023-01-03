@@ -5,14 +5,12 @@ import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class EntrainementControleur extends GlobalControleur {
-    private PaquetDeCartes paquet;
-    public EntrainementControleur(PaquetDeCartes paquet){
-        this.paquet=paquet;
-        paquet.ajouterObservateur(this);
-    }
+public class GlobalControleur implements Observateur, Initializable {
+    private ArrayList<PaquetDeCartes> paquets;
+
     @Override
     public void reagir() {
 

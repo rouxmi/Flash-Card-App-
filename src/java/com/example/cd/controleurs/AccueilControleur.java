@@ -5,15 +5,19 @@ import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AccueilControleur implements Observateur, Initializable {
+public class AccueilControleur extends GlobalControleur {
 
-    private PaquetDeCartes paquet;
+    private ArrayList<PaquetDeCartes> paquet;
 
-    public AccueilControleur(PaquetDeCartes paquet){
+    public AccueilControleur(ArrayList<PaquetDeCartes> paquet){
         this.paquet = paquet;
-        paquet.ajouterObservateur(this);
+        for(int i=0; i< paquet.size();i++){
+            paquet.get(i).ajouterObservateur(this);
+        }
+
     }
 
 
