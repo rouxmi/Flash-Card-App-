@@ -34,7 +34,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // TODO : modifier avec la carte courante
+        toggleFlashCard.setText("question");
     }
 
     @FXML
@@ -49,5 +50,14 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void voirPaquet() throws Exception {
         // TODO : verifier le paquet courant
         globalControleur.changeSceneVersGestion();
+    }
+    @FXML
+    public void majFlashCard() {
+        // TODO : modifier avec le paquet courant
+        if (toggleFlashCard.isSelected()) {
+            toggleFlashCard.setText("Question");
+        } else {
+            toggleFlashCard.setText("Réponse");
+        }
     }
 }

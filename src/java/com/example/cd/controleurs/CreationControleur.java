@@ -6,6 +6,7 @@ import com.example.cd.commande.*;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +16,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     private GlobalControleur globalControleur;
     private int indice;
+
+    @FXML
+    private TextArea question;
+    @FXML
+    private TextArea reponse;
+    public CreationControleur(PaquetDeCartes paquet){
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
         this.indice=0;
@@ -59,4 +66,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         // TODO : verifier le paquet courant
         globalControleur.changeSceneVersGestion();
     }
+
+    @FXML
+    public void validerCarte() throws Exception {
+        //this.paquet.getCarte(this.indice).setQuestion(question.getText());
+        //this.paquet.getCarte(this.indice).setReponse(reponse.getText());
+        GlobalControleur.changeSceneVersCreation();
+    }
+
 }
