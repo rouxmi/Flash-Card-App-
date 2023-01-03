@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="Infinity"  maxWidth="Infinity" minHeight="27" minWidth="200" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.VBox?>
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="27" minWidth="200" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane maxHeight="Infinity" maxWidth="Infinity" AnchorPane.bottomAnchor="0.0"
           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" >
         <columnConstraints>
@@ -40,7 +41,7 @@
               </Menu>
             </menus>
           </MenuBar>
-           <ScrollPane layoutY="32.0" prefHeight="370.0" prefWidth="600.0" HBox.hgrow="SOMETIMES" VBox.vgrow="SOMETIMES">
+           <ScrollPane layoutY="32.0" prefHeight="370.0" prefWidth="600.0" VBox.vgrow="SOMETIMES">
                <content>
                <VBox>
                    <GridPane fx:id="table" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity">
