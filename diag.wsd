@@ -44,6 +44,9 @@ class EntrainementControleur{
 class GestionControleur{
 
 }
+class GlobalControleur{
+
+}
 
 interface Initializable{
     {method} void initialize()
@@ -64,6 +67,11 @@ EntrainementControleur ..|> Observateur
 EntrainementControleur ..|> Initializable
 GestionControleur ..|> Observateur
 GestionControleur ..|> Initializable
+GlobalControleur --"1" GestionControleur
+GlobalControleur --"1" EntrainementControleur
+GlobalControleur --"1" CreationControleur
+GlobalControleur --"1" AccueilControleur
+GlobalControleur --"*" PaquetDeCartes
 @enduml
 
 
