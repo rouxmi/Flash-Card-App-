@@ -43,4 +43,9 @@ public class GlobalControleur{
         changeurScene.execute();
     }
 
+    public void changeSceneVersAccueil() throws Exception {
+        changeurScene.changeSceneAcceuil();
+        changeurScene.execute();
+    }
+
 }
