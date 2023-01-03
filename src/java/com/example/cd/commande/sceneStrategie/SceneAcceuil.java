@@ -24,7 +24,7 @@ public class SceneAcceuil implements ChangeScene {
     @Override
     public void changetoScene() {
         Main.mainStage.setScene(newScene);
-        Main.mainStage.setTitle("Home");
+        Main.mainStage.setTitle("Accueil");
         Main.mainStage.show();
     }
 }

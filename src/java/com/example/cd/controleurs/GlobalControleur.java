@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class GlobalControleur{
     private ArrayList<PaquetDeCartes> paquets;
+
+    private ChangeurScene changeurScene;
     private AccueilControleur accueil;
     private CreationControleur creation;
     private EntrainementControleur entrainement;
@@ -21,9 +23,24 @@ public class GlobalControleur{
     }
 
     public void InitialisationChangeurScene() throws IOException {
-        ChangeurScene Changeurscene=new ChangeurScene(paquets, null, null);
-        Changeurscene.changeSceneAcceuil();
-        Changeurscene.execute();
+        changeurScene=new ChangeurScene(paquets, null, null);
+        changeurScene.changeSceneAcceuil();
+        changeurScene.execute();
+    }
+
+    public void changeSceneVersCreation() throws Exception {
+        changeurScene.changeSceneCreation();
+        changeurScene.execute();
+    }
+
+    public void changeSceneVersEntrainement() throws Exception {
+        changeurScene.changeSceneEntrainement();
+        changeurScene.execute();
+    }
+
+    public void changeSceneVersGestion() throws Exception {
+        changeurScene.changeSceneGestion();
+        changeurScene.execute();
     }
 
 }
