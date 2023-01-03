@@ -44,7 +44,7 @@
          <right>
             <VBox prefHeight="403.0" prefWidth="259.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Entrainement" onAction="#versEntrainement" />
                   <Button mnemonicParsing="false" text="Button" />
                   <Button mnemonicParsing="false" text="Button" />
                </children>
