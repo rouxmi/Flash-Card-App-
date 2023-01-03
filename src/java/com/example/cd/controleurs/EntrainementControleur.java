@@ -2,7 +2,9 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
+import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.PaquetDeCartes;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -22,5 +24,19 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    @FXML
+    public void quitterAppli() {
+        (new quitterApplicationCommande()).execute();
+    }
+    @FXML
+    public void allerAccueil() throws Exception {
+        GlobalControleur.changeSceneVersAccueil();
+    }
+    @FXML
+    public void voirPaquet() throws Exception {
+        // TODO : verifier le paquet courant
+        GlobalControleur.changeSceneVersGestion();
     }
 }
