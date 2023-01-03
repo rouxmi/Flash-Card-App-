@@ -9,10 +9,10 @@ import com.example.cd.modele.PaquetDeCartes;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SceneChanger extends Command {
+public class ChangeurScene extends Command {
     private ChangeScene changeScene;
 
-    public SceneChanger(ArrayList<PaquetDeCartes> paquet, PaquetDeCartes paquetDeCartes, Carte carte) {
+    public ChangeurScene(ArrayList<PaquetDeCartes> paquet, PaquetDeCartes paquetDeCartes, Carte carte) {
         super(paquet,paquetDeCartes, carte);
     }
 

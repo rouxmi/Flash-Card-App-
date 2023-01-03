@@ -1,14 +1,10 @@
 package com.example.cd.controleurs;
 
-import com.example.cd.Observateur;
-import com.example.cd.commande.SceneChanger;
+import com.example.cd.commande.ChangeurScene;
 import com.example.cd.modele.PaquetDeCartes;
-import javafx.fxml.Initializable;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class GlobalControleur{
     private ArrayList<PaquetDeCartes> paquets;
@@ -20,7 +16,14 @@ public class GlobalControleur{
     public GlobalControleur() throws IOException {
         this.paquets = new ArrayList<PaquetDeCartes>();
         this.accueil = new AccueilControleur(paquets);
-        new SceneChanger(paquets, null, null).changeSceneAcceuil();
+        InitialisationChangeurScene();
+
+    }
+
+    public void InitialisationChangeurScene() throws IOException {
+        ChangeurScene Changeurscene=new ChangeurScene(paquets, null, null);
+        Changeurscene.changeSceneAcceuil();
+        Changeurscene.execute();
     }
 
 }
