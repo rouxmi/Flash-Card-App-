@@ -26,6 +26,7 @@
                        <MenuItem mnemonicParsing="false" text="Avancement" onAction="#avancement" />
                    </items>
             </SplitMenuButton>
+             <Button mnemonicParsing="false" onAction="#importerPaquet" text="Importer" fx:id="importPaquet" />
          </items>
       </ToolBar>
        <ScrollPane HBox.hgrow="SOMETIMES">

@@ -9,7 +9,7 @@ import com.example.cd.modele.PaquetDeCartes;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GlobalControleur implements Observateur {
+public class GlobalControleur extends Sauvegarde implements Observateur {
     private ArrayList<PaquetDeCartes> paquets;
 
     private PaquetDeCartes paquet=null;
@@ -41,6 +41,12 @@ public class GlobalControleur implements Observateur {
 
     public void sauvegarder() throws IOException {
         Sauvegarde.sauvegardeTousPaquets(paquets);
+    }
+    public void importerPaquets() throws IOException {
+        Sauvegarde.chargerPaquets();
+    }
+    public void sauvegarder1paquet() throws IOException{
+        Sauvegarde.sauvegarde(paquet);
     }
 
     public void InitialisationChangeurScene() throws IOException {

@@ -1,6 +1,7 @@
 package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
+import com.example.cd.Sauvegarde;
 import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.Carte;
@@ -40,6 +41,8 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     private Button modifTitre;
     @FXML
     private Button modifDescription;
+    @FXML
+    private Button exportPaquet;
 
     public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
@@ -135,6 +138,11 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         globalControleur.supprimerPaquet(paquet);
         globalControleur.sauvegarder();
         allerAccueil();
+    }
+
+    @FXML
+    public void exporterPaquet() throws IOException {
+
     }
     public void affichageCartes() {
         if (this.paquet !=null) {

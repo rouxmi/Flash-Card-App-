@@ -60,6 +60,7 @@
                   <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
                      <Button fx:id="supprimerPaquetBouton" mnemonicParsing="false" onAction="#supprimerPaquet" text="Supprimer le paquet" />
+                     <Button fx:id="exporterPaquet" mnemonicParsing="false" text="Exporter" />
                </items>
             </ToolBar>
          </top>

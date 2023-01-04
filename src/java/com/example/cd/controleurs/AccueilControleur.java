@@ -30,6 +30,8 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     private GridPane table;
     @FXML
     private ToggleButton toggleBouton;
+    @FXML
+    private Button importPaquet;
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur){
         this.paquets = paquets;
@@ -98,6 +100,10 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             globalControleur.changeSceneVersGestion();
         }
     }
+    @FXML
+    public void importerPaquet() throws IOException {
+        globalControleur.importerPaquets();
+    }
 
     public void creationBoutons() {
         int nbBoutons = paquets.size()+1;
@@ -132,7 +138,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                 });
             }
             else {
-                button.setText(paquets.get(i).getTitre());
+                button.setText(paquets.get(i).getTitre()+"\n"+ paquets.get(i).getDescription());
                 int finalI = i;
                 button.setOnAction(event -> {
                     try {
