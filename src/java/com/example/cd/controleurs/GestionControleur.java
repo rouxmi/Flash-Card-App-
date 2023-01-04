@@ -14,6 +14,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -69,7 +70,6 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         majCarteGlobalControleur(carteActuelle);
         globalControleur.changeSceneVersCreation();
     }
-    @FXML
     public void visiterCarte()throws Exception{
         majCarteGlobalControleur(carteActuelle);
         globalControleur.changeSceneVersCreation();
@@ -94,6 +94,11 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersAccueil();
     }
+    @FXML
+    public void supprimerPaquet() {
+//        globalControleur.paquets
+    }
+
     public void affichageCartes() {
         if (this.paquet !=null) {
             int nbBoutons = paquet.taillePaquet();
@@ -137,11 +142,13 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         }
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
 
-    public void majCarteGlobalControleur(Carte carteActuelle) {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
 

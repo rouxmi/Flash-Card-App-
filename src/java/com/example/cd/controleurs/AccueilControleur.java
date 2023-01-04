@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -29,11 +30,11 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     private ToggleButton toggleBouton;
 
-    public AccueilControleur(ArrayList<PaquetDeCartes> paquet, GlobalControleur globalControleur){
-        this.paquets = paquet;
+    public AccueilControleur(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur){
+        this.paquets = paquets;
         this.globalControleur = globalControleur;
-        for(int i=0; i< paquet.size();i++){
-            paquet.get(i).ajouterObservateur(this);
+        for(int i=0; i< paquets.size();i++){
+            paquets.get(i).ajouterObservateur(this);
         }
     }
 
@@ -50,9 +51,18 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void ajouterNouveauPaquet() throws Exception {
         paquets.add(new PaquetDeCartes());
-        PaquetDeCartes paquetActuel = paquets.get(paquets.size()-1);
+        paquetActuel = paquets.get(paquets.size()-1);
         majPaquetGlobalControleur(paquetActuel);
+        dialogBoxNouveauPaquet();
         globalControleur.changeSceneVersGestion();
+    }
+
+    public void dialogBoxNouveauPaquet() {
+        TextInputDialog infoTitre = new TextInputDialog();
+        infoTitre.setTitle("Création nouveau paquet");
+        infoTitre.setHeaderText("Renseigne le titre");
+        infoTitre.showAndWait();
+        paquetActuel.setTitre(infoTitre.getEditor().getText());
     }
     @FXML
     public void majToggle() {
@@ -152,10 +162,12 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         return paquetActuel;
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
 }

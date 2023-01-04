@@ -15,7 +15,6 @@ public class PaquetDeCartes extends SujetObserve {
     private String auteur;
     @Expose
     private ArrayList<Carte> cartes;
-    @Expose
     private ApprentissageStrategie apprentissageStrategie;
 
     public PaquetDeCartes(ArrayList<Carte> cartes, String titre, String auteur){
@@ -33,7 +32,7 @@ public class PaquetDeCartes extends SujetObserve {
     }
 
     public PaquetDeCartes(){
-        this.titre = "";
+        this.titre = " ";
         this.auteur ="";
         this.cartes =new ArrayList<>();
         this.apprentissageStrategie = new RandomApprentissage();

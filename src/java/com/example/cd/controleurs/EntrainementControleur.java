@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.transform.Rotate;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -141,10 +142,12 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         });
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
     @FXML
@@ -153,6 +156,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         this.carteActuelle = futurCartes.poll();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
+        carteActuelle.getStatsCarte().MajStatsCarteReussite();
+        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
         initialize(null, null);
         toggleFlashCard.setSelected(false);
         majFlashCard();
@@ -163,6 +168,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         this.carteActuelle = futurCartes.poll();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
+        carteActuelle.getStatsCarte().MajStatsCarteEchec();
+        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
         initialize(null, null);
         toggleFlashCard.setSelected(false);
         majFlashCard();
