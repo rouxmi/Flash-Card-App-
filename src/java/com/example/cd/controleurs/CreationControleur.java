@@ -69,7 +69,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }
 
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
-        //System.out.println(globalControleur.getCarte().getQuestion());
         if(indicePrec<0){
             System.out.println(indicePrec);
             prec.setVisible(false);
@@ -90,6 +89,19 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         // TODO : verifier le paquet courant
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersGestion();
+    }
+    @FXML
+    public void supprimerCarte() throws Exception {
+        int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
+        this.globalControleur.getPaquet().supprimerCarte(this.globalControleur.getCarte());
+        majPaquetGlobalControleur(paquet);
+        globalControleur.sauvegarder();
+        if (indicePrec>=0) {
+            majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indicePrec));
+            globalControleur.changeSceneVersCreation();
+        } else {
+            voirPaquet();
+        }
     }
     @FXML
     public void allerPrec() throws Exception{

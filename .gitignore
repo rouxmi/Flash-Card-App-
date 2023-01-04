@@ -1,6 +1,6 @@
 out/
 .idea/
 *.jar
-*.json
+*/ressources/donnees.json
 *.iml
 /src/ressources/META-INF/MANIFEST.MF
