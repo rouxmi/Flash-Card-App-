@@ -7,6 +7,7 @@ import com.example.cd.modele.PaquetDeCartes;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.transform.Rotate;
 
@@ -15,9 +16,13 @@ import java.util.ResourceBundle;
 
 public class EntrainementControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
+    private GlobalControleur globalControleur;
     @FXML
     private ToggleButton toggleFlashCard;
-    private GlobalControleur globalControleur;
+    private int decompte = 3;
+
+    @FXML
+    private Label compteurLabel;
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleu){
         this.paquet=paquet;
      // paquet.ajouterObservateur(this);
@@ -39,7 +44,14 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO : modifier avec la carte courante
-        toggleFlashCard.setText("question");
+        compteurLabel.setText(String.valueOf(decompte));
+        toggleFlashCard.setText("Question");
+        Timeline compteur = new Timeline((new KeyFrame(javafx.util.Duration.seconds(1), event -> {
+            compteurLabel.setText(String.valueOf(decompte));
+            decompte--;
+        })));
+        compteur.setCycleCount(4);
+        compteur.play();
     }
 
     @FXML
@@ -65,9 +77,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         rotate.setByAngle(180);
         rotate.play();
         if (toggleFlashCard.isSelected()) {
-            toggleFlashCard.setText("Question");
+            toggleFlashCard.setText("Reponse");
         } else {
-            toggleFlashCard.setText("Réponse");
+            toggleFlashCard.setText("Question");
         }
     }
 }
