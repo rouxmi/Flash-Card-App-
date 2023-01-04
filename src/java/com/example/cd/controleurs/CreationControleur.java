@@ -69,8 +69,13 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @FXML
     public void validerCarte() throws Exception {
-        //this.paquet.getCarte(this.indice).setQuestion(question.getText());
-        //this.paquet.getCarte(this.indice).setReponse(reponse.getText());
+        try{
+            this.paquet.getCarte(this.indice).setQuestion(question.getText());
+            this.paquet.getCarte(this.indice).setReponse(reponse.getText());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         globalControleur.changeSceneVersCreation();
     }
 
