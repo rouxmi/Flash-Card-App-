@@ -16,9 +16,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GestionControleur extends SujetObserve implements Initializable, Observateur {
+
     private PaquetDeCartes paquet;
 
     private GlobalControleur globalControleur;
+
     @FXML
     private GridPane table;
 

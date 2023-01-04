@@ -70,6 +70,17 @@
 |   ❌    | [Mise à jour road map](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/52a11d50a61d02861390cea6a734d29668c67127)         | [Tous](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/project_members)                                                                        |
 
 ### Après-midi
+🚀 &nbsp;**OPEN**  &nbsp;&nbsp;📉 &nbsp;&nbsp;**0 / 6** goals completed **(0%)** &nbsp;&nbsp;📅 &nbsp;&nbsp;**Mer 4 Jan 2023**
+
+| Status | Objectifs                                                                                                                                                | Responsable                                                                                                                                                | 
+|:------:|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   ❌    | [Timer](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/5db8c4e2c5f7872e592adbe412543ac9fddb2bf1)                            | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)                                                                                |
+|   ❌    | [](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/e25262d6e351758ad966bdbdb47e9b9d2bf0f7c0)                 | [Lucie Boucher](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher)                                                                                | 
+|   ❌    | [Affichage Paquets accueil](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/b636c09dcdd9c8cea8e74be8727923db913e2a60)        | [Lucie Boucher ](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher)[Lola Montigner](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier) | 
+|   ❌    | [Sauvegarde format Json](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/15609e922e74953bbcfe0ced2f8021d09a650132)           | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)                                                                                | 
+|   ❌    | [Ajout Bouton/menu sur les scènes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/52a11d50a61d02861390cea6a734d29668c67127) | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)                                                                                | 
+|   ❌    | [Flip](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/52a11d50a61d02861390cea6a734d29668c67127)                             | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)                                                                                |
+|    ❌    | [ScrollPane](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/22045776a1651759d16f5b94fa3a8660a86208f8)                       | [Lola Montigner](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)                                                                             | 
 
 ## Jour 3 : 05/01/2023
 
