@@ -5,6 +5,9 @@ import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
+import com.example.cd.modele.apprentissage.AvancementApprentissage;
+import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
+import com.example.cd.modele.apprentissage.RandomApprentissage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -140,6 +143,27 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         }
         table.setHgap(10);
         table.setVgap(10);
+    }
+
+    @FXML
+    public void random(){
+        for (PaquetDeCartes paquet : paquets) {
+            paquet.setApprentissageStrategie(new RandomApprentissage());
+        }
+    }
+
+    @FXML
+    public void classique(){
+        for (PaquetDeCartes paquet : paquets) {
+            paquet.setApprentissageStrategie(new ClassiqueApprentissage());
+        }
+    }
+
+    @FXML
+    public void avancement(){
+        for (PaquetDeCartes paquet : paquets) {
+            paquet.setApprentissageStrategie(new AvancementApprentissage());
+        }
     }
 
     public PaquetDeCartes getPaquetActuel() {

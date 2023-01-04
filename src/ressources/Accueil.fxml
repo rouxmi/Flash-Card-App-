@@ -19,6 +19,13 @@
          <items>
             <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
             <ToggleButton fx:id="toggleBouton" mnemonicParsing="false" onAction="#majToggle" text="Gestion" />
+             <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage">
+                   <items>
+                      <MenuItem mnemonicParsing="false" text="Aléatoire" onAction="#random" />
+                      <MenuItem mnemonicParsing="false" text="Classique" onAction="#classique" />
+                       <MenuItem mnemonicParsing="false" text="Avancement" onAction="#avancement" />
+                   </items>
+            </SplitMenuButton>
          </items>
       </ToolBar>
        <ScrollPane HBox.hgrow="SOMETIMES">
