@@ -91,4 +91,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
         this.globalControleur.setPaquet(paquetActuel);
     }
+    public void majCarteGlobalControleur(Carte carteActuelle) {
+        this.globalControleur.setCarte(carteActuelle);
+    }
 }

@@ -20,6 +20,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     private PaquetDeCartes paquet;
 
     private GlobalControleur globalControleur;
+    private Carte carteActuelle;
 
     @FXML
     private GridPane table;
@@ -27,7 +28,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
         this.globalControleur = globalControleur;
-        //paquet.ajouterObservateur(this);
+        paquet.ajouterObservateur(this);
     }
 
     @Override
@@ -42,14 +43,15 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void versCreation() throws Exception{
-        //paquet.ajouterCarte(new Carte());
         majPaquetGlobalControleur(paquet);
-        Carte nouvelleCarte = new Carte();
-        paquet.ajouterCarte(nouvelleCarte);
+        paquet.ajouterCarte(new Carte());
+        carteActuelle=null;
+        majCarteGlobalControleur(carteActuelle);
         globalControleur.changeSceneVersCreation();
     }
     @FXML
     public void visiterCarte()throws Exception{
+        majCarteGlobalControleur(carteActuelle);
         globalControleur.changeSceneVersCreation();
     }
 
@@ -90,13 +92,15 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
                 button = new Button();
 
                 button.setText(paquet.getCarte(i).getQuestion());
-                /*button.setOnAction(event -> {
+                int finalI = i;
+                button.setOnAction(event -> {
                     try {
+                        this.carteActuelle=paquet.getCarte(finalI);
                         visiterCarte();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-                }); */
+                });
                 button.setPrefSize(100, 100);
                 button.setMaxHeight(1.7976931348623157E308);
                 button.setMaxWidth(1.7976931348623157E308);
@@ -110,6 +114,10 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
         this.globalControleur.setPaquet(paquetActuel);
+    }
+
+    public void majCarteGlobalControleur(Carte carteActuelle) {
+        this.globalControleur.setCarte(carteActuelle);
     }
 
 }
