@@ -101,8 +101,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         }
     }
     @FXML
-    public void importerPaquet() throws IOException {
+    public void importerPaquet() throws Exception {
         globalControleur.importerPaquets();
+        globalControleur.changeSceneVersAccueil();
     }
 
     public void creationBoutons() {

@@ -66,11 +66,11 @@ public class Sauvegarde {
         fileChooser.setTitle("Choisir un paquet de cartes");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Json Files", "*.json"));
-        File dir = new File("paquets");
+        /*File dir = new File("paquets");
         if (!Files.exists(dir.toPath())) {
             Files.createDirectory(dir.toPath());
-        }
-        fileChooser.setInitialDirectory(dir);
+        } */
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
         if (selectedFile != null) {
             String json = Files.readAllLines(selectedFile.toPath()).get(0);
