@@ -56,7 +56,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void versEntrainement() throws Exception {
         majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersEntrainement();
+        globalControleur.changeSceneVersEntrainement("entrainement");
     }
     @FXML
     public void quitterAppli() {

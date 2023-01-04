@@ -10,10 +10,10 @@ import javafx.scene.Scene;
 public class SceneEntrainement implements ChangeScene {
     Scene newScene;
 
-    public SceneEntrainement(PaquetDeCartes paquetDeCartes, GlobalControleur globalControleu) throws Exception {
+    public SceneEntrainement(PaquetDeCartes paquetDeCartes, GlobalControleur globalControleur, String typeEntrainement) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Entrainement.fxml"));
-        EntrainementControleur entrainementControleur= new EntrainementControleur(paquetDeCartes,globalControleu);
-        globalControleu.setEntrainement(entrainementControleur);
+        EntrainementControleur entrainementControleur= new EntrainementControleur(paquetDeCartes, globalControleur, typeEntrainement);
+        globalControleur.setEntrainement(entrainementControleur);
         fxmlLoader.setController(entrainementControleur);
         newScene = new Scene(fxmlLoader.load());
         newScene.getStylesheets().add(Main.class.getResource("/style.css").toExternalForm());
