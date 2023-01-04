@@ -1,4 +1,4 @@
-package com.example.cd.Statistiques;
+package com.example.cd.statistiques;
 
 public class StatsPaquet {
     private int nbCartes;

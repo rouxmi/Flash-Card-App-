@@ -60,11 +60,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @FXML
     public void allerAccueil() throws Exception {
+        majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersAccueil();
     }
     @FXML
     public void voirPaquet() throws Exception {
         // TODO : verifier le paquet courant
+        majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersGestion();
     }
     @FXML
@@ -81,5 +83,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         } else {
             toggleFlashCard.setText("Question");
         }
+    }
+
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+        this.globalControleur.setPaquet(paquetActuel);
     }
 }
