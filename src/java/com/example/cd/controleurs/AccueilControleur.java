@@ -147,17 +147,18 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             else {
                 String description = paquets.get(i).getDescription();
                 Label labeltitre = new Label(paquets.get(i).getTitre());
+                labeltitre.setWrapText(true);
                 Label labeldesc = new Label(description);
-                labeltitre.setFont(new javafx.scene.text.Font(25));
-                labeldesc.setFont(new javafx.scene.text.Font(15));
+                labeltitre.setFont(new javafx.scene.text.Font(16));
+                labeldesc.setFont(new javafx.scene.text.Font(13.5));
                 labeldesc.setWrapText(true);
                 VBox vBoxhaut = new VBox();
-                vBoxhaut.setPadding(new javafx.geometry.Insets(40, 0, 0, 20));
+                vBoxhaut.setPadding(new javafx.geometry.Insets(40, 0, 0, 15));
                 vBoxhaut.setMaxSize(150, 30);
                 vBoxhaut.getChildren().add(labeltitre);
                 VBox vBoxbas = new VBox();
                 vBoxbas.setMaxSize(270, 185);
-                vBoxbas.setPadding(new javafx.geometry.Insets(18, 0, 0, 33));
+                vBoxbas.setPadding(new javafx.geometry.Insets(25, 0, 0, 33));
                 vBoxbas.setSpacing(10);
                 vBoxbas.getChildren().add(labeldesc);
                 VBox vBox = new VBox();
