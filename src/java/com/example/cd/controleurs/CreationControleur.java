@@ -7,6 +7,7 @@ import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
@@ -22,6 +23,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private TextArea question;
     @FXML
     private TextArea reponse;
+
+    @FXML
+    private Button prec;
+    @FXML
+    private Button suiv;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -77,13 +83,33 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersGestion();
     }
+    @FXML
+    public void allerPrec() throws Exception{
+        int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
+        if (indicePrec>=0) {
+            validerCarte();
+            majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indicePrec));
+            globalControleur.changeSceneVersCreation();
+        }
+    }
 
+    @FXML
+    public void allerSuiv() throws Exception{
+        int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
+        if(indiceSuiv<this.globalControleur.getPaquet().taillePaquet()) {
+            validerCarte();
+            majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indiceSuiv));
+            globalControleur.changeSceneVersCreation();
+        }
+        else{
+
+        }
+    }
     @FXML
     public void validerCarte() throws Exception {
         try{
             this.paquet.getCarte(this.indice).setQuestion(question.getText());
             this.paquet.getCarte(this.indice).setReponse(reponse.getText());
-            System.out.println(this.indice);
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -16,10 +16,10 @@
                      <children>
                         <HBox layoutX="-2.0" layoutY="-4.0">
                            <children>
-                              <Button fx:id="precedent" mnemonicParsing="false" text="Precedent" />
+                              <Button fx:id="prec" mnemonicParsing="false" text="Precedent" onAction="#allerPrec" />
                               <TextArea fx:id="question" prefHeight="100.0" prefWidth="100.0" promptText="Question" />
                               <TextArea fx:id="reponse" prefHeight="100.0" prefWidth="100.0" promptText="Reponse" />
-                              <Button fx:id="suivant" mnemonicParsing="false" text="Suivant" />
+                              <Button fx:id="suiv" mnemonicParsing="false" text="Suivant" onAction="#allerSuiv" />
                            </children>
                         </HBox>
                      </children>
