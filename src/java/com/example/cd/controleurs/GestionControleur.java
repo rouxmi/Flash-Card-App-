@@ -27,7 +27,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
         this.globalControleur = globalControleur;
-        paquet.ajouterObservateur(this);
+        //paquet.ajouterObservateur(this);
     }
 
     @Override
@@ -46,7 +46,10 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         paquet.ajouterCarte(nouvelleCarte);
         globalControleur.changeSceneVersCreation();
     }
-
+    @FXML
+    public void visiterCarte()throws Exception{
+        globalControleur.changeSceneVersCreation();
+    }
 
     @FXML
     public void versEntrainement() throws Exception {
@@ -83,7 +86,13 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
                 button = new Button();
 
                 button.setText(paquet.getCarte(i).getQuestion());
-
+                /*button.setOnAction(event -> {
+                    try {
+                        visiterCarte();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }); */
                 button.setPrefSize(100, 100);
                 button.setMaxHeight(1.7976931348623157E308);
                 button.setMaxWidth(1.7976931348623157E308);
