@@ -11,7 +11,7 @@
 |   ❌    | [Stockage des cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                                         | Mercredi | 
 |   ❌    | [Création des designs patterns Apprentissage/type de cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                  | Mercredi | 
 |   ❌    | [Création de statistiques d'apprentissages](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                   |  Jeudi   | 
-|   ❌    | [Mode création de cartes/Copie cole cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                   | Vendredi | 
+|   ❌    | [Mode création de cartes/Copier coller cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                | Vendredi | 
 |   ❌    | [Création de la vidéo](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                                        |  Samedi  | 
 
 
