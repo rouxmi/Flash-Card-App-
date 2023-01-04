@@ -6,6 +6,9 @@ import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
+import com.example.cd.modele.apprentissage.AvancementApprentissage;
+import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
+import com.example.cd.modele.apprentissage.RandomApprentissage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -185,6 +188,21 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
             table.setVgap(10);
 
         }
+    }
+
+    @FXML
+    public void random(){
+        paquet.setApprentissageStrategie(new RandomApprentissage());
+    }
+
+    @FXML
+    public void classique(){
+        paquet.setApprentissageStrategie(new ClassiqueApprentissage());
+    }
+
+    @FXML
+    public void avancement(){
+        paquet.setApprentissageStrategie(new AvancementApprentissage());
     }
 
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
