@@ -95,10 +95,11 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         globalControleur.changeSceneVersAccueil();
     }
     @FXML
-    public void supprimerPaquet() {
-//        globalControleur.paquets
+    public void supprimerPaquet() throws Exception {
+        globalControleur.supprimerPaquet(paquet);
+        globalControleur.sauvegarder();
+        allerAccueil();
     }
-
     public void affichageCartes() {
         if (this.paquet !=null) {
             int nbBoutons = paquet.taillePaquet();

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="382.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="382.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="445.0" prefWidth="683.0">
          <bottom>
@@ -16,10 +21,10 @@
                      <children>
                         <HBox layoutX="-2.0" layoutY="-4.0">
                            <children>
-                              <Button fx:id="prec" mnemonicParsing="false" text="Precedent" onAction="#allerPrec" />
+                              <Button fx:id="prec" mnemonicParsing="false" onAction="#allerPrec" text="Precedent" />
                               <TextArea fx:id="question" prefHeight="100.0" prefWidth="100.0" promptText="Question" />
                               <TextArea fx:id="reponse" prefHeight="100.0" prefWidth="100.0" promptText="Reponse" />
-                              <Button fx:id="suiv" mnemonicParsing="false" text="Suivant" onAction="#allerSuiv" />
+                              <Button fx:id="suiv" mnemonicParsing="false" onAction="#allerSuiv" text="Suivant" />
                            </children>
                         </HBox>
                      </children>
@@ -33,6 +38,7 @@
                   <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
                   <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" />
+                  <Button fx:id="supprimerCarteBouton" mnemonicParsing="false" onAction="#supprimerCarte" text="Supprimer la carte" />
                </items>
             </ToolBar>
          </top>

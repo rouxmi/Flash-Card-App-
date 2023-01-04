@@ -138,4 +138,12 @@ public class GlobalControleur implements Observateur {
         }
         return 0;
     }
+
+    public void supprimerPaquet(PaquetDeCartes paquet) {
+        paquets.remove(paquet);
+    }
+
+    public void supprimerCarte(Carte carteActuelle) {
+        paquet.supprimerCarte(carteActuelle);
+    }
 }
