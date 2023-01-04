@@ -25,7 +25,7 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
     public GlobalControleur() throws IOException {
         this.paquets = Sauvegarde.chargerTousPaquets();
         /*ArrayList<PaquetDeCartes> paquets = new ArrayList<PaquetDeCartes>();
-        for (int i=0;i<10;i++){
+        for (int i=0;i<2;i++){
             PaquetDeCartes paquet = new PaquetDeCartes("paquet"+i,"auteur"+i);
             for (int j=0;j<10;j++){
                 paquet.ajouterCarte(new Carte("question"+j,"reponse"+j));
