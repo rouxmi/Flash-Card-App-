@@ -152,9 +152,9 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }
         if ( (this.paquet.getCarte(this.indice)).getReponse().equals("") || (this.paquet.getCarte(this.indice)).getQuestion().equals("") ) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("card with no question or reponse, about to be delete");
-            alert.setContentText("Are you ok with this?");
+            alert.setTitle("Alerte");
+            alert.setHeaderText("La carte n'a pas de question ou de réponse, elle va être supprimée");
+            alert.setContentText("Êtes vous sur ?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
