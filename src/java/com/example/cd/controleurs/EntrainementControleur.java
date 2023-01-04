@@ -11,11 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.media.AudioClip;
 import javafx.scene.transform.Rotate;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
@@ -123,6 +123,11 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         rotate.setByAngle(180);
         rotate.setAutoReverse(true);
         rotate.play();
+
+        String sonNom = "flip.mp3";
+        AudioClip player = new AudioClip(getClass().getResource("/flip.mp3").toExternalForm());
+        player.play();
+
         rotate.setOnFinished(event -> {
             RotateTransition bonSensRotate = new RotateTransition();
             bonSensRotate.setNode(toggleFlashCard);
