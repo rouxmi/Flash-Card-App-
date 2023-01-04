@@ -14,6 +14,9 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.transform.Rotate;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.ResourceBundle;
 
 public class EntrainementControleur extends SujetObserve implements Initializable, Observateur {
@@ -23,6 +26,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public Observateur observateur;
 
     private Carte carteActuelle;
+    private Queue<Carte> futurCartes;
     private String typeEntrainement;
     @FXML
     private ToggleButton toggleFlashCard;
@@ -33,10 +37,16 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     private Button questionLoupeeBouton;
 
+    private int index;
+
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
         this.globalControleur=globalControleur;
-        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
+        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet, 0);
+        this.futurCartes = new LinkedList<Carte>();
+        for(index=1; index< paquet.getCartes().size();index++){
+            futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
+        }
         this.typeEntrainement=typeEntrainement;
      // paquet.ajouterObservateur(this);
     }
@@ -140,7 +150,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void reussite() throws Exception {
         majPaquetGlobalControleur(paquet);
-        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
+        this.carteActuelle = futurCartes.poll();
+        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
+        index++;
         initialize(null, null);
         toggleFlashCard.setSelected(false);
         majFlashCard();
@@ -148,7 +160,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void echec() throws Exception {
         majPaquetGlobalControleur(paquet);
-        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
+        this.carteActuelle = futurCartes.poll();
+        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
+        index++;
         initialize(null, null);
         toggleFlashCard.setSelected(false);
         majFlashCard();

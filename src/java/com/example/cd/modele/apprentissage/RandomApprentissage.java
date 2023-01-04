@@ -5,7 +5,7 @@ import com.example.cd.modele.PaquetDeCartes;
 
 public class RandomApprentissage implements ApprentissageStrategie{
     @Override
-    public Carte getCarte(PaquetDeCartes paquet) {
+    public Carte getCarte(PaquetDeCartes paquet, int index) {
         return paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
     }
 

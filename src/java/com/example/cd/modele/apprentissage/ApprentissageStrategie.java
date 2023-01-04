@@ -8,5 +8,5 @@ public interface ApprentissageStrategie {
     @Override
     public String toString();
 
-    public Carte getCarte(PaquetDeCartes paquet);
+    public Carte getCarte(PaquetDeCartes paquet, int index);
 }
