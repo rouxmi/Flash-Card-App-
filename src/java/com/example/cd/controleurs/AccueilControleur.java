@@ -10,6 +10,7 @@ import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -134,7 +135,14 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             button = new Button();
 
             if (i == nbBoutons - 1) {
-                button.setText("\n+");
+                VBox vbox = new VBox();
+                Label label = new Label("+");
+                label.setAlignment(Pos.CENTER);
+                label.setStyle("-fx-font-size: 50px;");
+                vbox.getChildren().add(label);
+                vbox.setPadding(new Insets(56, 10, 10, 12));
+                vbox.setAlignment(Pos.CENTER);
+                button.setGraphic(vbox);
                 button.setFont(new javafx.scene.text.Font(60));
                 button.setOnAction(event -> {
                     try {
