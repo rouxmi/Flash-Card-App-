@@ -35,7 +35,6 @@ public class Sauvegarde {
         if (!Files.exists(filePath)){
             Files.createFile(filePath);
         }
-
         //Ecriture
         FileWriter fileWriter = new FileWriter(name);
         fileWriter.write(gson.toJson(paquetDeCartes));

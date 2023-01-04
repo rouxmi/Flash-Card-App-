@@ -70,7 +70,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
         if(indicePrec<0){
-            System.out.println(indicePrec);
             prec.setVisible(false);
         }
     }
