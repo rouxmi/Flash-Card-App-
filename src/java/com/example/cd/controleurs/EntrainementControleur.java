@@ -27,7 +27,10 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private ToggleButton toggleFlashCard;
     @FXML
     private Label compteurLabel;
-
+    @FXML
+    private Button questionReussieBouton;
+    @FXML
+    private Button questionLoupeeBouton;
     private String typeEntrainement;
 
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
@@ -106,23 +109,20 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         }
     }
 
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+        this.globalControleur.setPaquet(paquetActuel);
+    }
+    public void majCarteGlobalControleur(Carte carteActuelle) {
+        this.globalControleur.setCarte(carteActuelle);
+    }
     @FXML
     public void reussite() throws Exception {
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersEntrainement();
     }
-
     @FXML
     public void echec() throws Exception {
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersEntrainement();
-    }
-
-    public void majCarteGlobalControleur(Carte carteActuelle) {
-        this.globalControleur.setCarte(carteActuelle);
-    }
-
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
-        this.globalControleur.setPaquet(paquetActuel);
     }
 }

@@ -51,6 +51,10 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(globalControleur.getCarte()!=null){
+            this.question.setText(globalControleur.getCarte().getQuestion());
+            this.reponse.setText(globalControleur.getCarte().getReponse());
+        }
 
     }
 
