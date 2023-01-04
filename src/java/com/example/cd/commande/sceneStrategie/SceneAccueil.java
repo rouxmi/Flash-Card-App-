@@ -16,9 +16,9 @@ public class SceneAccueil implements ChangeScene {
     Scene newScene;
 
     //change to scene in menu.fxml
-    public SceneAccueil(ArrayList<PaquetDeCartes> paquet, GlobalControleur globalControleur) throws IOException {
+    public SceneAccueil(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
-        AccueilControleur accueilControleur=new AccueilControleur(paquet,globalControleur);
+        AccueilControleur accueilControleur=new AccueilControleur(paquets,globalControleur);
         globalControleur.setAccueil(accueilControleur);
         fxmlLoader.setController(accueilControleur);
         newScene = new Scene(fxmlLoader.load());
