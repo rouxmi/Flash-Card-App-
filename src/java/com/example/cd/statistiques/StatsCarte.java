@@ -34,6 +34,10 @@ public class StatsCarte {
         DateReussite.add(date.toString());
     }
 
+    public void addBeforeReussite(LocalDate date) {
+        DateReussite.add(0,date.toString());
+    }
+
     public void addDateEchec(LocalDate date) {
         DateEchec.add(date.toString());
     }
@@ -96,31 +100,45 @@ public class StatsCarte {
 
     public void MajStatsCarteReussite() {
         switch (etatCarte) {
-            case NonVue, ARevoir:
+            case NonVue, ARevoir -> {
                 etatCarte = EtatCarte.DebutApprentissage;
-                break;
-            case DebutApprentissage:
-                etatCarte = EtatCarte.FinApprentissage;
-                break;
-            case FinApprentissage:
-                etatCarte = EtatCarte.AcquiseParfaite;
-                break;
-            case AcquiseParfaite:
-                break;
+                addDateReussite(LocalDate.now());
+            }
+            case DebutApprentissage -> {
+                if (getLastDateReussite().isBefore(LocalDate.now().minusDays(1))) {
+                    etatCarte = EtatCarte.FinApprentissage;
+                    addDateReussite(LocalDate.now());
+                } else {
+                    addBeforeReussite(LocalDate.now());
+                }
+            }
+            case FinApprentissage -> {
+                if (getLastDateReussite().isBefore(LocalDate.now().minusDays(3))) {
+                    etatCarte = EtatCarte.AcquiseParfaite;
+                    addDateReussite(LocalDate.now());
+                } else {
+                    addBeforeReussite(LocalDate.now());
+                }
+            }
+            case AcquiseParfaite -> addBeforeReussite(LocalDate.now());
         }
     }
 
     public void MajStatsCarteEchec() {
         switch (etatCarte) {
-            case NonVue, DebutApprentissage, ARevoir:
+            case NonVue, DebutApprentissage, ARevoir -> {
                 etatCarte = EtatCarte.ARevoir;
-                break;
-            case FinApprentissage:
+                addDateEchec(LocalDate.now());
+            }
+
+            case FinApprentissage -> {
                 etatCarte = EtatCarte.DebutApprentissage;
-                break;
-            case AcquiseParfaite:
+                addDateEchec(LocalDate.now());
+            }
+            case AcquiseParfaite -> {
                 etatCarte = EtatCarte.FinApprentissage;
-                break;
+                addDateEchec(LocalDate.now());
+            }
         }
     }
 }

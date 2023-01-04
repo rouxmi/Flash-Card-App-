@@ -21,6 +21,7 @@ public class Carte {
     public Carte(){
         this.question = "";
         this.reponse = "";
+        statsCarte = new StatsCarte();
     }
 
     //getters
