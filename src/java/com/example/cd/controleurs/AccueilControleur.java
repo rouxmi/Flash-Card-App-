@@ -5,6 +5,7 @@ import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
+import com.example.cd.modele.apprentissage.AvancementApprentissage;
 import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
 import javafx.fxml.FXML;
@@ -155,6 +156,13 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public void classique(){
         for (PaquetDeCartes paquet : paquets) {
             paquet.setApprentissageStrategie(new ClassiqueApprentissage());
+        }
+    }
+
+    @FXML
+    public void avancement(){
+        for (PaquetDeCartes paquet : paquets) {
+            paquet.setApprentissageStrategie(new AvancementApprentissage());
         }
     }
 

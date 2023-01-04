@@ -13,7 +13,7 @@ public class AvancementApprentissage implements ApprentissageStrategie{
     @Override
     public Carte getCarte(PaquetDeCartes paquet, int index) {
         double random = Math.random();
-        Carte c = null;
+        Carte c;
         if (random < 0.3) {
             do{
                 c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
@@ -35,7 +35,7 @@ public class AvancementApprentissage implements ApprentissageStrategie{
                 c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
             }while(c.getStatsCarte().getEtatCarte() != EtatCarte.AcquiseParfaite );
         }
-        return null;
+        return c;
     }
 }
 
