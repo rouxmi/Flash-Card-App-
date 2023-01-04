@@ -2,6 +2,7 @@ package com.example.cd.modele;
 
 import com.example.cd.SujetObserve;
 import com.example.cd.modele.apprentissage.ApprentissageStrategie;
+import com.example.cd.modele.apprentissage.AvancementApprentissage;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
 import com.google.gson.annotations.Expose;
 
@@ -21,21 +22,21 @@ public class PaquetDeCartes extends SujetObserve {
         this.cartes=cartes;
         this.description=description;
         this.titre=titre;
-        this.apprentissageStrategie = new RandomApprentissage();
+        this.apprentissageStrategie = new AvancementApprentissage();
     }
 
     public PaquetDeCartes(String titre, String description){
         this.description=description;
         this.titre=titre;
         this.cartes = new ArrayList<>();
-        this.apprentissageStrategie = new RandomApprentissage();
+        this.apprentissageStrategie = new AvancementApprentissage();
     }
 
     public PaquetDeCartes(){
         this.titre = " ";
         this.description ="";
         this.cartes =new ArrayList<>();
-        this.apprentissageStrategie = new RandomApprentissage();
+        this.apprentissageStrategie = new AvancementApprentissage();
     }
 
     //getters

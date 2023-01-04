@@ -9,7 +9,7 @@ public class Carte {
     @Expose
     private String reponse;
 
-
+    @Expose
     private StatsCarte statsCarte;
 
     public Carte(String question, String reponse) {

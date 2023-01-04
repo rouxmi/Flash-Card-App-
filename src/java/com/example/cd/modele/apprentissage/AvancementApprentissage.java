@@ -13,29 +13,30 @@ public class AvancementApprentissage implements ApprentissageStrategie{
     @Override
     public Carte getCarte(PaquetDeCartes paquet, int index) {
         double random = Math.random();
-        Carte c;
-        if (random < 0.3) {
-            do{
-                c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
-            }while(c.getStatsCarte().getEtatCarte() != EtatCarte.NonVue);
-        } else if (random < 0.6) {
-            do{
-                c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
-            }while(c.getStatsCarte().getEtatCarte() != EtatCarte.ARevoir);
-        } else if (random < 0.85) {
-            do{
-                c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
-            }while(c.getStatsCarte().getEtatCarte() != EtatCarte.DebutApprentissage );
-        } else if (random < 0.95) {
-            do{
-                c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
-            }while(c.getStatsCarte().getEtatCarte() != EtatCarte.FinApprentissage );
-        } else {
-            do{
-                c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
-            }while(c.getStatsCarte().getEtatCarte() != EtatCarte.AcquiseParfaite );
+        Carte c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
+        switch (c.getStatsCarte().getEtatCarte()) {
+            case NonVue, ARevoir -> {
+                if (random < 0.75) {
+                    return c;
+                }
+            }
+            case DebutApprentissage -> {
+                if (random < 0.30) {
+                    return c;
+                }
+            }
+            case FinApprentissage -> {
+                if (random < 0.15 ) {
+                    return c;
+                }
+            }
+            case AcquiseParfaite -> {
+                if (random < 0.1) {
+                    return c;
+                }
+            }
         }
-        return c;
+        return this.getCarte(paquet,index);
     }
 }
 

@@ -32,7 +32,8 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
             }
             paquets.add(paquet);
         }
-        Sauvegarde.sauvegardeToutPaquets(paquets);*/
+        Sauvegarde.sauvegardeTousPaquets(paquets);
+        this.paquets=paquets;*/
          this.accueil = new AccueilControleur(paquets,this);
          this.accueil.ajouterObservateur(this);
         InitialisationChangeurScene();
