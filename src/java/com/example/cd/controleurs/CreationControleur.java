@@ -28,6 +28,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private Button prec;
     @FXML
     private Button suiv;
+    private Carte carteActuelle;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -66,6 +67,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.reponse.setPromptText("Ecrire une réponse");
         }
 
+        int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
+        //System.out.println(globalControleur.getCarte().getQuestion());
+        if(indicePrec<0){
+            System.out.println(indicePrec);
+            prec.setVisible(false);
+        }
     }
 
     @FXML
@@ -99,11 +106,21 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         if(indiceSuiv<this.globalControleur.getPaquet().taillePaquet()) {
             validerCarte();
             majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indiceSuiv));
+            majPaquetGlobalControleur(paquet);
             globalControleur.changeSceneVersCreation();
         }
         else{
-
+            versCreation();
         }
+    }
+    @FXML
+    public void versCreation() throws Exception{
+        paquet.ajouterCarte(new Carte());
+        carteActuelle=paquet.getCarte(paquet.taillePaquet()-1);
+        validerCarte();
+        majPaquetGlobalControleur(paquet);
+        majCarteGlobalControleur(carteActuelle);
+        globalControleur.changeSceneVersCreation();
     }
     @FXML
     public void validerCarte() throws Exception {
