@@ -48,8 +48,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public void ajouterNouveauPaquet() throws Exception {
         paquets.add(new PaquetDeCartes());
         PaquetDeCartes paquetActuel = paquets.get(paquets.size()-1);
-        // TODO :
-        //        paquetActuel.ajouterObservateur(this);
+        majPaquetGlobalControleur(paquetActuel);
         globalControleur.changeSceneVersGestion();
     }
     @FXML
@@ -69,7 +68,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void visiterPaquet() throws Exception{
-
+        majPaquetGlobalControleur(paquetActuel);
         globalControleur.changeSceneVersGestion();
     }
 
@@ -130,5 +129,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     public PaquetDeCartes getPaquetActuel() {
         return paquetActuel;
+    }
+
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+        this.globalControleur.setPaquet(paquetActuel);
     }
 }

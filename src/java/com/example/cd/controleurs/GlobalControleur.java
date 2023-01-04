@@ -57,7 +57,6 @@ public class GlobalControleur implements Observateur {
     }
 
     public void changeSceneVersGestion() throws Exception {
-        setPaquetActuelAccueil();
         changeurScene.changeSceneGestion();
         changeurScene.execute();
     }
