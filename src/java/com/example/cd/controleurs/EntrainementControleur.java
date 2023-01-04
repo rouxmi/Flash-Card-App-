@@ -124,8 +124,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         rotate.setAutoReverse(true);
         rotate.play();
 
-        String sonNom = "flip.mp3";
-        AudioClip player = new AudioClip(getClass().getResource("/flip.mp3").toExternalForm());
+        AudioClip player = new AudioClip(getClass().getResource("/flip.wav").toExternalForm());
         player.play();
 
         rotate.setOnFinished(event -> {
