@@ -17,17 +17,17 @@ import java.util.ResourceBundle;
 public class EntrainementControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
     private GlobalControleur globalControleur;
+    private int decompte = 3;
+    public Observateur observateur;
     @FXML
     private ToggleButton toggleFlashCard;
-    private int decompte = 3;
-
     @FXML
     private Label compteurLabel;
-    public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleu){
+    public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet=paquet;
+        this.globalControleur=globalControleur;
      // paquet.ajouterObservateur(this);
     }
-    public Observateur observateur;
 
     public void setObservateur(Observateur observateur) {
         this.observateur = observateur;
