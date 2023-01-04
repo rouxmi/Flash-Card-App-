@@ -94,6 +94,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void versCreation() throws Exception{
+        // TODO : bizarre l'affichage miskine
         majPaquetGlobalControleur(paquet);
         paquet.ajouterCarte(new Carte());
         carteActuelle=null;
