@@ -7,11 +7,14 @@ import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CreationControleur extends SujetObserve implements Initializable, Observateur {
@@ -70,8 +73,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
         if(indicePrec<0){
-            System.out.println(indicePrec);
             prec.setVisible(false);
+        }
+        int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
+        if(indiceSuiv>globalControleur.getPaquet().taillePaquet()-1){
+            suiv.setText("Ajouter une carte");
         }
     }
 
@@ -86,7 +92,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void voirPaquet() throws Exception {
-        // TODO : verifier le paquet courant
+        validerCarte();
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersGestion();
     }
@@ -100,7 +106,8 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indicePrec));
             globalControleur.changeSceneVersCreation();
         } else {
-            voirPaquet();
+            majPaquetGlobalControleur(paquet);
+            globalControleur.changeSceneVersGestion();
         }
     }
     @FXML
@@ -129,7 +136,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     public void versCreation() throws Exception{
         paquet.ajouterCarte(new Carte());
-        carteActuelle=paquet.getCarte(paquet.taillePaquet()-1);
+        carteActuelle = paquet.getCarte(paquet.taillePaquet()-1);
         validerCarte();
         majPaquetGlobalControleur(paquet);
         majCarteGlobalControleur(carteActuelle);
@@ -137,11 +144,24 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void validerCarte() throws Exception {
-        try{
+        try {
             this.paquet.getCarte(this.indice).setQuestion(question.getText());
             this.paquet.getCarte(this.indice).setReponse(reponse.getText());
         }catch (Exception e){
             e.printStackTrace();
+        }
+        if ( (this.paquet.getCarte(this.indice)).getReponse().equals("") || (this.paquet.getCarte(this.indice)).getQuestion().equals("") ) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("card with no question or reponse, about to be delete");
+            alert.setContentText("Are you ok with this?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                supprimerCarte();
+            } else {
+                result.get();
+            }
         }
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersCreation();
