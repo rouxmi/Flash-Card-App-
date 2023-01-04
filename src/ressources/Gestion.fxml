@@ -38,17 +38,26 @@
          </left>
          <right>
             <VBox prefHeight="403.0" prefWidth="259.0" BorderPane.alignment="CENTER">
-               <children>
+               <HBox>
+                  <HBox>
                   <Button mnemonicParsing="false" onAction="#versEntrainement" text="Entrainement" />
                   <Button mnemonicParsing="false" onAction="#versRevision" text="Révision" />
                   <Button mnemonicParsing="false" text="Button" />
-                  <VBox fx:id="PieChartBox" maxHeight="100" maxWidth="100">
+                  </HBox>
+                  <VBox fx:id="PieChartBox" maxHeight="300" maxWidth="300">
                   </VBox>
+                  <HBox>
+                     <HBox>
                      <Label fx:id="titre" text="Label" />
-                     <Label fx:id="description" text="Label" />
                      <Button fx:id="modifTitre" mnemonicParsing="false" onAction="#handlemodifTitre" text="Modif Titre" />
+                     </HBox>
+                     <HBox>
+                     <Label fx:id="description" text="Label" />
                      <Button fx:id="modifDescription" mnemonicParsing="false" onAction="#handlemodifDescription" text="Modif Description" />
-               </children>
+                     </HBox>
+                  </HBox>
+
+               </HBox>
             </VBox>
          </right>
          <bottom>

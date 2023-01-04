@@ -23,16 +23,20 @@ public class Sauvegarde {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
+        //Dir
         Path paquetsjson = Path.of("paquets");
         if (!Files.exists(paquetsjson)){
             Files.createDirectory(paquetsjson);
 
         }
+        //Fichier
         String name="paquets/"+paquetDeCartes.getTitre().replace(' ','_')+".json";
         Path filePath = Paths.get(name);
         if (!Files.exists(filePath)){
             Files.createFile(filePath);
         }
+
+        //Ecriture
         FileWriter fileWriter = new FileWriter(name);
         fileWriter.write(gson.toJson(paquetDeCartes));
         fileWriter.close();

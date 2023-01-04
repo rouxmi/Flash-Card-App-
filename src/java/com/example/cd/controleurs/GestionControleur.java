@@ -19,6 +19,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class GestionControleur extends SujetObserve implements Initializable, Observateur {
@@ -52,14 +55,23 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     private void InitialisationCamenbert() {
         PieChart pieChart = new PieChart();
+        List<String> list = Arrays.asList("NonVue","DebutApprentissage","ARevoir","FinApprentissage","AcquiseParfaite");
+        List<String> nom = Arrays.asList("Non Vue","Debut Apprentissage","à Revoir","Fin Apprentissage","Acquise Parfaite");
+        int[] nombre= {0,0,0,0,0};
+        for(int i=0;i<paquet.getCartes().size();i++){
+            for (int j=0;j<5;j++){
+                if (paquet.getCarte(i).getStatsCarte().getEtatCarte().toString().equals(list.get(j))){
+                    nombre[j]++;
+                }
+            }
+        }
+        for (int j=0;j<5;j++) {
+            PieChart.Data slice = new PieChart.Data(nom.get(j), nombre[j]);
+            pieChart.getData().add(slice);
+        }
 
-        PieChart.Data slice1 = new PieChart.Data("Desktop", 213);
-        PieChart.Data slice2 = new PieChart.Data("Phone"  , 67);
-        PieChart.Data slice3 = new PieChart.Data("Tablet" , 36);
-
-        pieChart.getData().add(slice1);
-        pieChart.getData().add(slice2);
-        pieChart.getData().add(slice3);
+        pieChart.setStartAngle(90);
+        pieChart.setClockwise(true);
 
         PieChartBox.getChildren().add(pieChart);
     }
