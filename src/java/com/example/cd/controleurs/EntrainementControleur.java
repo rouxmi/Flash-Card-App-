@@ -19,10 +19,11 @@ import java.util.ResourceBundle;
 public class EntrainementControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
     private GlobalControleur globalControleur;
-    private int decompte = 3;
+    private int decompte;
     public Observateur observateur;
 
     private Carte carteActuelle;
+    private String typeEntrainement;
     @FXML
     private ToggleButton toggleFlashCard;
     @FXML
@@ -31,7 +32,6 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private Button questionReussieBouton;
     @FXML
     private Button questionLoupeeBouton;
-    private String typeEntrainement;
 
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
@@ -58,7 +58,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO : modifier avec la carte courante
+        decompte = 3;
+        // Compteur
         compteurLabel.setText(String.valueOf(decompte));
         toggleFlashCard.setText(carteActuelle.getQuestion());
         Timeline compteur = new Timeline((new KeyFrame(javafx.util.Duration.seconds(1), event -> {
@@ -67,15 +68,23 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         })));
         compteur.setCycleCount(4);
         compteur.play();
+        compteur.setOnFinished(event -> {
+            if ( !toggleFlashCard.isSelected() ) {
+                toggleFlashCard.setSelected(true);
+                majFlashCard();
+                compteurLabel.setText("");
+            };
+        }
+        );
         if ( typeEntrainement.equals("entrainement") ) {
             compteurLabel.setVisible(false);
-            questionLoupeeBouton.setVisible(true);
-            questionReussieBouton.setVisible(true);
         } else if ( typeEntrainement.equals("revision") ) {
             compteurLabel.setVisible(true);
-            questionLoupeeBouton.setVisible(false);
-            questionReussieBouton.setVisible(false);
         }
+
+        toggleFlashCard.setSelected(false);
+        questionLoupeeBouton.setVisible(false);
+        questionReussieBouton.setVisible(false);
     }
 
     @FXML
@@ -95,18 +104,31 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @FXML
     public void majFlashCard() {
-        // TODO : modifier avec le paquet courant
+        toggleFlashCard.setText("");
         RotateTransition rotate = new RotateTransition();
         rotate.setNode(toggleFlashCard);
-        rotate.setDuration(javafx.util.Duration.seconds(1));
+        rotate.setDuration(javafx.util.Duration.seconds(0.5));
         rotate.setAxis(Rotate.Y_AXIS);
         rotate.setByAngle(180);
+        rotate.setAutoReverse(true);
         rotate.play();
-        if (toggleFlashCard.isSelected()) {
-            toggleFlashCard.setText(carteActuelle.getReponse());
-        } else {
-            toggleFlashCard.setText(carteActuelle.getQuestion());
-        }
+        rotate.setOnFinished(event -> {
+            RotateTransition bonSensRotate = new RotateTransition();
+            bonSensRotate.setNode(toggleFlashCard);
+            bonSensRotate.setDuration(javafx.util.Duration.millis(1));
+            bonSensRotate.setByAngle(180);
+            bonSensRotate.play();
+            if (toggleFlashCard.isSelected()) {
+                toggleFlashCard.setText(carteActuelle.getReponse());
+                questionLoupeeBouton.setVisible(true);
+                questionReussieBouton.setVisible(true);
+                compteurLabel.setText("");
+            } else {
+                toggleFlashCard.setText(carteActuelle.getQuestion());
+                questionLoupeeBouton.setVisible(false);
+                questionReussieBouton.setVisible(false);
+            }
+        });
     }
 
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
@@ -120,11 +142,15 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         majPaquetGlobalControleur(paquet);
         this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
         initialize(null, null);
+        toggleFlashCard.setSelected(false);
+        majFlashCard();
     }
     @FXML
     public void echec() throws Exception {
         majPaquetGlobalControleur(paquet);
         this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
         initialize(null, null);
+        toggleFlashCard.setSelected(false);
+        majFlashCard();
     }
 }
