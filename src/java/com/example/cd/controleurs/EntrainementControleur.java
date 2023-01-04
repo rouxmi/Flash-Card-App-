@@ -67,19 +67,21 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             decompte--;
         })));
         compteur.setCycleCount(4);
-        compteur.play();
-        compteur.setOnFinished(event -> {
-            if ( !toggleFlashCard.isSelected() ) {
-                toggleFlashCard.setSelected(true);
-                majFlashCard();
-                compteurLabel.setText("");
-            };
-        }
-        );
-        if ( typeEntrainement.equals("entrainement") ) {
-            compteurLabel.setVisible(false);
-        } else if ( typeEntrainement.equals("revision") ) {
+
+        if ( typeEntrainement.equals("revision") ) {
+            compteur.play();
+            compteur.setOnFinished(event -> {
+                        if (!toggleFlashCard.isSelected()) {
+                            toggleFlashCard.setSelected(true);
+                            majFlashCard();
+                            compteurLabel.setText("");
+                        }
+                        ;
+                    }
+            );
             compteurLabel.setVisible(true);
+        } else if ( typeEntrainement.equals("entrainement") ) {
+            compteurLabel.setVisible(false);
         }
 
         toggleFlashCard.setSelected(false);
