@@ -15,6 +15,12 @@ Ce projet implémente une application de Flash Cards. Les Flash Cards sont un sy
 
 [Le sujet détaillé est disponible en version PDF](./Documents/CodingWeek%202022-2023%20-%20Sujet.pdf)
 
-### Comment utiliser notre programme
+### Lancement du programme
+
+Le fichier .jar se trouve dans le dossier out/artifacts/codingweek_jar, et doit etre lancé depuis le répertoire source du projet pour pouvoir charger le .json avec les paquets de FlashCards avec la commande suivante.
+
+```bash
+$ java -jar out/artifacts/codingweek_jar/codingweek.jar
+```
 
 ### Fonctionnalités implémentées
