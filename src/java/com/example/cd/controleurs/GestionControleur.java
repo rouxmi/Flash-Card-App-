@@ -8,6 +8,7 @@ import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.modele.apprentissage.AvancementApprentissage;
 import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
+import com.example.cd.modele.apprentissage.MasterStrategie;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -214,6 +215,11 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void avancement(){
         paquet.setApprentissageStrategie(new AvancementApprentissage());
+    }
+
+    @FXML
+    public void master(){
+        paquet.setApprentissageStrategie(new MasterStrategie());
     }
 
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
