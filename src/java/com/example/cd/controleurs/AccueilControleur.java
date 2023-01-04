@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
@@ -119,6 +118,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
         while (nbColonnes * nbLignes < nbBoutons) {
             nbLignes++;
+        }
+        if (nbLignes<3) {
+            nbLignes = 3;
         }
         if (nbLignes > table.getRowConstraints().size()) {
             for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {
