@@ -20,6 +20,7 @@ public class StatsCarte {
         DateReussite = new ArrayList<String>();
         DateEchec = new ArrayList<String>();
         etatCarte = EtatCarte.NonVue;
+
     }
 
     public void setEtatCarte(EtatCarte etatCarte) {
@@ -95,6 +96,21 @@ public class StatsCarte {
             return lastDateReussite;
         }
         return lastDateEchec;
+    }
+
+    public boolean ValidableAujourdhui(){
+        if (etatCarte==EtatCarte.ARevoir || etatCarte==EtatCarte.NonVue){
+            return true;
+        }
+        if (etatCarte==EtatCarte.DebutApprentissage){
+            if (getLastDateReussite().isBefore(LocalDate.now().minusDays(1))){
+                return true;
+            }
+        }
+        if (etatCarte==EtatCarte.FinApprentissage){
+            return getLastDateReussite().isBefore(LocalDate.now().minusDays(3));
+        }
+        return false;
     }
 
 

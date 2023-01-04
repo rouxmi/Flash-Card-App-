@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="27" minWidth="200" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="27" minWidth="200" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <GridPane maxHeight="Infinity" maxWidth="Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
    <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
@@ -38,17 +38,26 @@
          </left>
          <right>
             <VBox prefHeight="403.0" prefWidth="259.0" BorderPane.alignment="CENTER">
-               <children>
+               <HBox>
+                  <HBox>
                   <Button mnemonicParsing="false" onAction="#versEntrainement" text="Entrainement" />
                   <Button mnemonicParsing="false" onAction="#versRevision" text="Révision" />
                   <Button mnemonicParsing="false" text="Button" />
-                  <VBox fx:id="PieChartBox" maxHeight="100" maxWidth="100">
+                  </HBox>
+                  <VBox fx:id="PieChartBox" maxHeight="300" maxWidth="300">
                   </VBox>
+                  <HBox>
+                     <HBox>
                      <Label fx:id="titre" text="Label" />
-                     <Label fx:id="description" text="Label" />
                      <Button fx:id="modifTitre" mnemonicParsing="false" onAction="#handlemodifTitre" text="Modif Titre" />
+                     </HBox>
+                     <HBox>
+                     <Label fx:id="description" text="Label" />
                      <Button fx:id="modifDescription" mnemonicParsing="false" onAction="#handlemodifDescription" text="Modif Description" />
-               </children>
+                     </HBox>
+                  </HBox>
+
+               </HBox>
             </VBox>
          </right>
          <bottom>
@@ -60,6 +69,14 @@
                   <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
                      <Button fx:id="supprimerPaquetBouton" mnemonicParsing="false" onAction="#supprimerPaquet" text="Supprimer le paquet" />
+                     <Button fx:id="exportPaquet" mnemonicParsing="false" onAction="#exporterPaquet" text="Exporter" />
+                  <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Aléatoire" onAction="#random" />
+                        <MenuItem mnemonicParsing="false" text="Classique" onAction="#classique" />
+                        <MenuItem mnemonicParsing="false" text="Avancement" onAction="#avancement" />
+                     </items>
+                  </SplitMenuButton>
                </items>
             </ToolBar>
          </top>

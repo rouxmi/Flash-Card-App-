@@ -4,8 +4,10 @@ import com.example.cd.modele.Listpaquets;
 import com.example.cd.modele.PaquetDeCartes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,12 +25,17 @@ public class Sauvegarde {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
-        Path paquetsjson = Path.of("paquets");
-        if (!Files.exists(paquetsjson)){
+
+        //Path paquetsjson = Path.of("paquets");
+        DirectoryChooser dossierchoisi = new DirectoryChooser();
+        dossierchoisi.setTitle("Choisi l'emplacement de sauvegarde");
+        dossierchoisi.setInitialDirectory(new File(System.getProperty("user.home")));
+        /*if (!Files.exists(paquetsjson)){
             Files.createDirectory(paquetsjson);
 
-        }
-        String name="paquets/"+paquetDeCartes.getTitre().replace(' ','_')+".json";
+        }*/
+        File dirchoosed = dossierchoisi.showDialog(Main.mainStage);
+        String name= dirchoosed.getPath()+"/"+paquetDeCartes.getTitre().replace(' ','_')+".json";
         Path filePath = Paths.get(name);
         if (!Files.exists(filePath)){
             Files.createFile(filePath);

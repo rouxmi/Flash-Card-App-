@@ -2,18 +2,21 @@ package com.example.cd.modele.apprentissage;
 
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
-import com.example.cd.statistiques.EtatCarte;
 
-public class AvancementApprentissage implements ApprentissageStrategie{
+public class MasterStrategie implements ApprentissageStrategie{
+
     @Override
     public String toString() {
-        return "Avancement";
+        return "Master";
     }
 
     @Override
     public Carte getCarte(PaquetDeCartes paquet, int index) {
         double random = Math.random();
         Carte c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
+        if(c.getStatsCarte().ValidableAujourdhui()){
+            return c;
+        }
         switch (c.getStatsCarte().getEtatCarte()) {
             case NonVue, ARevoir -> {
                 if (random < 0.75) {
@@ -38,5 +41,6 @@ public class AvancementApprentissage implements ApprentissageStrategie{
         }
         return this.getCarte(paquet,index);
     }
-}
 
+
+}
