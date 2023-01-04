@@ -70,7 +70,7 @@ public class Sauvegarde {
             Gson gson = new Gson();
             PaquetDeCartes paquetDeCartes1 = gson.fromJson(json, PaquetDeCartes.class);
             paquetDeCartes.setTitre(paquetDeCartes1.getTitre());
-            paquetDeCartes.setAuteur(paquetDeCartes1.getAuteur());
+            paquetDeCartes.setDescription(paquetDeCartes1.getDescription());
             for (int i = 0; i < paquetDeCartes1.getCartes().size(); i++) {
                 paquetDeCartes.getCartes().add(paquetDeCartes1.getCartes().get(i));
             }

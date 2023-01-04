@@ -30,6 +30,8 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     private GridPane table;
     @FXML
     private ToggleButton toggleBouton;
+    @FXML
+    private Button importPaquet;
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur){
         this.paquets = paquets;
@@ -55,6 +57,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         paquetActuel = paquets.get(paquets.size()-1);
         majPaquetGlobalControleur(paquetActuel);
         dialogBoxNouveauPaquet();
+        dialogBoxNouvelleDescription();
         globalControleur.changeSceneVersGestion();
     }
 
@@ -65,6 +68,14 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         infoTitre.showAndWait();
         paquetActuel.setTitre(infoTitre.getEditor().getText());
     }
+    public void dialogBoxNouvelleDescription(){
+        TextInputDialog infoDescription = new TextInputDialog();
+        infoDescription.setTitle("Création nouveau paquet");
+        infoDescription.setHeaderText("Renseigne la description");
+        infoDescription.showAndWait();
+        paquetActuel.setDescription(infoDescription.getEditor().getText());
+    }
+
     @FXML
     public void majToggle() {
         // TODO : verifier que ca part pas quand on remet la toolbar
@@ -88,6 +99,10 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         } else {
             globalControleur.changeSceneVersGestion();
         }
+    }
+    @FXML
+    public void importerPaquet() throws IOException {
+        globalControleur.importerPaquets();
     }
 
     public void creationBoutons() {
@@ -123,7 +138,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                 });
             }
             else {
-                button.setText(paquets.get(i).getTitre());
+                button.setText(paquets.get(i).getTitre()+"\n"+ paquets.get(i).getDescription());
                 int finalI = i;
                 button.setOnAction(event -> {
                     try {
