@@ -94,4 +94,33 @@ public class StatsCarte {
     }
 
 
+    public void MajStatsCarteReussite() {
+        switch (etatCarte) {
+            case NonVue, ARevoir:
+                etatCarte = EtatCarte.DebutApprentissage;
+                break;
+            case DebutApprentissage:
+                etatCarte = EtatCarte.FinApprentissage;
+                break;
+            case FinApprentissage:
+                etatCarte = EtatCarte.AcquiseParfaite;
+                break;
+            case AcquiseParfaite:
+                break;
+        }
+    }
+
+    public void MajStatsCarteEchec() {
+        switch (etatCarte) {
+            case NonVue, DebutApprentissage, ARevoir:
+                etatCarte = EtatCarte.ARevoir;
+                break;
+            case FinApprentissage:
+                etatCarte = EtatCarte.DebutApprentissage;
+                break;
+            case AcquiseParfaite:
+                etatCarte = EtatCarte.FinApprentissage;
+                break;
+        }
+    }
 }
