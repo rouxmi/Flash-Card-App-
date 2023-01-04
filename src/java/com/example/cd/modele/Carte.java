@@ -7,7 +7,6 @@ public class Carte {
     private String question;
     @Expose
     private String reponse;
-
     public Carte(String question, String reponse) {
         this.question = question;
         this.reponse = reponse;
@@ -25,6 +24,7 @@ public class Carte {
     public String getReponse() {
         return reponse;
     }
+
 
     //setters
     public void setQuestion(String question) {

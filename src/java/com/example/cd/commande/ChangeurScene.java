@@ -30,6 +30,7 @@ public class ChangeurScene extends Commande {
         setChangeScene(new SceneCreation(paquetDeCartes,globalControleur));
     }
 
+
     public void changeSceneEntrainement() throws Exception {
         setChangeScene(new SceneEntrainement(paquetDeCartes,globalControleur));
     }

@@ -17,6 +17,8 @@ public class SceneCreation implements ChangeScene {
         fxmlLoader.setController(creationControleur);
         newScene = new Scene(fxmlLoader.load());
     }
+
+
     @Override
     public void changetoScene() {
         Main.mainStage.setScene(newScene);
