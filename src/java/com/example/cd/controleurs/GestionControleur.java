@@ -142,7 +142,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void exporterPaquet() throws IOException {
-
+        globalControleur.sauvegarder1paquet();
     }
     public void affichageCartes() {
         if (this.paquet !=null) {
