@@ -153,11 +153,10 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void reussite() throws Exception {
         majPaquetGlobalControleur(paquet);
+        carteActuelle.getStatsCarte().MajStatsCarteReussite();
         this.carteActuelle = futurCartes.poll();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
-        carteActuelle.getStatsCarte().MajStatsCarteReussite();
-        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
         initialize(null, null);
         toggleFlashCard.setSelected(false);
         majFlashCard();
@@ -165,11 +164,10 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void echec() throws Exception {
         majPaquetGlobalControleur(paquet);
+        carteActuelle.getStatsCarte().MajStatsCarteEchec();
         this.carteActuelle = futurCartes.poll();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
-        carteActuelle.getStatsCarte().MajStatsCarteEchec();
-        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
         initialize(null, null);
         toggleFlashCard.setSelected(false);
         majFlashCard();
