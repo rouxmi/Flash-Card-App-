@@ -56,9 +56,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public void majToggle() {
         // TODO : verifier que ca part pas quand on remet la toolbar
         if ( toggleBouton.isSelected() ) {
-            toggleBouton.setText("Gestion");
-        } else {
             toggleBouton.setText("Entrainement");
+        } else {
+            toggleBouton.setText("Gestion");
         }
     }
     @FXML
@@ -70,7 +70,11 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void visiterPaquet() throws Exception{
         majPaquetGlobalControleur(paquetActuel);
-        globalControleur.changeSceneVersGestion();
+        if ( toggleBouton.isSelected() ) {
+            globalControleur.changeSceneVersEntrainement("entrainement");
+        } else {
+            globalControleur.changeSceneVersGestion();
+        }
     }
 
     public void creationBoutons() {

@@ -7,6 +7,7 @@ import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
@@ -22,6 +23,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private TextArea question;
     @FXML
     private TextArea reponse;
+
+    @FXML
+    private Button prec;
+    @FXML
+    private Button suiv;
+    private Carte carteActuelle;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -55,7 +62,17 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
         }
+        else {
+            this.question.setPromptText("Ecrire une question");
+            this.reponse.setPromptText("Ecrire une réponse");
+        }
 
+        int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
+        //System.out.println(globalControleur.getCarte().getQuestion());
+        if(indicePrec<0){
+            System.out.println(indicePrec);
+            prec.setVisible(false);
+        }
     }
 
     @FXML
@@ -73,13 +90,43 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersGestion();
     }
+    @FXML
+    public void allerPrec() throws Exception{
+        int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
+        if (indicePrec>=0) {
+            validerCarte();
+            majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indicePrec));
+            globalControleur.changeSceneVersCreation();
+        }
+    }
 
+    @FXML
+    public void allerSuiv() throws Exception{
+        int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
+        if(indiceSuiv<this.globalControleur.getPaquet().taillePaquet()) {
+            validerCarte();
+            majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indiceSuiv));
+            majPaquetGlobalControleur(paquet);
+            globalControleur.changeSceneVersCreation();
+        }
+        else{
+            versCreation();
+        }
+    }
+    @FXML
+    public void versCreation() throws Exception{
+        paquet.ajouterCarte(new Carte());
+        carteActuelle=paquet.getCarte(paquet.taillePaquet()-1);
+        validerCarte();
+        majPaquetGlobalControleur(paquet);
+        majCarteGlobalControleur(carteActuelle);
+        globalControleur.changeSceneVersCreation();
+    }
     @FXML
     public void validerCarte() throws Exception {
         try{
             this.paquet.getCarte(this.indice).setQuestion(question.getText());
             this.paquet.getCarte(this.indice).setReponse(reponse.getText());
-            System.out.println(this.indice);
         }catch (Exception e){
             e.printStackTrace();
         }
