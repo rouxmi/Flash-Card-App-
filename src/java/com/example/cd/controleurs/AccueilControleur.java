@@ -10,10 +10,10 @@ import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -123,8 +123,8 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             for (int j = table.getRowConstraints().size(); j < nbLignes; j++) {
                 RowConstraints row = new RowConstraints();
                 row.setVgrow(Priority.SOMETIMES);
-                row.setMinHeight(10);
-                row.setPrefHeight(100);
+                row.setMinHeight(250);
+                row.setPrefHeight(400);
                 table.getRowConstraints().add(row);
             }
         }
@@ -134,7 +134,8 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             button = new Button();
 
             if (i == nbBoutons - 1) {
-                button.setText("+");
+                button.setText("\n+");
+                button.setFont(new javafx.scene.text.Font(60));
                 button.setOnAction(event -> {
                     try {
                         ajouterNouveauPaquet();
@@ -144,7 +145,26 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                 });
             }
             else {
-                button.setText(paquets.get(i).getTitre()+"\n"+ paquets.get(i).getDescription());
+                String description = paquets.get(i).getDescription();
+                Label labeltitre = new Label(paquets.get(i).getTitre());
+                Label labeldesc = new Label(description);
+                labeltitre.setFont(new javafx.scene.text.Font(25));
+                labeldesc.setFont(new javafx.scene.text.Font(15));
+                labeldesc.setWrapText(true);
+                VBox vBoxhaut = new VBox();
+                vBoxhaut.setPadding(new javafx.geometry.Insets(40, 0, 0, 20));
+                vBoxhaut.setMaxSize(150, 30);
+                vBoxhaut.getChildren().add(labeltitre);
+                VBox vBoxbas = new VBox();
+                vBoxbas.setMaxSize(270, 185);
+                vBoxbas.setPadding(new javafx.geometry.Insets(18, 0, 0, 33));
+                vBoxbas.setSpacing(10);
+                vBoxbas.getChildren().add(labeldesc);
+                VBox vBox = new VBox();
+                vBox.getChildren().addAll(vBoxhaut, vBoxbas);
+                button.setGraphic(vBox);
+                button.getGraphic().setStyle("-fx-position: top-left;");
+
                 int finalI = i;
                 button.setOnAction(event -> {
                     try {
@@ -155,15 +175,19 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                     }
                 });
             }
-            button.setPrefSize(100, 100);
-            button.setMinSize(100,100);
+            button.setPrefSize(300, 300);
+            button.setMinSize(300,300);
             button.setMaxHeight(1.7976931348623157E308);
             button.setMaxWidth(1.7976931348623157E308);
             button.setMnemonicParsing(false);
+            button.setAlignment(Pos.CENTER);
+
+
+            button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("folder_icon.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
             table.add(button, i % nbColonnes, i / nbColonnes);
         }
-        table.setHgap(10);
-        table.setVgap(10);
+        table.setHgap(20);
+        table.setVgap(20);
     }
 
     @FXML

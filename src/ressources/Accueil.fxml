@@ -29,9 +29,9 @@
              <Button mnemonicParsing="false" onAction="#importerPaquet" text="Importer" fx:id="importPaquet" />
          </items>
       </ToolBar>
-       <ScrollPane HBox.hgrow="SOMETIMES">
+       <ScrollPane HBox.hgrow="SOMETIMES" maxWidth="1000">
            <content>
-               <VBox prefWidth="580.0">
+               <VBox prefWidth="980.0" prefHeight="700">
                    <GridPane fx:id="table" alignment="CENTER" layoutY="100.0" style="-fx-background-radius: 5 5 5 5;"
                              VBox.vgrow="ALWAYS">
                        <VBox.margin>
@@ -39,9 +39,9 @@
                        </VBox.margin>
 
                        <columnConstraints>
-                           <ColumnConstraints  percentWidth="30"/>
-                           <ColumnConstraints  percentWidth="30"/>
-                           <ColumnConstraints  percentWidth="30"/>
+                           <ColumnConstraints  percentWidth="32"/>
+                           <ColumnConstraints  percentWidth="32"/>
+                           <ColumnConstraints  percentWidth="32"/>
                        </columnConstraints>
                        <rowConstraints>
 
