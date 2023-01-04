@@ -9,8 +9,9 @@ public class Carte {
     @Expose
     private String reponse;
 
-    @Expose
+
     private StatsCarte statsCarte;
+
     public Carte(String question, String reponse) {
         this.question = question;
         this.reponse = reponse;
@@ -29,6 +30,9 @@ public class Carte {
     public String getReponse() {
         return reponse;
     }
+    public StatsCarte getStatsCarte() {
+        return statsCarte;
+    }
 
 
     //setters
@@ -38,5 +42,6 @@ public class Carte {
     public void setReponse(String reponse) {
         this.reponse = reponse;
     }
+
 
 }
