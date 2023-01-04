@@ -75,9 +75,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
                             toggleFlashCard.setSelected(true);
                             majFlashCard();
                             compteurLabel.setText("");
-                        }
-                        ;
-                    }
+                        };}
             );
             compteurLabel.setVisible(true);
         } else if ( typeEntrainement.equals("entrainement") ) {
