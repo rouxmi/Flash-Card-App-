@@ -3,6 +3,7 @@ package com.example.cd.controleurs;
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
+import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.animation.*;
 import javafx.fxml.FXML;
@@ -19,6 +20,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private GlobalControleur globalControleur;
     private int decompte = 3;
     public Observateur observateur;
+
+    private Carte carteActuelle;
     @FXML
     private ToggleButton toggleFlashCard;
     @FXML

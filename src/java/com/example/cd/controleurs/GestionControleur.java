@@ -42,6 +42,8 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void versCreation() throws Exception{
+        //paquet.ajouterCarte(new Carte());
+        majPaquetGlobalControleur(paquet);
         Carte nouvelleCarte = new Carte();
         paquet.ajouterCarte(nouvelleCarte);
         globalControleur.changeSceneVersCreation();
@@ -53,6 +55,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void versEntrainement() throws Exception {
+        majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersEntrainement();
     }
     @FXML
@@ -61,6 +64,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void allerAccueil() throws Exception {
+        majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersAccueil();
     }
     public void affichageCartes() {
@@ -103,4 +107,9 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
         }
     }
+
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+        this.globalControleur.setPaquet(paquetActuel);
+    }
+
 }

@@ -46,22 +46,26 @@ public class GlobalControleur implements Observateur {
     }
 
     public  void changeSceneVersCreation() throws Exception {
+        changeurScene.setPaquet(paquet);
         changeurScene.changeSceneCreation();
         changeurScene.execute();
     }
 
 
     public  void changeSceneVersEntrainement() throws Exception {
+        changeurScene.setPaquet(paquet);
         changeurScene.changeSceneEntrainement();
         changeurScene.execute();
     }
 
     public void changeSceneVersGestion() throws Exception {
+        changeurScene.setPaquet(paquet);
         changeurScene.changeSceneGestion();
         changeurScene.execute();
     }
 
     public void changeSceneVersAccueil() throws Exception {
+        changeurScene.setPaquet(paquet);
         changeurScene.changeSceneAcceuil();
         changeurScene.execute();
     }

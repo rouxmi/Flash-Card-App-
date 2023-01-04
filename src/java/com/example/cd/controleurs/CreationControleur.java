@@ -59,11 +59,13 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void allerAccueil() throws Exception {
+        majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersAccueil();
     }
     @FXML
     public void voirPaquet() throws Exception {
         // TODO : verifier le paquet courant
+        majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersGestion();
     }
 
@@ -76,8 +78,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersCreation();
+    }
+
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+        this.globalControleur.setPaquet(paquetActuel);
     }
 
 }
