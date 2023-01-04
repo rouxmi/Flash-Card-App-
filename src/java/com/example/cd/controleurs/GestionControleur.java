@@ -7,10 +7,12 @@ import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,10 +27,27 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     @FXML
     private GridPane table;
 
+    @FXML
+    private VBox PieChartBox;
+
     public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
         this.globalControleur = globalControleur;
         paquet.ajouterObservateur(this);
+    }
+
+    private void InitialisationCamenbert() {
+        PieChart pieChart = new PieChart();
+
+        PieChart.Data slice1 = new PieChart.Data("Desktop", 213);
+        PieChart.Data slice2 = new PieChart.Data("Phone"  , 67);
+        PieChart.Data slice3 = new PieChart.Data("Tablet" , 36);
+
+        pieChart.getData().add(slice1);
+        pieChart.getData().add(slice2);
+        pieChart.getData().add(slice3);
+
+        PieChartBox.getChildren().add(pieChart);
     }
 
     @Override
@@ -39,6 +58,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         affichageCartes();
+        InitialisationCamenbert();
     }
 
     @FXML

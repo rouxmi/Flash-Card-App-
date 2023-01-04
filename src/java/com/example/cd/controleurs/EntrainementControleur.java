@@ -36,6 +36,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
         this.globalControleur=globalControleur;
+        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
         this.typeEntrainement=typeEntrainement;
      // paquet.ajouterObservateur(this);
     }
@@ -59,7 +60,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO : modifier avec la carte courante
         compteurLabel.setText(String.valueOf(decompte));
-        toggleFlashCard.setText("Question");
+        toggleFlashCard.setText(carteActuelle.getQuestion());
         Timeline compteur = new Timeline((new KeyFrame(javafx.util.Duration.seconds(1), event -> {
             compteurLabel.setText(String.valueOf(decompte));
             decompte--;
@@ -102,9 +103,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         rotate.setByAngle(180);
         rotate.play();
         if (toggleFlashCard.isSelected()) {
-            toggleFlashCard.setText("Reponse");
+            toggleFlashCard.setText(carteActuelle.getReponse());
         } else {
-            toggleFlashCard.setText("Question");
+            toggleFlashCard.setText(carteActuelle.getQuestion());
         }
     }
 
@@ -115,13 +116,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         this.globalControleur.setCarte(carteActuelle);
     }
     @FXML
-    public void questionReussie() {
-        // TODO : modifier avec le paquet courant
-        notifierObservateur();
+    public void reussite() throws Exception {
+        majPaquetGlobalControleur(paquet);
+        globalControleur.changeSceneVersEntrainement(typeEntrainement);
     }
     @FXML
-    public void questionLoupee() {
-        // TODO : modifier avec le paquet courant
-        notifierObservateur();
+    public void echec() throws Exception {
+        majPaquetGlobalControleur(paquet);
+        globalControleur.changeSceneVersEntrainement(typeEntrainement);
     }
 }
