@@ -23,6 +23,7 @@
                    <items>
                       <MenuItem mnemonicParsing="false" text="Aléatoire" onAction="#random" />
                       <MenuItem mnemonicParsing="false" text="Classique" onAction="#classique" />
+                       <MenuItem mnemonicParsing="false" text="Avancement" onAction="#avancement" />
                    </items>
             </SplitMenuButton>
          </items>
