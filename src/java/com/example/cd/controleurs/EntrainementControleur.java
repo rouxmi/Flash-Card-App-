@@ -31,6 +31,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private Button questionReussieBouton;
     @FXML
     private Button questionLoupeeBouton;
+    private String typeEntrainement;
 
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
