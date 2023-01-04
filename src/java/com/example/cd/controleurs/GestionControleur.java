@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
@@ -30,6 +32,14 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     private VBox PieChartBox;
+    @FXML
+    private Label titre;
+    @FXML
+    private Label description;
+    @FXML
+    private Button modifTitre;
+    @FXML
+    private Button modifDescription;
 
     public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
@@ -60,6 +70,8 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public void initialize(URL url, ResourceBundle resourceBundle) {
         affichageCartes();
         InitialisationCamenbert();
+        titre.setText(globalControleur.getPaquet().getTitre());
+        description.setText(globalControleur.getPaquet().getDescription());
     }
 
     @FXML
@@ -73,6 +85,30 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public void visiterCarte()throws Exception{
         majCarteGlobalControleur(carteActuelle);
         globalControleur.changeSceneVersCreation();
+    }
+    @FXML
+    public void handlemodifTitre() throws Exception{
+        dialogBoxNouveauTitre();
+        globalControleur.changeSceneVersGestion();
+    }
+    @FXML
+    public void handlemodifDescription() throws Exception{
+        dialogBoxNouvelleDescription();
+        globalControleur.changeSceneVersGestion();
+    }
+    public void dialogBoxNouveauTitre() {
+        TextInputDialog infoTitre = new TextInputDialog();
+        infoTitre.setTitle("Modification Titre");
+        infoTitre.setHeaderText("Renseigne ton nouveau titre");
+        infoTitre.showAndWait();
+        paquet.setTitre(infoTitre.getEditor().getText());
+    }
+    public void dialogBoxNouvelleDescription(){
+        TextInputDialog infoDescription = new TextInputDialog();
+        infoDescription.setTitle("Modification Description");
+        infoDescription.setHeaderText("Renseigne ta nouvelle description");
+        infoDescription.showAndWait();
+        paquet.setDescription(infoDescription.getEditor().getText());
     }
 
     @FXML

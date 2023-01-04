@@ -55,6 +55,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         paquetActuel = paquets.get(paquets.size()-1);
         majPaquetGlobalControleur(paquetActuel);
         dialogBoxNouveauPaquet();
+        dialogBoxNouvelleDescription();
         globalControleur.changeSceneVersGestion();
     }
 
@@ -65,6 +66,14 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         infoTitre.showAndWait();
         paquetActuel.setTitre(infoTitre.getEditor().getText());
     }
+    public void dialogBoxNouvelleDescription(){
+        TextInputDialog infoDescription = new TextInputDialog();
+        infoDescription.setTitle("Création nouveau paquet");
+        infoDescription.setHeaderText("Renseigne la description");
+        infoDescription.showAndWait();
+        paquetActuel.setDescription(infoDescription.getEditor().getText());
+    }
+
     @FXML
     public void majToggle() {
         // TODO : verifier que ca part pas quand on remet la toolbar

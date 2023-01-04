@@ -12,20 +12,20 @@ public class PaquetDeCartes extends SujetObserve {
     @Expose
     private String titre;
     @Expose
-    private String auteur;
+    private String description;
     @Expose
     private ArrayList<Carte> cartes;
     private ApprentissageStrategie apprentissageStrategie;
 
-    public PaquetDeCartes(ArrayList<Carte> cartes, String titre, String auteur){
+    public PaquetDeCartes(ArrayList<Carte> cartes, String titre, String description){
         this.cartes=cartes;
-        this.auteur=auteur;
+        this.description=description;
         this.titre=titre;
         this.apprentissageStrategie = new RandomApprentissage();
     }
 
-    public PaquetDeCartes(String titre, String auteur){
-        this.auteur=auteur;
+    public PaquetDeCartes(String titre, String description){
+        this.description=description;
         this.titre=titre;
         this.cartes = new ArrayList<>();
         this.apprentissageStrategie = new RandomApprentissage();
@@ -33,7 +33,7 @@ public class PaquetDeCartes extends SujetObserve {
 
     public PaquetDeCartes(){
         this.titre = " ";
-        this.auteur ="";
+        this.description ="";
         this.cartes =new ArrayList<>();
         this.apprentissageStrategie = new RandomApprentissage();
     }
@@ -43,8 +43,8 @@ public class PaquetDeCartes extends SujetObserve {
         return titre;
     }
 
-    public String getAuteur() {
-        return auteur;
+    public String getDescription() {
+        return description;
     }
 
     public ApprentissageStrategie getApprentissageStrategie() {
@@ -62,8 +62,8 @@ public class PaquetDeCartes extends SujetObserve {
         this.titre = titre;
     }
 
-    public void setAuteur(String auteur) {
-        this.auteur = auteur;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setCartes(ArrayList<Carte> cartes){ this.cartes = cartes;}
