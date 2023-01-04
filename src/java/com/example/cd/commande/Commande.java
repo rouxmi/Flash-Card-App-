@@ -11,13 +11,13 @@ public abstract class Commande {
     public PaquetDeCartes paquetDeCartes;
     public Carte carte;
 
-    public ArrayList<PaquetDeCartes> paquet;
+    public ArrayList<PaquetDeCartes> paquets;
 
 
-    public Commande(ArrayList<PaquetDeCartes> paquet, PaquetDeCartes paquetDeCartes, Carte carte) {
+    public Commande(ArrayList<PaquetDeCartes> paquets, PaquetDeCartes paquetDeCartes, Carte carte) {
         this.paquetDeCartes = paquetDeCartes;
         this.carte = carte;
-        this.paquet = paquet;
+        this.paquets = paquets;
     }
 
     public void setPaquet(PaquetDeCartes paquet) {

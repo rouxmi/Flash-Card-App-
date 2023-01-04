@@ -23,7 +23,7 @@ public class ChangeurScene extends Commande {
     }
 
     public void changeSceneAcceuil() throws IOException {
-        setChangeScene(new SceneAccueil(paquet,globalControleur));
+        setChangeScene(new SceneAccueil(paquets,globalControleur));
     }
 
     public void changeSceneCreation() throws Exception {

@@ -39,6 +39,10 @@ public class GlobalControleur implements Observateur {
 
     }
 
+    public void sauvegarder() throws IOException {
+        Sauvegarde.sauvegardeTousPaquets(paquets);
+    }
+
     public void InitialisationChangeurScene() throws IOException {
         changeurScene=new ChangeurScene(paquets, paquet, carte,this);
         changeurScene.changeSceneAcceuil();

@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.transform.Rotate;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -81,7 +82,6 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         } else if ( typeEntrainement.equals("entrainement") ) {
             compteurLabel.setVisible(false);
         }
-
         toggleFlashCard.setSelected(false);
         questionLoupeeBouton.setVisible(false);
         questionReussieBouton.setVisible(false);
@@ -131,10 +131,12 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         });
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
     @FXML
