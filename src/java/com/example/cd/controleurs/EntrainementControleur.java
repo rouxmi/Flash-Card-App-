@@ -118,11 +118,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void reussite() throws Exception {
         majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersEntrainement(typeEntrainement);
+        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
+        initialize(null, null);
     }
     @FXML
     public void echec() throws Exception {
         majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersEntrainement(typeEntrainement);
+        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
+        initialize(null, null);
     }
 }
