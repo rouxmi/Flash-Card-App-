@@ -31,8 +31,8 @@ public class ChangeurScene extends Commande {
     }
 
 
-    public void changeSceneEntrainement() throws Exception {
-        setChangeScene(new SceneEntrainement(paquetDeCartes,globalControleur));
+    public void changeSceneEntrainement(String typeEntrainement) throws Exception {
+        setChangeScene(new SceneEntrainement(paquetDeCartes, globalControleur, typeEntrainement));
     }
 
     public void changeSceneGestion() throws Exception {

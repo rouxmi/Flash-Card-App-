@@ -3,6 +3,7 @@ package com.example.cd.controleurs;
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
+import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -133,5 +134,8 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
         this.globalControleur.setPaquet(paquetActuel);
+    }
+    public void majCarteGlobalControleur(Carte carteActuelle) {
+        this.globalControleur.setCarte(carteActuelle);
     }
 }

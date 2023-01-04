@@ -3,6 +3,7 @@ package com.example.cd.controleurs;
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
 import com.example.cd.commande.*;
+import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,16 +25,16 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
-        this.indice= paquet.taillePaquet()-1;
+        if(globalControleur.getCarte()==null){
+            this.indice= paquet.taillePaquet()-1;
+        }
+        else{
+            this.indice=globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte());
+        }
         this.globalControleur=globalControleur;
         paquet.ajouterObservateur(this);
     }
-    public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur,int indice){
-        this.paquet=paquet;
-        this.indice=indice;
-        this.globalControleur=globalControleur;
-        paquet.ajouterObservateur(this);
-    }
+
 
     public int getIndice() {
         return indice;
@@ -84,6 +85,9 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
         this.globalControleur.setPaquet(paquetActuel);
+    }
+    public void majCarteGlobalControleur(Carte carteActuelle) {
+        this.globalControleur.setCarte(carteActuelle);
     }
 
 }

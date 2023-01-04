@@ -24,9 +24,9 @@
          <bottom>
             <HBox prefHeight="35.0" prefWidth="692.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button onAction="#reussite" mnemonicParsing="false" text="Réussi" />
+                  <Button onAction="#reussite" mnemonicParsing="false" fx:id="questionReussieBouton" text="Réussi" />
                   <Label fx:id="compteurLabel" prefHeight="16.0" prefWidth="504.0" text="Timer" />
-                  <Button onAction="#echec" mnemonicParsing="false" text="Échoué" />
+                  <Button onAction="#echec" fx:id="questionLoupeeBouton" mnemonicParsing="false" text="Échoué" />
                </children>
             </HBox>
          </bottom>

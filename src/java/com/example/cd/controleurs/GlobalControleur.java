@@ -47,14 +47,15 @@ public class GlobalControleur implements Observateur {
 
     public  void changeSceneVersCreation() throws Exception {
         changeurScene.setPaquet(paquet);
+        changeurScene.setCarte(carte);
         changeurScene.changeSceneCreation();
         changeurScene.execute();
     }
 
 
-    public  void changeSceneVersEntrainement() throws Exception {
+    public  void changeSceneVersEntrainement(String typeEntrainement) throws Exception {
         changeurScene.setPaquet(paquet);
-        changeurScene.changeSceneEntrainement();
+        changeurScene.changeSceneEntrainement(typeEntrainement);
         changeurScene.execute();
     }
 
@@ -82,6 +83,10 @@ public class GlobalControleur implements Observateur {
         return this.accueil;
     }
 
+    public Carte getCarte() {return carte;}
+
+    public PaquetDeCartes getPaquet() {return paquet;}
+
     public void setCarte(Carte carte) {
         this.carte = carte;
     }
@@ -92,7 +97,6 @@ public class GlobalControleur implements Observateur {
 
     public void setPaquetActuelAccueil(){
         changeurScene.setPaquet(accueil.getPaquetActuel());
-
     }
 
     public void setAccueil(AccueilControleur accueil) {
@@ -117,5 +121,17 @@ public class GlobalControleur implements Observateur {
 
     public void setGestion(GestionControleur gestion) {
         this.gestion = gestion;
+    }
+
+    public int findIndice(PaquetDeCartes paquet, Carte carte){
+        if (paquet !=null){
+            for(int i=0;i< paquet.taillePaquet();i++){
+                if(paquet.getCarte(i)==carte){
+                    return i;
+                }
+            }
+
+        }
+        return 0;
     }
 }

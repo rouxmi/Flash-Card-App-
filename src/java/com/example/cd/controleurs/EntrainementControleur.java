@@ -8,6 +8,7 @@ import com.example.cd.modele.PaquetDeCartes;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.transform.Rotate;
@@ -26,13 +27,20 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private ToggleButton toggleFlashCard;
     @FXML
     private Label compteurLabel;
+
+    private String typeEntrainement;
+
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet=paquet;
         this.globalControleur=globalControleur;
         this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet);
+        this.typeEntrainement=typeEntrainement;
      // paquet.ajouterObservateur(this);
     }
 
+    public void setTypeEntrainement(String entrainement){
+        this.typeEntrainement=entrainement;
+    }
     public void setObservateur(Observateur observateur) {
         this.observateur = observateur;
     }
@@ -49,13 +57,22 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO : modifier avec la carte courante
         compteurLabel.setText(String.valueOf(decompte));
-        toggleFlashCard.setText(carteActuelle.getQuestion());
+        toggleFlashCard.setText("Question");
         Timeline compteur = new Timeline((new KeyFrame(javafx.util.Duration.seconds(1), event -> {
             compteurLabel.setText(String.valueOf(decompte));
             decompte--;
         })));
         compteur.setCycleCount(4);
         compteur.play();
+        if ( typeEntrainement.equals("entrainement") ) {
+            compteurLabel.setVisible(false);
+            questionLoupeeBouton.setVisible(true);
+            questionReussieBouton.setVisible(true);
+        } else if ( typeEntrainement.equals("revision") ) {
+            compteurLabel.setVisible(true);
+            questionLoupeeBouton.setVisible(false);
+            questionReussieBouton.setVisible(false);
+        }
     }
 
     @FXML
@@ -83,9 +100,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         rotate.setByAngle(180);
         rotate.play();
         if (toggleFlashCard.isSelected()) {
-            toggleFlashCard.setText(carteActuelle.getReponse());
+            toggleFlashCard.setText("Reponse");
         } else {
-            toggleFlashCard.setText(carteActuelle.getQuestion());
+            toggleFlashCard.setText("Question");
         }
     }
 
@@ -99,6 +116,10 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void echec() throws Exception {
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersEntrainement();
+    }
+
+    public void majCarteGlobalControleur(Carte carteActuelle) {
+        this.globalControleur.setCarte(carteActuelle);
     }
 
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
