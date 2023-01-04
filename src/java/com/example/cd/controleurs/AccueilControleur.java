@@ -55,8 +55,13 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         paquetActuel = paquets.get(paquets.size()-1);
         majPaquetGlobalControleur(paquetActuel);
         dialogBoxNouveauPaquet();
-        dialogBoxNouvelleDescription();
-        globalControleur.changeSceneVersGestion();
+        if ( !paquetActuel.getTitre().equals("") ) {
+            dialogBoxNouvelleDescription();
+            globalControleur.changeSceneVersGestion();
+        } else {
+            globalControleur.supprimerPaquet(paquetActuel);
+            majPaquetGlobalControleur(null);
+        }
     }
 
     public void dialogBoxNouveauPaquet() {
