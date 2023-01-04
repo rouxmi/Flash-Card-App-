@@ -24,11 +24,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
-        this.indice=0;
+        this.indice= paquet.taillePaquet()-1;
         this.globalControleur=globalControleur;
-        //paquet.ajouterObservateur(this);
+        paquet.ajouterObservateur(this);
     }
-    public CreationControleur(PaquetDeCartes paquet,int indice,GlobalControleur globalControleur){
+    public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur,int indice){
         this.paquet=paquet;
         this.indice=indice;
         this.globalControleur=globalControleur;
@@ -72,6 +72,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         try{
             this.paquet.getCarte(this.indice).setQuestion(question.getText());
             this.paquet.getCarte(this.indice).setReponse(reponse.getText());
+            System.out.println(this.indice);
         }catch (Exception e){
             e.printStackTrace();
         }

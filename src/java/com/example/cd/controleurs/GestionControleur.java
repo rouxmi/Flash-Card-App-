@@ -27,7 +27,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
         this.globalControleur = globalControleur;
-        //paquet.ajouterObservateur(this);
+        paquet.ajouterObservateur(this);
     }
 
     @Override
@@ -42,7 +42,8 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void versCreation() throws Exception{
-        //paquet.ajouterCarte(new Carte());
+        Carte nouvelleCarte = new Carte();
+        paquet.ajouterCarte(nouvelleCarte);
         globalControleur.changeSceneVersCreation();
     }
 
