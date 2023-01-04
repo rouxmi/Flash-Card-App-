@@ -1,5 +1,6 @@
 package com.example.cd.modele;
 
+import com.example.cd.statistiques.StatsCarte;
 import com.google.gson.annotations.Expose;
 
 public class Carte {
@@ -7,9 +8,13 @@ public class Carte {
     private String question;
     @Expose
     private String reponse;
+
+    @Expose
+    private StatsCarte statsCarte;
     public Carte(String question, String reponse) {
         this.question = question;
         this.reponse = reponse;
+        statsCarte = new StatsCarte();
     }
 
     public Carte(){

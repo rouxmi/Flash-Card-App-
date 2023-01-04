@@ -6,7 +6,7 @@ import com.example.cd.modele.PaquetDeCartes;
 public class ClassiqueApprentissage implements ApprentissageStrategie{
     @Override
     public Carte getCarte(PaquetDeCartes paquet) {
-        return paquet.getCarte(0);
+        return paquet.getCarte(paquet.getCartes().size()-1);
     }
 
     @Override

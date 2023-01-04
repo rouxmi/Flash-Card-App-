@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.transform.Rotate;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -67,21 +68,20 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             decompte--;
         })));
         compteur.setCycleCount(4);
-        compteur.play();
-        compteur.setOnFinished(event -> {
-            if ( !toggleFlashCard.isSelected() ) {
-                toggleFlashCard.setSelected(true);
-                majFlashCard();
-                compteurLabel.setText("");
-            };
-        }
-        );
-        if ( typeEntrainement.equals("entrainement") ) {
-            compteurLabel.setVisible(false);
-        } else if ( typeEntrainement.equals("revision") ) {
-            compteurLabel.setVisible(true);
-        }
 
+        if ( typeEntrainement.equals("revision") ) {
+            compteur.play();
+            compteur.setOnFinished(event -> {
+                        if (!toggleFlashCard.isSelected()) {
+                            toggleFlashCard.setSelected(true);
+                            majFlashCard();
+                            compteurLabel.setText("");
+                        };}
+            );
+            compteurLabel.setVisible(true);
+        } else if ( typeEntrainement.equals("entrainement") ) {
+            compteurLabel.setVisible(false);
+        }
         toggleFlashCard.setSelected(false);
         questionLoupeeBouton.setVisible(false);
         questionReussieBouton.setVisible(false);
@@ -131,10 +131,12 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         });
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
     @FXML

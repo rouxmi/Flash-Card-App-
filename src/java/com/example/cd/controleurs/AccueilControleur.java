@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -27,11 +28,11 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     private ToggleButton toggleBouton;
 
-    public AccueilControleur(ArrayList<PaquetDeCartes> paquet, GlobalControleur globalControleur){
-        this.paquets = paquet;
+    public AccueilControleur(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur){
+        this.paquets = paquets;
         this.globalControleur = globalControleur;
-        for(int i=0; i< paquet.size();i++){
-            paquet.get(i).ajouterObservateur(this);
+        for(int i=0; i< paquets.size();i++){
+            paquets.get(i).ajouterObservateur(this);
         }
     }
 
@@ -145,10 +146,12 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         return paquetActuel;
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+        globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
 }
