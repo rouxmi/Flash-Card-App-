@@ -70,6 +70,13 @@
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
                      <Button fx:id="supprimerPaquetBouton" mnemonicParsing="false" onAction="#supprimerPaquet" text="Supprimer le paquet" />
                      <Button fx:id="exporterPaquet" mnemonicParsing="false" text="Exporter" />
+                  <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Aléatoire" onAction="#random" />
+                        <MenuItem mnemonicParsing="false" text="Classique" onAction="#classique" />
+                        <MenuItem mnemonicParsing="false" text="Avancement" onAction="#avancement" />
+                     </items>
+                  </SplitMenuButton>
                </items>
             </ToolBar>
          </top>
