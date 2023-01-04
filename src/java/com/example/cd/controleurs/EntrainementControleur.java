@@ -8,6 +8,7 @@ import com.example.cd.modele.PaquetDeCartes;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.transform.Rotate;
@@ -26,12 +27,21 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private ToggleButton toggleFlashCard;
     @FXML
     private Label compteurLabel;
-    public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
+    @FXML
+    private Button questionReussieBouton;
+    @FXML
+    private Button questionLoupeeBouton;
+
+    public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
         this.globalControleur=globalControleur;
+        this.typeEntrainement=typeEntrainement;
      // paquet.ajouterObservateur(this);
     }
 
+    public void setTypeEntrainement(String entrainement){
+        this.typeEntrainement=entrainement;
+    }
     public void setObservateur(Observateur observateur) {
         this.observateur = observateur;
     }
@@ -55,6 +65,15 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         })));
         compteur.setCycleCount(4);
         compteur.play();
+        if ( typeEntrainement.equals("entrainement") ) {
+            compteurLabel.setVisible(false);
+            questionLoupeeBouton.setVisible(true);
+            questionReussieBouton.setVisible(true);
+        } else if ( typeEntrainement.equals("revision") ) {
+            compteurLabel.setVisible(true);
+            questionLoupeeBouton.setVisible(false);
+            questionReussieBouton.setVisible(false);
+        }
     }
 
     @FXML
@@ -93,5 +112,15 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     public void majCarteGlobalControleur(Carte carteActuelle) {
         this.globalControleur.setCarte(carteActuelle);
+    }
+    @FXML
+    public void questionReussie() {
+        // TODO : modifier avec le paquet courant
+        notifierObservateur();
+    }
+    @FXML
+    public void questionLoupee() {
+        // TODO : modifier avec le paquet courant
+        notifierObservateur();
     }
 }
