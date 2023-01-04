@@ -55,6 +55,10 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
         }
+        else {
+            this.question.setPromptText("Ecrire une question");
+            this.reponse.setPromptText("Ecrire une réponse");
+        }
 
     }
 
