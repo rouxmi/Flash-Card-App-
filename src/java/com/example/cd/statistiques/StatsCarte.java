@@ -20,6 +20,7 @@ public class StatsCarte {
         DateReussite = new ArrayList<String>();
         DateEchec = new ArrayList<String>();
         etatCarte = EtatCarte.NonVue;
+
     }
 
     public void setEtatCarte(EtatCarte etatCarte) {
