@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="27" minWidth="200" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <GridPane maxHeight="Infinity" maxWidth="Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -15,54 +16,6 @@
 
    <children>
       <BorderPane prefHeight="435.0" prefWidth="671.0">
-         <left>
-            <ScrollPane prefHeight="403.0" prefWidth="230" BorderPane.alignment="CENTER">
-
-               <content>
-                  <VBox>
-               <GridPane fx:id="table">
-                  <VBox.margin>
-                     <Insets bottom="20" left="20" right="15" top="20" />
-                  </VBox.margin>
-                  <columnConstraints>
-                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10" prefWidth="160" />
-                  </columnConstraints>
-                  <rowConstraints>
-                     <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
-                  </rowConstraints>
-               </GridPane>
-               </VBox>
-               </content>
-
-            </ScrollPane>
-         </left>
-         <right>
-            <VBox prefHeight="403.0" prefWidth="259.0" BorderPane.alignment="CENTER">
-               <HBox>
-                  <HBox>
-                  <Button mnemonicParsing="false" onAction="#versEntrainement" text="Entrainement" />
-                  <Button mnemonicParsing="false" onAction="#versRevision" text="Révision" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  </HBox>
-                  <VBox fx:id="PieChartBox" maxHeight="300" maxWidth="300">
-                  </VBox>
-                  <HBox>
-                     <HBox>
-                     <Label fx:id="titre" text="Label" />
-                     <Button fx:id="modifTitre" mnemonicParsing="false" onAction="#handlemodifTitre" text="Modif Titre" />
-                     </HBox>
-                     <HBox>
-                     <Label fx:id="description" text="Label" />
-                     <Button fx:id="modifDescription" mnemonicParsing="false" onAction="#handlemodifDescription" text="Modif Description" />
-                     </HBox>
-                  </HBox>
-
-               </HBox>
-            </VBox>
-         </right>
-         <bottom>
-            <Button mnemonicParsing="false" onAction="#versCreation" text="Ajouter une carte" BorderPane.alignment="CENTER" />
-         </bottom>
          <top>
             <ToolBar prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <items>
@@ -72,14 +25,97 @@
                      <Button fx:id="exportPaquet" mnemonicParsing="false" onAction="#exporterPaquet" text="Exporter" />
                   <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Aléatoire" onAction="#random" />
-                        <MenuItem mnemonicParsing="false" text="Classique" onAction="#classique" />
-                        <MenuItem mnemonicParsing="false" text="Avancement" onAction="#avancement" />
+                        <MenuItem mnemonicParsing="false" onAction="#random" text="Aléatoire" />
+                        <MenuItem mnemonicParsing="false" onAction="#classique" text="Classique" />
+                        <MenuItem mnemonicParsing="false" onAction="#avancement" text="Avancement" />
                      </items>
                   </SplitMenuButton>
                </items>
             </ToolBar>
          </top>
+            <left>
+               <VBox prefHeight="616.0" prefWidth="214.0" BorderPane.alignment="CENTER">
+                  <children>
+                  <ScrollPane prefHeight="584.0" prefWidth="214.0">
+      
+                     <content>
+                        <VBox>
+                     <GridPane fx:id="table">
+                        <VBox.margin>
+                           <Insets bottom="20" left="20" right="15" top="20" />
+                        </VBox.margin>
+                        <columnConstraints>
+                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10" prefWidth="160" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                     </GridPane>
+                     </VBox>
+                     </content>
+      
+                  </ScrollPane>
+                  <Button mnemonicParsing="false" onAction="#versCreation" text="Ajouter une carte">
+                        <VBox.margin>
+                           <Insets bottom="10.0" left="10.0" top="10.0" />
+                        </VBox.margin>
+                     </Button>
+                  </children>
+               </VBox>
+            </left>
+            <center>
+               <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <children>
+                     <VBox prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                     <Label fx:id="titre" alignment="CENTER" prefHeight="88.0" prefWidth="786.0" text="Label" VBox.vgrow="ALWAYS">
+                              <font>
+                                 <Font name="System Bold" size="24.0" />
+                              </font>
+                           </Label>
+                     <Label fx:id="description" alignment="CENTER" prefHeight="16.0" prefWidth="849.0" text="Label" />
+                           <HBox prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <VBox prefHeight="70.0" prefWidth="611.0" />
+                                 <VBox prefHeight="70.0" prefWidth="223.0">
+                                    <children>
+                                 <Button fx:id="modifDescription" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handlemodifDescription" prefHeight="30.0" prefWidth="208.0" text="Modification Description">
+                                          <VBox.margin>
+                                             <Insets bottom="10.0" right="10.0" />
+                                          </VBox.margin></Button>
+                                 <Button fx:id="modifTitre" mnemonicParsing="false" onAction="#handlemodifTitre" prefHeight="30.0" prefWidth="208.0" text="Modification Titre">
+                                          <VBox.margin>
+                                             <Insets right="10.0" />
+                                          </VBox.margin></Button>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                        </children>
+                     </VBox>
+                     <HBox prefHeight="531.0" prefWidth="786.0">
+                        <children>
+                        <VBox prefHeight="501.0" prefWidth="153.0">
+                        <Button mnemonicParsing="false" onAction="#versEntrainement" prefHeight="60.0" prefWidth="110.0" text="Entrainement">
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </VBox.margin></Button>
+                        <Button mnemonicParsing="false" onAction="#versRevision" prefHeight="60.0" prefWidth="110.0" text="Révision">
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </VBox.margin></Button>
+                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" text="Button">
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </VBox.margin></Button>
+                        </VBox>
+                        <VBox fx:id="PieChartBox" maxHeight="531.0" maxWidth="667.0" prefHeight="443.0" prefWidth="620.0">
+                  </VBox>
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </center>
       </BorderPane>
    </children>
    </GridPane>
