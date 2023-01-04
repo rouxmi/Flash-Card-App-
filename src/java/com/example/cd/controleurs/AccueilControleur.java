@@ -48,9 +48,18 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void ajouterNouveauPaquet() throws Exception {
         paquets.add(new PaquetDeCartes());
-        PaquetDeCartes paquetActuel = paquets.get(paquets.size()-1);
+        paquetActuel = paquets.get(paquets.size()-1);
         majPaquetGlobalControleur(paquetActuel);
+        dialogBoxNouveauPaquet();
         globalControleur.changeSceneVersGestion();
+    }
+
+    public void dialogBoxNouveauPaquet() {
+        TextInputDialog infoTitre = new TextInputDialog();
+        infoTitre.setTitle("Création nouveau paquet");
+        infoTitre.setHeaderText("Renseigne le titre");
+        infoTitre.showAndWait();
+        paquetActuel.setTitre(infoTitre.getEditor().getText());
     }
     @FXML
     public void majToggle() {

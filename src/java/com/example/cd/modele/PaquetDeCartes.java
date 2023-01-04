@@ -33,7 +33,7 @@ public class PaquetDeCartes extends SujetObserve {
     }
 
     public PaquetDeCartes(){
-        this.titre = "";
+        this.titre = " ";
         this.auteur ="";
         this.cartes =new ArrayList<>();
         this.apprentissageStrategie = new RandomApprentissage();
