@@ -2,6 +2,8 @@ package com.example.cd.modele;
 
 import com.example.cd.statistiques.StatsCarte;
 import com.google.gson.annotations.Expose;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Carte {
     @Expose
@@ -14,6 +16,7 @@ public class Carte {
     private String mediaQuestion = "";
     @Expose
     private String mediaReponse = "";
+
 
     public Carte(String question, String reponse) {
         this.question = question;

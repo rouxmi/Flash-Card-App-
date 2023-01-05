@@ -235,6 +235,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         System.out.println(globalControleur.getCarte().getMediaQuestion());
         Image image = new Image(globalControleur.getCarte().getMediaQuestion());
         imageQuestion.setImage(image);
+        question.setVisible(false);
     }
     @FXML
     public void ajouterImageReponse() throws IOException {
