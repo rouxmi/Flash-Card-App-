@@ -105,10 +105,14 @@
                                  <VBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </VBox.margin></Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" text="Button">
+                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" text="Ecriture">
                                  <VBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </VBox.margin></Button>
+                           <Button mnemonicParsing="false" onAction="#miniJeu" prefHeight="60.0" prefWidth="110.0" text="Mini-Jeu">
+                              <VBox.margin>
+                                 <Insets left="10.0" top="10.0" />
+                              </VBox.margin></Button>
                         </VBox>
                         <VBox fx:id="PieChartBox" maxHeight="531.0" maxWidth="667.0" prefHeight="443.0" prefWidth="620.0">
                   </VBox>

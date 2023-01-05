@@ -134,6 +134,13 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersEntrainement("revision");
     }
+
+    @FXML
+    public void miniJeu() throws Exception {
+        majPaquetGlobalControleur(paquet);
+        globalControleur.changeSceneVersMiniJeu();
+    }
+
     @FXML
     public void quitterAppli() {
                 new quitterApplicationCommande().execute();
