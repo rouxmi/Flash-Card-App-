@@ -105,13 +105,11 @@ public class Sauvegarde {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image File");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.svg"));
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
         if (selectedFile != null) {
-            System.out.println("Image selected: " + selectedFile.getName());
             File cheminCreation = new File("src/ressources/images/" + selectedFile.getName());
             String format = selectedFile.getName().substring(selectedFile.getName().lastIndexOf(".") + 1);
-            System.out.println("format: " + format);
             BufferedImage bImage = null;
             try {
                 bImage = ImageIO.read(selectedFile);
@@ -125,15 +123,15 @@ public class Sauvegarde {
         return "";
     }
 
-    public static String choisirFichierVideo() throws IOException {
+    public static String choisirFichierAudio() throws IOException {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Video File");
+        fileChooser.setTitle("Choisir un fichier *.wav");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Video Files", "*.mp4","*.wav"));
+                new FileChooser.ExtensionFilter("Audio Files", "*.wav"));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
 
         if (selectedFile != null) {
-            File cheminCreation = new File("src/ressources/videos/" + selectedFile.getName());
+            File cheminCreation = new File("src/ressources/audios/" + selectedFile.getName());
             String path= cheminCreation.toURI().toString();
             InputStream input = new FileInputStream(selectedFile.getPath());
             OutputStream output = new FileOutputStream(cheminCreation);
@@ -144,8 +142,7 @@ public class Sauvegarde {
             }
             input.close();
             output.close();
-            System.out.println(selectedFile.getName());
-            return "file:src/ressources/videos/"+ selectedFile.getName();
+            return "/videos/"+ selectedFile.getName();
         }
         return "";
     }

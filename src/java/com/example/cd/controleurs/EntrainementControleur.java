@@ -109,8 +109,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         // Compteur
         compteurLabel.setText(String.valueOf(decompte));
         toggleFlashCard.setText(carteActuelle.getQuestion());
-        if(!this.carteActuelle.getMediaQuestion().equals("")){
-            Image image = new Image(carteActuelle.getMediaQuestion());
+        if(!this.carteActuelle.getImageQuestion().equals("")){
+            Image image = new Image(carteActuelle.getImageQuestion());
             ImageView icon = new ImageView(image);
             icon.setFitHeight(100);
             icon.setFitWidth(90);
@@ -187,8 +187,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             bonSensRotate.play();
             if (toggleFlashCard.isSelected()) {
                 toggleFlashCard.setText(carteActuelle.getReponse());
-                if(!this.carteActuelle.getMediaReponse().equals("")){
-                    Image image = new Image(carteActuelle.getMediaReponse());
+                if(!this.carteActuelle.getImageReponse().equals("")){
+                    Image image = new Image(carteActuelle.getImageReponse());
                     ImageView icon = new ImageView(image);
                     icon.setFitHeight(100);
                     icon.setFitWidth(90);
@@ -203,8 +203,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
             } else {
                 toggleFlashCard.setText(carteActuelle.getQuestion());
-                if(!this.carteActuelle.getMediaQuestion().equals("")){
-                    Image image = new Image(carteActuelle.getMediaQuestion());
+                if(!this.carteActuelle.getImageQuestion().equals("")){
+                    Image image = new Image(carteActuelle.getImageQuestion());
                     ImageView icon = new ImageView(image);
                     icon.setFitHeight(100);
                     icon.setFitWidth(90);
