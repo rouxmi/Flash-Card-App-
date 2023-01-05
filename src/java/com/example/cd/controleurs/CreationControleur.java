@@ -7,10 +7,7 @@ import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -35,6 +32,8 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private Button suiv;
     @FXML
     private ImageView imageQuestion;
+    @FXML
+    private Label numCarte;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -72,7 +71,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.question.setPromptText("Ecrire une question");
             this.reponse.setPromptText("Ecrire une réponse");
         }
-
+        numCarte.setText("Carte n°"+this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte()));
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
         if(indicePrec<0){
             prec.setVisible(false);

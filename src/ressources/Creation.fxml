@@ -1,32 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="27" minWidth="200" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane prefHeight="445.0" prefWidth="683.0">
+      <BorderPane prefHeight="650.0" prefWidth="1000.0">
          <bottom>
-            <Button mnemonicParsing="false" onAction="#validerCarte" text="Valider" BorderPane.alignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#validerCarte" text="Enregistrer" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin></Button>
          </bottom>
          <center>
             <SplitPane prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="387.0" prefWidth="280.0">
                      <children>
-                        <HBox layoutX="-2.0" layoutY="-4.0">
+                        <HBox alignment="CENTER" layoutX="-2.0" layoutY="-4.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="80.0">
                            <children>
-                              <Button fx:id="prec" mnemonicParsing="false" onAction="#allerPrec" text="Precedent" />
-                              <TextArea fx:id="question" prefHeight="100.0" prefWidth="100.0" promptText="Question" />
-                              <TextArea fx:id="reponse" prefHeight="100.0" prefWidth="100.0" promptText="Reponse" />
-                              <Button fx:id="suiv" mnemonicParsing="false" onAction="#allerSuiv" text="Suivant" />
+                              <MenuButton mnemonicParsing="false" text="Insérer">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Image" />
+                                  <MenuItem mnemonicParsing="false" text="Son" />
+                                    <MenuItem mnemonicParsing="false" text="Vidéo" />
+                                </items>
+                                 <HBox.margin>
+                                    <Insets right="20.0" top="300.0" />
+                                 </HBox.margin>
+                              </MenuButton>
+                              <Button fx:id="prec" alignment="CENTER" mnemonicParsing="false" onAction="#allerPrec" text="Precedent">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin></Button>
+                              <TextArea fx:id="question" prefHeight="100.0" prefWidth="100.0" promptText="Question">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="50.0" right="20.0" top="50.0" />
+                                 </HBox.margin></TextArea>
+                              <TextArea fx:id="reponse" prefHeight="100.0" prefWidth="100.0" promptText="Reponse">
+                                 <HBox.margin>
+                                    <Insets bottom="50.0" top="50.0" />
+                                 </HBox.margin></TextArea>
+                              <Button fx:id="suiv" mnemonicParsing="false" onAction="#allerSuiv" text="Suivant">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin></Button>
                            </children>
                         </HBox>
+                        <Label fx:id="numCarte" alignment="CENTER" contentDisplay="CENTER" text="Carte n°1" AnchorPane.leftAnchor="470.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font name="System Bold Italic" size="23.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
               </items>
@@ -35,10 +65,10 @@
          <top>
             <ToolBar prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
                   <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" />
                   <Button fx:id="supprimerCarteBouton" mnemonicParsing="false" onAction="#supprimerCarte" text="Supprimer la carte" />
+                  <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
                </items>
             </ToolBar>
          </top>
