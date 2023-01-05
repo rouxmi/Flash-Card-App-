@@ -89,6 +89,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         numCarte.setText("Carte n°"+(this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1));
         nomPaquet.setText(this.globalControleur.getPaquet().getTitre());
 
+        //icone ajouter image
         imageGauche.setPrefSize(50, 50);
         imageGauche.setMinSize(50,50);
         imageGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
@@ -96,6 +97,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         imageDroit.setMinSize(50,50);
         imageDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
+        //icone ajouter video
         videoGauche.setPrefSize(50, 50);
         videoGauche.setMinSize(50,50);
         videoGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
@@ -103,6 +105,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         videoDroit.setMinSize(50,50);
         videoDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
+        //icone ajouter audio
         audioGauche.setPrefSize(50, 50);
         audioGauche.setMinSize(50,50);
         audioGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
