@@ -82,7 +82,20 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @Override
     public void reagir() {
-
+        if(globalControleur.getCarte()!=null){
+            this.question.setText(globalControleur.getCarte().getQuestion());
+            this.reponse.setText(globalControleur.getCarte().getReponse());
+            if ( !globalControleur.getCarte().getMediaQuestion().equals("") ) {
+                this.imageQuestion.setImage(new Image(globalControleur.getCarte().getMediaQuestion()));
+            }
+            if ( !globalControleur.getCarte().getMediaReponse().equals("") ) {
+                this.imageReponse.setImage(new Image(globalControleur.getCarte().getMediaReponse()));
+            }
+        }
+        else {
+            this.question.setPromptText("Ecrire une question");
+            this.reponse.setPromptText("Ecrire une réponse");
+        }
     }
 
     @Override
@@ -91,6 +104,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         if(globalControleur.getCarte()!=null){
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
+            if ( !globalControleur.getCarte().getMediaQuestion().equals("") ) {
+                this.imageQuestion.setImage(new Image(globalControleur.getCarte().getMediaQuestion()));
+            }
+            if ( !globalControleur.getCarte().getMediaReponse().equals("") ) {
+                this.imageReponse.setImage(new Image(globalControleur.getCarte().getMediaReponse()));
+            }
         }
         else {
             this.question.setPromptText("Ecrire une question");
@@ -232,16 +251,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     public void ajouterImageQuestion() throws IOException {
         globalControleur.sauvegarderImageQuestion();
-        System.out.println(globalControleur.getCarte().getMediaQuestion());
-        Image image = new Image(globalControleur.getCarte().getMediaQuestion());
-        imageQuestion.setImage(image);
-        question.setVisible(false);
+        reagir();
     }
     @FXML
     public void ajouterImageReponse() throws IOException {
         globalControleur.sauvegarderImageReponse();
-        Image image = new Image(globalControleur.getCarte().getMediaReponse());
-        imageReponse.setImage(image);
+        reagir();
     }
     @FXML
     public void ajouterVideoQuestion() throws IOException {
