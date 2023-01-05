@@ -43,11 +43,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
         this.globalControleur=globalControleur;
-        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet, 0);
         this.futurCartes = new LinkedList<Carte>();
-        for(index=1; index< paquet.getCartes().size();index++){
-            futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
+        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes);
+        futurCartes.add(this.carteActuelle);
+        for(index=1; index< this.paquet.taillePaquet()/2 ;index++){
+            futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
         }
+        futurCartes.poll();
         this.typeEntrainement=typeEntrainement;
      // paquet.ajouterObservateur(this);
     }
@@ -133,6 +135,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             bonSensRotate.setDuration(javafx.util.Duration.millis(1));
             bonSensRotate.setByAngle(180);
             bonSensRotate.play();
+            System.out.println(carteActuelle.getStatsCarte().getEtatCarte().toString());
             if (toggleFlashCard.isSelected()) {
                 toggleFlashCard.setText(carteActuelle.getReponse());
                 questionLoupeeBouton.setVisible(true);
@@ -158,8 +161,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void reussite() throws Exception {
         majPaquetGlobalControleur(paquet);
         carteActuelle.getStatsCarte().MajStatsCarteReussite();
+        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
         this.carteActuelle = futurCartes.poll();
-        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
         initialize(null, null);
         toggleFlashCard.setSelected(false);
@@ -169,8 +172,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void echec() throws Exception {
         majPaquetGlobalControleur(paquet);
         carteActuelle.getStatsCarte().MajStatsCarteEchec();
+        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
         this.carteActuelle = futurCartes.poll();
-        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
         initialize(null, null);
         toggleFlashCard.setSelected(false);

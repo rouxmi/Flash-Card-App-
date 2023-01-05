@@ -3,6 +3,8 @@ package com.example.cd.modele.apprentissage;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 
+import java.util.Queue;
+
 public class MasterStrategie implements ApprentissageStrategie{
 
     @Override
@@ -11,7 +13,7 @@ public class MasterStrategie implements ApprentissageStrategie{
     }
 
     @Override
-    public Carte getCarte(PaquetDeCartes paquet, int index) {
+    public Carte getCarte(PaquetDeCartes paquet, Queue<Carte> futurCartes) {
         double random = Math.random();
         Carte c = paquet.getCarte((int)(Math.random()*paquet.taillePaquet()));
         if(c.getStatsCarte().ValidableAujourdhui()){
@@ -39,7 +41,7 @@ public class MasterStrategie implements ApprentissageStrategie{
                 }
             }
         }
-        return this.getCarte(paquet,index);
+        return this.getCarte(paquet, futurCartes);
     }
 
 

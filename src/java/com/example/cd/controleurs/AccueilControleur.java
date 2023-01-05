@@ -5,10 +5,12 @@ import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
-import com.example.cd.modele.apprentissage.AvancementApprentissage;
+import com.example.cd.modele.apprentissage.FreeApprentissage;
 import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
 import com.example.cd.modele.apprentissage.MasterStrategie;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
+import com.example.cd.statistiques.EtatCarte;
+import javafx.beans.binding.DoubleBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -218,8 +220,47 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void avancement(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Choisissez le pourcentage d'apparition des cartes");
+        VBox vBox = new VBox();
+        for(int i=0; i<5; i++){
+            HBox hBox = new HBox();
+            Slider slider = new Slider(1, 100, 50);
+            slider.setId("slider "+EtatCarte.values()[i].toString());
+            slider.setShowTickLabels(true);
+            slider.setShowTickMarks(true);
+            Label label = new Label(EtatCarte.values()[i].toString());
+            hBox.getChildren().add(label);
+            hBox.getChildren().add(slider);
+            vBox.getChildren().add(hBox);
+        }
+        DoubleBinding sumBinding = ((Slider)((HBox)vBox.getChildren().get(0)).getChildren().get(1)).valueProperty().add(((Slider)((HBox)vBox.getChildren().get(1)).getChildren().get(1)).valueProperty())
+                .add(((Slider)((HBox)vBox.getChildren().get(2)).getChildren().get(1)).valueProperty()).add(((Slider)((HBox)vBox.getChildren().get(3)).getChildren().get(1)).valueProperty())
+                .add(((Slider)((HBox)vBox.getChildren().get(4)).getChildren().get(1)).valueProperty());
+
+        sumBinding.addListener((obs, oldValue, newValue) -> {
+            double sum = newValue.doubleValue();
+            if (sum > 100) {
+                double excess = sum - 100;
+                ((Slider)((HBox)vBox.getChildren().get(0)).getChildren().get(1)).setValue(((Slider)((HBox)vBox.getChildren().get(0)).getChildren().get(1)).getValue() - excess / 5);
+                ((Slider)((HBox)vBox.getChildren().get(1)).getChildren().get(1)).setValue(((Slider)((HBox)vBox.getChildren().get(1)).getChildren().get(1)).getValue() - excess / 5);
+                ((Slider)((HBox)vBox.getChildren().get(2)).getChildren().get(1)).setValue(((Slider)((HBox)vBox.getChildren().get(2)).getChildren().get(1)).getValue() - excess / 5);
+                ((Slider)((HBox)vBox.getChildren().get(3)).getChildren().get(1)).setValue(((Slider)((HBox)vBox.getChildren().get(3)).getChildren().get(1)).getValue() - excess / 5);
+                ((Slider)((HBox)vBox.getChildren().get(4)).getChildren().get(1)).setValue(((Slider)((HBox)vBox.getChildren().get(4)).getChildren().get(1)).getValue() - excess / 5);
+            }
+        });
+
+        dialog.getDialogPane().setContent(vBox);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        dialog.showAndWait();
+
+        double nonVue = ((Slider)((HBox)vBox.getChildren().get(0)).getChildren().get(1)).getValue();
+        double debutApprentissage = ((Slider)((HBox)vBox.getChildren().get(1)).getChildren().get(1)).getValue();
+        double aRevoir = ((Slider)((HBox)vBox.getChildren().get(2)).getChildren().get(1)).getValue();
+        double finApprentissage = ((Slider)((HBox)vBox.getChildren().get(3)).getChildren().get(1)).getValue();
+        double acquiseParfaite = ((Slider)((HBox)vBox.getChildren().get(4)).getChildren().get(1)).getValue();
         for (PaquetDeCartes paquet : paquets) {
-            paquet.setApprentissageStrategie(new AvancementApprentissage());
+            paquet.setApprentissageStrategie(new FreeApprentissage(nonVue, debutApprentissage, aRevoir, finApprentissage, acquiseParfaite));
         }
     }
 
