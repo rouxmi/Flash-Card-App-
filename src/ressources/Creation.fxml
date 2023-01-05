@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="27" minWidth="200" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
@@ -33,14 +32,6 @@
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                     <Button fx:id="imageGauche" mnemonicParsing="false" onAction="#ajouterImageQuestion">
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="videoGauche" mnemonicParsing="false" >
                                        <padding>
                                           <Insets right="10.0" />
                                        </padding>
@@ -90,14 +81,6 @@
                                           <Insets left="20.0" top="50.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button fx:id="videoDroit" mnemonicParsing="false" >
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Button>
                                     <Button fx:id="audioDroit" mnemonicParsing="false" onAction="#ajouterAudioReponse">
                                        <padding>
                                           <Insets right="10.0" />
@@ -131,8 +114,8 @@
                         </Label>
                         <ImageView fx:id="imageQuestion" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="397.0" AnchorPane.topAnchor="300.0" />
                         <ImageView fx:id="imageReponse" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="381.0" AnchorPane.topAnchor="300.0" />
-                        <MediaView fx:id="audioQuestion" fitHeight="100.0" fitWidth="100.0" layoutX="398.0" layoutY="180.0" AnchorPane.leftAnchor="397.0" AnchorPane.topAnchor="300.0" />
-                        <MediaView fx:id="audioReponse" fitHeight="100.0" fitWidth="100.0" AnchorPane.rightAnchor="381.0" AnchorPane.topAnchor="300.0" />
+                        <Button fx:id="ecouterQuestionBouton" layoutX="232.0" layoutY="330.0" mnemonicParsing="false" onAction="#ecouterQuestion" text="Ecouter la question" AnchorPane.topAnchor="330.0" />
+                        <Button fx:id="ecouterReponseBouton" layoutX="636.0" layoutY="327.0" mnemonicParsing="false" onAction="#ecouterReponse" text="Ecouter la reponse" AnchorPane.topAnchor="327.0" />
                      </children>
                   </AnchorPane>
               </items>
