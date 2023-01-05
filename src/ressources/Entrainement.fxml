@@ -67,7 +67,7 @@
             </ToggleButton>
             <HBox alignment="CENTER" prefHeight="200.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="questionReussieBouton" mnemonicParsing="false" onAction="#reussite" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-border-radius: 10 10 10 10;" text="Réussi">
+                  <Button fx:id="questionReussieBouton" mnemonicParsing="false" onAction="#reussite" prefHeight="70.0" prefWidth="110.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-style: solid outside; -fx-border-width: 2px; " text="Réussi">
                         <HBox.margin>
                            <Insets right="70.0" top="50.0" />
                         </HBox.margin>
@@ -80,7 +80,7 @@
                      </VBox.margin>
                      <Label fx:id="compteurLabel" prefHeight="16.0" style="-fx-text-alignment: center; -fx-font-size: 50px; -fx-font-weight: bold; -fx-text-fill: #000000;" text="Timer" />
                   </VBox>
-                  <Button fx:id="questionLoupeeBouton" mnemonicParsing="false" onAction="#echec" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-border-radius: 10 10 10 10; " text="Échoué" wrapText="true">
+                  <Button fx:id="questionLoupeeBouton" mnemonicParsing="false" onAction="#echec" prefHeight="70.0" prefWidth="110.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: red; -fx-text-fill: white; -fx-border-style: solid outside; -fx-border-width: 2px;  " text="Échoué" wrapText="true">
                         <HBox.margin>
                            <Insets left="70.0" top="50.0" />
                         </HBox.margin>

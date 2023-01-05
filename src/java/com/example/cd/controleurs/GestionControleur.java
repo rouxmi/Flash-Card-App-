@@ -1,12 +1,11 @@
 package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
-import com.example.cd.Sauvegarde;
 import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
-import com.example.cd.modele.apprentissage.AvancementApprentissage;
+import com.example.cd.modele.apprentissage.FreeApprentissage;
 import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
 import com.example.cd.modele.apprentissage.MasterStrategie;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
@@ -23,7 +22,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -214,7 +212,9 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void avancement(){
-        paquet.setApprentissageStrategie(new AvancementApprentissage());
+        paquet.setApprentissageStrategie(new RandomApprentissage());
+        //TODO
+        //paquet.setApprentissageStrategie(new FreeApprentissage());
     }
 
     @FXML
