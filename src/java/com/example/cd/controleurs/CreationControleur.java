@@ -85,11 +85,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         if(globalControleur.getCarte()!=null){
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
-            if ( !globalControleur.getCarte().getMediaQuestion().equals("") ) {
-                this.imageQuestion.setImage(new Image(globalControleur.getCarte().getMediaQuestion()));
+            if ( !globalControleur.getCarte().getImageQuestion().equals("") ) {
+                this.imageQuestion.setImage(new Image(globalControleur.getCarte().getImageQuestion()));
             }
-            if ( !globalControleur.getCarte().getMediaReponse().equals("") ) {
-                this.imageReponse.setImage(new Image(globalControleur.getCarte().getMediaReponse()));
+            if ( !globalControleur.getCarte().getImageReponse().equals("") ) {
+                this.imageReponse.setImage(new Image(globalControleur.getCarte().getImageReponse()));
             }
         }
         else {
@@ -104,11 +104,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         if(globalControleur.getCarte()!=null){
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
-            if ( !globalControleur.getCarte().getMediaQuestion().equals("") ) {
-                this.imageQuestion.setImage(new Image(globalControleur.getCarte().getMediaQuestion()));
+            if ( !globalControleur.getCarte().getImageQuestion().equals("") ) {
+                this.imageQuestion.setImage(new Image(globalControleur.getCarte().getImageQuestion()));
             }
-            if ( !globalControleur.getCarte().getMediaReponse().equals("") ) {
-                this.imageReponse.setImage(new Image(globalControleur.getCarte().getMediaReponse()));
+            if ( !globalControleur.getCarte().getImageReponse().equals("") ) {
+                this.imageReponse.setImage(new Image(globalControleur.getCarte().getImageReponse()));
             }
         }
         else {
@@ -221,8 +221,8 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }catch (Exception e){
             e.printStackTrace();
         }
-        if ( ((this.paquet.getCarte(this.indice)).getReponse().equals("") && (this.paquet.getCarte(this.indice)).getMediaReponse().equals(""))
-                || ((this.paquet.getCarte(this.indice)).getQuestion().equals("") && (this.paquet.getCarte(this.indice)).getMediaQuestion().equals("")) ){
+        if ( ((this.paquet.getCarte(this.indice)).getReponse().equals("") && (this.paquet.getCarte(this.indice)).getImageReponse().equals(""))
+                || ((this.paquet.getCarte(this.indice)).getQuestion().equals("") && (this.paquet.getCarte(this.indice)).getImageQuestion().equals("")) ){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alerte");
             alert.setHeaderText("La carte n'a pas de question ou de réponse, elle va être supprimée");
@@ -261,7 +261,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     public void ajouterVideoQuestion() throws IOException {
         globalControleur.sauvegarderVideoQuestion();
-        Media media = new Media(globalControleur.getCarte().getMediaQuestion());
+        Media media = new Media(globalControleur.getCarte().getImageQuestion());
         MediaPlayer mediaPlayer=new MediaPlayer(media);
         videoQuestion.setMediaPlayer(mediaPlayer);
         mediaPlayer.setAutoPlay(true);

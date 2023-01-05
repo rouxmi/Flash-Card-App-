@@ -13,9 +13,9 @@ public class Carte {
     @Expose
     private StatsCarte statsCarte;
     @Expose
-    private String mediaQuestion = "";
+    private String imageQuestion = "";
     @Expose
-    private String mediaReponse = "";
+    private String imageReponse = "";
 
 
     public Carte(String question, String reponse) {
@@ -39,11 +39,11 @@ public class Carte {
     public StatsCarte getStatsCarte() {
         return statsCarte;
     }
-    public String getMediaQuestion() {
-        return mediaQuestion;
+    public String getImageQuestion() {
+        return imageQuestion;
     }
-    public String getMediaReponse() {
-        return mediaReponse;
+    public String getImageReponse() {
+        return imageReponse;
     }
 
 
@@ -54,11 +54,11 @@ public class Carte {
     public void setReponse(String reponse) {
         this.reponse = reponse;
     }
-    public void setMediaQuestion(String mediaQuestion) {
-        this.mediaQuestion = mediaQuestion;
+    public void setMediaQuestion(String imageQuestion) {
+        this.imageQuestion = imageQuestion;
     }
-    public void setMediaReponse(String mediaReponse) {
-        this.mediaReponse = mediaReponse;
+    public void setMediaReponse(String imageReponse) {
+        this.imageReponse = imageReponse;
     }
 
 }

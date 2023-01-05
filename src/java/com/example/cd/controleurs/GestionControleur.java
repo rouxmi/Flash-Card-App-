@@ -136,6 +136,11 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersEntrainement("revision");
     }
+    @FXML
+    public void versEcriture() throws Exception {
+        majPaquetGlobalControleur(paquet);
+        globalControleur.changeSceneVersEntrainement("ecriture");
+    }
 
     @FXML
     public void miniJeu() throws Exception {
@@ -186,7 +191,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
                 button = new Button();
 
                 button.setText(paquet.getCarte(i).getQuestion());
-                if(!paquet.getCarte(i).getMediaQuestion().equals("")){
+                if(!paquet.getCarte(i).getImageQuestion().equals("")){
                     final Image image = new Image("utiles/image1.png");
 
                     final ImageView icon = new ImageView(image);
