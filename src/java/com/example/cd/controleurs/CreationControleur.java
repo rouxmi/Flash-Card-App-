@@ -8,6 +8,9 @@ import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +35,20 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private Carte carteActuelle;
     @FXML
     private Label numCarte;
+    @FXML
+    private Label nomPaquet;
+    @FXML
+    private Button imageGauche;
+    @FXML
+    private Button imageDroit;
+    @FXML
+    private Button videoGauche;
+    @FXML
+    private Button videoDroit;
+    @FXML
+    private Button audioGauche;
+    @FXML
+    private Button audioDroit;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -69,7 +86,30 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.question.setPromptText("Ecrire une question");
             this.reponse.setPromptText("Ecrire une réponse");
         }
-        numCarte.setText("Carte n°"+this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte()));
+        numCarte.setText("Carte n°"+(this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1));
+        nomPaquet.setText(this.globalControleur.getPaquet().getTitre());
+
+        imageGauche.setPrefSize(50, 50);
+        imageGauche.setMinSize(50,50);
+        imageGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        imageDroit.setPrefSize(50, 50);
+        imageDroit.setMinSize(50,50);
+        imageDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
+
+        videoGauche.setPrefSize(50, 50);
+        videoGauche.setMinSize(50,50);
+        videoGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        videoDroit.setPrefSize(50, 50);
+        videoDroit.setMinSize(50,50);
+        videoDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
+
+        audioGauche.setPrefSize(50, 50);
+        audioGauche.setMinSize(50,50);
+        audioGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        audioDroit.setPrefSize(50, 50);
+        audioDroit.setMinSize(50,50);
+        audioDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
+
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
         if(indicePrec<0){
             prec.setVisible(false);
