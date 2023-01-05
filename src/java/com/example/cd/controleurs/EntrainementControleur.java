@@ -13,10 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -73,6 +70,10 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     @FXML
     private MenuItem entrainementVisibility;
+    @FXML
+    private TextField taReponse;
+    @FXML
+    private Button valideReponse;
 
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
@@ -136,8 +137,23 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
                         };}
             );
             compteurLabel.setVisible(true);
+            taReponse.setVisible(false);
+            valideReponse.setVisible(false);
         } else if ( typeEntrainement.equals("entrainement") ) {
             compteurLabel.setVisible(false);
+            taReponse.setVisible(false);
+            valideReponse.setVisible(false);
+        }
+        else if(typeEntrainement.equals("revision")){
+            compteur.play();
+            compteur.setOnFinished(event -> {
+                if (!toggleFlashCard.isSelected()) {
+                    toggleFlashCard.setSelected(true);
+                    majFlashCard();
+                    compteurLabel.setText("");
+                };}
+            );
+            compteurLabel.setVisible(true);
         }
 
         MajStats();

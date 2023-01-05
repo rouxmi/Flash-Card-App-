@@ -105,7 +105,7 @@
                                  <VBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </VBox.margin></Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" text="Ecriture">
+                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" text="Ecriture" onAction="#versEcriture">
                                  <VBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </VBox.margin></Button>
