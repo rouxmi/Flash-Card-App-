@@ -84,7 +84,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" text="Valider" fx:id="valideReponse">
+                        <Button mnemonicParsing="false" text="Valider" fx:id="valideReponse" onAction="#validerReponse">
                            <VBox.margin>
                               <Insets left="50.0" top="15.0" />
                            </VBox.margin>

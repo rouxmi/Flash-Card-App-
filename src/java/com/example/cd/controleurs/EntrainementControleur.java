@@ -110,6 +110,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         // Compteur
         compteurLabel.setText(String.valueOf(decompte));
         toggleFlashCard.setText(carteActuelle.getQuestion());
+        taReponse.setText("");
         if(!this.carteActuelle.getImageQuestion().equals("")){
             Image image = new Image(carteActuelle.getImageQuestion());
             ImageView icon = new ImageView(image);
@@ -144,16 +145,17 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             taReponse.setVisible(false);
             valideReponse.setVisible(false);
         }
-        else if(typeEntrainement.equals("revision")){
-            compteur.play();
-            compteur.setOnFinished(event -> {
+        else if(typeEntrainement.equals("ecriture")){
+            compteurLabel.setVisible(false);
+            valideReponse.setOnAction(event -> {
                 if (!toggleFlashCard.isSelected()) {
                     toggleFlashCard.setSelected(true);
                     majFlashCard();
                     compteurLabel.setText("");
-                };}
-            );
-            compteurLabel.setVisible(true);
+                };
+            });
+
+
         }
 
         MajStats();
@@ -162,7 +164,10 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         questionLoupeeBouton.setVisible(false);
         questionReussieBouton.setVisible(false);
     }
-
+    @FXML
+    public void validerReponse(){
+        majFlashCard();
+    }
     @FXML
     public void quitterAppli() {
         (new quitterApplicationCommande()).execute();
@@ -209,12 +214,40 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
                     icon.setFitHeight(100);
                     icon.setFitWidth(90);
                     toggleFlashCard.setGraphic(icon);
-                }
-                else {
+                    questionLoupeeBouton.setVisible(true);
+                    questionReussieBouton.setVisible(true);
+                } else if (taReponse.isVisible()) {
+                    if(compareReponses(taReponse.getText())){
+                        Alert gagne = new Alert(Alert.AlertType.INFORMATION);
+                        gagne.setTitle("Gagné ou perdu ?");
+                        gagne.setHeaderText(null);
+                        gagne.setContentText("Mot Correct");
+                        gagne.show();
+                        try {
+                            reussite();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    else {
+                        Alert perdu = new Alert(Alert.AlertType.INFORMATION);
+                        perdu.setTitle("Gagné ou perdu ?");
+                        perdu.setHeaderText(null);
+                        perdu.setContentText("Perdu ! Le mot correct était : "+this.carteActuelle.getReponse());
+                        perdu.show();
+                        try {
+                            echec();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                } else {
                     toggleFlashCard.setGraphic(null);
+                    questionLoupeeBouton.setVisible(true);
+                    questionReussieBouton.setVisible(true);
                 }
-                questionLoupeeBouton.setVisible(true);
-                questionReussieBouton.setVisible(true);
+                //questionLoupeeBouton.setVisible(true);
+                //questionReussieBouton.setVisible(true);
                 compteurLabel.setText("");
 
             } else {
@@ -336,6 +369,12 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
         globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
+    }
+    public boolean compareReponses(String reponse){
+        if(reponse.equals(carteActuelle.getReponse())){
+            return true;
+        }
+        return false;
     }
     @FXML
     public void reussite() throws Exception {
