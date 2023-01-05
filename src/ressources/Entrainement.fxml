@@ -102,5 +102,6 @@
             </VBox>
          </center>
       </BorderPane>
+      <Button fx:id="ecouterSonBouton" layoutX="376.0" layoutY="471.0" mnemonicParsing="false" onAction="#ecouterSon" prefHeight="24.0" prefWidth="118.0" text="Rejouer le son" AnchorPane.leftAnchor="376.0" AnchorPane.rightAnchor="506.0" AnchorPane.topAnchor="471.0" />
    </children>
 </AnchorPane>

@@ -74,6 +74,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private TextField taReponse;
     @FXML
     private Button valideReponse;
+    @FXML
+    private Button ecouterSonBouton;
 
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
@@ -127,6 +129,10 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             decompte--;
         })));
         compteur.setCycleCount(4);
+        ecouterSonBouton.setVisible(false);
+        if ( !carteActuelle.getAudioQuestion().equals("") ) {
+            ecouterSonBouton.setVisible(true);
+        }
 
         if ( typeEntrainement.equals("revision") ) {
             compteur.play();
@@ -154,8 +160,6 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
                     compteurLabel.setText("");
                 };
             });
-
-
         }
 
         MajStats();
@@ -243,11 +247,14 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
                     }
                 } else {
                     toggleFlashCard.setGraphic(null);
-                    questionLoupeeBouton.setVisible(true);
-                    questionReussieBouton.setVisible(true);
                 }
-                //questionLoupeeBouton.setVisible(true);
-                //questionReussieBouton.setVisible(true);
+                if ( !carteActuelle.getAudioReponse().equals("") ) {
+                    ecouterSonBouton.setVisible(true);
+                } else {
+                    ecouterSonBouton.setVisible(false);
+                }
+                questionLoupeeBouton.setVisible(true);
+                questionReussieBouton.setVisible(true);
                 compteurLabel.setText("");
 
             } else {
@@ -261,6 +268,11 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
                 }
                 else {
                     toggleFlashCard.setGraphic(null);
+                }
+                if ( !carteActuelle.getAudioQuestion().equals("") ) {
+                    ecouterSonBouton.setVisible(true);
+                } else {
+                    ecouterSonBouton.setVisible(false);
                 }
                 questionLoupeeBouton.setVisible(false);
                 questionReussieBouton.setVisible(false);
@@ -375,6 +387,17 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             return true;
         }
         return false;
+    }
+
+    @FXML
+    public void ecouterSon() {
+        if ( toggleFlashCard.isSelected() ) {
+            AudioClip player = new AudioClip(getClass().getResource(carteActuelle.getAudioReponse()).toExternalForm());
+            player.play();
+        } else if ( !toggleFlashCard.isSelected() ) {
+            AudioClip player = new AudioClip(getClass().getResource(carteActuelle.getAudioQuestion()).toExternalForm());
+            player.play();
+        }
     }
     @FXML
     public void reussite() throws Exception {
