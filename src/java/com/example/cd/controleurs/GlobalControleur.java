@@ -21,7 +21,7 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
     private CreationControleur creation;
     private EntrainementControleur entrainement;
     private GestionControleur gestion;
-
+    private MiniJeuControleur minijeu;
     public GlobalControleur() throws IOException {
         this.paquets = Sauvegarde.chargerTousPaquets();
         /*ArrayList<PaquetDeCartes> paquets = new ArrayList<PaquetDeCartes>();
@@ -102,6 +102,12 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
         changeurScene.execute();
     }
 
+    public void changeSceneVersMiniJeu() throws Exception {
+        changeurScene.setPaquet(paquet);
+        changeurScene.changeSceneMiniJeu();
+        changeurScene.execute();
+    }
+
     @Override
     public void reagir() {
 
@@ -132,6 +138,10 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
 
     public void setAccueil(AccueilControleur accueil) {
         this.accueil = accueil;
+    }
+
+    public void setMiniJeu(MiniJeuControleur minijeu) {
+        this.minijeu = minijeu;
     }
 
     public CreationControleur getCreation() {

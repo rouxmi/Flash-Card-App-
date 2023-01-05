@@ -11,9 +11,9 @@ public class Carte {
     @Expose
     private StatsCarte statsCarte;
     @Expose
-    private String mediaQuestion;
+    private String mediaQuestion = "";
     @Expose
-    private String mediaReponse;
+    private String mediaReponse = "";
 
     public Carte(String question, String reponse) {
         this.question = question;

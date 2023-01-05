@@ -26,6 +26,10 @@ public class ChangeurScene extends Commande {
         setChangeScene(new SceneAccueil(paquets,globalControleur));
     }
 
+    public void changeSceneMiniJeu() throws IOException {
+        setChangeScene(new SceneMiniJeu(paquetDeCartes,globalControleur));
+    }
+
     public void changeSceneCreation() throws Exception {
         setChangeScene(new SceneCreation(paquetDeCartes,globalControleur));
     }

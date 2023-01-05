@@ -55,6 +55,8 @@
 |   ✔   | [Flip](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/52a11d50a61d02861390cea6a734d29668c67127)                              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)                                                                                |
 |   ✔   | [ScrollPane](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/22045776a1651759d16f5b94fa3a8660a86208f8)                        | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)                                                                            |
 
+
+
 ## Jour 2 : 04/01/2023
 
 ### Matin
@@ -87,23 +89,31 @@
 |   ✔   | [Export/import JSON](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/511c2b1ce8ae1b919526c3d25b5fd11750a9f46d)                     | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)                                                                              |
 |   ✔   | [Son flip carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/57ed05e1b52f18a7551aa32bc0f1eea4249fdf0c)                         | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)                                                                                  |
 
+
+
 ## Jour 3 : 05/01/2023
 
 ### Matin
 
 
-| Status | Objectifs                                                                                                                      | Responsable                                                                     |
-| :----: | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
-|   ❌   | [Ajout de nouvelles stratégies d'apprentissage](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) | [Lucie Boucher](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher)     |
-|   ❌   | [Ajout de fichier multimedia aux cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)         | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)     |
-|   ❌   | [Statistiques](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                                   | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)    |
-|   ❌   | [Améliorations visuelles](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                       | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier) |
+| Status | Objectifs                                                                                                                                                             | Responsable                                                                                                                                                  |
+| :----: |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   ✔   | [Ajout de nouvelles stratégies d'apprentissage](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/0460699e238acc09074a5c03044ba5a669ee5f02) | [Lucie Boucher](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher)                                                                                  |
+|   ✔   | [Ajout de fichiers multimedia aux cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/f8e26b7351d556f7e659556599a03e292ce4da2a)       | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard) [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)  |
+|   ✔   | [Statistiques](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/9a19b792ef582cc4907cc2882e58c3d62fc0effc)                                  | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)                                                                                  |
+|   ✔   | [Améliorations visuelles](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/4298814ff3ba0281ab210360db18dbba14229ad9)                       | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)                                                                              |
 
 ### Après-midi
 
-lucie : mini jeu (si avancement permet)
-reponse en texte
-raccourci clavier ?
+| Status | Objectifs                                                                                                                              | Responsable                                                                      |
+| :----: |----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+|   ❌   | [Création d'un mini-jeu on relie des questions/réponses](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) | [Lucie Boucher](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher)      |
+|   ❌   | [Ajout multimedia a l'entrainement](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                      | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)  |
+|   ❌   | [Import de fichiers .apkg](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                               | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)      |
+|   ❌   | [Ajout multimedia sur la création de carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)      |
+|   ❌   | [Remmettre pattern Command](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)      |
+
+
 
 ## Jour 4 : 06/01/2023
 
