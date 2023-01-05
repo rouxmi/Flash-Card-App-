@@ -95,26 +95,26 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         //icone ajouter image
         imageGauche.setPrefSize(50, 50);
         imageGauche.setMinSize(50,50);
-        imageGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        imageGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
         imageDroit.setPrefSize(50, 50);
         imageDroit.setMinSize(50,50);
-        imageDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
+        imageDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         //icone ajouter video
         videoGauche.setPrefSize(50, 50);
         videoGauche.setMinSize(50,50);
-        videoGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        videoGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
         videoDroit.setPrefSize(50, 50);
         videoDroit.setMinSize(50,50);
-        videoDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
+        videoDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         //icone ajouter audio
         audioGauche.setPrefSize(50, 50);
         audioGauche.setMinSize(50,50);
-        audioGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        audioGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
         audioDroit.setPrefSize(50, 50);
         audioDroit.setMinSize(50,50);
-        audioDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
+        audioDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
         if(indicePrec<0){
