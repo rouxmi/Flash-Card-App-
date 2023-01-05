@@ -5,20 +5,22 @@ import com.example.cd.SujetObserve;
 import com.example.cd.commande.quitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
+import com.example.cd.modele.apprentissage.FreeApprentissage;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class MiniJeuControleur extends SujetObserve implements Initializable, Observateur {
 
@@ -30,18 +32,25 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
     private boolean question = false;
     private boolean reponse = false;
 
+    private FreeApprentissage strategie;
+
+    private int cmpInvisible;
+
+    private long startTime;
 
     @FXML
     private GridPane grille;
 
     public MiniJeuControleur(PaquetDeCartes paquet, GlobalControleur globalControleur) {
+        this.cmpInvisible = 0;
         this.paquet = paquet;
         this.globalControleur = globalControleur;
         this.cartes = new LinkedList<>();
-        Carte c = paquet.getApprentissageStrategie().getCarte(this.paquet, cartes);
+        strategie = new FreeApprentissage(20,20,20,20,20);
+        Carte c = strategie.getCarte(this.paquet, cartes);
         this.cartes.add(c);
         for (int i = 0; i < 7; i++) {
-            this.cartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, cartes));
+            this.cartes.add(strategie.getCarte(this.paquet, cartes));
         }
         paquet.ajouterObservateur(this);
     }
@@ -69,8 +78,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
     }
 
     @Override
-    public void reagir() {
-        //get the two RadioButtons in the grille witch are selected and compare them
+    public void reagir(){
         for (Carte c : paquet.getCartes()) {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
@@ -86,6 +94,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
                 }
             }
             if(question && reponse){
+                cmpInvisible++;
                 break;
             }
             else{
@@ -109,12 +118,27 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
         }
         question = false;
         reponse = false;
+        if(cmpInvisible==8){
+            Alert victoire = new Alert(Alert.AlertType.INFORMATION);
+            victoire .setTitle("Victoire !");
+            long endTime = TimeUnit.SECONDS.convert((System.nanoTime()-startTime), TimeUnit.NANOSECONDS);
+            victoire.setContentText("Victoire en "+ endTime+ " s");
+            victoire.setHeaderText(null);
+            victoire.showAndWait();
+            victoire.close();
+            try {
+                voirPaquet();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        startTime = System.nanoTime();
         int random;
         ArrayList<Integer> randomDejaTombes = new ArrayList<>();
         ArrayList<Carte> listeCartes = new ArrayList<>(cartes);
