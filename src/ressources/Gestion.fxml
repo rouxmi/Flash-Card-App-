@@ -26,7 +26,7 @@
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#random" text="Aléatoire" />
                         <MenuItem mnemonicParsing="false" onAction="#classique" text="Classique" />
-                        <MenuItem mnemonicParsing="false" onAction="#avancement" text="Avancement" />
+                        <MenuItem mnemonicParsing="false" onAction="#avancement" text="Libre" />
                         <MenuItem mnemonicParsing="false" onAction="#master" text="Master" />
                      </items>
                   </SplitMenuButton>
