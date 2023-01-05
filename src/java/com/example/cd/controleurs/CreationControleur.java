@@ -11,6 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,6 +52,10 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private Button audioGauche;
     @FXML
     private Button audioDroit;
+    @FXML
+    private MediaView audioQuestion;
+    @FXML
+    private MediaView audioReponse;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -225,4 +232,8 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         Image image = new Image(globalControleur.getCarte().getMediaQuestion());
         imageQuestion.setImage(image);
     }
+
+
+
+
 }
