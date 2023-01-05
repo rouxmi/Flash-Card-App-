@@ -15,6 +15,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
@@ -134,6 +136,11 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersEntrainement("revision");
     }
+    @FXML
+    public void versEcriture() throws Exception {
+        majPaquetGlobalControleur(paquet);
+        globalControleur.changeSceneVersEntrainement("ecriture");
+    }
 
     @FXML
     public void miniJeu() throws Exception {
@@ -184,6 +191,20 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
                 button = new Button();
 
                 button.setText(paquet.getCarte(i).getQuestion());
+                if(!paquet.getCarte(i).getImageQuestion().equals("")){
+                    final Image image = new Image("utiles/image1.png");
+
+                    final ImageView icon = new ImageView(image);
+                    icon.setFitHeight(50);
+                    icon.setFitWidth(50);
+                    button.setGraphic(icon);
+                    button.setText("");
+                    button.setPrefSize(50, 50);
+                    button.setMinSize(50,50);
+                    //button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
+
+
+                }
                 int finalI = i;
                 button.setOnAction(event -> {
                     try {

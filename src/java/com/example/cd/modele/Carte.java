@@ -2,6 +2,8 @@ package com.example.cd.modele;
 
 import com.example.cd.statistiques.StatsCarte;
 import com.google.gson.annotations.Expose;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Carte {
     @Expose
@@ -11,9 +13,14 @@ public class Carte {
     @Expose
     private StatsCarte statsCarte;
     @Expose
-    private String mediaQuestion = "";
+    private String imageQuestion = "";
     @Expose
-    private String mediaReponse = "";
+    private String imageReponse = "";
+    @Expose
+    private String audioQuestion = "";
+    @Expose
+    private String audioReponse = "";
+
 
     public Carte(String question, String reponse) {
         this.question = question;
@@ -36,11 +43,17 @@ public class Carte {
     public StatsCarte getStatsCarte() {
         return statsCarte;
     }
-    public String getMediaQuestion() {
-        return mediaQuestion;
+    public String getImageQuestion() {
+        return imageQuestion;
     }
-    public String getMediaReponse() {
-        return mediaReponse;
+    public String getImageReponse() {
+        return imageReponse;
+    }
+    public String getAudioQuestion() {
+        return audioQuestion;
+    }
+    public String getAudioReponse() {
+        return audioReponse;
     }
 
 
@@ -51,11 +64,17 @@ public class Carte {
     public void setReponse(String reponse) {
         this.reponse = reponse;
     }
-    public void setMediaQuestion(String mediaQuestion) {
-        this.mediaQuestion = mediaQuestion;
+    public void setImageQuestion(String imageQuestion) {
+        this.imageQuestion = imageQuestion;
     }
-    public void setMediaReponse(String mediaReponse) {
-        this.mediaReponse = mediaReponse;
+    public void setImageReponse(String imageReponse) {
+        this.imageReponse = imageReponse;
+    }
+    public void setAudioQuestion(String audioQuestion) {
+        this.audioQuestion = audioQuestion;
+    }
+    public void setAudioReponse(String audioReponse) {
+        this.audioReponse = audioReponse;
     }
 
 }

@@ -13,10 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
@@ -71,6 +70,10 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     @FXML
     private MenuItem entrainementVisibility;
+    @FXML
+    private TextField taReponse;
+    @FXML
+    private Button valideReponse;
 
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
@@ -107,6 +110,16 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         // Compteur
         compteurLabel.setText(String.valueOf(decompte));
         toggleFlashCard.setText(carteActuelle.getQuestion());
+        if(!this.carteActuelle.getImageQuestion().equals("")){
+            Image image = new Image(carteActuelle.getImageQuestion());
+            ImageView icon = new ImageView(image);
+            icon.setFitHeight(100);
+            icon.setFitWidth(90);
+            toggleFlashCard.setGraphic(icon);
+        }
+        else {
+            toggleFlashCard.setGraphic(null);
+        }
         Timeline compteur = new Timeline((new KeyFrame(javafx.util.Duration.seconds(1), event -> {
             compteurLabel.setText(String.valueOf(decompte));
             compteurLabel.setStyle("-fx-text-alignment: center; -fx-font-size: 50px; -fx-font-weight: bold; -fx-text-fill: #000000;");
@@ -124,8 +137,23 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
                         };}
             );
             compteurLabel.setVisible(true);
+            taReponse.setVisible(false);
+            valideReponse.setVisible(false);
         } else if ( typeEntrainement.equals("entrainement") ) {
             compteurLabel.setVisible(false);
+            taReponse.setVisible(false);
+            valideReponse.setVisible(false);
+        }
+        else if(typeEntrainement.equals("revision")){
+            compteur.play();
+            compteur.setOnFinished(event -> {
+                if (!toggleFlashCard.isSelected()) {
+                    toggleFlashCard.setSelected(true);
+                    majFlashCard();
+                    compteurLabel.setText("");
+                };}
+            );
+            compteurLabel.setVisible(true);
         }
 
         MajStats();
@@ -153,6 +181,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void majFlashCard() {
         toggleFlashCard.setText("");
+        toggleFlashCard.setGraphic(null);
         toggleFlashCard.setOnAction(null);
         RotateTransition rotate = new RotateTransition();
         rotate.setNode(toggleFlashCard);
@@ -174,11 +203,32 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             bonSensRotate.play();
             if (toggleFlashCard.isSelected()) {
                 toggleFlashCard.setText(carteActuelle.getReponse());
+                if(!this.carteActuelle.getImageReponse().equals("")){
+                    Image image = new Image(carteActuelle.getImageReponse());
+                    ImageView icon = new ImageView(image);
+                    icon.setFitHeight(100);
+                    icon.setFitWidth(90);
+                    toggleFlashCard.setGraphic(icon);
+                }
+                else {
+                    toggleFlashCard.setGraphic(null);
+                }
                 questionLoupeeBouton.setVisible(true);
                 questionReussieBouton.setVisible(true);
                 compteurLabel.setText("");
+
             } else {
                 toggleFlashCard.setText(carteActuelle.getQuestion());
+                if(!this.carteActuelle.getImageQuestion().equals("")){
+                    Image image = new Image(carteActuelle.getImageQuestion());
+                    ImageView icon = new ImageView(image);
+                    icon.setFitHeight(100);
+                    icon.setFitWidth(90);
+                    toggleFlashCard.setGraphic(icon);
+                }
+                else {
+                    toggleFlashCard.setGraphic(null);
+                }
                 questionLoupeeBouton.setVisible(false);
                 questionReussieBouton.setVisible(false);
             }
