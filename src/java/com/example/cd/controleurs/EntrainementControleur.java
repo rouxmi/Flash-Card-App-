@@ -107,6 +107,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         toggleFlashCard.setText(carteActuelle.getQuestion());
         Timeline compteur = new Timeline((new KeyFrame(javafx.util.Duration.seconds(1), event -> {
             compteurLabel.setText(String.valueOf(decompte));
+            compteurLabel.setStyle("-fx-text-alignment: center; -fx-font-size: 50px; -fx-font-weight: bold; -fx-text-fill: #000000;");
             decompte--;
         })));
         compteur.setCycleCount(4);
@@ -150,6 +151,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void majFlashCard() {
         toggleFlashCard.setText("");
+        toggleFlashCard.setOnAction(null);
         RotateTransition rotate = new RotateTransition();
         rotate.setNode(toggleFlashCard);
         rotate.setDuration(javafx.util.Duration.seconds(0.5));
@@ -162,11 +164,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         player.play();
 
         rotate.setOnFinished(event -> {
+            toggleFlashCard.setOnAction(event1 -> majFlashCard());
             RotateTransition bonSensRotate = new RotateTransition();
             bonSensRotate.setNode(toggleFlashCard);
             bonSensRotate.setDuration(javafx.util.Duration.millis(1));
             bonSensRotate.setByAngle(180);
             bonSensRotate.play();
+
             if (toggleFlashCard.isSelected()) {
                 toggleFlashCard.setText(carteActuelle.getReponse());
                 questionLoupeeBouton.setVisible(true);
