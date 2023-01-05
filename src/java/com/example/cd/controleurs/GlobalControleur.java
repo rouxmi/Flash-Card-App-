@@ -70,7 +70,6 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
         sauvegarder();
     }
 
-
     public void InitialisationChangeurScene() throws IOException {
         changeurScene=new ChangeurScene(paquets, paquet, carte,this);
         changeurScene.changeSceneAcceuil();

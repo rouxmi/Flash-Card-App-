@@ -129,11 +129,12 @@ public class Sauvegarde {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Video File");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
+                new FileChooser.ExtensionFilter("Video Files", "*.mp4","*.wav"));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
 
         if (selectedFile != null) {
             File cheminCreation = new File("src/ressources/videos/" + selectedFile.getName());
+            String path= cheminCreation.toURI().toString();
             InputStream input = new FileInputStream(selectedFile.getPath());
             OutputStream output = new FileOutputStream(cheminCreation);
             byte[] buffer = new byte[1024];
@@ -143,7 +144,8 @@ public class Sauvegarde {
             }
             input.close();
             output.close();
-            return "file:src/ressources/videos/" + selectedFile.getName();
+            System.out.println(selectedFile.getName());
+            return "file:src/ressources/videos/"+ selectedFile.getName();
         }
         return "";
     }

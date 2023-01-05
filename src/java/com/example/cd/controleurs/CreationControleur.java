@@ -55,9 +55,9 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     private Button audioDroit;
     @FXML
-    private MediaView audioQuestion;
+    private MediaView videoQuestion;
     @FXML
-    private MediaView audioReponse;
+    private MediaView videoReponse;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -230,7 +230,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @FXML
     public void ajouterImageQuestion() throws IOException {
-        globalControleur.sauvegarderImage();
+        globalControleur.sauvegarderImageQuestion();
         System.out.println(globalControleur.getCarte().getMediaQuestion());
         Image image = new Image(globalControleur.getCarte().getMediaQuestion());
         imageQuestion.setImage(image);
@@ -244,6 +244,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     public void ajouterVideoQuestion() throws IOException {
         globalControleur.sauvegarderVideoQuestion();
+        Media media = new Media(globalControleur.getCarte().getMediaQuestion());
+        MediaPlayer mediaPlayer=new MediaPlayer(media);
+        videoQuestion.setMediaPlayer(mediaPlayer);
+        mediaPlayer.setAutoPlay(true);
+
     }
     @FXML
     public void ajouterVideoReponse() throws IOException {
