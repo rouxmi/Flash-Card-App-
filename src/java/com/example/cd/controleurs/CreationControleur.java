@@ -34,6 +34,8 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     private ImageView imageQuestion;
     @FXML
+    private ImageView imageReponse;
+    @FXML
     private Label numCarte;
     @FXML
     private Label nomPaquet;
@@ -78,6 +80,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // TODO : ajouter les images
         if(globalControleur.getCarte()!=null){
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
@@ -220,9 +223,14 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @FXML
     public void ajouterImageQuestion() throws IOException {
-        globalControleur.sauvegarderImage();
-        System.out.println(globalControleur.getCarte().getMediaQuestion());
+        globalControleur.sauvegarderImageQuestion();
         Image image = new Image(globalControleur.getCarte().getMediaQuestion());
         imageQuestion.setImage(image);
+    }
+    @FXML
+    public void ajouterImageReponse() throws IOException {
+        globalControleur.sauvegarderImageReponse();
+        Image image = new Image(globalControleur.getCarte().getMediaReponse());
+        imageReponse.setImage(image);
     }
 }

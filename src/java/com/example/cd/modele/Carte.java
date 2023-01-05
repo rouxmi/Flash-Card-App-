@@ -12,6 +12,8 @@ public class Carte {
     private StatsCarte statsCarte;
     @Expose
     private String mediaQuestion;
+    @Expose
+    private String mediaReponse;
 
     public Carte(String question, String reponse) {
         this.question = question;
@@ -37,6 +39,9 @@ public class Carte {
     public String getMediaQuestion() {
         return mediaQuestion;
     }
+    public String getMediaReponse() {
+        return mediaReponse;
+    }
 
 
     //setters
@@ -48,6 +53,9 @@ public class Carte {
     }
     public void setMediaQuestion(String mediaQuestion) {
         this.mediaQuestion = mediaQuestion;
+    }
+    public void setMediaReponse(String mediaReponse) {
+        this.mediaReponse = mediaReponse;
     }
 
 }
