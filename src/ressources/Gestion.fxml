@@ -19,7 +19,6 @@
          <top>
             <ToolBar prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
                      <Button fx:id="supprimerPaquetBouton" mnemonicParsing="false" onAction="#supprimerPaquet" text="Supprimer le paquet" />
                      <Button fx:id="exportPaquet" mnemonicParsing="false" onAction="#exporterPaquet" text="Exporter" />
@@ -31,6 +30,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#master" text="Master" />
                      </items>
                   </SplitMenuButton>
+                  <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
                </items>
             </ToolBar>
          </top>
