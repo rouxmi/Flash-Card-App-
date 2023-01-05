@@ -7,7 +7,8 @@ import com.google.gson.GsonBuilder;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -101,4 +102,29 @@ public class Sauvegarde {
         }
         return paquets;
     }
+
+    public static String choisirFichierImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.svg"));
+        File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
+        if (selectedFile != null) {
+            System.out.println("Image selected: " + selectedFile.getName());
+            File cheminCreation = new File("src/ressources/images/" + selectedFile.getName());
+            String format = selectedFile.getName().substring(selectedFile.getName().lastIndexOf(".") + 1);
+            System.out.println("format: " + format);
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(selectedFile);
+                ImageIO.write(bImage, format, cheminCreation);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "file:src/ressources/images/" + selectedFile.getName();
+        }
+        return "";
+    }
+
 }

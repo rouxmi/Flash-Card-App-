@@ -103,6 +103,7 @@
 
 lucie : mini jeu (si avancement permet)
 reponse en texte
+raccourci clavier ?
 
 ## Jour 4 : 06/01/2023
 

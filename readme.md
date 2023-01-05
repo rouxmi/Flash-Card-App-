@@ -17,7 +17,7 @@ Ce projet implémente une application de Flash Cards. Les Flash Cards sont un sy
 
 ### Lancement du programme
 
-Le fichier .jar se trouve dans le dossier out/artifacts/codingweek_jar, et doit etre lancé depuis le répertoire source du projet pour pouvoir charger le .json avec les paquets de FlashCards avec la commande suivante.
+Le fichier .jar se trouve dans le dossier out/artifacts/codingweek_jar, et doit etre lancé depuis le répertoire source du projet pour pouvoir charger toutes les ressources avec les paquets de FlashCards avec la commande suivante.
 
 ```bash
 $ java -jar out/artifacts/codingweek_jar/codingweek.jar

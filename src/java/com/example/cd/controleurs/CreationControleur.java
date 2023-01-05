@@ -11,6 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class CreationControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
-
+    private Carte carteActuelle;
     private GlobalControleur globalControleur;
     private int indice;
 
@@ -27,12 +29,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private TextArea question;
     @FXML
     private TextArea reponse;
-
     @FXML
     private Button prec;
     @FXML
     private Button suiv;
-    private Carte carteActuelle;
+    @FXML
+    private ImageView imageQuestion;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -176,4 +178,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         this.globalControleur.setCarte(carteActuelle);
     }
 
+    @FXML
+    public void ajouterImage() throws IOException {
+        globalControleur.sauvegarderImage();
+        System.out.println(globalControleur.getCarte().getMediaQuestion());
+        Image image = new Image(globalControleur.getCarte().getMediaQuestion());
+        imageQuestion.setImage(image);
+    }
 }
