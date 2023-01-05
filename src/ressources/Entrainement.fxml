@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane layoutY="-1.0" prefHeight="650.0" prefWidth="1000.0">
@@ -39,15 +40,6 @@
                </BorderPane.margin>
             </VBox>
          </left>
-         <bottom>
-            <HBox prefHeight="35.0" prefWidth="692.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="questionReussieBouton" mnemonicParsing="false" onAction="#reussite" text="Réussi" />
-                  <Label fx:id="compteurLabel" prefHeight="16.0" prefWidth="504.0" text="Timer" />
-                  <Button fx:id="questionLoupeeBouton" mnemonicParsing="false" onAction="#echec" text="Échoué" />
-               </children>
-            </HBox>
-         </bottom>
          <top>
             <ToolBar prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <items>
