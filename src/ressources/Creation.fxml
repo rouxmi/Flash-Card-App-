@@ -124,8 +124,8 @@
                         </Label>
                         <ImageView fx:id="imageQuestion" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="180.0" />
                         <ImageView fx:id="imageReponse" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="180.0" />
-                        <MediaView fitHeight="100.0" fitWidth="100.0" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="180.0" />
-                        <MediaView fitHeight="100.0" fitWidth="100.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="180.0" />
+                        <MediaView fx:id="audioQuestion" fitHeight="100.0" fitWidth="100.0" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="180.0" />
+                        <MediaView fx:id="audioReponse" fitHeight="100.0" fitWidth="100.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="180.0" />
                      </children>
                   </AnchorPane>
               </items>
