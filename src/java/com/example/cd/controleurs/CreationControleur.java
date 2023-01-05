@@ -216,7 +216,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
 
     @FXML
-    public void ajouterImage() throws IOException {
+    public void ajouterImageQuestion() throws IOException {
         globalControleur.sauvegarderImage();
         System.out.println(globalControleur.getCarte().getMediaQuestion());
         Image image = new Image(globalControleur.getCarte().getMediaQuestion());
