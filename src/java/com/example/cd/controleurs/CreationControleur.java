@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -48,6 +49,8 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private Button audioGauche;
     @FXML
     private Button audioDroit;
+    @FXML
+    private Button ecouterQuestionBouton, ecouterReponseBouton;
 
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
@@ -76,6 +79,8 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         if(globalControleur.getCarte()!=null){
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
+            ecouterQuestionBouton.setVisible(false);
+            ecouterReponseBouton.setVisible(false);
             if ( !globalControleur.getCarte().getImageQuestion().equals("") ) {
                 this.imageQuestion.setImage(new Image(globalControleur.getCarte().getImageQuestion()));
             }
@@ -83,12 +88,10 @@ public class CreationControleur extends SujetObserve implements Initializable, O
                 this.imageReponse.setImage(new Image(globalControleur.getCarte().getImageReponse()));
             }
             if ( !globalControleur.getCarte().getAudioQuestion().equals("") ) {
-                // TODO : add button to play audio
+                ecouterQuestionBouton.setVisible(true);
             }
             if ( !globalControleur.getCarte().getAudioReponse().equals("") ) {
-                // TODO : add button to play audio
-        //        AudioClip player = new AudioClip(getClass().getResource("/utiles/flip.wav").toExternalForm());
-          //      player.play();
+                ecouterReponseBouton.setVisible(true);
             }
         }
         else {
@@ -100,21 +103,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO : ajouter les images
-        if(globalControleur.getCarte()!=null){
-            this.question.setText(globalControleur.getCarte().getQuestion());
-            this.reponse.setText(globalControleur.getCarte().getReponse());
-            if ( !globalControleur.getCarte().getImageQuestion().equals("") ) {
-                this.imageQuestion.setImage(new Image(globalControleur.getCarte().getImageQuestion()));
-            }
-            if ( !globalControleur.getCarte().getImageReponse().equals("") ) {
-                this.imageReponse.setImage(new Image(globalControleur.getCarte().getImageReponse()));
-            }
-            // TODO : ajouter les audios
-        }
-        else {
-            this.question.setPromptText("Ecrire une question");
-            this.reponse.setPromptText("Ecrire une réponse");
-        }
+        reagir();
         numCarte.setText("Carte n°"+(this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1));
         nomPaquet.setText(this.globalControleur.getPaquet().getTitre());
 
@@ -259,5 +248,15 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     public void ajouterAudioReponse() throws IOException {
         globalControleur.sauvegarderAudioReponse();
         reagir();
+    }
+    @FXML
+    public void ecouterQuestion() {
+        AudioClip player = new AudioClip(getClass().getResource(globalControleur.getCarte().getAudioQuestion()).toExternalForm());
+        player.play();
+    }
+    @FXML
+    public void ecouterReponse() {
+        AudioClip player = new AudioClip(getClass().getResource(globalControleur.getCarte().getAudioReponse()).toExternalForm());
+        player.play();
     }
 }
