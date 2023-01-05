@@ -75,11 +75,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public EntrainementControleur(PaquetDeCartes paquet, GlobalControleur globalControleur, String typeEntrainement){
         this.paquet=paquet;
         this.globalControleur=globalControleur;
-        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet, 0);
         this.futurCartes = new LinkedList<Carte>();
-        for(index=1; index< paquet.getCartes().size();index++){
-            futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
+        this.carteActuelle = paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes);
+        futurCartes.add(this.carteActuelle);
+        for(index=1; index< this.paquet.taillePaquet()/2 ;index++){
+            futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
         }
+        futurCartes.poll();
         this.typeEntrainement=typeEntrainement;
      // paquet.ajouterObservateur(this);
     }
@@ -107,6 +109,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         toggleFlashCard.setText(carteActuelle.getQuestion());
         Timeline compteur = new Timeline((new KeyFrame(javafx.util.Duration.seconds(1), event -> {
             compteurLabel.setText(String.valueOf(decompte));
+            compteurLabel.setStyle("-fx-text-alignment: center; -fx-font-size: 50px; -fx-font-weight: bold; -fx-text-fill: #000000;");
             decompte--;
         })));
         compteur.setCycleCount(4);
@@ -150,6 +153,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void majFlashCard() {
         toggleFlashCard.setText("");
+        toggleFlashCard.setOnAction(null);
         RotateTransition rotate = new RotateTransition();
         rotate.setNode(toggleFlashCard);
         rotate.setDuration(javafx.util.Duration.seconds(0.5));
@@ -162,6 +166,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         player.play();
 
         rotate.setOnFinished(event -> {
+            toggleFlashCard.setOnAction(event1 -> majFlashCard());
             RotateTransition bonSensRotate = new RotateTransition();
             bonSensRotate.setNode(toggleFlashCard);
             bonSensRotate.setDuration(javafx.util.Duration.millis(1));
@@ -287,8 +292,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         majPaquetGlobalControleur(paquet);
         nbReussite++;
         carteActuelle.getStatsCarte().MajStatsCarteReussite();
+        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
         this.carteActuelle = futurCartes.poll();
-        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
         initialize(null, null);
         toggleFlashCard.setSelected(false);
@@ -299,8 +304,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         majPaquetGlobalControleur(paquet);
         nbEchec++;
         carteActuelle.getStatsCarte().MajStatsCarteEchec();
+        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
         this.carteActuelle = futurCartes.poll();
-        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
         initialize(null, null);
         toggleFlashCard.setSelected(false);
