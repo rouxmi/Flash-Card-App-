@@ -110,10 +110,8 @@ public class Sauvegarde {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.svg"));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
         if (selectedFile != null) {
-            System.out.println("Image selected: " + selectedFile.getName());
             File cheminCreation = new File("src/ressources/images/" + selectedFile.getName());
             String format = selectedFile.getName().substring(selectedFile.getName().lastIndexOf(".") + 1);
-            System.out.println("format: " + format);
             BufferedImage bImage = null;
             try {
                 bImage = ImageIO.read(selectedFile);
