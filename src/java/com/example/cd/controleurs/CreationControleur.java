@@ -102,7 +102,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO : ajouter les images
         reagir();
         numCarte.setText("Carte n°"+(this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1));
         nomPaquet.setText(this.globalControleur.getPaquet().getTitre());
