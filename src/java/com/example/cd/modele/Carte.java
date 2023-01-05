@@ -10,13 +10,14 @@ public class Carte {
     private String reponse;
     @Expose
     private StatsCarte statsCarte;
+    @Expose
     private String mediaQuestion;
+
     public Carte(String question, String reponse) {
         this.question = question;
         this.reponse = reponse;
         statsCarte = new StatsCarte();
     }
-
     public Carte(){
         this.question = "";
         this.reponse = "";
