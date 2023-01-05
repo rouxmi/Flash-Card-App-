@@ -24,6 +24,7 @@
                       <MenuItem mnemonicParsing="false" text="Aléatoire" onAction="#random" />
                       <MenuItem mnemonicParsing="false" text="Classique" onAction="#classique" />
                        <MenuItem mnemonicParsing="false" text="Avancement" onAction="#avancement" />
+                       <MenuItem mnemonicParsing="false" onAction="#master" text="Master" />
                    </items>
             </SplitMenuButton>
              <Button mnemonicParsing="false" onAction="#importerPaquet" text="Importer" fx:id="importPaquet" />
