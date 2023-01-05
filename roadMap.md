@@ -55,6 +55,8 @@
 |   ✔   | [Flip](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/52a11d50a61d02861390cea6a734d29668c67127)                              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)                                                                                |
 |   ✔   | [ScrollPane](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/22045776a1651759d16f5b94fa3a8660a86208f8)                        | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)                                                                            |
 
+
+
 ## Jour 2 : 04/01/2023
 
 ### Matin
@@ -87,6 +89,8 @@
 |   ✔   | [Export/import JSON](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/511c2b1ce8ae1b919526c3d25b5fd11750a9f46d)                     | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)                                                                              |
 |   ✔   | [Son flip carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/57ed05e1b52f18a7551aa32bc0f1eea4249fdf0c)                         | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)                                                                                  |
 
+
+
 ## Jour 3 : 05/01/2023
 
 ### Matin
@@ -108,6 +112,8 @@
 |   ❌   | [Import de fichiers .apkg](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                               | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)      |
 |   ❌   | [Ajout multimedia sur la création de carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)      |
 |   ❌   | [Remmettre pattern Command](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)      |
+
+
 
 ## Jour 4 : 06/01/2023
 
