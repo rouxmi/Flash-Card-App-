@@ -73,7 +73,7 @@ public class StatsCarte {
         if (DateReussite.size() == 0) {
             return 0;
         }
-        return (double) DateReussite.size() / (DateReussite.size() + DateEchec.size()) * 100;
+        return ((double)DateReussite.size() / (double)((DateReussite.size() + DateEchec.size()))) * 100;
     }
 
     public double getPourcentageEchec() {

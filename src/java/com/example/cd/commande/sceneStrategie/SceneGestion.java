@@ -17,6 +17,7 @@ public class SceneGestion implements ChangeScene {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Gestion.fxml"));
         GestionControleur gestionControleur = new GestionControleur(paquetDeCartes, globalControleur);
         fxmlLoader.setController(gestionControleur);
+        Main.mainStage.setResizable(true);
         newScene = new Scene(fxmlLoader.load());
 
     }
