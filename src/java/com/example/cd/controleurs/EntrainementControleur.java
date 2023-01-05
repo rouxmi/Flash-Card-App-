@@ -294,7 +294,6 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         carteActuelle.getStatsCarte().MajStatsCarteReussite();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
         this.carteActuelle = futurCartes.poll();
-        futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, index));
         index++;
         initialize(null, null);
         toggleFlashCard.setSelected(false);
