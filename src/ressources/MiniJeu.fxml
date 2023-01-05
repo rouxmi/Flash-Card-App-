@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-
+    <BorderPane>
+        <top>
+            <ToolBar prefHeight="34.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                <items>
+                    <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
+                    <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" />
+                    <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
+                </items>
+            </ToolBar>
+        </top>
+        <center>
+            <GridPane fx:id="grille" prefHeight="600.0" prefWidth="1000.0">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="25.0" />
+                    <ColumnConstraints percentWidth="25.0" />
+                    <ColumnConstraints percentWidth="25.0" />
+                    <ColumnConstraints percentWidth="25.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints percentHeight="25" />
+                    <RowConstraints percentHeight="25" />
+                    <RowConstraints percentHeight="25" />
+                    <RowConstraints percentHeight="25" />
+                </rowConstraints>
+            <BorderPane.margin>
+               <Insets />
+            </BorderPane.margin>
+            </GridPane>
+        </center>
+    </BorderPane>
 </AnchorPane>
-
