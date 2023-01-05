@@ -122,7 +122,7 @@ public class Sauvegarde {
         }
         return "";
     }
-
+// TODO : check if folder exists
     public static String choisirFichierAudio() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir un fichier *.wav");
@@ -142,7 +142,7 @@ public class Sauvegarde {
             }
             input.close();
             output.close();
-            return "/videos/"+ selectedFile.getName();
+            return "/audios/"+ selectedFile.getName();
         }
         return "";
     }

@@ -5,4 +5,4 @@ out/
 *.iml
 /src/ressources/META-INF/MANIFEST.MF
 /src/ressources/images/*
-/src/ressources/videos/*
+/src/ressources/audios/*
