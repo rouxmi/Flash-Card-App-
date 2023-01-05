@@ -21,6 +21,7 @@ public class SceneAccueil implements ChangeScene {
         AccueilControleur accueilControleur=new AccueilControleur(paquets,globalControleur);
         globalControleur.setAccueil(accueilControleur);
         fxmlLoader.setController(accueilControleur);
+        Main.mainStage.setResizable(true);
         newScene = new Scene(fxmlLoader.load());
 
     }

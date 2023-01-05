@@ -16,6 +16,7 @@ public class SceneEntrainement implements ChangeScene {
         globalControleur.setEntrainement(entrainementControleur);
         fxmlLoader.setController(entrainementControleur);
         newScene = new Scene(fxmlLoader.load());
+        Main.mainStage.setResizable(false);
         newScene.getStylesheets().add(Main.class.getResource("/style.css").toExternalForm());
     }
     @Override

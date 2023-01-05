@@ -7,10 +7,10 @@ import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class CreationControleur extends SujetObserve implements Initializable, Observateur {
     private PaquetDeCartes paquet;
-
+    private Carte carteActuelle;
     private GlobalControleur globalControleur;
     private int indice;
 
@@ -27,12 +27,30 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     private TextArea question;
     @FXML
     private TextArea reponse;
-
     @FXML
     private Button prec;
     @FXML
     private Button suiv;
-    private Carte carteActuelle;
+    @FXML
+    private ImageView imageQuestion;
+    @FXML
+    private ImageView imageReponse;
+    @FXML
+    private Label numCarte;
+    @FXML
+    private Label nomPaquet;
+    @FXML
+    private Button imageGauche;
+    @FXML
+    private Button imageDroit;
+    @FXML
+    private Button videoGauche;
+    @FXML
+    private Button videoDroit;
+    @FXML
+    private Button audioGauche;
+    @FXML
+    private Button audioDroit;
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -62,6 +80,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // TODO : ajouter les images
         if(globalControleur.getCarte()!=null){
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
@@ -70,6 +89,32 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.question.setPromptText("Ecrire une question");
             this.reponse.setPromptText("Ecrire une réponse");
         }
+        numCarte.setText("Carte n°"+(this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1));
+        nomPaquet.setText(this.globalControleur.getPaquet().getTitre());
+
+        //icone ajouter image
+        imageGauche.setPrefSize(50, 50);
+        imageGauche.setMinSize(50,50);
+        imageGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        imageDroit.setPrefSize(50, 50);
+        imageDroit.setMinSize(50,50);
+        imageDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
+
+        //icone ajouter video
+        videoGauche.setPrefSize(50, 50);
+        videoGauche.setMinSize(50,50);
+        videoGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        videoDroit.setPrefSize(50, 50);
+        videoDroit.setMinSize(50,50);
+        videoDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
+
+        //icone ajouter audio
+        audioGauche.setPrefSize(50, 50);
+        audioGauche.setMinSize(50,50);
+        audioGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
+        audioDroit.setPrefSize(50, 50);
+        audioDroit.setMinSize(50,50);
+        audioDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
         if(indicePrec<0){
@@ -176,4 +221,16 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         this.globalControleur.setCarte(carteActuelle);
     }
 
+    @FXML
+    public void ajouterImageQuestion() throws IOException {
+        globalControleur.sauvegarderImageQuestion();
+        Image image = new Image(globalControleur.getCarte().getMediaQuestion());
+        imageQuestion.setImage(image);
+    }
+    @FXML
+    public void ajouterImageReponse() throws IOException {
+        globalControleur.sauvegarderImageReponse();
+        Image image = new Image(globalControleur.getCarte().getMediaReponse());
+        imageReponse.setImage(image);
+    }
 }

@@ -17,7 +17,6 @@
        <VBox>
       <ToolBar prefHeight="32.0" prefWidth="600.0">
          <items>
-            <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
             <ToggleButton fx:id="toggleBouton" mnemonicParsing="false" onAction="#majToggle" text="Gestion" />
              <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage">
                    <items>
@@ -28,6 +27,7 @@
                    </items>
             </SplitMenuButton>
              <Button mnemonicParsing="false" onAction="#importerPaquet" text="Importer" fx:id="importPaquet" />
+             <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
          </items>
       </ToolBar>
        <ScrollPane HBox.hgrow="SOMETIMES" maxWidth="1000">
