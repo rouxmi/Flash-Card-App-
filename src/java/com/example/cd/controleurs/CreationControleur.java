@@ -11,9 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
+import javafx.scene.media.AudioClip;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,17 +45,10 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     private Button imageDroit;
     @FXML
-    private Button videoGauche;
-    @FXML
-    private Button videoDroit;
-    @FXML
     private Button audioGauche;
     @FXML
     private Button audioDroit;
-    @FXML
-    private MediaView videoQuestion;
-    @FXML
-    private MediaView videoReponse;
+
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
         this.paquet=paquet;
@@ -91,6 +82,14 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             if ( !globalControleur.getCarte().getImageReponse().equals("") ) {
                 this.imageReponse.setImage(new Image(globalControleur.getCarte().getImageReponse()));
             }
+            if ( !globalControleur.getCarte().getAudioQuestion().equals("") ) {
+                // TODO : add button to play audio
+            }
+            if ( !globalControleur.getCarte().getAudioReponse().equals("") ) {
+                // TODO : add button to play audio
+        //        AudioClip player = new AudioClip(getClass().getResource("/utiles/flip.wav").toExternalForm());
+          //      player.play();
+            }
         }
         else {
             this.question.setPromptText("Ecrire une question");
@@ -110,6 +109,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             if ( !globalControleur.getCarte().getImageReponse().equals("") ) {
                 this.imageReponse.setImage(new Image(globalControleur.getCarte().getImageReponse()));
             }
+            // TODO : ajouter les audios
         }
         else {
             this.question.setPromptText("Ecrire une question");
@@ -125,14 +125,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         imageDroit.setPrefSize(50, 50);
         imageDroit.setMinSize(50,50);
         imageDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
-
-        //icone ajouter video
-        videoGauche.setPrefSize(50, 50);
-        videoGauche.setMinSize(50,50);
-        videoGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
-        videoDroit.setPrefSize(50, 50);
-        videoDroit.setMinSize(50,50);
-        videoDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/camera.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         //icone ajouter audio
         audioGauche.setPrefSize(50, 50);
@@ -259,16 +251,13 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         reagir();
     }
     @FXML
-    public void ajouterVideoQuestion() throws IOException {
-        globalControleur.sauvegarderVideoQuestion();
-        Media media = new Media(globalControleur.getCarte().getImageQuestion());
-        MediaPlayer mediaPlayer=new MediaPlayer(media);
-        videoQuestion.setMediaPlayer(mediaPlayer);
-        mediaPlayer.setAutoPlay(true);
-
+    public void ajouterAudioQuestion() throws IOException {
+        globalControleur.sauvegarderAudioQuestion();
+        reagir();
     }
     @FXML
-    public void ajouterVideoReponse() throws IOException {
-        globalControleur.sauvegarderVideoReponse();
+    public void ajouterAudioReponse() throws IOException {
+        globalControleur.sauvegarderAudioReponse();
+        reagir();
     }
 }

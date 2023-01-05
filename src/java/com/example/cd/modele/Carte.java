@@ -16,6 +16,10 @@ public class Carte {
     private String imageQuestion = "";
     @Expose
     private String imageReponse = "";
+    @Expose
+    private String audioQuestion = "";
+    @Expose
+    private String audioReponse = "";
 
 
     public Carte(String question, String reponse) {
@@ -45,6 +49,12 @@ public class Carte {
     public String getImageReponse() {
         return imageReponse;
     }
+    public String getAudioQuestion() {
+        return audioQuestion;
+    }
+    public String getAudioReponse() {
+        return audioReponse;
+    }
 
 
     //setters
@@ -54,11 +64,17 @@ public class Carte {
     public void setReponse(String reponse) {
         this.reponse = reponse;
     }
-    public void setMediaQuestion(String imageQuestion) {
+    public void setImageQuestion(String imageQuestion) {
         this.imageQuestion = imageQuestion;
     }
-    public void setMediaReponse(String imageReponse) {
+    public void setImageReponse(String imageReponse) {
         this.imageReponse = imageReponse;
+    }
+    public void setAudioQuestion(String audioQuestion) {
+        this.audioQuestion = audioQuestion;
+    }
+    public void setAudioReponse(String audioReponse) {
+        this.audioReponse = audioReponse;
     }
 
 }
