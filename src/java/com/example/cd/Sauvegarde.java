@@ -9,9 +9,7 @@ import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -119,8 +117,30 @@ public class Sauvegarde {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             return "file:src/ressources/images/" + selectedFile.getName();
+        }
+        return "";
+    }
+
+    public static String choisirFichierVideo() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Video File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
+        File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
+
+        if (selectedFile != null) {
+            File cheminCreation = new File("src/ressources/videos/" + selectedFile.getName());
+            InputStream input = new FileInputStream(selectedFile.getPath());
+            OutputStream output = new FileOutputStream(cheminCreation);
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = input.read(buffer)) != -1) {
+                output.write(buffer, 0, bytesRead);
+            }
+            input.close();
+            output.close();
+            return "file:src/ressources/videos/" + selectedFile.getName();
         }
         return "";
     }

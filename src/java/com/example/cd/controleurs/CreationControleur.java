@@ -233,4 +233,12 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         Image image = new Image(globalControleur.getCarte().getMediaReponse());
         imageReponse.setImage(image);
     }
+    @FXML
+    public void ajouterVideoQuestion() throws IOException {
+        globalControleur.sauvegarderVideoQuestion();
+    }
+    @FXML
+    public void ajouterVideoReponse() throws IOException {
+        globalControleur.sauvegarderVideoReponse();
+    }
 }

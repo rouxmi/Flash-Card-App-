@@ -59,6 +59,17 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
         carte.setMediaReponse(nouvelleImagePath);
         sauvegarder();
     }
+    public void sauvegarderVideoQuestion() throws IOException {
+        String nouvelleVideoPath = Sauvegarde.choisirFichierVideo();
+        carte.setMediaQuestion(nouvelleVideoPath);
+        sauvegarder();
+    }
+    public void sauvegarderVideoReponse() throws IOException {
+        String nouvelleVideoPath = Sauvegarde.choisirFichierVideo();
+        carte.setMediaReponse(nouvelleVideoPath);
+        sauvegarder();
+    }
+
 
     public void InitialisationChangeurScene() throws IOException {
         changeurScene=new ChangeurScene(paquets, paquet, carte,this);
