@@ -15,6 +15,7 @@ public class SceneCreation implements ChangeScene {
         CreationControleur creationControleur=new CreationControleur(paquetDeCartes,globalControleur);
         globalControleur.setCreation(creationControleur);
         fxmlLoader.setController(creationControleur);
+        Main.mainStage.setResizable(true);
         newScene = new Scene(fxmlLoader.load());
     }
 
