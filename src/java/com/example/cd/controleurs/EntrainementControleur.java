@@ -324,9 +324,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void ecouterSon() throws Exception {
         if ( toggleFlashCard.isSelected() ) {
-            new JouerSonCommande(globalControleur, "reponse").execute();
+            new JouerSonCommande(globalControleur, "reponse",carteActuelle).execute();
         } else if ( !toggleFlashCard.isSelected() ) {
-            new JouerSonCommande(globalControleur, "question").execute();
+            new JouerSonCommande(globalControleur, "question",carteActuelle).execute();
         }
     }
     // too complicated to put in command pattern
