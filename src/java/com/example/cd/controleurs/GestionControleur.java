@@ -242,13 +242,18 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         VBox vBox = new VBox();
         for(int i=0; i<5; i++){
             HBox hBox = new HBox();
-            Slider slider = new Slider(1, 100, 50);
-            slider.setId("slider "+ EtatCarte.values()[i].toString());
-            slider.setShowTickLabels(true);
+            Slider slider = new Slider(1, 100, 20);
+            slider.setId("slider "+EtatCarte.values()[i].toString());
             slider.setShowTickMarks(true);
+            Label value = new Label("20");
+            slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                value.setText(String.format("%.0f", newValue));
+            });
             Label label = new Label(EtatCarte.values()[i].toString());
+            label.setPrefWidth(150);
             hBox.getChildren().add(label);
             hBox.getChildren().add(slider);
+            hBox.getChildren().add(value);
             vBox.getChildren().add(hBox);
         }
         DoubleBinding sumBinding = ((Slider)((HBox)vBox.getChildren().get(0)).getChildren().get(1)).valueProperty().add(((Slider)((HBox)vBox.getChildren().get(1)).getChildren().get(1)).valueProperty())
@@ -265,6 +270,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
                 ((Slider)((HBox)vBox.getChildren().get(3)).getChildren().get(1)).setValue(((Slider)((HBox)vBox.getChildren().get(3)).getChildren().get(1)).getValue() - excess / 5);
                 ((Slider)((HBox)vBox.getChildren().get(4)).getChildren().get(1)).setValue(((Slider)((HBox)vBox.getChildren().get(4)).getChildren().get(1)).getValue() - excess / 5);
             }
+
         });
 
         dialog.getDialogPane().setContent(vBox);
