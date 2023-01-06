@@ -112,3 +112,9 @@
     -fx-text-fill: #b0765e;
 }
 
+.tagmenu {
+    -fx-background-color: #e8cda0;
+    -fx-text-fill: #b0765e;
+    -fx-font-weight: bold;
+}
+

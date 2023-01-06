@@ -89,6 +89,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             });
             menu.getItems().add(item);
         }
+        menu.getStyleClass().add("tagmenu");
         tagMenu.getItems().add(menu);
     }
 
@@ -143,7 +144,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                 button.setAlignment(Pos.CENTER);
 
 
-                button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/folder_icon1.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
+                button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/folder_icon.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
                 table.add(button, nbajoute % nbColonnes, nbajoute / nbColonnes);
                 nbajoute++;
             } else {
@@ -335,11 +336,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     private String getimagepath(int i){
         String base="utiles/folder_icon";
-        if (1<=i && i<=2) {
+        if (0<=i && i<=4) {
             return base + Integer.toString(i) + ".png";
         }
-        else {
-            return base + "2.png";
-        }
+        return base + ".png";
     }
 }
