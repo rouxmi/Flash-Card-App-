@@ -16,24 +16,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class Ankiloader {
-    public static ArrayList<PaquetDeCartes> loadAnki() throws Exception {
-
-        ArrayList<PaquetDeCartes> paquetDeCartes = new ArrayList<PaquetDeCartes>();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choisir un paquet de cartes");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Ank Collection Files", "*.apkg"));
-
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
-        ZipFile zipFile;
-        if (selectedFile != null) {
-            zipFile = new ZipFile(selectedFile.getAbsolutePath());
-        }
-        else {
-            System.out.println("No file selected");
-            return null;
-        }
+    public static ArrayList<PaquetDeCartes> loadAnki(String filename) throws Exception {
+        ArrayList<PaquetDeCartes> paquetDeCartes = new ArrayList<>();
+        ZipFile zipFile = new ZipFile(filename);
         File tempDir = new File("temp");
         tempDir.mkdir();
         Enumeration<? extends ZipEntry> entries = zipFile.entries();
@@ -117,8 +102,6 @@ public class Ankiloader {
         resultSet.close();
         statement.close();
         connection.close();
-
-        System.out.println("Question: " + question.size());
         for (String s : deckname) {
             ArrayList<Carte> cartes = new ArrayList<Carte>();
             for (int j = 0; j < question.size(); j++) {
