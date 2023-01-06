@@ -1,8 +1,8 @@
 package com.example.cd.commande;
 
-public class quitterApplicationCommande extends Commande {
+public class QuitterApplicationCommande extends Commande {
 
-    public quitterApplicationCommande() {
+    public QuitterApplicationCommande() {
         super(null, null, null);
     }
 

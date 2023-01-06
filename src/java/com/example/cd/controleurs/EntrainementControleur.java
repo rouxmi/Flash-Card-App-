@@ -2,7 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
-import com.example.cd.commande.quitterApplicationCommande;
+import com.example.cd.commande.QuitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.statistiques.EtatCarte;
@@ -174,7 +174,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @FXML
     public void quitterAppli() {
-        (new quitterApplicationCommande()).execute();
+        (new QuitterApplicationCommande()).execute();
     }
     @FXML
     public void allerAccueil() throws Exception {
@@ -289,7 +289,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void MajStatsCarte(){
 
         List<String> nom = Arrays.asList("Non Vue","Debut Apprentissage","à Revoir","Fin Apprentissage","Acquise Parfaite");
-        Label label = new Label("Stats de la carte:");
+        Label label = new Label("Statistiques de la carte:");
+        label.getStyleClass().add("texte");
         label.setFont(new Font("Arial", 20));
 
 
@@ -327,7 +328,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     public void MajStatsPaquet(){
         statsboxPaquet.getChildren().clear();
-        Label label = new Label("Stats du Paquet:");
+        Label label = new Label("Statistiques du Paquet:");
+        label.getStyleClass().add("texte");
         label.setFont(new Font("Arial", 20));
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussitePaquet())+"%");
@@ -347,7 +349,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     public void MajStatsEntrainement(){
         statsboxEntrainement.getChildren().clear();
-        Label label = new Label("Stats de l'Entrainement:");
+        Label label = new Label("Statistiques de l'Entrainement:");
+        label.getStyleClass().add("texte");
         label.setFont(new Font("Arial", 20));
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussiteEntrainement())+"%");
