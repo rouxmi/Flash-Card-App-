@@ -11,10 +11,6 @@ import com.example.cd.modele.apprentissage.MasterStrategie;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
 import com.example.cd.statistiques.EtatCarte;
 import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -32,7 +28,6 @@ import java.util.ResourceBundle;
 public class GestionControleur extends SujetObserve implements Initializable, Observateur {
 
     private PaquetDeCartes paquet;
-
     private GlobalControleur globalControleur;
     private Carte carteActuelle;
 
@@ -50,6 +45,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     private Button modifDescription;
     @FXML
     private Button exportPaquet;
+
 
     public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
@@ -90,25 +86,9 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         PieChartBox.getChildren().add(pieChart);
     }
     public void visiterCarte()throws Exception{
-        majCarteGlobalControleur(carteActuelle);
+        new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
         globalControleur.changeSceneVersCreation();
     }
-    /*public void dialogBoxNouveauTitre() {
-        TextInputDialog infoTitre = new TextInputDialog();
-        infoTitre.setTitle("Modification Titre");
-        infoTitre.setHeaderText("Renseigne ton nouveau titre");
-        infoTitre.showAndWait();
-        paquet.setTitre(infoTitre.getEditor().getText());
-    }
-
-     */
-    /*public void dialogBoxNouvelleDescription(){
-        TextInputDialog infoDescription = new TextInputDialog();
-        infoDescription.setTitle("Modification Description");
-        infoDescription.setHeaderText("Renseigne ta nouvelle description");
-        infoDescription.showAndWait();
-        paquet.setDescription(infoDescription.getEditor().getText());
-    }*/
     public void affichageCartes() {
         if (this.paquet !=null) {
             int nbBoutons = paquet.taillePaquet();
@@ -165,14 +145,6 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
         }
     }
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setPaquet(paquetActuel);
-    }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setCarte(carteActuelle);
-    }
 
     @FXML
     public void versEntrainement() throws Exception {
@@ -210,19 +182,15 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public void versCreation() throws Exception{
         new AllerCreationCommande(globalControleur, paquet).execute();
     }
-
     @FXML
-    public void handlemodifTitre() throws Exception{
+    public void modifTitre() throws Exception{
         new ModifTitreCommande(globalControleur, paquet).execute();
-//        dialogBoxNouveauTitre();
-  //      globalControleur.changeSceneVersGestion();
     }
     @FXML
-    public void handlemodifDescription() throws Exception{
+    public void Description() throws Exception{
         new ModifDescriptionCommande(globalControleur, paquet).execute();
-//        dialogBoxNouvelleDescription();
-  //      globalControleur.changeSceneVersGestion();
     }
+    // TODO : try to strategy pattern this
     @FXML
     public void random(){
         paquet.setApprentissageStrategie(new RandomApprentissage());
@@ -284,5 +252,4 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public void master(){
         paquet.setApprentissageStrategie(new MasterStrategie());
     }
-
 }
