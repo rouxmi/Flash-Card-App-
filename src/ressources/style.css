@@ -1,28 +1,69 @@
+
 .reussite{
-    -fx-background-color: green;
+    -fx-background-color: #006400;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-border-style: solid outside;
-    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
 
 }
 
 .echec{
-    -fx-background-color: red;
+    -fx-background-color: #FF0000;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-border-style: solid outside;
-    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
 
 }
 
 .titre{
     -fx-font-weight: bold;
-    -fx-text-fill: linear-gradient(to right, #0dc500, #c71313);
+    -fx-text-fill: #1e468c;
 }
 
 .texte {
-    -fx-text-fill: linear-gradient(to right, #0dc500, #c71313);
+    -fx-text-fill: #1e468c;
+
+}
+.button1 {
+    -fx-background-color: #a4c0ce;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
+}
+
+.button2 {
+    -fx-background-color: #1e468c;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
+}
+
+.toggle-button {
+    -fx-background-color: #a4c0ce;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #1e468c;
+    -fx-font-weight: bold;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #1e468c;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #a4c0ce;
+    -fx-font-weight: bold;
 }

@@ -44,8 +44,9 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
     public void sauvegarder() throws IOException {
          Sauvegarde.sauvegardeTousPaquets(paquets);
     }
-    public void importerPaquets() throws IOException {
-        paquets.add(Sauvegarde.chargerPaquets()) ;
+    public void importerPaquets() throws Exception {
+        paquets.addAll(Sauvegarde.chargerPaquets()) ;
+        sauvegarder();
     }
     public void sauvegarder1paquet() throws IOException{
         Sauvegarde.sauvegarde(paquet);

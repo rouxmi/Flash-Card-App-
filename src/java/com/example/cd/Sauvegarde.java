@@ -59,12 +59,12 @@ public class Sauvegarde {
         fileWriter.close();
     }
 
-    public static PaquetDeCartes chargerPaquets() throws IOException {
-        PaquetDeCartes paquetDeCartes = new PaquetDeCartes();
+    public static ArrayList<PaquetDeCartes> chargerPaquets() throws Exception {
+        ArrayList<PaquetDeCartes> paquetDeCartes = new ArrayList<PaquetDeCartes>();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir un paquet de cartes");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Json Files", "*.json"));
+                new FileChooser.ExtensionFilter("Anki Collections Files ou Json Files", "*.json","*.apkg"));
         /*File dir = new File("paquets");
         if (!Files.exists(dir.toPath())) {
             Files.createDirectory(dir.toPath());
@@ -72,14 +72,21 @@ public class Sauvegarde {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
         if (selectedFile != null) {
-            String json = Files.readAllLines(selectedFile.toPath()).get(0);
-            Gson gson = new Gson();
-            PaquetDeCartes paquetDeCartes1 = gson.fromJson(json, PaquetDeCartes.class);
-            paquetDeCartes.setTitre(paquetDeCartes1.getTitre());
-            paquetDeCartes.setDescription(paquetDeCartes1.getDescription());
-            for (int i = 0; i < paquetDeCartes1.getCartes().size(); i++) {
-                paquetDeCartes.getCartes().add(paquetDeCartes1.getCartes().get(i));
+            if (selectedFile.getName().endsWith(".json")) {
+                String json = Files.readAllLines(selectedFile.toPath()).get(0);
+                Gson gson = new Gson();
+                PaquetDeCartes paquet = new PaquetDeCartes();
+                PaquetDeCartes paquetDeCartes1 = gson.fromJson(json, PaquetDeCartes.class);
+                paquet.setTitre(paquetDeCartes1.getTitre());
+                paquet.setDescription(paquetDeCartes1.getDescription());
+                for (int i = 0; i < paquetDeCartes1.getCartes().size(); i++) {
+                    paquet.getCartes().add(paquetDeCartes1.getCartes().get(i));
+                }
+                paquetDeCartes.add(paquet);
+            } else if (selectedFile.getName().endsWith(".apkg")) {
+                paquetDeCartes = Ankiloader.loadAnki(selectedFile.getAbsolutePath());
             }
+
         }
         return paquetDeCartes;
     }
@@ -101,13 +108,16 @@ public class Sauvegarde {
         return paquets;
     }
 
-    public static String choisirFichierImage() {
+    public static String choisirFichierImage() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image File");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
         if (selectedFile != null) {
+            if(!Files.exists(Path.of("src/ressources/images/"))){
+                Files.createDirectory(Path.of("src/ressources/images/"));
+            }
             File cheminCreation = new File("src/ressources/images/" + selectedFile.getName());
             String format = selectedFile.getName().substring(selectedFile.getName().lastIndexOf(".") + 1);
             BufferedImage bImage = null;
@@ -132,7 +142,9 @@ public class Sauvegarde {
 
         if (selectedFile != null) {
             File cheminCreation = new File("src/ressources/audios/" + selectedFile.getName());
-
+            if(!Files.exists(Path.of("src/ressources/audios/"))){
+                Files.createDirectory(Path.of("src/ressources/audios/"));
+            }
             InputStream input = new FileInputStream(selectedFile.getPath());
             OutputStream output = new FileOutputStream(cheminCreation);
             byte[] buffer = new byte[1024];

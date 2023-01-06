@@ -5,6 +5,11 @@ import com.example.cd.SujetObserve;
 import com.example.cd.commande.*;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
+import com.example.cd.statistiques.StatsCarte;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,6 +19,7 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -243,5 +249,32 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     public void ecouterReponse() throws Exception {
         new JouerSonCommande(globalControleur, "reponse").execute();
+    }
+
+    @FXML
+    public void copierCarte() throws IOException {
+        Alert choixPaquet = new Alert(Alert.AlertType.INFORMATION);
+        choixPaquet.setTitle("Vers quels paquets copier ?");
+        choixPaquet.setHeaderText(null);
+        ObservableList<String> paquets = FXCollections.observableArrayList();
+        for(int i=0;i<globalControleur.getPaquets().size();i++){
+            paquets.add(globalControleur.getPaquets().get(i).getTitre());
+        }
+        ListView<String> listView= new ListView<>(paquets);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                for(int i=0; i<paquets.size();i++){
+                    if(t1.equals(paquets.get(i))){
+                        Carte carteAColler = globalControleur.getCarte();
+                        carteAColler.setStatsCarte(new StatsCarte());
+                        globalControleur.getPaquets().get(i).ajouterCarte(carteAColler);
+                    }
+                }
+            }
+        });
+        choixPaquet.getDialogPane().setContent(listView);
+        choixPaquet.showAndWait();
     }
 }
