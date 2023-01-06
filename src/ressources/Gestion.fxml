@@ -56,7 +56,7 @@
                      </content>
       
                   </ScrollPane>
-                  <Button mnemonicParsing="false" onAction="#versCreation" text="Ajouter une carte">
+                  <Button mnemonicParsing="false" onAction="#versCreation" text="Ajouter une carte" styleClass="button1">
                         <VBox.margin>
                            <Insets bottom="10.0" left="10.0" top="10.0" />
                         </VBox.margin>
@@ -74,17 +74,17 @@
                                  <Font name="System Bold" size="24.0" />
                               </font>
                            </Label>
-                     <Label fx:id="description" alignment="CENTER" prefHeight="16.0" prefWidth="849.0" text="Label" />
+                     <Label fx:id="description" alignment="CENTER" prefHeight="16.0" prefWidth="849.0" text="Label" styleClass="texte"/>
                            <HBox prefHeight="100.0" prefWidth="200.0">
                               <children>
                                  <VBox prefHeight="70.0" prefWidth="611.0" />
                                  <VBox prefHeight="70.0" prefWidth="223.0">
                                     <children>
-                                 <Button fx:id="modifDescription" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handlemodifDescription" prefHeight="30.0" prefWidth="208.0" text="Modification Description">
+                                 <Button fx:id="modifDescription" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handlemodifDescription" prefHeight="30.0" prefWidth="208.0" text="Modification Description" styleClass="button1">
                                           <VBox.margin>
                                              <Insets bottom="10.0" right="10.0" />
                                           </VBox.margin></Button>
-                                 <Button fx:id="modifTitre" mnemonicParsing="false" onAction="#handlemodifTitre" prefHeight="30.0" prefWidth="208.0" text="Modification Titre">
+                                 <Button fx:id="modifTitre" mnemonicParsing="false" onAction="#handlemodifTitre" prefHeight="30.0" prefWidth="208.0" text="Modification Titre" styleClass="button1">
                                           <VBox.margin>
                                              <Insets right="10.0" />
                                           </VBox.margin></Button>
