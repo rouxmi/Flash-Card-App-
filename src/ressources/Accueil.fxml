@@ -28,6 +28,12 @@
             </SplitMenuButton>
              <Button mnemonicParsing="false" onAction="#importerPaquet" text="Importer" fx:id="importPaquet" styleClass="boutonTool" />
              <Button  mnemonicParsing="false" onAction="#Partager" text="Partager" styleClass="boutonTool"/>
+             <SplitMenuButton fx:id="tagMenu" mnemonicParsing="false" text="Trier" >
+                 <items>
+                     <MenuItem mnemonicParsing="false" text="Par Avancée" onAction="#triercouleur" styleClass="boutonTool" />
+
+                 </items>
+             </SplitMenuButton>
              <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" styleClass="boutonTool"/>
          </items>
       </ToolBar>

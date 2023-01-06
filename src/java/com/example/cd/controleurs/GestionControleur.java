@@ -51,6 +51,9 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     @FXML
     private Button exportPaquet;
 
+    @FXML
+    private Label tags;
+
     public GestionControleur(PaquetDeCartes paquet, GlobalControleur globalControleur){
         this.paquet = paquet;
         this.globalControleur = globalControleur;
@@ -64,7 +67,32 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         affichageCartes();
         InitialisationCamenbert();
         titre.setText(globalControleur.getPaquet().getTitre());
-        description.setText(globalControleur.getPaquet().getDescription());
+        if (globalControleur.getPaquet().getDescription() != null) {
+            if (!globalControleur.getPaquet().getDescription().equals("")) {
+                description.setText(globalControleur.getPaquet().getDescription());
+            }
+            else {
+                description.setText("Aucune description");
+            }
+        }
+        else {
+            description.setText("Aucune description");
+        }
+        if (globalControleur.getPaquet().getTag() != null) {
+            if (!globalControleur.getPaquet().getTag().equals("")) {
+                tags.setText("Tags : ");
+                for (String tag : globalControleur.getPaquet().getlistTags()) {
+                    tags.setText(tags.getText() + tag + ", ");
+                }
+            }
+            else {
+                tags.setText("Aucun tag");
+            }
+        }
+        else {
+            tags.setText("Pas de tag");
+        }
+
     }
 
     private void InitialisationCamenbert() {
@@ -285,5 +313,23 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     public void master(){
         paquet.setApprentissageStrategie(new MasterStrategie());
     }
+
+    @FXML
+    public void handlemodifTag() throws Exception{
+        dialogBoxNouveauTags();
+        globalControleur.changeSceneVersGestion();
+    }
+
+    private void dialogBoxNouveauTags() {
+        TextInputDialog infoTitre = new TextInputDialog();
+        infoTitre.setTitle("Modification Tags");
+        infoTitre.setHeaderText("Renseigne tes tags séparés par un '/'");
+        infoTitre.setContentText(paquet.getTag());
+        infoTitre.showAndWait();
+        paquet.setTag(infoTitre.getEditor().getText());
+    }
+
+
+
 
 }

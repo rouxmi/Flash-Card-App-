@@ -28,13 +28,15 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     private ArrayList<PaquetDeCartes> paquets;
     private GlobalControleur globalControleur;
     private PaquetDeCartes paquetActuel;
-
+    @FXML
+    private SplitMenuButton tagMenu;
     @FXML
     private GridPane table;
     @FXML
     private ToggleButton toggleBouton;
     @FXML
     private Button importPaquet;
+    private ArrayList<String> tagsselectionnes = new ArrayList<String>();
 
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur){
@@ -45,11 +47,51 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         }
     }
 
+
     @Override
     public void reagir() {}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        creationsmenu();
         creationBoutons();
+    }
+
+    private void creationsmenu() {
+        ArrayList<String> tags = new ArrayList<>();
+        for (PaquetDeCartes paquet : paquets) {
+            if (paquet.getTag() != null && !paquet.getTag().equals("")) {
+                for (String tag : paquet.getlistTags()) {
+                    String tagtemp;
+                    if (paquet.getTag().equals("")) {
+                        tagtemp="Sans tag";
+                    } else {
+                        tagtemp=paquet.getTag();
+                    }
+                    if (!tags.contains(tagtemp)) {
+                        tags.add(tag);
+                    }
+                }
+            }
+        }
+        ToggleGroup groupTag = new ToggleGroup();
+        Menu menu = new Menu("Par Tags");
+        for (String tag : tags) {
+            RadioMenuItem item = new RadioMenuItem(tag);
+            item.setText(tag);
+            item.setId(tag);
+            item.setOnAction(event -> {
+                if (tagsselectionnes.contains(tag)) {
+                    tagsselectionnes.remove(tag);
+                    item.setStyle("-fx-background-color: #ffffff");
+                } else {
+                    tagsselectionnes.add(tag);
+                    item.setStyle("-fx-background-color: #ff0000");
+                }
+            });
+            item.setToggleGroup(groupTag);
+            menu.getItems().add(item);
+        }
+        tagMenu.getItems().add(menu);
     }
 
     public void creationBoutons() {
@@ -269,6 +311,13 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public void master(){
         for (PaquetDeCartes paquet : paquets) {
             paquet.setApprentissageStrategie(new MasterStrategie());
+        }
+    }
+
+    @FXML
+    public void triercouleur(){
+        for (PaquetDeCartes paquet : paquets) {
+            EtatCarte etatCarte = EtatCarte.NonVue;
         }
     }
 }

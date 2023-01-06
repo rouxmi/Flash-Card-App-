@@ -2,7 +2,6 @@ package com.example.cd.modele;
 
 import com.example.cd.SujetObserve;
 import com.example.cd.modele.apprentissage.ApprentissageStrategie;
-import com.example.cd.modele.apprentissage.FreeApprentissage;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
 import com.example.cd.statistiques.EtatCarte;
 import com.google.gson.annotations.Expose;
@@ -21,6 +20,9 @@ public class PaquetDeCartes extends SujetObserve {
     private ApprentissageStrategie apprentissageStrategie;
     @Expose
     private int decompte;
+
+    @Expose
+    private String tag;
 
     public PaquetDeCartes(ArrayList<Carte> cartes, String titre, String description){
         this.cartes=cartes;
@@ -166,6 +168,21 @@ public class PaquetDeCartes extends SujetObserve {
             }
         }
         return cartesSansMedia;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getTag() {
+        if (tag == null) {
+            return "";
+        }
+        return tag;
+    }
+
+    public String[] getlistTags(){
+        return tag.split("/");
     }
 
 }
