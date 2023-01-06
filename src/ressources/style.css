@@ -55,26 +55,60 @@
 }
 
 .boutonTool{
-    -fx-background-color: #b0765e;
+    -fx-background-color: #e8cda0;
     -fx-padding: 10px;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-border-radius: 5px;
+    -fx-text-fill: #b0765e;
     -fx-border-color: transparent;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
+    -fx-background-radius: 10px;
 }
 
-.toggle-button {
+.toggle-button1 {
     -fx-background-color: #a4c0ce;
     -fx-background-radius: 20px;
     -fx-text-fill: #1e468c;
     -fx-font-weight: bold;
 }
 
-.toggle-button:selected {
+.toggle-button1:selected {
     -fx-background-color: #1e468c;
     -fx-background-radius: 20px;
     -fx-text-fill: #a4c0ce;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
     -fx-font-weight: bold;
 }
+
+.toggle-button2 {
+    -fx-padding: 10px;
+    -fx-background-color: #e8cda0;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #b0765e;
+    -fx-font-weight: bold;
+}
+
+.toggle-button2:selected {
+    -fx-padding: 10px;
+    -fx-background-color: #b0765e;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #e8cda0;
+    -fx-font-weight: bold;
+
+}
+
+.split-menu-button {
+    -fx-font-size: 12px;
+    -fx-text-fill: #b0765e;
+    -fx-base: #e8cda0;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+}
+
+
+
+.split-menu-button-arrow {
+    -fx-background-color: #e8cda0;
+    -fx-text-fill: #b0765e;
+}
+

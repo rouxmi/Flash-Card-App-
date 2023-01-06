@@ -44,10 +44,10 @@
          <top>
             <ToolBar prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
-                  <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" />
-                  <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
-                  <SplitMenuButton mnemonicParsing="false" text="Voir les statistiques">
+                  <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" styleClass="boutonTool"/>
+                  <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" styleClass="boutonTool"/>
+                  <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" styleClass="boutonTool"/>
+                  <SplitMenuButton mnemonicParsing="false" text="Voir les statistiques" styleClass="boutonTool">
                      <items>
                         <MenuItem fx:id="paquetVisibility" mnemonicParsing="false" onAction="#showPaquet" text="✔ Statistiques paquet" />
                         <MenuItem fx:id="carteVisibility" mnemonicParsing="false" onAction="#showcarte" text="✔ Statistiques carte" />
@@ -59,7 +59,7 @@
          </top>
          <center>
             <VBox BorderPane.alignment="CENTER">
-            <ToggleButton fx:id="toggleFlashCard" mnemonicParsing="false" onAction="#majFlashCard" prefHeight="420.0" prefWidth="610.0" text="ToggleButton" styleClass="toggle">
+            <ToggleButton fx:id="toggleFlashCard" mnemonicParsing="false" onAction="#majFlashCard" prefHeight="420.0" prefWidth="610.0" text="ToggleButton" styleClass="toggle-button1">
                 <VBox.margin>
                     <Insets left="20" top="20.0" />
                 </VBox.margin>
