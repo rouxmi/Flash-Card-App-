@@ -2,7 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
-import com.example.cd.commande.quitterApplicationCommande;
+import com.example.cd.commande.QuitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.modele.apprentissage.FreeApprentissage;
@@ -150,7 +150,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void quitterAppli() {
-                new quitterApplicationCommande().execute();
+                new QuitterApplicationCommande().execute();
     }
     @FXML
     public void allerAccueil() throws Exception {

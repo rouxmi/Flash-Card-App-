@@ -131,7 +131,9 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
     public void setPaquet(PaquetDeCartes paquet) {
         this.paquet = paquet;
     }
-
+    public ArrayList<PaquetDeCartes> getPaquets() {
+        return paquets;
+    }
     public void setPaquetActuelAccueil(){
         changeurScene.setPaquet(accueil.getPaquetActuel());
     }

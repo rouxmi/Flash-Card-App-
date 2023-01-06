@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -134,7 +133,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
     @FXML
     public void quitterAppli() {
-        (new quitterApplicationCommande()).execute();
+        (new QuitterApplicationCommande()).execute();
     }
     @FXML
     public void allerAccueil() throws Exception {
