@@ -31,13 +31,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private GlobalControleur globalControleur;
     private int decompte;
     public Observateur observateur;
-
     private Carte carteActuelle;
     private Queue<Carte> futurCartes;
     private String typeEntrainement;
-
     private int nbReussite;
     private int nbEchec;
+    private int index;
+
     @FXML
     private ToggleButton toggleFlashCard;
     @FXML
@@ -46,28 +46,20 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private Button questionReussieBouton;
     @FXML
     private Button questionLoupeeBouton;
-
     @FXML
     private PieChart graphPaquet;
-
     @FXML
     private PieChart graphCarte;
-
     @FXML
     private VBox statsboxEntrainement;
     @FXML
     private VBox statsboxCarte;
     @FXML
     private VBox statsboxPaquet;
-
-    private int index;
-
     @FXML
     private MenuItem carteVisibility;
-
     @FXML
     private MenuItem paquetVisibility;
-
     @FXML
     private MenuItem entrainementVisibility;
     @FXML
