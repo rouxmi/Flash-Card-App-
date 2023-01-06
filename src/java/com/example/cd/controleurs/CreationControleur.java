@@ -167,11 +167,13 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
         if (indiceSuiv < this.globalControleur.getPaquet().taillePaquet()) {
             if (isCarteValide()) {
+                new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
                 new AllerCreationCommande(globalControleur, paquet, paquet.getCarte(indiceSuiv)).execute();
             }
         }
         else{
             if (isCarteValide()) {
+                new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
                 new AllerCreationCommande(globalControleur, paquet, null).execute();
             }
         }
