@@ -18,12 +18,15 @@ public class PaquetDeCartes extends SujetObserve {
     @Expose
     private ArrayList<Carte> cartes;
     private ApprentissageStrategie apprentissageStrategie;
+    @Expose
+    private int decompte;
 
     public PaquetDeCartes(ArrayList<Carte> cartes, String titre, String description){
         this.cartes=cartes;
         this.description=description;
         this.titre=titre;
         this.apprentissageStrategie = new RandomApprentissage();
+        this.decompte=3;
     }
 
     public PaquetDeCartes(String titre, String description){
@@ -59,6 +62,8 @@ public class PaquetDeCartes extends SujetObserve {
 
     public Carte getCarte(int indice){ return cartes.get(indice);}
 
+    public int getDecompte() {return decompte;}
+
     //setters
     public void setTitre(String titre) {
         this.titre = titre;
@@ -73,6 +78,8 @@ public class PaquetDeCartes extends SujetObserve {
     public void setApprentissageStrategie(ApprentissageStrategie apprentissageStrategie) {
         this.apprentissageStrategie = apprentissageStrategie;
     }
+
+    public void setDecompte(int decompte) {this.decompte = decompte;}
 
     //methodes concernant la liste de cartes
     public void ajouterCarte(Carte carte){
