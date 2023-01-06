@@ -179,6 +179,14 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         (new VisiterPaquetCommande(globalControleur, this.paquetActuel, toggleBouton.isSelected())).execute();
     }
     @FXML
+    public void Partager(){
+        try {
+            new ProcessBuilder("x-www-browser", "https://drive.google.com/drive/folders/1lVTIiVpMvUISgtlbWErNU_TKBQSxMgqF?usp=sharing").start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
     public void importerPaquet() throws Exception {
         (new ImporterCommande(globalControleur, paquets)).execute();
     }

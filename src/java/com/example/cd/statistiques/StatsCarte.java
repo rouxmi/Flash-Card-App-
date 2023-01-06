@@ -16,6 +16,7 @@ public class StatsCarte {
     @Expose
     private EtatCarte etatCarte;
 
+
     public StatsCarte() {
         DateReussite = new ArrayList<String>();
         DateEchec = new ArrayList<String>();
@@ -157,4 +158,7 @@ public class StatsCarte {
             }
         }
     }
+
+
+
 }
