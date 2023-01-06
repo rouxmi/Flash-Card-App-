@@ -38,6 +38,8 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     private Button importPaquet;
     private ArrayList<String> tagsselectionnes = new ArrayList<String>();
 
+    private Boolean colormode = false;
+
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur){
         this.paquets = paquets;
@@ -62,33 +64,31 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             if (paquet.getTag() != null && !paquet.getTag().equals("")) {
                 for (String tag : paquet.getlistTags()) {
                     String tagtemp;
-                    if (paquet.getTag().equals("")) {
-                        tagtemp="Sans tag";
-                    } else {
-                        tagtemp=paquet.getTag();
-                    }
+                    tagtemp=paquet.getTag();
                     if (!tags.contains(tagtemp)) {
                         tags.add(tag);
+                        tagsselectionnes.add(tag);
                     }
                 }
             }
         }
-        ToggleGroup groupTag = new ToggleGroup();
+        tags.add("Sans tag");
+        tagsselectionnes.add("Sans tag");
         Menu menu = new Menu("Par Tags");
         for (String tag : tags) {
             RadioMenuItem item = new RadioMenuItem(tag);
             item.setText(tag);
+            item.setSelected(true);
             item.setId(tag);
             item.setOnAction(event -> {
                 if (tagsselectionnes.contains(tag)) {
                     tagsselectionnes.remove(tag);
-                    item.setStyle("-fx-background-color: #ffffff");
                 } else {
                     tagsselectionnes.add(tag);
-                    item.setStyle("-fx-background-color: #ff0000");
                 }
+                table.getChildren().clear();
+                creationBoutons();
             });
-            item.setToggleGroup(groupTag);
             menu.getItems().add(item);
         }
         tagMenu.getItems().add(menu);
@@ -114,10 +114,11 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                 table.getRowConstraints().add(row);
             }
         }
-
+        int nbajoute = 0;
         for (int i = 0; i < nbBoutons; i++) {
             Button button;
             button = new Button();
+
 
             if (i == nbBoutons - 1) {
                 VBox vbox = new VBox();
@@ -136,49 +137,63 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                         e.printStackTrace();
                     }
                 });
+                button.setPrefSize(300, 300);
+                button.setMinSize(300, 300);
+                button.setMaxHeight(1.7976931348623157E308);
+                button.setMaxWidth(1.7976931348623157E308);
+                button.setMnemonicParsing(false);
+                button.setAlignment(Pos.CENTER);
+
+
+                button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/folder_icon.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
+                table.add(button, nbajoute % nbColonnes, nbajoute / nbColonnes);
+                nbajoute++;
+            } else {
+                if (checkifpaquetintaglist(paquets.get(i))) {
+                    String description = paquets.get(i).getDescription();
+                    Label labeltitre = new Label(paquets.get(i).getTitre());
+                    labeltitre.setWrapText(true);
+                    Label labeldesc = new Label(description);
+                    labeltitre.setFont(new javafx.scene.text.Font(16));
+                    labeldesc.setFont(new javafx.scene.text.Font(13.5));
+                    labeldesc.setWrapText(true);
+                    VBox vBoxhaut = new VBox();
+                    vBoxhaut.setPadding(new javafx.geometry.Insets(40, 0, 0, 15));
+                    vBoxhaut.setMaxSize(150, 30);
+                    vBoxhaut.getChildren().add(labeltitre);
+                    VBox vBoxbas = new VBox();
+                    vBoxbas.setMaxSize(270, 185);
+                    vBoxbas.setPadding(new javafx.geometry.Insets(25, 0, 0, 33));
+                    vBoxbas.setSpacing(10);
+                    vBoxbas.getChildren().add(labeldesc);
+                    VBox vBox = new VBox();
+                    vBox.getChildren().addAll(vBoxhaut, vBoxbas);
+                    button.setGraphic(vBox);
+                    button.getGraphic().setStyle("-fx-position: top-left;");
+
+                    int finalI = i;
+                    button.setOnAction(event -> {
+                        try {
+                            this.paquetActuel = paquets.get(finalI);
+                            visiterPaquet();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                    button.setPrefSize(300, 300);
+                    button.setMinSize(300, 300);
+                    button.setMaxHeight(1.7976931348623157E308);
+                    button.setMaxWidth(1.7976931348623157E308);
+                    button.setMnemonicParsing(false);
+                    button.setAlignment(Pos.CENTER);
+
+                    String path = getimagepath(paquets.get(i).getEtatMoyenPaquet());
+                    button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/folder_icon.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
+                    table.add(button, nbajoute % nbColonnes, nbajoute / nbColonnes);
+                    nbajoute++;
+                }
             }
-            else {
-                String description = paquets.get(i).getDescription();
-                Label labeltitre = new Label(paquets.get(i).getTitre());
-                labeltitre.setWrapText(true);
-                Label labeldesc = new Label(description);
-                labeltitre.setFont(new javafx.scene.text.Font(16));
-                labeldesc.setFont(new javafx.scene.text.Font(13.5));
-                labeldesc.setWrapText(true);
-                VBox vBoxhaut = new VBox();
-                vBoxhaut.setPadding(new javafx.geometry.Insets(40, 0, 0, 15));
-                vBoxhaut.setMaxSize(150, 30);
-                vBoxhaut.getChildren().add(labeltitre);
-                VBox vBoxbas = new VBox();
-                vBoxbas.setMaxSize(270, 185);
-                vBoxbas.setPadding(new javafx.geometry.Insets(25, 0, 0, 33));
-                vBoxbas.setSpacing(10);
-                vBoxbas.getChildren().add(labeldesc);
-                VBox vBox = new VBox();
-                vBox.getChildren().addAll(vBoxhaut, vBoxbas);
-                button.setGraphic(vBox);
-                button.getGraphic().setStyle("-fx-position: top-left;");
-
-                int finalI = i;
-                button.setOnAction(event -> {
-                    try {
-                        this.paquetActuel=paquets.get(finalI);
-                        visiterPaquet();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                });
-            }
-            button.setPrefSize(300, 300);
-            button.setMinSize(300,300);
-            button.setMaxHeight(1.7976931348623157E308);
-            button.setMaxWidth(1.7976931348623157E308);
-            button.setMnemonicParsing(false);
-            button.setAlignment(Pos.CENTER);
-
-
-            button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/folder_icon.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
-            table.add(button, i % nbColonnes, i / nbColonnes);
         }
         table.setHgap(20);
         table.setVgap(20);
@@ -294,8 +309,26 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void triercouleur(){
-        for (PaquetDeCartes paquet : paquets) {
-            EtatCarte etatCarte = EtatCarte.NonVue;
+        colormode = true;
+    }
+
+    private boolean checkifpaquetintaglist(PaquetDeCartes paquet){
+        if (paquet.getTag() == null){
+            return tagsselectionnes.contains("Sans tag");
         }
+        if (paquet.getTag().equals("")){
+            return tagsselectionnes.contains("Sans tag");
+        }
+        for (String tag : paquet.getlistTags()) {
+            if (tagsselectionnes.contains(tag)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String getimagepath(int i){
+        String base="utiles/folder_icon";
+        return base+Integer.toString(i)+".png";
     }
 }
