@@ -13,6 +13,8 @@ import com.example.cd.statistiques.EtatCarte;
 import javafx.beans.binding.DoubleBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -80,6 +82,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
                 for (String tag : globalControleur.getPaquet().getlistTags()) {
                     tags.setText(tags.getText() + tag + ", ");
                 }
+                tags.setText(tags.getText().substring(0, tags.getText().length() - 2));
             }
             else {
                 tags.setText("Aucun tag");
@@ -93,8 +96,8 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     private void InitialisationCamenbert() {
         PieChart pieChart = new PieChart();
-        List<String> list = Arrays.asList("NonVue","DebutApprentissage","ARevoir","FinApprentissage","AcquiseParfaite");
-        List<String> nom = Arrays.asList("Non Vue","Debut Apprentissage","à Revoir","Fin Apprentissage","Acquise Parfaite");
+        List<String> list = Arrays.asList("ARevoir","NonVue","DebutApprentissage","FinApprentissage","AcquiseParfaite");
+        List<String> nom = Arrays.asList("à Revoir","Non Vue","Debut Apprentissage","Fin Apprentissage","Acquise Parfaite");
         int[] nombre= {0,0,0,0,0};
         for(int i=0;i<paquet.getCartes().size();i++){
             for (int j=0;j<5;j++){
@@ -107,7 +110,6 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
             PieChart.Data slice = new PieChart.Data(nom.get(j), nombre[j]);
             pieChart.getData().add(slice);
         }
-
         pieChart.setStartAngle(90);
         pieChart.setClockwise(true);
 
@@ -209,7 +211,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void versCreation() throws Exception{
-        new AllerCreationCommande(globalControleur, paquet).execute();
+        new AllerCreationCommande(globalControleur, paquet, null).execute();
     }
     @FXML
     public void modifTitre() throws Exception{
