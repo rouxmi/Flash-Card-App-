@@ -2,7 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
-import com.example.cd.commande.QuitterApplicationCommande;
+import com.example.cd.commande.*;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.modele.apprentissage.FreeApprentissage;
@@ -11,6 +11,10 @@ import com.example.cd.modele.apprentissage.MasterStrategie;
 import com.example.cd.modele.apprentissage.RandomApprentissage;
 import com.example.cd.statistiques.EtatCarte;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -133,6 +137,28 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void versRevision() throws Exception {
+        //majPaquetGlobalControleur(paquet);
+        Alert choixTemps = new Alert(Alert.AlertType.INFORMATION);
+        choixTemps.setTitle("Choisit la durée du timer");
+        choixTemps.setHeaderText("A l'aide du curseur définit ton temps de réponse ");
+        Slider curseur = new Slider(3,30,5);
+        //curseur.setMin(3);
+        //curseur.setMax(30);
+        //curseur.setValue(10);
+        curseur.setMinorTickCount(3);
+        curseur.setMajorTickUnit(5);
+        curseur.setShowTickMarks(true);
+        curseur.setShowTickLabels(true);
+        curseur.setSnapToTicks(true);
+        curseur.setBlockIncrement(1);
+        choixTemps.getDialogPane().setContent(curseur);
+        curseur.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                globalControleur.getPaquet().setDecompte(t1.intValue());
+            }
+        });
+        choixTemps.showAndWait();
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersEntrainement("revision");
     }

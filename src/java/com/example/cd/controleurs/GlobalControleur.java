@@ -1,5 +1,6 @@
 package com.example.cd.controleurs;
 
+import com.example.cd.Ankiloader;
 import com.example.cd.Observateur;
 import com.example.cd.Sauvegarde;
 import com.example.cd.commande.ChangeurScene;
@@ -22,7 +23,7 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
     private EntrainementControleur entrainement;
     private GestionControleur gestion;
     private MiniJeuControleur minijeu;
-    public GlobalControleur() throws IOException {
+    public GlobalControleur() throws Exception {
         this.paquets = Sauvegarde.chargerTousPaquets();
         /*ArrayList<PaquetDeCartes> paquets = new ArrayList<PaquetDeCartes>();
         for (int i=0;i<2;i++){
@@ -43,8 +44,9 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
     public void sauvegarder() throws IOException {
          Sauvegarde.sauvegardeTousPaquets(paquets);
     }
-    public void importerPaquets() throws IOException {
-        paquets.add(Sauvegarde.chargerPaquets()) ;
+    public void importerPaquets() throws Exception {
+        paquets.addAll(Sauvegarde.chargerPaquets()) ;
+        sauvegarder();
     }
     public void sauvegarder1paquet() throws IOException{
         Sauvegarde.sauvegarde(paquet);

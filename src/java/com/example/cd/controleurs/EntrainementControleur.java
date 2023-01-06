@@ -108,7 +108,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        decompte = 3;
+        decompte = globalControleur.getPaquet().getDecompte();
         // Compteur
         compteurLabel.setText(String.valueOf(decompte));
         toggleFlashCard.setText(carteActuelle.getQuestion());
@@ -128,7 +128,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             compteurLabel.setStyle("-fx-text-alignment: center; -fx-font-size: 50px; -fx-font-weight: bold; -fx-text-fill: #000000;");
             decompte--;
         })));
-        compteur.setCycleCount(4);
+        compteur.setCycleCount(decompte+1);
         ecouterSonBouton.setVisible(false);
         if ( !carteActuelle.getAudioQuestion().equals("") ) {
             ecouterSonBouton.setVisible(true);
