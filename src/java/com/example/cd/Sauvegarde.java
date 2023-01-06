@@ -14,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class Sauvegarde {
 
@@ -44,7 +46,8 @@ public class Sauvegarde {
         fileWriter.close();
     }
 
-    public static void sauvegardeTousPaquets(ArrayList<PaquetDeCartes> paquets) throws IOException {
+    public static void sauvegardeTousPaquets(ArrayList<PaquetDeCartes> paquets) throws Exception {
+        sauvegarderMediaZip(paquets);
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
@@ -58,7 +61,39 @@ public class Sauvegarde {
         fileWriter.write(gson.toJson(listPaquets));
         fileWriter.close();
     }
-
+// TODO sauvergarder tous les medias sous un point zip
+    public static void sauvegarderMediaZip(ArrayList<PaquetDeCartes> paquets) throws Exception{
+        File zipFile= new File("src/ressources/medias.zip");
+        FileOutputStream fos = new FileOutputStream(zipFile);
+        ZipOutputStream zos= new ZipOutputStream(fos);
+        for(int i=0; i<paquets.size();i++){
+            for(int j=0; j<paquets.get(i).taillePaquet();j++){
+                if(!paquets.get(i).getCarte(j).getImageQuestion().equals("")){
+                    File imageActuelle = new File("src/ressources/images"+paquets.get(i).getCarte(j).getImageQuestion());
+                    ZipEntry zipCarte = new ZipEntry(imageActuelle.getName());
+                    zos.putNextEntry(zipCarte);
+                    byte[] buffer= new byte[1024];
+                    //int len;
+                    while ((imageActuelle.canRead())){
+                        zos.write(buffer);
+                    }
+                    zos.closeEntry();
+                } else if (!paquets.get(i).getCarte(j).getAudioQuestion().equals("")) {
+                    File audioActuel = new File("src/ressources/audios"+paquets.get(i).getCarte(j).getAudioQuestion());
+                    ZipEntry zipCarte = new ZipEntry(audioActuel.getName());
+                    zos.putNextEntry(zipCarte);
+                    byte[] buffer= new byte[1024];
+                    //int len;
+                    while ((audioActuel.canRead())){
+                        zos.write(buffer);
+                    }
+                    zos.closeEntry();
+                }
+            }
+        }
+        zos.close();
+    }
+ // TODO charger tous les medias du point zip à l'ouverture du fichier
     public static ArrayList<PaquetDeCartes> chargerPaquets() throws Exception {
         ArrayList<PaquetDeCartes> paquetDeCartes = new ArrayList<PaquetDeCartes>();
         FileChooser fileChooser = new FileChooser();
@@ -132,7 +167,7 @@ public class Sauvegarde {
         }
         return "";
     }
-// TODO : check if folder exists
+
     public static String choisirFichierAudio() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir un fichier *.wav");
