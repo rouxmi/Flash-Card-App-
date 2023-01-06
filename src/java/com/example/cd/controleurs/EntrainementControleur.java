@@ -476,7 +476,6 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         }
         statsboxPaquet.setVisible(!statsboxPaquet.isVisible());
     }
-    @FXML
     public void showEntrainement(){
         if (statsboxEntrainement.isVisible()){
             entrainementVisibility.setText("    Stats entrainement");

@@ -146,11 +146,11 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public PaquetDeCartes getPaquetActuel() {
         return paquetActuel;
     }
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
@@ -171,12 +171,20 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         }
     }
     @FXML
-    public void quitterAppli() {
+    public void quitterAppli() throws Exception {
         (new QuitterApplicationCommande()).execute();
     }
     @FXML
     public void visiterPaquet() throws Exception{
         (new VisiterPaquetCommande(globalControleur, this.paquetActuel, toggleBouton.isSelected())).execute();
+    }
+    @FXML
+    public void Partager(){
+        try {
+            new ProcessBuilder("x-www-browser", "https://drive.google.com/drive/folders/1lVTIiVpMvUISgtlbWErNU_TKBQSxMgqF?usp=sharing").start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void importerPaquet() throws Exception {

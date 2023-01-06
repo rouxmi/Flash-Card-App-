@@ -215,32 +215,32 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
 
     @FXML
-    public void ajouterImageQuestion() throws IOException {
+    public void ajouterImageQuestion() throws Exception {
         globalControleur.sauvegarderImageQuestion();
         reagir();
     }
     @FXML
-    public void ajouterImageReponse() throws IOException {
+    public void ajouterImageReponse() throws Exception {
         globalControleur.sauvegarderImageReponse();
         reagir();
     }
     @FXML
-    public void ajouterAudioQuestion() throws IOException {
+    public void ajouterAudioQuestion() throws Exception {
         globalControleur.sauvegarderAudioQuestion();
         reagir();
     }
     @FXML
-    public void ajouterAudioReponse() throws IOException {
+    public void ajouterAudioReponse() throws Exception {
         globalControleur.sauvegarderAudioReponse();
         reagir();
     }

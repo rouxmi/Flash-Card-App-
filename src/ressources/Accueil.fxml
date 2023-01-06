@@ -27,6 +27,7 @@
                    </items>
             </SplitMenuButton>
              <Button mnemonicParsing="false" onAction="#importerPaquet" text="Importer" fx:id="importPaquet" />
+             <Button  mnemonicParsing="false" onAction="#Partager" text="Partager" />
              <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
          </items>
       </ToolBar>

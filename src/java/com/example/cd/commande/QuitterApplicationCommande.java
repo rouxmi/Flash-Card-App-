@@ -7,8 +7,7 @@ public class QuitterApplicationCommande extends Commande {
     }
 
     @Override
-    public void execute() {
-        System.exit(0);
+    public void execute() {System.exit(0);
     }
 }
 
