@@ -161,9 +161,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public void ajouterNouveauPaquet() throws Exception {
         (new ajouterPaquetCommande(globalControleur)).execute();
     }
-
     @FXML
     public void majToggle() {
+        // TODO : try to command pattern this
         if ( toggleBouton.isSelected() ) {
             toggleBouton.setText("Entrainement");
         } else {
@@ -174,36 +174,28 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public void quitterAppli() {
         (new quitterApplicationCommande()).execute();
     }
-
     @FXML
     public void visiterPaquet() throws Exception{
-        majPaquetGlobalControleur(paquetActuel);
-        if ( toggleBouton.isSelected() ) {
-            globalControleur.changeSceneVersEntrainement("entrainement");
-        } else {
-            globalControleur.changeSceneVersGestion();
-        }
+        (new visiterPaquetCommande(globalControleur, this.paquetActuel, toggleBouton.isSelected())).execute();
     }
     @FXML
     public void importerPaquet() throws Exception {
         (new importerCommande(globalControleur, paquets)).execute();
     }
 
-
+    // TODO : try to strategy pattern this
     @FXML
     public void random(){
         for (PaquetDeCartes paquet : paquets) {
             paquet.setApprentissageStrategie(new RandomApprentissage());
         }
     }
-
     @FXML
     public void classique(){
         for (PaquetDeCartes paquet : paquets) {
             paquet.setApprentissageStrategie(new ClassiqueApprentissage());
         }
     }
-
     @FXML
     public void avancement(){
         Dialog<String> dialog = new Dialog<>();
@@ -255,7 +247,6 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             paquet.setApprentissageStrategie(new FreeApprentissage(nonVue, debutApprentissage, aRevoir, finApprentissage, acquiseParfaite));
         }
     }
-
     @FXML
     public void master(){
         for (PaquetDeCartes paquet : paquets) {
