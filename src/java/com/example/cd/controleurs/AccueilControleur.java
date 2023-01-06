@@ -165,7 +165,11 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void visiterPaquet() throws Exception{
-        (new VisiterPaquetCommande(globalControleur, this.paquetActuel, toggleBouton.isSelected())).execute();
+        if (toggleBouton.isSelected()) {
+            (new AllerEntrainementCommande(globalControleur, paquetActuel)).execute();
+        } else {
+            (new AllerGestionCommande(globalControleur, paquetActuel)).execute();
+        }
     }
     @FXML
     public void Partager(){

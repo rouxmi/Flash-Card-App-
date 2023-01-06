@@ -93,20 +93,22 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         majCarteGlobalControleur(carteActuelle);
         globalControleur.changeSceneVersCreation();
     }
-    public void dialogBoxNouveauTitre() {
+    /*public void dialogBoxNouveauTitre() {
         TextInputDialog infoTitre = new TextInputDialog();
         infoTitre.setTitle("Modification Titre");
         infoTitre.setHeaderText("Renseigne ton nouveau titre");
         infoTitre.showAndWait();
         paquet.setTitre(infoTitre.getEditor().getText());
     }
-    public void dialogBoxNouvelleDescription(){
+
+     */
+    /*public void dialogBoxNouvelleDescription(){
         TextInputDialog infoDescription = new TextInputDialog();
         infoDescription.setTitle("Modification Description");
         infoDescription.setHeaderText("Renseigne ta nouvelle description");
         infoDescription.showAndWait();
         paquet.setDescription(infoDescription.getEditor().getText());
-    }
+    }*/
     public void affichageCartes() {
         if (this.paquet !=null) {
             int nbBoutons = paquet.taillePaquet();
@@ -198,10 +200,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void supprimerPaquet() throws Exception {
-        //new SupprimerPaquetCommande(globalControleur, paquet).execute();
-        globalControleur.supprimerPaquet(paquet);
-        globalControleur.sauvegarder();
-        allerAccueil();
+        new SupprimerPaquetCommande(globalControleur, paquet).execute();
     }
     @FXML
     public void exporterPaquet() throws IOException {
@@ -209,20 +208,20 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void versCreation() throws Exception{
-        majPaquetGlobalControleur(paquet);
-        paquet.ajouterCarte(new Carte());
-        majCarteGlobalControleur(paquet.getCarte(paquet.getCartes().size()-1));
-        globalControleur.changeSceneVersCreation();
+        new AllerCreationCommande(globalControleur, paquet).execute();
     }
+
     @FXML
     public void handlemodifTitre() throws Exception{
-        dialogBoxNouveauTitre();
-        globalControleur.changeSceneVersGestion();
+        new ModifTitreCommande(globalControleur, paquet).execute();
+//        dialogBoxNouveauTitre();
+  //      globalControleur.changeSceneVersGestion();
     }
     @FXML
     public void handlemodifDescription() throws Exception{
-        dialogBoxNouvelleDescription();
-        globalControleur.changeSceneVersGestion();
+        new ModifDescriptionCommande(globalControleur, paquet).execute();
+//        dialogBoxNouvelleDescription();
+  //      globalControleur.changeSceneVersGestion();
     }
     @FXML
     public void random(){
