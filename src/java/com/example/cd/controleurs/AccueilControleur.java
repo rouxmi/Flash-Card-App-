@@ -3,7 +3,6 @@ package com.example.cd.controleurs;
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
 import com.example.cd.commande.*;
-import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.modele.apprentissage.FreeApprentissage;
 import com.example.cd.modele.apprentissage.ClassiqueApprentissage;
@@ -18,7 +17,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -145,7 +143,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                 button.setAlignment(Pos.CENTER);
 
 
-                button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/folder_icon.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
+                button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/folder_icon1.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
                 table.add(button, nbajoute % nbColonnes, nbajoute / nbColonnes);
                 nbajoute++;
             } else {
@@ -188,8 +186,14 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
                     button.setMnemonicParsing(false);
                     button.setAlignment(Pos.CENTER);
 
-                    String path = getimagepath(paquets.get(i).getEtatMoyenPaquet());
-                    button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/folder_icon.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
+                    String path;
+                    if (colormode) {
+                        path = getimagepath(paquets.get(i).getEtatMoyenPaquet());
+                    }
+                    else {
+                        path= "utiles/folder_icon.png";
+                    }
+                    button.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image(path), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(button.getPrefWidth(), button.getPrefHeight(), false, false, false, false))));
                     table.add(button, nbajoute % nbColonnes, nbajoute / nbColonnes);
                     nbajoute++;
                 }
@@ -309,7 +313,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void triercouleur(){
-        colormode = true;
+        colormode = !colormode;
+        table.getChildren().clear();
+        creationBoutons();
     }
 
     private boolean checkifpaquetintaglist(PaquetDeCartes paquet){
@@ -329,6 +335,11 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
 
     private String getimagepath(int i){
         String base="utiles/folder_icon";
-        return base+Integer.toString(i)+".png";
+        if (1<=i && i<=2) {
+            return base + Integer.toString(i) + ".png";
+        }
+        else {
+            return base + "2.png";
+        }
     }
 }
