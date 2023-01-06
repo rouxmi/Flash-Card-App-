@@ -106,23 +106,15 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reagir();
-        numCarte.setText("Carte n°"+(this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1));
+        numCarte.setText("carte n°"+(this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1));
         nomPaquet.setText(this.globalControleur.getPaquet().getTitre());
 
         //icone ajouter image
-        imageGauche.setPrefSize(50, 50);
-        imageGauche.setMinSize(50,50);
         imageGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
-        imageDroit.setPrefSize(50, 50);
-        imageDroit.setMinSize(50,50);
         imageDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         //icone ajouter audio
-        audioGauche.setPrefSize(50, 50);
-        audioGauche.setMinSize(50,50);
         audioGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
-        audioDroit.setPrefSize(50, 50);
-        audioDroit.setMinSize(50,50);
         audioDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
@@ -164,7 +156,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             }
         }
     }
-
     @FXML
     public void allerSuiv() throws Exception{
         int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
@@ -186,8 +177,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         if (isCarteValide()) {
             new MajPaquetGlobalCommande(globalControleur, paquet).execute();
             new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
-//        majPaquetGlobalControleur(paquet);
-//        majCarteGlobalControleur(carteActuelle);
             globalControleur.changeSceneVersCreation();
         }
     }
