@@ -24,17 +24,18 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AccueilControleur extends SujetObserve implements Initializable, Observateur {
+
     private ArrayList<PaquetDeCartes> paquets;
-
     private GlobalControleur globalControleur;
-
     private PaquetDeCartes paquetActuel;
+
     @FXML
     private GridPane table;
     @FXML
     private ToggleButton toggleBouton;
     @FXML
     private Button importPaquet;
+
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur){
         this.paquets = paquets;
@@ -45,10 +46,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     }
 
     @Override
-    public void reagir() {
-
-    }
-
+    public void reagir() {}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         creationBoutons();
@@ -146,17 +144,8 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public PaquetDeCartes getPaquetActuel() {
         return paquetActuel;
     }
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setPaquet(paquetActuel);
-    }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setCarte(carteActuelle);
-    }
 
-
-    // FXML bouton fonctions
+    // FXML boutons fonctions
     @FXML
     public void ajouterNouveauPaquet() throws Exception {
         (new AjouterPaquetCommande(globalControleur)).execute();
@@ -190,7 +179,6 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     public void importerPaquet() throws Exception {
         (new ImporterCommande(globalControleur, paquets)).execute();
     }
-
     // TODO : try to strategy pattern this
     @FXML
     public void random(){
@@ -261,5 +249,4 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             paquet.setApprentissageStrategie(new MasterStrategie());
         }
     }
-
 }
