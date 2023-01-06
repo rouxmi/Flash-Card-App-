@@ -10,110 +10,11 @@
    <children>
       <BorderPane prefHeight="650.0" prefWidth="1000.0">
          <bottom>
-            <Button mnemonicParsing="false" onAction="#validerCarte" text="Enregistrer" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#validerCarte" styleClass="button1" text="Enregistrer" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" />
                </BorderPane.margin></Button>
          </bottom>
-         <center>
-            <SplitPane prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="387.0" prefWidth="280.0">
-                     <children>
-                        <HBox alignment="CENTER" layoutX="-2.0" layoutY="-4.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="imageGauche" mnemonicParsing="false" onAction="#ajouterImageQuestion">
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="audioGauche" mnemonicParsing="false" onAction="#ajouterAudioQuestion">
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </VBox>
-                              <Button fx:id="prec" alignment="CENTER" mnemonicParsing="false" onAction="#allerPrec" text="Precedent">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin></Button>
-                              <TextArea fx:id="question" prefHeight="100.0" prefWidth="100.0" promptText="Question">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <HBox.margin>
-                                    <Insets bottom="100.0" right="20.0" top="100.0" />
-                                 </HBox.margin></TextArea>
-                              <TextArea fx:id="reponse" prefHeight="100.0" prefWidth="100.0" promptText="Reponse">
-                                 <HBox.margin>
-                                    <Insets bottom="100.0" top="100.0" />
-                                 </HBox.margin></TextArea>
-                              <Button fx:id="suiv" mnemonicParsing="false" onAction="#allerSuiv" text="Suivant">
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin></Button>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="imageDroit" mnemonicParsing="false" onAction="#ajouterImageReponse">
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="audioDroit" mnemonicParsing="false" onAction="#ajouterAudioReponse">
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <Label fx:id="numCarte" alignment="CENTER" contentDisplay="CENTER" text="Carte n°1" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="80.0">
-                           <font>
-                              <Font name="System Bold Italic" size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </Label>
-                        <Label fx:id="nomPaquet" contentDisplay="CENTER" text="Paquet" textAlignment="CENTER" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="20.0">
-                           <padding>
-                              <Insets left="70.0" right="70.0" />
-                           </padding>
-                           <font>
-                              <Font size="29.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="imageQuestion" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="397.0" AnchorPane.topAnchor="300.0" />
-                        <ImageView fx:id="imageReponse" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="381.0" AnchorPane.topAnchor="300.0" />
-                        <Button fx:id="ecouterQuestionBouton" layoutX="232.0" layoutY="330.0" mnemonicParsing="false" onAction="#ecouterQuestion" text="Ecouter la question" AnchorPane.topAnchor="330.0" />
-                        <Button fx:id="ecouterReponseBouton" layoutX="636.0" layoutY="327.0" mnemonicParsing="false" onAction="#ecouterReponse" text="Ecouter la reponse" AnchorPane.topAnchor="327.0" />
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-         </center>
          <top>
             <ToolBar prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <items>
@@ -125,6 +26,122 @@
                </items>
             </ToolBar>
          </top>
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <SplitPane prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="387.0" prefWidth="280.0">
+                           <children>
+                              <HBox alignment="CENTER" layoutX="-2.0" layoutY="-4.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Button fx:id="imageGauche" mnemonicParsing="false" onAction="#ajouterImageQuestion">
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets left="20.0" top="50.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button fx:id="audioGauche" mnemonicParsing="false" onAction="#ajouterAudioQuestion">
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets left="20.0" top="50.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <Button fx:id="prec" alignment="CENTER" mnemonicParsing="false" onAction="#allerPrec" styleClass="button1" text="Precedent">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <TextArea fx:id="question" prefHeight="100.0" prefWidth="100.0" promptText="Question">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets bottom="100.0" right="20.0" top="100.0" />
+                                       </HBox.margin>
+                                    </TextArea>
+                                    <TextArea fx:id="reponse" prefHeight="100.0" prefWidth="100.0" promptText="Reponse">
+                                       <HBox.margin>
+                                          <Insets bottom="100.0" top="100.0" />
+                                       </HBox.margin>
+                                    </TextArea>
+                                    <Button fx:id="suiv" mnemonicParsing="false" onAction="#allerSuiv" styleClass="button1" text="Suivant">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Button fx:id="imageDroit" mnemonicParsing="false" onAction="#ajouterImageReponse">
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets left="20.0" top="50.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button fx:id="audioDroit" mnemonicParsing="false" onAction="#ajouterAudioReponse">
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets left="20.0" top="50.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <ImageView fx:id="imageQuestion" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="397.0" AnchorPane.topAnchor="300.0" />
+                              <ImageView fx:id="imageReponse" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="381.0" AnchorPane.topAnchor="300.0" />
+                              <Button fx:id="ecouterQuestionBouton" layoutX="232.0" layoutY="330.0" mnemonicParsing="false" onAction="#ecouterQuestion" text="Ecouter la question" AnchorPane.topAnchor="330.0" />
+                              <Button fx:id="ecouterReponseBouton" layoutX="636.0" layoutY="327.0" mnemonicParsing="false" onAction="#ecouterReponse" text="Ecouter la reponse" AnchorPane.topAnchor="327.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </center>
+               <top>
+                  <VBox prefHeight="76.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="nomPaquet" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="1151.0" text="Paquet">
+                           <padding>
+                              <Insets left="70.0" right="70.0" />
+                           </padding>
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="numCarte" alignment="CENTER" contentDisplay="CENTER" prefWidth="1151.0" text="Carte n°1">
+                           <font>
+                              <Font name="System Bold Italic" size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets top="25.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </top>
+            </BorderPane>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

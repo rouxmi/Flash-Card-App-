@@ -170,8 +170,16 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void miniJeu() throws Exception {
+        if(paquet.getCartesSansMedia().size()>=8){
         majPaquetGlobalControleur(paquet);
         globalControleur.changeSceneVersMiniJeu();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Il n'y a pas assez de cartes sans média");
+            alert.setContentText("Il faut au moins 8 cartes sans média pour jouer au mini jeu");
+            alert.showAndWait();
+        }
     }
 
     @FXML
