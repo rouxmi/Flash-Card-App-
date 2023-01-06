@@ -189,6 +189,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void validerCarte() throws Exception {
+        //new ValiderCarteCommande(globalControleur, carteActuelle, question.getText(), reponse.getText()).execute();
         try {
             this.paquet.getCarte(this.indice).setQuestion(question.getText());
             this.paquet.getCarte(this.indice).setReponse(reponse.getText());
@@ -205,11 +206,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             Optional<ButtonType> result = alert.showAndWait();
             if ( !(result.get() == ButtonType.CANCEL) ){
                 supprimerCarte();
+                globalControleur.changeSceneVersGestion();
             } else {
                 new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
             }
         }
-        new MajPaquetGlobalCommande(globalControleur, paquet).execute();
         globalControleur.changeSceneVersCreation();
     }
 
