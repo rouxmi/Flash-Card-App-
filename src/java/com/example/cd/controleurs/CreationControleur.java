@@ -49,13 +49,9 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     private Button imageGauche;
     @FXML
-    private Button imageDroit;
-    @FXML
     private Button audioGauche;
     @FXML
-    private Button audioDroit;
-    @FXML
-    private Button ecouterQuestionBouton, ecouterReponseBouton;
+    private Button ecouterQuestionBouton;
 
 
     public CreationControleur(PaquetDeCartes paquet,GlobalControleur globalControleur){
@@ -76,18 +72,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.question.setText(globalControleur.getCarte().getQuestion());
             this.reponse.setText(globalControleur.getCarte().getReponse());
             ecouterQuestionBouton.setVisible(false);
-            ecouterReponseBouton.setVisible(false);
             if ( !globalControleur.getCarte().getImageQuestion().equals("") ) {
                 this.imageQuestion.setImage(new Image(globalControleur.getCarte().getImageQuestion()));
             }
-            if ( !globalControleur.getCarte().getImageReponse().equals("") ) {
-                this.imageReponse.setImage(new Image(globalControleur.getCarte().getImageReponse()));
-            }
             if ( !globalControleur.getCarte().getAudioQuestion().equals("") ) {
                 ecouterQuestionBouton.setVisible(true);
-            }
-            if ( !globalControleur.getCarte().getAudioReponse().equals("") ) {
-                ecouterReponseBouton.setVisible(true);
             }
         }
         else {
@@ -103,11 +92,9 @@ public class CreationControleur extends SujetObserve implements Initializable, O
 
         //icone ajouter image
         imageGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
-        imageDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/appareil.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         //icone ajouter audio
         audioGauche.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageGauche.getPrefWidth(), imageGauche.getPrefHeight(), false, false, false, false))));
-        audioDroit.setBackground(new Background(new BackgroundImage(new javafx.scene.image.Image("utiles/audio.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(imageDroit.getPrefWidth(), imageDroit.getPrefHeight(), false, false, false, false))));
 
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
         if(indicePrec<0){
@@ -126,7 +113,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }catch (Exception e){
             e.printStackTrace();
         }
-        if ( ((this.paquet.getCarte(this.indice)).getReponse().equals("") && (this.paquet.getCarte(this.indice)).getImageReponse().equals("") && (this.paquet.getCarte(this.indice)).getAudioReponse().equals("") )
+        if ( ((this.paquet.getCarte(this.indice)).getReponse().equals("")  )
                 || ((this.paquet.getCarte(this.indice)).getQuestion().equals("") && (this.paquet.getCarte(this.indice)).getImageQuestion().equals("")) && (this.paquet.getCarte(this.indice)).getAudioQuestion().equals("") ){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alerte");
@@ -212,19 +199,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         globalControleur.sauvegarderImageQuestion();
         reagir();
     }
-    @FXML
-    public void ajouterImageReponse() throws Exception {
-        globalControleur.sauvegarderImageReponse();
-        reagir();
-    }
+
     @FXML
     public void ajouterAudioQuestion() throws Exception {
         globalControleur.sauvegarderAudioQuestion();
         reagir();
     }
-    @FXML
-    public void ajouterAudioReponse() throws Exception {
-        globalControleur.sauvegarderAudioReponse();
-        reagir();
-    }
+
 }

@@ -20,9 +20,7 @@ public class JouerSonCommande extends Commande {
         AudioClip player;
         if (coteCarte.equals("question")) {
             player = new AudioClip(getClass().getResource(carte.getAudioQuestion()).toExternalForm());
-        } else {
-            player = new AudioClip(getClass().getResource(carte.getAudioReponse()).toExternalForm());
+            player.play();
         }
-        player.play();
     }
 }

@@ -56,21 +56,13 @@ public class GlobalControleur extends Sauvegarde implements Observateur {
         carte.setImageQuestion(nouvelleImagePath);
         sauvegarder();
     }
-    public void sauvegarderImageReponse() throws Exception {
-        String nouvelleImagePath = Sauvegarde.choisirFichierImage();
-        carte.setImageReponse(nouvelleImagePath);
-        sauvegarder();
-    }
+
     public void sauvegarderAudioQuestion() throws Exception {
         String nouvelleVideoPath = Sauvegarde.choisirFichierAudio();
         carte.setAudioQuestion(nouvelleVideoPath);
         sauvegarder();
     }
-    public void sauvegarderAudioReponse() throws Exception {
-        String nouvelleAudioPath = Sauvegarde.choisirFichierAudio();
-        carte.setAudioReponse(nouvelleAudioPath);
-        sauvegarder();
-    }
+
 
     public void InitialisationChangeurScene() throws IOException {
         changeurScene=new ChangeurScene(paquets, paquet, carte,this);
