@@ -2,8 +2,6 @@ package com.example.cd.modele;
 
 import com.example.cd.statistiques.StatsCarte;
 import com.google.gson.annotations.Expose;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Carte {
     @Expose
@@ -15,11 +13,7 @@ public class Carte {
     @Expose
     private String imageQuestion;
     @Expose
-    private String imageReponse;
-    @Expose
     private String audioQuestion;
-    @Expose
-    private String audioReponse;
 
 
     public Carte(String question, String reponse) {
@@ -27,18 +21,14 @@ public class Carte {
         this.reponse = reponse;
         statsCarte = new StatsCarte();
         this.imageQuestion = "";
-        this.imageReponse = "";
         this.audioQuestion = "";
-        this.audioReponse = "";
     }
     public Carte(){
         this.question = "";
         this.reponse = "";
         statsCarte = new StatsCarte();
         this.imageQuestion = "";
-        this.imageReponse = "";
         this.audioQuestion = "";
-        this.audioReponse = "";
 
     }
 
@@ -55,14 +45,9 @@ public class Carte {
     public String getImageQuestion() {
         return imageQuestion;
     }
-    public String getImageReponse() {
-        return imageReponse;
-    }
+
     public String getAudioQuestion() {
         return audioQuestion;
-    }
-    public String getAudioReponse() {
-        return audioReponse;
     }
 
 
@@ -76,14 +61,9 @@ public class Carte {
     public void setImageQuestion(String imageQuestion) {
         this.imageQuestion = imageQuestion;
     }
-    public void setImageReponse(String imageReponse) {
-        this.imageReponse = imageReponse;
-    }
+
     public void setAudioQuestion(String audioQuestion) {
         this.audioQuestion = audioQuestion;
-    }
-    public void setAudioReponse(String audioReponse) {
-        this.audioReponse = audioReponse;
     }
 
     public void setStatsCarte(StatsCarte statsCarte) {this.statsCarte = statsCarte;}
