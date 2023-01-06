@@ -20,11 +20,8 @@ public class JouerSonCommande extends Commande {
     public void execute() throws Exception {
         AudioClip player;
         if (coteCarte.equals("question")) {
-            System.out.println(carte.getAudioQuestion());
-            player = new AudioClip(Main.class.getResource(carte.getAudioQuestion()).toExternalForm());
-        } else {
-            player = new AudioClip(getClass().getResource(carte.getAudioReponse()).toExternalForm());
+            player = new AudioClip(getClass().getResource(carte.getAudioQuestion()).toExternalForm());
+            player.play();
         }
-        player.play();
     }
 }

@@ -163,7 +163,7 @@ public class PaquetDeCartes extends SujetObserve {
     public ArrayList<Carte> getCartesSansMedia(){
         ArrayList<Carte> cartesSansMedia = new ArrayList<>();
         for(Carte carte : cartes){
-            if(Objects.equals(carte.getAudioQuestion(), "") && Objects.equals(carte.getAudioReponse(), "") && Objects.equals(carte.getImageQuestion(), "") && Objects.equals(carte.getImageReponse(), "")){
+            if(Objects.equals(carte.getAudioQuestion(), "") && Objects.equals(carte.getImageQuestion(), "") ){
                 cartesSansMedia.add(carte);
             }
         }
