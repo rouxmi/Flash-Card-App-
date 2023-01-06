@@ -11,11 +11,10 @@
 |   ✔   | [Lien Vue Modèle](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/b636c09dcdd9c8cea8e74be8727923db913e2a60)                                   |  Mardi  |
 |   ✔   | [Algorithme apprentissage ](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/e25262d6e351758ad966bdbdb47e9b9d2bf0f7c0)                          | Mercredi |
 |   ✔   | [Création/Modification carte et Entrainement ](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/b636c09dcdd9c8cea8e74be8727923db913e2a60)      | Mercredi |
-|   ❌   | [Statistiques](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/15609e922e74953bbcfe0ced2f8021d09a650132)                                       | Mercredi |
-|   ❌   | [](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/52a11d50a61d02861390cea6a734d29668c67127)                                                   | Mercredi |
-|   ❌   | [Stockage des cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                                         | Mercredi |
-|   ❌   | [Création des designs patterns Apprentissage/type de cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                 | Mercredi |
-|   ❌   | [Création de statistiques d'apprentissages](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                  |  Jeudi  |
+|   ✔   | [Statistiques](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/15609e922e74953bbcfe0ced2f8021d09a650132)                                       | Mercredi |
+|   ✔   | [Stockage des cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                                         | Mercredi |
+|   ✔   | [Création des designs patterns Apprentissage/type de cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                 | Mercredi |
+|   ✔   | [Création de statistiques d'apprentissages](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                  |  Jeudi  |
 |   ❌   | [Mode création de cartes/Copier coller cartes](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                               | Vendredi |
 |   ❌   | [Création de la vidéo](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/activity)                                                                      |  Samedi  |
 
@@ -105,18 +104,24 @@
 
 ### Après-midi
 
-| Status | Objectifs                                                                                                                              | Responsable                                                                      |
-| :----: |----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-|   ❌   | [Création d'un mini-jeu on relie des questions/réponses](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) | [Lucie Boucher](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher)      |
-|   ❌   | [Ajout multimedia a l'entrainement](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                      | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)  |
-|   ❌   | [Import de fichiers .apkg](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                               | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)      |
-|   ❌   | [Ajout multimedia sur la création de carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)      |
-|   ❌   | [Remmettre pattern Command](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)      |
-
+| Status | Objectifs                                                                                                                             | Responsable                                                                      |
+| :----: |---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+|   ✔   | [Création d'un mini-jeu on relie des questions/réponses](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/fe91f537a0aae42e30469bac17184b76e5dbf383) | [Lucie Boucher](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher)      |
+|   ✔   | [Ajout multimedia a l'entrainement](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/c04e11f8601e970868fd684649ed7a81ae93fca7)                     | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)  |
+|   ✔   | [Import de fichiers .apkg](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                              | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)      |
+|   ✔   | [Ajout multimedia sur la création de carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/75f9d214ea5ed34205585024b6316b7068cb9df8)              | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)      |
 
 
 ## Jour 4 : 06/01/2023
 
 ### Matin
+
+| Status | Objectifs                                                                                         | Responsable                                                                      |
+| :----: |---------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+|   ❌   | [Remmettre pattern Command](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) |    |
+|   ❌   | [Copier/Coller](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)     |      |
+|   ❌   | [Choisir Style Carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) |      |
+|   ❌   | [Style Application](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) |      |
+
 
 ### Après-midi
