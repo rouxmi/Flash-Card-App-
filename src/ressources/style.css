@@ -59,7 +59,7 @@
     -fx-padding: 10px;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-text-fill: #b0765e;
+    -fx-text-fill: #966550;
     -fx-border-color: transparent;
     -fx-background-radius: 10px;
 }
@@ -84,13 +84,13 @@
     -fx-padding: 10px;
     -fx-background-color: #e8cda0;
     -fx-background-radius: 20px;
-    -fx-text-fill: #b0765e;
+    -fx-text-fill: #966550;
     -fx-font-weight: bold;
 }
 
 .toggle-button2:selected {
     -fx-padding: 10px;
-    -fx-background-color: #b0765e;
+    -fx-background-color: #966550;
     -fx-background-radius: 20px;
     -fx-text-fill: #e8cda0;
     -fx-font-weight: bold;
@@ -99,7 +99,7 @@
 
 .split-menu-button {
     -fx-font-size: 12px;
-    -fx-text-fill: #b0765e;
+    -fx-text-fill: #966550;
     -fx-base: #e8cda0;
     -fx-font-weight: bold;
     -fx-border-radius: 5px;
@@ -109,12 +109,21 @@
 
 .split-menu-button-arrow {
     -fx-background-color: #e8cda0;
-    -fx-text-fill: #b0765e;
+    -fx-text-fill: #966550;
 }
+
+
+.split-menu-button .label {
+    -fx-background-color: #e8cda0;
+    -fx-text-fill: #966550;
+}
+
+
+
 
 .tagmenu {
     -fx-background-color: #e8cda0;
-    -fx-text-fill: #b0765e;
+    -fx-text-fill: #966550;
     -fx-font-weight: bold;
 }
 
