@@ -131,6 +131,7 @@ public class Sauvegarde {
         }
         zipFile.close();
     }
+
     public static ArrayList<PaquetDeCartes> chargerPaquets() throws Exception {
         ArrayList<PaquetDeCartes> paquetDeCartes = new ArrayList<PaquetDeCartes>();
         FileChooser fileChooser = new FileChooser();
@@ -165,7 +166,9 @@ public class Sauvegarde {
 
 
     public static ArrayList<PaquetDeCartes> chargerTousPaquets() throws Exception {
-        deZipMediaZip();
+        if(Files.exists(Path.of("src/ressources/medias.zip"))){
+            deZipMediaZip();
+        }
         ArrayList<PaquetDeCartes> paquets = new ArrayList<>();
         File file = new File("src/ressources/donnees.json");
         if (file.isFile()) {
