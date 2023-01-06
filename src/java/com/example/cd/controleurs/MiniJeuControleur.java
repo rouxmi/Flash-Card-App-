@@ -77,7 +77,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
         for (Carte c : paquet.getCartes()) {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    RadioButton rb = (RadioButton) grille.getChildren().get(i * 4 + j);
+                    ToggleButton rb = (ToggleButton) grille.getChildren().get(i * 4 + j);
                     if (rb.isSelected()) {
                         if (Objects.equals(rb.getText(), c.getQuestion())) {
                             question = true;
@@ -99,7 +99,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
         }
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                RadioButton rb = (RadioButton) grille.getChildren().get(i * 4 + j);
+                ToggleButton rb = (ToggleButton) grille.getChildren().get(i * 4 + j);
                 if (rb.isSelected()) {
                     if(question && reponse){
                         rb.setVisible(false);
@@ -145,7 +145,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
                     random = (int)(Math.random() * 16);
                 }while(randomDejaTombes.contains(random));
                 randomDejaTombes.add(random);
-                RadioButton Bouton = new RadioButton();
+                ToggleButton Bouton = new ToggleButton();
                 Bouton.setId(""+random);
                 if(random-8 >= 0){
                     Bouton.setText(listeCartes.get(random%8).getQuestion());
@@ -155,9 +155,9 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
                     Bouton.setToggleGroup(groupR);
                 }
                 Bouton.setOnAction(actionEvent -> reagir());
-                Bouton.setPrefSize(200, 150);
+                Bouton.setPrefSize(175, 150);
                 Bouton.setPadding(new Insets(10, 10, 10, 10));
-                grille.setPadding(new Insets(10, 10, 10, 10));
+                grille.setMargin(Bouton, new Insets(10, 10, 10, 10));
                 grille.add(Bouton, i, j);}
         }
 

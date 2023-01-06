@@ -19,6 +19,7 @@ public class SceneGestion implements ChangeScene {
         fxmlLoader.setController(gestionControleur);
         Main.mainStage.setResizable(true);
         newScene = new Scene(fxmlLoader.load());
+        newScene.getStylesheets().add(Main.class.getResource("/style.css").toExternalForm());
 
     }
     @Override

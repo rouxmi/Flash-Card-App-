@@ -23,6 +23,7 @@ public class SceneMiniJeu implements ChangeScene {
         fxmlLoader.setController(MiniJeuControleur);
         Main.mainStage.setResizable(true);
         newScene = new Scene(fxmlLoader.load());
+        newScene.getStylesheets().add(Main.class.getResource("/style.css").toExternalForm());
 
     }
     @Override

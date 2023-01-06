@@ -46,13 +46,13 @@
                <items>
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
                   <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" />
-                  <Button mnemonicParsing="false" text="Voir les stats" />
+                  <Button mnemonicParsing="false" text="Voir les statistiques" />
                   <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
-                  <SplitMenuButton mnemonicParsing="false" text="Voir les stats">
+                  <SplitMenuButton mnemonicParsing="false" text="Voir les statistiques">
                      <items>
-                        <MenuItem fx:id="paquetVisibility" mnemonicParsing="false" onAction="#showPaquet" text="✔ Stats paquet" />
-                        <MenuItem fx:id="carteVisibility" mnemonicParsing="false" onAction="#showcarte" text="✔ Stats carte" />
-                        <MenuItem fx:id="entrainementVisibility" mnemonicParsing="false" onAction="#showEntrainement" text="✔ Stats entrainement" />
+                        <MenuItem fx:id="paquetVisibility" mnemonicParsing="false" onAction="#showPaquet" text="✔ Statistiques paquet" />
+                        <MenuItem fx:id="carteVisibility" mnemonicParsing="false" onAction="#showcarte" text="✔ Statistiques carte" />
+                        <MenuItem fx:id="entrainementVisibility" mnemonicParsing="false" onAction="#showEntrainement" text="✔ Statistiques entrainement" />
                      </items>
                   </SplitMenuButton>
                </items>
@@ -67,7 +67,7 @@
             </ToggleButton>
             <HBox alignment="CENTER" prefHeight="200.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="questionReussieBouton" mnemonicParsing="false" onAction="#reussite" prefHeight="70.0" prefWidth="110.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-style: solid outside; -fx-border-width: 2px; " text="Réussi">
+                  <Button fx:id="questionReussieBouton" mnemonicParsing="false" onAction="#reussite" prefHeight="70.0" prefWidth="110.0" styleClass="reussite" text="Réussi">
                         <HBox.margin>
                            <Insets right="70.0" top="50.0" />
                         </HBox.margin>
@@ -90,7 +90,7 @@
                            </VBox.margin>
                         </Button>
                   </VBox>
-                  <Button fx:id="questionLoupeeBouton" mnemonicParsing="false" onAction="#echec" prefHeight="70.0" prefWidth="110.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: red; -fx-text-fill: white; -fx-border-style: solid outside; -fx-border-width: 2px;  " text="Échoué" wrapText="true">
+                  <Button fx:id="questionLoupeeBouton" mnemonicParsing="false" onAction="#echec" prefHeight="70.0" prefWidth="110.0" styleClass="echec" text="Échoué" wrapText="true">
                         <HBox.margin>
                            <Insets left="70.0" top="50.0" />
                         </HBox.margin>

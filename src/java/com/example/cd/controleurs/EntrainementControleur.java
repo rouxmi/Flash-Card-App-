@@ -108,7 +108,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        decompte = 3;
+        decompte = globalControleur.getPaquet().getDecompte();
         // Compteur
         compteurLabel.setText(String.valueOf(decompte));
         toggleFlashCard.setText(carteActuelle.getQuestion());
@@ -128,7 +128,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             compteurLabel.setStyle("-fx-text-alignment: center; -fx-font-size: 50px; -fx-font-weight: bold; -fx-text-fill: #000000;");
             decompte--;
         })));
-        compteur.setCycleCount(4);
+        compteur.setCycleCount(decompte+1);
         ecouterSonBouton.setVisible(false);
         if ( !carteActuelle.getAudioQuestion().equals("") ) {
             ecouterSonBouton.setVisible(true);
@@ -289,7 +289,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     public void MajStatsCarte(){
 
         List<String> nom = Arrays.asList("Non Vue","Debut Apprentissage","à Revoir","Fin Apprentissage","Acquise Parfaite");
-        Label label = new Label("Stats de la carte:");
+        Label label = new Label("Statistiques de la carte:");
+        label.getStyleClass().add("texte");
         label.setFont(new Font("Arial", 20));
 
 
@@ -327,7 +328,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     public void MajStatsPaquet(){
         statsboxPaquet.getChildren().clear();
-        Label label = new Label("Stats du Paquet:");
+        Label label = new Label("Statistiques du Paquet:");
+        label.getStyleClass().add("texte");
         label.setFont(new Font("Arial", 20));
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussitePaquet())+"%");
@@ -347,7 +349,8 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     public void MajStatsEntrainement(){
         statsboxEntrainement.getChildren().clear();
-        Label label = new Label("Stats de l'Entrainement:");
+        Label label = new Label("Statistiques de l'Entrainement:");
+        label.getStyleClass().add("texte");
         label.setFont(new Font("Arial", 20));
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussiteEntrainement())+"%");
