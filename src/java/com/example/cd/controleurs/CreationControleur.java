@@ -97,7 +97,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.reponse.setPromptText("Ecrire une réponse");
         }
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reagir();
@@ -136,8 +135,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void allerAccueil() throws Exception {
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersAccueil();
+        new AllerAccueilCommande(globalControleur, paquet).execute();
     }
     @FXML
     public void voirPaquet() throws Exception {
@@ -191,18 +189,18 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }catch (Exception e){
             e.printStackTrace();
         }
-        if ( ((this.paquet.getCarte(this.indice)).getReponse().equals("") && (this.paquet.getCarte(this.indice)).getImageReponse().equals(""))
-                || ((this.paquet.getCarte(this.indice)).getQuestion().equals("") && (this.paquet.getCarte(this.indice)).getImageQuestion().equals("")) ){
+        if ( ((this.paquet.getCarte(this.indice)).getReponse().equals("") && (this.paquet.getCarte(this.indice)).getImageReponse().equals("") && (this.paquet.getCarte(this.indice)).getAudioReponse().equals("") )
+                || ((this.paquet.getCarte(this.indice)).getQuestion().equals("") && (this.paquet.getCarte(this.indice)).getImageQuestion().equals("")) && (this.paquet.getCarte(this.indice)).getAudioQuestion().equals("") ){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alerte");
             alert.setHeaderText("La carte n'a pas de question ou de réponse, elle va être supprimée");
             alert.setContentText("Êtes vous sur ?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if ( !(result.get() == ButtonType.CANCEL) ){
                 supprimerCarte();
             } else {
-                result.get();
+                new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
             }
         }
         new MajPaquetGlobalCommande(globalControleur, paquet).execute();
