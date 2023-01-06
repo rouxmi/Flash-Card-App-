@@ -19,6 +19,7 @@ import javafx.scene.layout.*;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class AccueilControleur extends SujetObserve implements Initializable, Observateur {
@@ -34,9 +35,16 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     private ToggleButton toggleBouton;
     @FXML
     private Button importPaquet;
+
+    @FXML
+    private RadioMenuItem nb;
+
+    @FXML
+    private RadioMenuItem avancee;
     private ArrayList<String> tagsselectionnes = new ArrayList<String>();
 
     private Boolean colormode = false;
+    private boolean nbmode;
 
 
     public AccueilControleur(ArrayList<PaquetDeCartes> paquets, GlobalControleur globalControleur){
@@ -57,6 +65,9 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     }
 
     private void creationsmenu() {
+        ToggleGroup group = new ToggleGroup();
+        nb.setToggleGroup(group);
+        avancee.setToggleGroup(group);
         ArrayList<String> tags = new ArrayList<>();
         for (PaquetDeCartes paquet : paquets) {
             if (paquet.getTag() != null && !paquet.getTag().equals("")) {
@@ -315,6 +326,12 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void triercouleur(){
         colormode = !colormode;
+        if(colormode) {
+            paquets.sort(Comparator.comparing(PaquetDeCartes::getEtatMoyenPaquet));
+        }
+        else{
+            paquets.sort(Comparator.comparing(PaquetDeCartes::getTitre));
+        }
         table.getChildren().clear();
         creationBoutons();
     }
@@ -340,5 +357,18 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
             return base + Integer.toString(i) + ".png";
         }
         return base + ".png";
+    }
+
+    @FXML
+    public void triernb(){
+        nbmode = !nbmode;
+        if(nbmode) {
+            paquets.sort(Comparator.comparing(PaquetDeCartes::taillePaquet));
+        }
+        else{
+            paquets.sort(Comparator.comparing(PaquetDeCartes::getTitre));
+        }
+        table.getChildren().clear();
+        creationBoutons();
     }
 }

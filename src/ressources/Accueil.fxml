@@ -30,7 +30,8 @@
              <Button  mnemonicParsing="false" onAction="#Partager" text="Partager" styleClass="boutonTool"/>
              <SplitMenuButton fx:id="tagMenu" mnemonicParsing="false" text="Trier" >
                  <items>
-                     <RadioMenuItem mnemonicParsing="false" text="Par Avancée" onAction="#triercouleur"/>
+                     <RadioMenuItem fx:id="avancee" mnemonicParsing="false" text="Par Avancée" onAction="#triercouleur"/>
+                     <RadioMenuItem fx:id="nb" mnemonicParsing="false" text="Par Nombre de Cartes" onAction="#triernb"/>
 
                  </items>
              </SplitMenuButton>
