@@ -108,13 +108,16 @@ public class Sauvegarde {
         return paquets;
     }
 
-    public static String choisirFichierImage() {
+    public static String choisirFichierImage() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image File");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
         if (selectedFile != null) {
+            if(!Files.exists(Path.of("src/ressources/images/"))){
+                Files.createDirectory(Path.of("src/ressources/images/"));
+            }
             File cheminCreation = new File("src/ressources/images/" + selectedFile.getName());
             String format = selectedFile.getName().substring(selectedFile.getName().lastIndexOf(".") + 1);
             BufferedImage bImage = null;
@@ -139,7 +142,9 @@ public class Sauvegarde {
 
         if (selectedFile != null) {
             File cheminCreation = new File("src/ressources/audios/" + selectedFile.getName());
-
+            if(!Files.exists(Path.of("src/ressources/audios/"))){
+                Files.createDirectory(Path.of("src/ressources/audios/"));
+            }
             InputStream input = new FileInputStream(selectedFile.getPath());
             OutputStream output = new FileOutputStream(cheminCreation);
             byte[] buffer = new byte[1024];
