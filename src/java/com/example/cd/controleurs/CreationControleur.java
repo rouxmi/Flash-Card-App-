@@ -178,13 +178,15 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     public void allerSuiv() throws Exception{
         int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
-        if(indiceSuiv<this.globalControleur.getPaquet().taillePaquet()) {
+        if (indiceSuiv < this.globalControleur.getPaquet().taillePaquet()) {
             if (isCarteValide()) {
                 new AllerCreationCommande(globalControleur, paquet, paquet.getCarte(indiceSuiv)).execute();
             }
         }
         else{
-            new AllerCreationCommande(globalControleur, paquet, null).execute();
+            if (isCarteValide()) {
+                new AllerCreationCommande(globalControleur, paquet, null).execute();
+            }
         }
     }
     @FXML
