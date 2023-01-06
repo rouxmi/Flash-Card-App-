@@ -4,7 +4,6 @@ import com.example.cd.controleurs.GlobalControleur;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,7 +18,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         mainStage = stage;
         GlobalControleur globalControleur = new GlobalControleur();
-        Image icon = new Image("/portugal.png");
+        Image icon = new Image("/utiles/portugal.png");
         stage.getIcons().add(icon);
         stage.show();
     }
