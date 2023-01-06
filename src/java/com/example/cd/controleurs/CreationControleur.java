@@ -194,7 +194,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     @FXML
     public void ajouterCarte() throws Exception{
         if (isCarteValide()) {
-            System.out.println("validee"+paquet.taillePaquet());
             new AjouterCarteCommande(globalControleur, globalControleur.getCarte(), question.getText(), reponse.getText()).execute();
         }
     }
