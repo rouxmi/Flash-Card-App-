@@ -210,73 +210,74 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             bonSensRotate.setDuration(javafx.util.Duration.millis(1));
             bonSensRotate.setByAngle(180);
             bonSensRotate.play();
-            if (toggleFlashCard.isSelected()) {
-                toggleFlashCard.setText(carteActuelle.getReponse());
-                if(!this.carteActuelle.getImageReponse().equals("")){
-                    Image image = new Image(carteActuelle.getImageReponse());
-                    ImageView icon = new ImageView(image);
-                    icon.setFitHeight(100);
-                    icon.setFitWidth(90);
-                    toggleFlashCard.setGraphic(icon);
-                    questionLoupeeBouton.setVisible(true);
-                    questionReussieBouton.setVisible(true);
-                } else if (taReponse.isVisible()) {
-                    if(compareReponses(taReponse.getText())){
-                        Alert gagne = new Alert(Alert.AlertType.INFORMATION);
-                        gagne.setTitle("Gagné ou perdu ?");
-                        gagne.setHeaderText(null);
-                        gagne.setContentText("Mot Correct");
-                        gagne.show();
-                        try {
-                            reussite();
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
+            bonSensRotate.setOnFinished(event2 -> {
+                if (toggleFlashCard.isSelected()) {
+                    toggleFlashCard.setText(carteActuelle.getReponse());
+                    if (!this.carteActuelle.getImageReponse().equals("")) {
+                        Image image = new Image(carteActuelle.getImageReponse());
+                        ImageView icon = new ImageView(image);
+                        icon.setFitHeight(100);
+                        icon.setFitWidth(90);
+                        toggleFlashCard.setGraphic(icon);
+                        questionLoupeeBouton.setVisible(true);
+                        questionReussieBouton.setVisible(true);
+                    } else if (taReponse.isVisible()) {
+                        if (compareReponses(taReponse.getText())) {
+                            Alert gagne = new Alert(Alert.AlertType.INFORMATION);
+                            gagne.setTitle("Gagné ou perdu ?");
+                            gagne.setHeaderText(null);
+                            gagne.setContentText("Mot Correct");
+                            gagne.show();
+                            try {
+                                reussite();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        } else {
+                            Alert perdu = new Alert(Alert.AlertType.INFORMATION);
+                            perdu.setTitle("Gagné ou perdu ?");
+                            perdu.setHeaderText(null);
+                            perdu.setContentText("Perdu ! Le mot correct était : " + this.carteActuelle.getReponse());
+                            perdu.show();
+                            try {
+                                echec();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                         }
+                    } else {
+                        toggleFlashCard.setGraphic(null);
+                        questionLoupeeBouton.setVisible(true);
+                        questionReussieBouton.setVisible(true);
+                        compteurLabel.setText("");
                     }
-                    else {
-                        Alert perdu = new Alert(Alert.AlertType.INFORMATION);
-                        perdu.setTitle("Gagné ou perdu ?");
-                        perdu.setHeaderText(null);
-                        perdu.setContentText("Perdu ! Le mot correct était : "+this.carteActuelle.getReponse());
-                        perdu.show();
-                        try {
-                            echec();
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                    if (!carteActuelle.getAudioReponse().equals("")) {
+                        ecouterSonBouton.setVisible(true);
+                    } else {
+                        ecouterSonBouton.setVisible(false);
                     }
-                } else {
-                    toggleFlashCard.setGraphic(null);
-                }
-                if ( !carteActuelle.getAudioReponse().equals("") ) {
-                    ecouterSonBouton.setVisible(true);
-                } else {
-                    ecouterSonBouton.setVisible(false);
-                }
-                questionLoupeeBouton.setVisible(true);
-                questionReussieBouton.setVisible(true);
-                compteurLabel.setText("");
 
-            } else {
-                toggleFlashCard.setText(carteActuelle.getQuestion());
-                if(!this.carteActuelle.getImageQuestion().equals("")){
-                    Image image = new Image(carteActuelle.getImageQuestion());
-                    ImageView icon = new ImageView(image);
-                    icon.setFitHeight(100);
-                    icon.setFitWidth(90);
-                    toggleFlashCard.setGraphic(icon);
-                }
-                else {
-                    toggleFlashCard.setGraphic(null);
-                }
-                if ( !carteActuelle.getAudioQuestion().equals("") ) {
-                    ecouterSonBouton.setVisible(true);
+
                 } else {
-                    ecouterSonBouton.setVisible(false);
+                    toggleFlashCard.setText(carteActuelle.getQuestion());
+                    if (!this.carteActuelle.getImageQuestion().equals("")) {
+                        Image image = new Image(carteActuelle.getImageQuestion());
+                        ImageView icon = new ImageView(image);
+                        icon.setFitHeight(100);
+                        icon.setFitWidth(90);
+                        toggleFlashCard.setGraphic(icon);
+                    } else {
+                        toggleFlashCard.setGraphic(null);
+                    }
+                    if (!carteActuelle.getAudioQuestion().equals("")) {
+                        ecouterSonBouton.setVisible(true);
+                    } else {
+                        ecouterSonBouton.setVisible(false);
+                    }
+                    questionLoupeeBouton.setVisible(false);
+                    questionReussieBouton.setVisible(false);
                 }
-                questionLoupeeBouton.setVisible(false);
-                questionReussieBouton.setVisible(false);
-            }
+            });
         });
     }
 
