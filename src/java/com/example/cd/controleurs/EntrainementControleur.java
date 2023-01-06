@@ -21,7 +21,6 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -81,13 +80,6 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         futurCartes.poll();
         this.typeEntrainement=typeEntrainement;
      // paquet.ajouterObservateur(this);
-    }
-
-    public void setTypeEntrainement(String entrainement){
-        this.typeEntrainement=entrainement;
-    }
-    public void setObservateur(Observateur observateur) {
-        this.observateur = observateur;
     }
 
     public void notifierObservateur() {
@@ -152,19 +144,19 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             });
         }
 
-        MajStats();
+        majStats();
 
         toggleFlashCard.setSelected(false);
         questionLoupeeBouton.setVisible(false);
         questionReussieBouton.setVisible(false);
     }
 
-    public void MajStats(){
-        MajStatsPaquet();
-        MajStatsCarte();
-        MajStatsEntrainement();
+    public void majStats(){
+        majStatsPaquet();
+        majStatsCarte();
+        majStatsEntrainement();
     }
-    public void MajStatsCarte(){
+    public void majStatsCarte(){
 
         List<String> nom = Arrays.asList("Non Vue","Debut Apprentissage","à Revoir","Fin Apprentissage","Acquise Parfaite");
         Label label = new Label("Statistiques de la carte:");
@@ -203,7 +195,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
 
     }
-    public void MajStatsPaquet(){
+    public void majStatsPaquet(){
         statsboxPaquet.getChildren().clear();
         Label label = new Label("Statistiques du Paquet:");
         label.getStyleClass().add("texte");
@@ -223,7 +215,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         statsboxPaquet.setPadding(new Insets(10,10,10,10));
 
     }
-    public void MajStatsEntrainement(){
+    public void majStatsEntrainement(){
         statsboxEntrainement.getChildren().clear();
         Label label = new Label("Statistiques de l'Entrainement:");
         label.getStyleClass().add("texte");
@@ -316,7 +308,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         return false;
     }
 
-
+    // FXML boutons fonctions
     @FXML
     public void quitterAppli() {
         (new QuitterApplicationCommande()).execute();
@@ -476,6 +468,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         }
         statsboxPaquet.setVisible(!statsboxPaquet.isVisible());
     }
+    @FXML
     public void showEntrainement(){
         if (statsboxEntrainement.isVisible()){
             entrainementVisibility.setText("    Stats entrainement");
