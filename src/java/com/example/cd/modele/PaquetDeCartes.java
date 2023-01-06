@@ -185,4 +185,12 @@ public class PaquetDeCartes extends SujetObserve {
         return tag.split("/");
     }
 
+    public int getEtatMoyenPaquet(){
+        int etatMoyen = 0;
+        for(Carte carte : cartes){
+            etatMoyen += carte.getStatsCarte().getEtatCarte().ordinal();
+        }
+        return Math.round(etatMoyen)/cartes.size();
+    }
+
 }
