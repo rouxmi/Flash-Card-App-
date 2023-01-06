@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 
 import java.io.IOException;
 import java.net.URL;
@@ -74,6 +75,8 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
 
     @Override
     public void reagir(){
+        AudioClip player = new AudioClip(getClass().getResource("/utiles/select.wav").toExternalForm());
+        player.play();
         for (Carte c : paquet.getCartes()) {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {

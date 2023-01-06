@@ -1,28 +1,61 @@
+
 .reussite{
-    -fx-background-color: green;
+    -fx-background-color: #006400;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-border-style: solid outside;
-    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
 
 }
 
 .echec{
-    -fx-background-color: red;
+    -fx-background-color: #FF0000;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-border-style: solid outside;
-    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
 
 }
 
 .titre{
     -fx-font-weight: bold;
-    -fx-text-fill: linear-gradient(to right, #0dc500, #c71313);
+    -fx-text-fill: linear-gradient(to right, #006400,#006400, gold, #FF0000, #FF0000);
 }
 
 .texte {
-    -fx-text-fill: linear-gradient(to right, #0dc500, #c71313);
+    -fx-text-fill: linear-gradient(to right, #006400,#006400, gold,#FF0000, #FF0000);
+
 }
+.button1 {
+    -fx-background-color: #006400;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
+}
+
+.toggle-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #FF0000;
+    -fx-border-radius: 20px;
+    -fx-text-fill: #FF0000;
+    -fx-font-weight: bold;
+}
+
+.toggle-button:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: #006400;
+    -fx-border-radius: 20px;
+    -fx-text-fill: #006400;
+    -fx-font-weight: bold;
+}
+
