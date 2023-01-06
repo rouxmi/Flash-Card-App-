@@ -47,11 +47,11 @@
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" styleClass="boutonTool"/>
                   <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" styleClass="boutonTool"/>
                   <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" styleClass="boutonTool"/>
-                  <SplitMenuButton mnemonicParsing="false" text="Voir les statistiques" styleClass="boutonTool">
+                  <SplitMenuButton mnemonicParsing="false" text="Voir les statistiques" styleClass="split-menu-button">
                      <items>
-                        <MenuItem fx:id="paquetVisibility" mnemonicParsing="false" onAction="#showPaquet" text="✔ Statistiques paquet" />
-                        <MenuItem fx:id="carteVisibility" mnemonicParsing="false" onAction="#showcarte" text="✔ Statistiques carte" />
-                        <MenuItem fx:id="entrainementVisibility" mnemonicParsing="false" onAction="#showEntrainement" text="✔ Statistiques entrainement" />
+                        <MenuItem fx:id="paquetVisibility" mnemonicParsing="false" onAction="#showPaquet" text="✔ Statistiques paquet" styleClass="split-menu-button-arrow"/>
+                        <MenuItem fx:id="carteVisibility" mnemonicParsing="false" onAction="#showcarte" text="✔ Statistiques carte" styleClass="split-menu-button-arrow" />
+                        <MenuItem fx:id="entrainementVisibility" mnemonicParsing="false" onAction="#showEntrainement" text="✔ Statistiques entrainement" styleClass="split-menu-button-arrow"/>
                      </items>
                   </SplitMenuButton>
                </items>
