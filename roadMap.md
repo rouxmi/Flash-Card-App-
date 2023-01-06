@@ -116,12 +116,13 @@
 
 ### Matin
 
-| Status | Objectifs                                                                                         | Responsable                                                                      |
-| :----: |---------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| Status | Objectifs                                                                                                 | Responsable                                                                      |
+| :----: |-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 |   ❌   | [Remmettre pattern Command](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) |    |
-|   ❌   | [Copier/Coller](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)     |      |
-|   ❌   | [Choisir Style Carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) |      |
-|   ❌   | [Style Application](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) |      |
+|   ❌   | [Copier/Coller](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)             |      |
+|   ❌   | [Choisir Style Carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)       |      |
+|   ❌   | [Style Application](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)         |      |
+|   ❌   | [Curseur timer](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)             |      |
 
 
 ### Après-midi
