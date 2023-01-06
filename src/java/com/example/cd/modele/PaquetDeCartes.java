@@ -8,6 +8,7 @@ import com.example.cd.statistiques.EtatCarte;
 import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PaquetDeCartes extends SujetObserve {
 
@@ -157,6 +158,14 @@ public class PaquetDeCartes extends SujetObserve {
         return -1;
     }
 
-
+    public ArrayList<Carte> getCartesSansMedia(){
+        ArrayList<Carte> cartesSansMedia = new ArrayList<>();
+        for(Carte carte : cartes){
+            if(Objects.equals(carte.getAudioQuestion(), "") && Objects.equals(carte.getAudioReponse(), "") && Objects.equals(carte.getImageQuestion(), "") && Objects.equals(carte.getImageReponse(), "")){
+                cartesSansMedia.add(carte);
+            }
+        }
+        return cartesSansMedia;
+    }
 
 }
