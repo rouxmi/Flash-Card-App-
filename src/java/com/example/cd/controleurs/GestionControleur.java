@@ -38,7 +38,6 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     private GridPane table;
-
     @FXML
     private VBox PieChartBox;
     @FXML
@@ -56,6 +55,16 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         this.paquet = paquet;
         this.globalControleur = globalControleur;
         paquet.ajouterObservateur(this);
+    }
+
+    @Override
+    public void reagir() {}
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        affichageCartes();
+        InitialisationCamenbert();
+        titre.setText(globalControleur.getPaquet().getTitre());
+        description.setText(globalControleur.getPaquet().getDescription());
     }
 
     private void InitialisationCamenbert() {
@@ -80,128 +89,26 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
         PieChartBox.getChildren().add(pieChart);
     }
-
-    @Override
-    public void reagir() {
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        affichageCartes();
-        InitialisationCamenbert();
-        titre.setText(globalControleur.getPaquet().getTitre());
-        description.setText(globalControleur.getPaquet().getDescription());
-    }
-
-    @FXML
-    public void versCreation() throws Exception{
-        majPaquetGlobalControleur(paquet);
-        paquet.ajouterCarte(new Carte());
-        majCarteGlobalControleur(paquet.getCarte(paquet.getCartes().size()-1));
-        globalControleur.changeSceneVersCreation();
-    }
     public void visiterCarte()throws Exception{
         majCarteGlobalControleur(carteActuelle);
         globalControleur.changeSceneVersCreation();
     }
-    @FXML
-    public void handlemodifTitre() throws Exception{
-        dialogBoxNouveauTitre();
-        globalControleur.changeSceneVersGestion();
-    }
-    @FXML
-    public void handlemodifDescription() throws Exception{
-        dialogBoxNouvelleDescription();
-        globalControleur.changeSceneVersGestion();
-    }
-    public void dialogBoxNouveauTitre() {
+    /*public void dialogBoxNouveauTitre() {
         TextInputDialog infoTitre = new TextInputDialog();
         infoTitre.setTitle("Modification Titre");
         infoTitre.setHeaderText("Renseigne ton nouveau titre");
         infoTitre.showAndWait();
         paquet.setTitre(infoTitre.getEditor().getText());
     }
-    public void dialogBoxNouvelleDescription(){
+
+     */
+    /*public void dialogBoxNouvelleDescription(){
         TextInputDialog infoDescription = new TextInputDialog();
         infoDescription.setTitle("Modification Description");
         infoDescription.setHeaderText("Renseigne ta nouvelle description");
         infoDescription.showAndWait();
         paquet.setDescription(infoDescription.getEditor().getText());
-    }
-
-    @FXML
-    public void versEntrainement() throws Exception {
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersEntrainement("entrainement");
-    }
-    @FXML
-    public void versRevision() throws Exception {
-        //majPaquetGlobalControleur(paquet);
-        Alert choixTemps = new Alert(Alert.AlertType.INFORMATION);
-        choixTemps.setTitle("Choisit la durée du timer");
-        choixTemps.setHeaderText("A l'aide du curseur définit ton temps de réponse ");
-        Slider curseur = new Slider(3,30,5);
-        //curseur.setMin(3);
-        //curseur.setMax(30);
-        //curseur.setValue(10);
-        curseur.setMinorTickCount(3);
-        curseur.setMajorTickUnit(5);
-        curseur.setShowTickMarks(true);
-        curseur.setShowTickLabels(true);
-        curseur.setSnapToTicks(true);
-        curseur.setBlockIncrement(1);
-        choixTemps.getDialogPane().setContent(curseur);
-        curseur.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                globalControleur.getPaquet().setDecompte(t1.intValue());
-            }
-        });
-        choixTemps.showAndWait();
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersEntrainement("revision");
-    }
-    @FXML
-    public void versEcriture() throws Exception {
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersEntrainement("ecriture");
-    }
-
-    @FXML
-    public void miniJeu() throws Exception {
-        if(paquet.getCartesSansMedia().size()>=8){
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersMiniJeu();
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Il n'y a pas assez de cartes sans média");
-            alert.setContentText("Il faut au moins 8 cartes sans média pour jouer au mini jeu");
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    public void quitterAppli() {
-                new QuitterApplicationCommande().execute();
-    }
-    @FXML
-    public void allerAccueil() throws Exception {
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersAccueil();
-    }
-    @FXML
-    public void supprimerPaquet() throws Exception {
-        globalControleur.supprimerPaquet(paquet);
-        globalControleur.sauvegarder();
-        allerAccueil();
-    }
-
-    @FXML
-    public void exporterPaquet() throws IOException {
-        globalControleur.sauvegarder1paquet();
-    }
+    }*/
     public void affichageCartes() {
         if (this.paquet !=null) {
             int nbBoutons = paquet.taillePaquet();
@@ -258,17 +165,72 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
 
         }
     }
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
+        globalControleur.sauvegarder();
+        this.globalControleur.setPaquet(paquetActuel);
+    }
+    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
+        globalControleur.sauvegarder();
+        this.globalControleur.setCarte(carteActuelle);
+    }
 
+    @FXML
+    public void versEntrainement() throws Exception {
+        new AllerEntrainementCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void versRevision() throws Exception {
+        new AllerRevisionCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void versEcriture() throws Exception {
+        new AllerEcritureCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void miniJeu() throws Exception {
+        new AllerMiniJeuCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void quitterAppli() {
+        new QuitterApplicationCommande().execute();
+    }
+    @FXML
+    public void allerAccueil() throws Exception {
+        new AllerAccueilCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void supprimerPaquet() throws Exception {
+        new SupprimerPaquetCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void exporterPaquet() throws IOException {
+        globalControleur.sauvegarder1paquet();
+    }
+    @FXML
+    public void versCreation() throws Exception{
+        new AllerCreationCommande(globalControleur, paquet).execute();
+    }
+
+    @FXML
+    public void handlemodifTitre() throws Exception{
+        new ModifTitreCommande(globalControleur, paquet).execute();
+//        dialogBoxNouveauTitre();
+  //      globalControleur.changeSceneVersGestion();
+    }
+    @FXML
+    public void handlemodifDescription() throws Exception{
+        new ModifDescriptionCommande(globalControleur, paquet).execute();
+//        dialogBoxNouvelleDescription();
+  //      globalControleur.changeSceneVersGestion();
+    }
     @FXML
     public void random(){
         paquet.setApprentissageStrategie(new RandomApprentissage());
     }
-
     @FXML
     public void classique(){
         paquet.setApprentissageStrategie(new ClassiqueApprentissage());
     }
-
     @FXML
     public void avancement(){
         Dialog<String> dialog = new Dialog<>();
@@ -318,20 +280,9 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         double acquiseParfaite = ((Slider)((HBox)vBox.getChildren().get(4)).getChildren().get(1)).getValue();
         paquet.setApprentissageStrategie(new FreeApprentissage(nonVue, debutApprentissage, aRevoir, finApprentissage, acquiseParfaite));
     }
-
     @FXML
     public void master(){
         paquet.setApprentissageStrategie(new MasterStrategie());
-    }
-
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setPaquet(paquetActuel);
-    }
-
-    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setCarte(carteActuelle);
     }
 
 }

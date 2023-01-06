@@ -156,7 +156,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             }
         }
     }
-
     @FXML
     public void allerSuiv() throws Exception{
         int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
@@ -205,6 +204,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             Optional<ButtonType> result = alert.showAndWait();
             if ( result.get() == ButtonType.OK){
                 new SupprimerCarteCommande(globalControleur).execute();
+                carteActuelle = paquet.getCarte(paquet.taillePaquet()-1);
                 return true;
             } else {
                 return false;
