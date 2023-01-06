@@ -187,7 +187,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         new ModifTitreCommande(globalControleur, paquet).execute();
     }
     @FXML
-    public void Description() throws Exception{
+    public void modifDescription() throws Exception{
         new ModifDescriptionCommande(globalControleur, paquet).execute();
     }
     // TODO : try to strategy pattern this

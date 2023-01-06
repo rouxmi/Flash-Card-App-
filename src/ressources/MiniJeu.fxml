@@ -12,9 +12,9 @@
         <top>
             <ToolBar prefHeight="34.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                 <items>
-                    <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
-                    <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" />
-                    <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
+                    <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" styleClass="boutonTool"/>
+                    <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" styleClass="boutonTool" />
+                    <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" styleClass="boutonTool"/>
                 </items>
             </ToolBar>
         </top>

@@ -22,12 +22,12 @@
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" styleClass="boutonTool"/>
                      <Button fx:id="supprimerPaquetBouton" mnemonicParsing="false" onAction="#supprimerPaquet" text="Supprimer le paquet" styleClass="boutonTool" />
                      <Button fx:id="exportPaquet" mnemonicParsing="false" onAction="#exporterPaquet" text="Exporter" styleClass="boutonTool"/>
-                  <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage" styleClass="boutonTool">
+                  <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage" styleClass="split-menu-button">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#random" text="Aléatoire" />
-                        <MenuItem mnemonicParsing="false" onAction="#classique" text="Classique" />
-                        <MenuItem mnemonicParsing="false" onAction="#avancement" text="Libre" />
-                        <MenuItem mnemonicParsing="false" onAction="#master" text="Master" />
+                        <MenuItem mnemonicParsing="false" onAction="#random" text="Aléatoire" styleClass="split-menu-button-arrow" />
+                        <MenuItem mnemonicParsing="false" onAction="#classique" text="Classique" styleClass="split-menu-button-arrow" />
+                        <MenuItem mnemonicParsing="false" onAction="#avancement" text="Libre" styleClass="split-menu-button-arrow"/>
+                        <MenuItem mnemonicParsing="false" onAction="#master" text="Master" styleClass="split-menu-button-arrow"/>
                      </items>
                   </SplitMenuButton>
                   <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" styleClass="boutonTool"/>
