@@ -151,6 +151,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
                 randomDejaTombes.add(random);
                 ToggleButton Bouton = new ToggleButton();
                 Bouton.setId(""+random);
+                Bouton.getStyleClass().add("toggle-button1");
                 if(random-8 >= 0){
                     Bouton.setText(listeCartes.get(random%8).getQuestion());
                     Bouton.setToggleGroup(groupQ);
