@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,17 +67,8 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             this.indice=globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte());
         }
         this.globalControleur=globalControleur;
-        paquet.ajouterObservateur(this);
     }
 
-
-    public int getIndice() {
-        return indice;
-    }
-
-    public void setIndice(int indice) {
-        this.indice = indice;
-    }
 
     @Override
     public void reagir() {
@@ -127,66 +119,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }
     }
 
-    @FXML
-    public void quitterAppli() {
-        (new QuitterApplicationCommande()).execute();
-    }
-    @FXML
-    public void allerAccueil() throws Exception {
-        new AllerAccueilCommande(globalControleur, paquet).execute();
-    }
-    @FXML
-    public void voirPaquet() throws Exception {
-        if (isCarteValide()) {
-            majPaquetGlobalControleur(paquet);
-            globalControleur.changeSceneVersGestion();
-        }
-    }
-    @FXML
-    public void supprimerCarte() throws Exception {
-        new SupprimerCarteCommande(globalControleur).execute();
-    }
-    @FXML
-    public void allerPrec() throws Exception{
-        int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
-        if (indicePrec>=0) {
-            if (isCarteValide()) {
-                majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indicePrec));
-                globalControleur.changeSceneVersCreation();
-            }
-        }
-    }
-    @FXML
-    public void allerSuiv() throws Exception{
-        int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
-        if(indiceSuiv<this.globalControleur.getPaquet().taillePaquet()) {
-            if (isCarteValide()) {
-                majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indiceSuiv));
-                majPaquetGlobalControleur(paquet);
-                globalControleur.changeSceneVersCreation();
-            }
-        }
-        else{
-            versCreation();
-        }
-    }
-    @FXML
-    public void versCreation() throws Exception{
-        paquet.ajouterCarte(new Carte());
-        carteActuelle = paquet.getCarte(paquet.taillePaquet()-1);
-        if (isCarteValide()) {
-            new MajPaquetGlobalCommande(globalControleur, paquet).execute();
-            new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
-            globalControleur.changeSceneVersCreation();
-        }
-    }
-    @FXML
-    public void validerCarte() throws Exception {
-        if (isCarteValide()){
-            new ValiderCarteCommande(globalControleur,carteActuelle).execute();
-        }
-    }
-
     public boolean isCarteValide() throws Exception {
         try {
             this.paquet.getCarte(this.indice).setQuestion(question.getText());
@@ -215,15 +147,67 @@ public class CreationControleur extends SujetObserve implements Initializable, O
         }
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setPaquet(paquetActuel);
+    // FXML Bouton functions
+    @FXML
+    public void quitterAppli() {
+        (new QuitterApplicationCommande()).execute();
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setCarte(carteActuelle);
+    @FXML
+    public void allerAccueil() throws Exception {
+        new AllerAccueilCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void supprimerCarte() throws Exception {
+        new SupprimerCarteCommande(globalControleur).execute();
+    }
+    @FXML
+    public void allerPrec() throws Exception{
+        int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
+        if (indicePrec>=0) {
+            if (isCarteValide()) {
+                new AllerCreationCommande(globalControleur, paquet, paquet.getCarte(indicePrec)).execute();
+            }
+        }
+    }
+    @FXML
+    public void voirPaquet() throws Exception {
+        if (isCarteValide()) {
+            new AllerGestionCommande(globalControleur, paquet).execute();
+        }
+    }
+    @FXML
+    public void allerSuiv() throws Exception{
+        int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
+        if(indiceSuiv<this.globalControleur.getPaquet().taillePaquet()) {
+            if (isCarteValide()) {
+                new AllerCreationCommande(globalControleur, paquet, paquet.getCarte(indiceSuiv)).execute();
+            }
+        }
+        else{
+            new AllerCreationCommande(globalControleur, paquet, null).execute();
+        }
+    }
+    @FXML
+    public void copierCarte() throws Exception {
+        new CopierCarteCommande(globalControleur).execute();
+    }
+    @FXML
+    public void ajouterCarte() throws Exception{
+        if (isCarteValide()) {
+            System.out.println("validee"+paquet.taillePaquet());
+            new AjouterCarteCommande(globalControleur, globalControleur.getCarte(), question.getText(), reponse.getText()).execute();
+        }
+    }
+    @FXML
+    public void ecouterQuestion() throws Exception {
+        new JouerSonCommande(globalControleur, "question").execute();
+    }
+    @FXML
+    public void ecouterReponse() throws Exception {
+        new JouerSonCommande(globalControleur, "reponse").execute();
     }
 
+    // try to command pattern this
     @FXML
     public void ajouterImageQuestion() throws Exception {
         globalControleur.sauvegarderImageQuestion();
@@ -243,40 +227,5 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     public void ajouterAudioReponse() throws Exception {
         globalControleur.sauvegarderAudioReponse();
         reagir();
-    }
-    @FXML
-    public void ecouterQuestion() throws Exception {
-        new JouerSonCommande(globalControleur, "question",globalControleur.getCarte()).execute();
-    }
-    @FXML
-    public void ecouterReponse() throws Exception {
-        new JouerSonCommande(globalControleur, "reponse",globalControleur.getCarte()).execute();
-    }
-
-    @FXML
-    public void copierCarte() throws IOException {
-        Alert choixPaquet = new Alert(Alert.AlertType.INFORMATION);
-        choixPaquet.setTitle("Vers quels paquets copier ?");
-        choixPaquet.setHeaderText(null);
-        ObservableList<String> paquets = FXCollections.observableArrayList();
-        for(int i=0;i<globalControleur.getPaquets().size();i++){
-            paquets.add(globalControleur.getPaquets().get(i).getTitre());
-        }
-        ListView<String> listView= new ListView<>(paquets);
-        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                for(int i=0; i<paquets.size();i++){
-                    if(t1.equals(paquets.get(i))){
-                        Carte carteAColler = globalControleur.getCarte();
-                        carteAColler.setStatsCarte(new StatsCarte());
-                        globalControleur.getPaquets().get(i).ajouterCarte(carteAColler);
-                    }
-                }
-            }
-        });
-        choixPaquet.getDialogPane().setContent(listView);
-        choixPaquet.showAndWait();
     }
 }
