@@ -54,64 +54,6 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         creationBoutons();
     }
 
-    @FXML
-    public void ajouterNouveauPaquet() throws Exception {
-        paquets.add(new PaquetDeCartes());
-        paquetActuel = paquets.get(paquets.size()-1);
-        majPaquetGlobalControleur(paquetActuel);
-        dialogBoxNouveauPaquet();
-        if ( !paquetActuel.getTitre().equals("") ) {
-            dialogBoxNouvelleDescription();
-            globalControleur.changeSceneVersGestion();
-        } else {
-            globalControleur.supprimerPaquet(paquetActuel);
-            majPaquetGlobalControleur(null);
-        }
-    }
-
-    public void dialogBoxNouveauPaquet() {
-        TextInputDialog infoTitre = new TextInputDialog();
-        infoTitre.setTitle("Création nouveau paquet");
-        infoTitre.setHeaderText("Renseigne le titre");
-        infoTitre.showAndWait();
-        paquetActuel.setTitre(infoTitre.getEditor().getText());
-    }
-    public void dialogBoxNouvelleDescription(){
-        TextInputDialog infoDescription = new TextInputDialog();
-        infoDescription.setTitle("Création nouveau paquet");
-        infoDescription.setHeaderText("Renseigne la description");
-        infoDescription.showAndWait();
-        paquetActuel.setDescription(infoDescription.getEditor().getText());
-    }
-
-    @FXML
-    public void majToggle() {
-        // TODO : verifier que ca part pas quand on remet la toolbar
-        if ( toggleBouton.isSelected() ) {
-            toggleBouton.setText("Entrainement");
-        } else {
-            toggleBouton.setText("Gestion");
-        }
-    }
-    @FXML
-    public void quitterAppli() {
-        (new quitterApplicationCommande()).execute();
-    }
-
-    @FXML
-    public void visiterPaquet() throws Exception{
-        majPaquetGlobalControleur(paquetActuel);
-        if ( toggleBouton.isSelected() ) {
-            globalControleur.changeSceneVersEntrainement("entrainement");
-        } else {
-            globalControleur.changeSceneVersGestion();
-        }
-    }
-    @FXML
-    public void importerPaquet() throws Exception {
-        (new importerCommande(globalControleur, paquets)).execute();
-    }
-
     public void creationBoutons() {
         int nbBoutons = paquets.size()+1;
         int nbLignes = 0;
@@ -201,6 +143,52 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         table.setHgap(20);
         table.setVgap(20);
     }
+    public PaquetDeCartes getPaquetActuel() {
+        return paquetActuel;
+    }
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+        globalControleur.sauvegarder();
+        this.globalControleur.setPaquet(paquetActuel);
+    }
+    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+        globalControleur.sauvegarder();
+        this.globalControleur.setCarte(carteActuelle);
+    }
+
+
+    // FXML bouton fonctions
+    @FXML
+    public void ajouterNouveauPaquet() throws Exception {
+        (new ajouterPaquetCommande(globalControleur)).execute();
+    }
+
+    @FXML
+    public void majToggle() {
+        if ( toggleBouton.isSelected() ) {
+            toggleBouton.setText("Entrainement");
+        } else {
+            toggleBouton.setText("Gestion");
+        }
+    }
+    @FXML
+    public void quitterAppli() {
+        (new quitterApplicationCommande()).execute();
+    }
+
+    @FXML
+    public void visiterPaquet() throws Exception{
+        majPaquetGlobalControleur(paquetActuel);
+        if ( toggleBouton.isSelected() ) {
+            globalControleur.changeSceneVersEntrainement("entrainement");
+        } else {
+            globalControleur.changeSceneVersGestion();
+        }
+    }
+    @FXML
+    public void importerPaquet() throws Exception {
+        (new importerCommande(globalControleur, paquets)).execute();
+    }
+
 
     @FXML
     public void random(){
@@ -275,16 +263,4 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
         }
     }
 
-    public PaquetDeCartes getPaquetActuel() {
-        return paquetActuel;
-    }
-
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
-        globalControleur.sauvegarder();
-        this.globalControleur.setPaquet(paquetActuel);
-    }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
-        globalControleur.sauvegarder();
-        this.globalControleur.setCarte(carteActuelle);
-    }
 }
