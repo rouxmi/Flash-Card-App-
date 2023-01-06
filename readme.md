@@ -52,7 +52,7 @@ L'application permet également :
 
 • de partager en ligne des paquets de cartes dans un drive google en ligne. ;
 
-• de intégrer des données multimédia à vos cartes (images, sons). Pour les données sons, il faut recharger la charge afin que le son puisse être lu;
+• de intégrer des données multimédia à vos cartes (images (.png,.jpeg,.gif), sons (.wav)). Pour les données sons, il faut recharger la charge afin que le son puisse être lu;
 
 • d'importer les piles de cartes provenant d'Anki avec le format .apkg ;
 
