@@ -6,4 +6,5 @@ out/
 /src/ressources/META-INF/MANIFEST.MF
 /src/ressources/images/*
 /src/ressources/audios/*
+/src/ressources/medias/*
 /src/ressources/medias.zip
