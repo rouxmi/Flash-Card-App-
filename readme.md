@@ -27,7 +27,7 @@ $ java -jar out/artifacts/codingweek_jar/codingweek.jar
 
 L’application permet :
 
-• de créer une carte, d’éditer son contenu (face question, face réponse), de supprimer une carte. Chaque carte est associée à ses statistiques (nombre de fois où la carte a été vue, nombre de fois où la carte a été correctement répondu, nombre de fois où la carte a été mal répondu).
+• de créer une carte, d’éditer son contenu (face question, face réponse), de supprimer une carte.
 
 
 • de créer un paquet de carte (possedant un titre, une description, et des étiquettes), de modifier un paquet, de supprimer un paquet ;
@@ -54,11 +54,10 @@ L'application permet également de :
 
 • intégrer des données multimédia à vos cartes (images, sons) ;
 
-• importer les piles de cartes provenant d’une autre application (par exemple le format .apkg d’Anki) ;
+• importer les piles de cartes provenant d'Anki avec le format .apkg ;
 
-• proposer une meilleure organisation des cartes et des piles de cartes (en partageant des cartes entre différentes
-piles, en ajoutant des étiquettes (tags) sur les cartes et les piles, en organisant les piles par leçons) ;
+• proposer une organisation des paquets de cartes par avancement dans l'apprentissage.
 
-• modifier le style de présentation de cartes ;
+. copier/coller des cartes entre paquets.
 
 • proposer un mode où l’apprenant doit saisir la réponse.
