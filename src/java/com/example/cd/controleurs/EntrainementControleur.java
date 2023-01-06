@@ -324,9 +324,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     @FXML
     public void ecouterSon() throws Exception {
         if ( toggleFlashCard.isSelected() ) {
-            new JouerSonCommande(globalControleur, "reponse",carteActuelle).execute();
+            new JouerSonCommande(globalControleur, carteActuelle, "reponse").execute();
         } else if ( !toggleFlashCard.isSelected() ) {
-            new JouerSonCommande(globalControleur, "question",carteActuelle).execute();
+            new JouerSonCommande(globalControleur, carteActuelle, "question").execute();
         }
     }
     // too complicated to put in command pattern
@@ -356,15 +356,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             bonSensRotate.setOnFinished(event2 -> {
                 if (toggleFlashCard.isSelected()) {
                     toggleFlashCard.setText(carteActuelle.getReponse());
-                    if (!this.carteActuelle.getImageReponse().equals("")) {
-                        Image image = new Image(carteActuelle.getImageReponse());
-                        ImageView icon = new ImageView(image);
-                        icon.setFitHeight(100);
-                        icon.setFitWidth(90);
-                        toggleFlashCard.setGraphic(icon);
-                        questionLoupeeBouton.setVisible(true);
-                        questionReussieBouton.setVisible(true);
-                    } else if (taReponse.isVisible()) {
+                    if (taReponse.isVisible()) {
                         if (compareReponses(taReponse.getText())) {
                             Alert gagne = new Alert(Alert.AlertType.INFORMATION);
                             gagne.setTitle("Gagné ou perdu ?");
@@ -394,11 +386,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
                         questionReussieBouton.setVisible(true);
                         compteurLabel.setText("");
                     }
-                    if (!carteActuelle.getAudioReponse().equals("")) {
-                        ecouterSonBouton.setVisible(true);
-                    } else {
-                        ecouterSonBouton.setVisible(false);
-                    }
+
 
 
                 } else {
