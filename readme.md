@@ -48,16 +48,16 @@ laisser un temps de réflexion(choisi par l'utilisateur dans le mode révision e
 
 ### Les extensions implémentées
 
-L'application permet également de :
+L'application permet également :
 
-• partager en ligne des paquets de cartes dans un drive google en ligne. ;
+• de partager en ligne des paquets de cartes dans un drive google en ligne. ;
 
-• intégrer des données multimédia à vos cartes (images, sons) ;
+• de intégrer des données multimédia à vos cartes (images, sons) ;
 
-• importer les piles de cartes provenant d'Anki avec le format .apkg ;
+• d'importer les piles de cartes provenant d'Anki avec le format .apkg ;
 
-• proposer une organisation des paquets de cartes par avancement dans l'apprentissage.
+• de proposer une organisation des paquets de cartes par avancement dans l'apprentissage.
 
-. copier/coller des cartes entre paquets.
+. de copier/coller des cartes entre paquets.
 
-• proposer un mode où l’apprenant doit saisir la réponse.
+• de proposer un mode où l’apprenant doit saisir la réponse.
