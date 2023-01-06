@@ -2,7 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
-import com.example.cd.commande.quitterApplicationCommande;
+import com.example.cd.commande.QuitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.statistiques.EtatCarte;
@@ -174,7 +174,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @FXML
     public void quitterAppli() {
-        (new quitterApplicationCommande()).execute();
+        (new QuitterApplicationCommande()).execute();
     }
     @FXML
     public void allerAccueil() throws Exception {

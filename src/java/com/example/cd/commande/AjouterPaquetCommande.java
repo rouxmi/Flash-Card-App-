@@ -4,11 +4,11 @@ import com.example.cd.controleurs.GlobalControleur;
 import com.example.cd.modele.PaquetDeCartes;
 import javafx.scene.control.TextInputDialog;
 
-public class ajouterPaquetCommande extends Commande {
+public class AjouterPaquetCommande extends Commande {
 
     private GlobalControleur globalControleur;
 
-    public ajouterPaquetCommande(GlobalControleur globalControleur) {
+    public AjouterPaquetCommande(GlobalControleur globalControleur) {
         super(globalControleur.getPaquets(), null, null);
         this.globalControleur = globalControleur;
     }
@@ -17,7 +17,7 @@ public class ajouterPaquetCommande extends Commande {
     public void execute() throws Exception {
         paquets.add(new PaquetDeCartes());
         paquetDeCartes = paquets.get(paquets.size()-1);
-        new majPaquetGlobalCommande(this.globalControleur, paquetDeCartes).execute();
+        new MajPaquetGlobalCommande(this.globalControleur, paquetDeCartes).execute();
      //   majPaquetGlobalControleur(paquetActuel);
         dialogBoxNouveauPaquet();
         if ( !paquetDeCartes.getTitre().equals("") ) {
@@ -25,7 +25,7 @@ public class ajouterPaquetCommande extends Commande {
             globalControleur.changeSceneVersGestion();
         } else {
             globalControleur.supprimerPaquet(paquetDeCartes);
-            new majPaquetGlobalCommande(this.globalControleur, null).execute();
+            new MajPaquetGlobalCommande(this.globalControleur, null).execute();
         }
     }
 

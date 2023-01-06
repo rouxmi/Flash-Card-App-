@@ -2,20 +2,15 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
-import com.example.cd.commande.quitterApplicationCommande;
+import com.example.cd.commande.QuitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.modele.apprentissage.FreeApprentissage;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,7 +52,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
 
     @FXML
     public void quitterAppli() {
-        (new quitterApplicationCommande()).execute();
+        (new QuitterApplicationCommande()).execute();
     }
 
     @FXML

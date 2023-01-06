@@ -159,7 +159,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     // FXML bouton fonctions
     @FXML
     public void ajouterNouveauPaquet() throws Exception {
-        (new ajouterPaquetCommande(globalControleur)).execute();
+        (new AjouterPaquetCommande(globalControleur)).execute();
     }
     @FXML
     public void majToggle() {
@@ -172,15 +172,15 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void quitterAppli() {
-        (new quitterApplicationCommande()).execute();
+        (new QuitterApplicationCommande()).execute();
     }
     @FXML
     public void visiterPaquet() throws Exception{
-        (new visiterPaquetCommande(globalControleur, this.paquetActuel, toggleBouton.isSelected())).execute();
+        (new VisiterPaquetCommande(globalControleur, this.paquetActuel, toggleBouton.isSelected())).execute();
     }
     @FXML
     public void importerPaquet() throws Exception {
-        (new importerCommande(globalControleur, paquets)).execute();
+        (new ImporterCommande(globalControleur, paquets)).execute();
     }
 
     // TODO : try to strategy pattern this
