@@ -14,7 +14,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class Sauvegarde {
@@ -69,7 +72,7 @@ public class Sauvegarde {
         for(int i=0; i<paquets.size();i++){
             for(int j=0; j<paquets.get(i).taillePaquet();j++){
                 if(!paquets.get(i).getCarte(j).getImageQuestion().equals("")){
-                    File imageActuelle = new File("src/ressources/images"+paquets.get(i).getCarte(j).getImageQuestion());
+                    File imageActuelle = new File("src/ressources/medias/"+paquets.get(i).getCarte(j).getImageQuestion());
                     if(!fichiersDejaAdd.contains(paquets.get(i).getCarte(j).getImageQuestion())){
                         fichiersDejaAdd.add(paquets.get(i).getCarte(j).getImageQuestion());
                         ZipEntry zipCarte = new ZipEntry(imageActuelle.getName());
@@ -83,7 +86,7 @@ public class Sauvegarde {
                     }
 
                 } else if (!paquets.get(i).getCarte(j).getAudioQuestion().equals("")) {
-                    File audioActuel = new File("src/ressources/audios"+paquets.get(i).getCarte(j).getAudioQuestion());
+                    File audioActuel = new File("src/ressources/medias/"+paquets.get(i).getCarte(j).getAudioQuestion());
                     if(!fichiersDejaAdd.contains(paquets.get(i).getCarte(j).getAudioQuestion())){
                         fichiersDejaAdd.add(paquets.get(i).getCarte(j).getAudioQuestion());
                         ZipEntry zipCarte = new ZipEntry(audioActuel.getName());
@@ -101,10 +104,32 @@ public class Sauvegarde {
         }
         zos.close();
     }
- // TODO charger tous les medias du point zip à l'ouverture du fichier
     public static void deZipMediaZip() throws Exception{
-        File zipFile = new File("src/ressources/medias.zip");
-        FileInputStream fis= new FileInputStream(zipFile);
+        ZipFile zipFile = new ZipFile("src/ressources/medias.zip");
+        File tempDir = new File("src/ressources/medias/");
+        if(!Files.exists(tempDir.toPath())) {
+            tempDir.mkdirs();
+        }
+        Enumeration<? extends ZipEntry> entries = zipFile.entries();
+        while (entries.hasMoreElements()) {
+            ZipEntry entry = entries.nextElement();
+            File entryDestination = new File(tempDir, entry.getName());
+            if (entry.isDirectory()) {
+                entryDestination.mkdirs();
+            } else {
+                entryDestination.getParentFile().mkdirs();
+                InputStream in = zipFile.getInputStream(entry);
+                FileOutputStream out = new FileOutputStream(entryDestination);
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = in.read(buffer)) >= 0) {
+                    out.write(buffer, 0, len);
+                }
+                in.close();
+                out.close();
+            }
+        }
+        zipFile.close();
     }
     public static ArrayList<PaquetDeCartes> chargerPaquets() throws Exception {
         ArrayList<PaquetDeCartes> paquetDeCartes = new ArrayList<PaquetDeCartes>();
@@ -139,7 +164,8 @@ public class Sauvegarde {
     }
 
 
-    public static ArrayList<PaquetDeCartes> chargerTousPaquets(){
+    public static ArrayList<PaquetDeCartes> chargerTousPaquets() throws Exception {
+        deZipMediaZip();
         ArrayList<PaquetDeCartes> paquets = new ArrayList<>();
         File file = new File("src/ressources/donnees.json");
         if (file.isFile()) {
@@ -162,10 +188,10 @@ public class Sauvegarde {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
         if (selectedFile != null) {
-            if(!Files.exists(Path.of("src/ressources/images/"))){
-                Files.createDirectory(Path.of("src/ressources/images/"));
+            if(!Files.exists(Path.of("src/ressources/medias/"))){
+                Files.createDirectory(Path.of("src/ressources/medias/"));
             }
-            File cheminCreation = new File("src/ressources/images/" + selectedFile.getName());
+            File cheminCreation = new File("src/ressources/medias/" + selectedFile.getName());
             String format = selectedFile.getName().substring(selectedFile.getName().lastIndexOf(".") + 1);
             BufferedImage bImage = null;
             try {
@@ -175,7 +201,7 @@ public class Sauvegarde {
                 e.printStackTrace();
             }
 
-            return "file:src/ressources/images/" + selectedFile.getName();
+            return "file:src/ressources/medias/" + selectedFile.getName();
         }
         return "";
     }
@@ -188,9 +214,9 @@ public class Sauvegarde {
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
 
         if (selectedFile != null) {
-            File cheminCreation = new File("src/ressources/audios/" + selectedFile.getName());
-            if(!Files.exists(Path.of("src/ressources/audios/"))){
-                Files.createDirectory(Path.of("src/ressources/audios/"));
+            File cheminCreation = new File("src/ressources/medias/" + selectedFile.getName());
+            if(!Files.exists(Path.of("src/ressources/medias/"))){
+                Files.createDirectory(Path.of("src/ressources/medias/"));
             }
             InputStream input = new FileInputStream(selectedFile.getPath());
             OutputStream output = new FileOutputStream(cheminCreation);
@@ -201,7 +227,7 @@ public class Sauvegarde {
             }
             input.close();
             output.close();
-            return "/audios/"+ selectedFile.getName();
+            return "/medias/"+ selectedFile.getName();
         }
         return "";
     }
