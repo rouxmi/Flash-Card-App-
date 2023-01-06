@@ -23,7 +23,7 @@ public class SceneAccueil implements ChangeScene {
         fxmlLoader.setController(accueilControleur);
         Main.mainStage.setResizable(true);
         newScene = new Scene(fxmlLoader.load());
-
+        newScene.getStylesheets().add(Main.class.getResource("/style.css").toExternalForm());
     }
     @Override
     public void changetoScene() {

@@ -156,7 +156,6 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             }
         }
     }
-
     @FXML
     public void allerSuiv() throws Exception{
         int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
