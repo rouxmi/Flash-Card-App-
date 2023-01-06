@@ -19,7 +19,7 @@
             <ToolBar prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <items>
                   <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" styleClass="boutonTool"/>
-                  <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" styleClass="button2"/>
+                  <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" styleClass="boutonTool"/>
                   <Button fx:id="supprimerCarteBouton" mnemonicParsing="false" onAction="#supprimerCarte" text="Supprimer la carte" styleClass="boutonTool"/>
                   <Button mnemonicParsing="false" onAction="#copierCarte" text="Copier cette carte" styleClass="boutonTool"/>
                   <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" styleClass="boutonTool"/>

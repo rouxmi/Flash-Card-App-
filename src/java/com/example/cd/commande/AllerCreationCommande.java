@@ -8,16 +8,22 @@ public class AllerCreationCommande extends Commande {
 
     private GlobalControleur globalControleur;
 
-    public AllerCreationCommande(GlobalControleur globalControleur, PaquetDeCartes paquet) {
-        super(null, paquet, null);
+    public AllerCreationCommande(GlobalControleur globalControleur, PaquetDeCartes paquet, Carte carte) {
+        super(null, paquet, carte);
         this.globalControleur = globalControleur;
     }
 
     @Override
     public void execute() throws Exception {
-        new MajPaquetGlobalCommande(globalControleur, paquetDeCartes).execute();
-        paquetDeCartes.ajouterCarte(new Carte());
-        new MajCarteGlobalCommande(globalControleur, paquetDeCartes.getCarte(paquetDeCartes.getCartes().size()-1) ).execute();
-        globalControleur.changeSceneVersCreation();
+        if ( carte == null ) {
+            new MajPaquetGlobalCommande(globalControleur, paquetDeCartes).execute();
+            paquetDeCartes.ajouterCarte(new Carte());
+            new MajCarteGlobalCommande(globalControleur, paquetDeCartes.getCarte(paquetDeCartes.getCartes().size() - 1)).execute();
+            globalControleur.changeSceneVersCreation();
+        } else {
+            new MajPaquetGlobalCommande(globalControleur, paquetDeCartes).execute();
+            new MajCarteGlobalCommande(globalControleur, carte).execute();
+            globalControleur.changeSceneVersCreation();
+        }
     }
 }

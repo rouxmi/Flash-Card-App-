@@ -211,7 +211,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void versCreation() throws Exception{
-        new AllerCreationCommande(globalControleur, paquet).execute();
+        new AllerCreationCommande(globalControleur, paquet, null).execute();
     }
     @FXML
     public void modifTitre() throws Exception{
