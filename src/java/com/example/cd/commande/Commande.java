@@ -28,6 +28,6 @@ public abstract class Commande {
         this.carte = carte;
     }
 
-    public abstract void execute() throws IOException;
+    public abstract void execute() throws Exception;
 
 }

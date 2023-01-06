@@ -2,7 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
-import com.example.cd.commande.quitterApplicationCommande;
+import com.example.cd.commande.*;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.modele.apprentissage.FreeApprentissage;
@@ -95,7 +95,6 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void quitterAppli() {
-        // TODO : relier  toolbar quand remi aura fini le responsive
         (new quitterApplicationCommande()).execute();
     }
 
@@ -110,8 +109,7 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     }
     @FXML
     public void importerPaquet() throws Exception {
-        globalControleur.importerPaquets();
-        globalControleur.changeSceneVersAccueil();
+        (new importerCommande(globalControleur, paquets)).execute();
     }
 
     public void creationBoutons() {
