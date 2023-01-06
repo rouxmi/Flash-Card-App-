@@ -2,7 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
-import com.example.cd.commande.QuitterApplicationCommande;
+import com.example.cd.commande.*;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.statistiques.EtatCarte;
@@ -31,13 +31,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private GlobalControleur globalControleur;
     private int decompte;
     public Observateur observateur;
-
     private Carte carteActuelle;
     private Queue<Carte> futurCartes;
     private String typeEntrainement;
-
     private int nbReussite;
     private int nbEchec;
+    private int index;
+
     @FXML
     private ToggleButton toggleFlashCard;
     @FXML
@@ -46,28 +46,20 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private Button questionReussieBouton;
     @FXML
     private Button questionLoupeeBouton;
-
     @FXML
     private PieChart graphPaquet;
-
     @FXML
     private PieChart graphCarte;
-
     @FXML
     private VBox statsboxEntrainement;
     @FXML
     private VBox statsboxCarte;
     @FXML
     private VBox statsboxPaquet;
-
-    private int index;
-
     @FXML
     private MenuItem carteVisibility;
-
     @FXML
     private MenuItem paquetVisibility;
-
     @FXML
     private MenuItem entrainementVisibility;
     @FXML
@@ -103,9 +95,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @Override
     public void reagir() {
-
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         decompte = globalControleur.getPaquet().getDecompte();
@@ -168,124 +158,12 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         questionLoupeeBouton.setVisible(false);
         questionReussieBouton.setVisible(false);
     }
-    @FXML
-    public void validerReponse(){
-        majFlashCard();
-    }
-    @FXML
-    public void quitterAppli() {
-        (new QuitterApplicationCommande()).execute();
-    }
-    @FXML
-    public void allerAccueil() throws Exception {
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersAccueil();
-    }
-    @FXML
-    public void voirPaquet() throws Exception {
-        // TODO : verifier le paquet courant
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersGestion();
-    }
-    @FXML
-    public void majFlashCard() {
-        toggleFlashCard.setText("");
-        toggleFlashCard.setGraphic(null);
-        toggleFlashCard.setOnAction(null);
-        RotateTransition rotate = new RotateTransition();
-        rotate.setNode(toggleFlashCard);
-        rotate.setDuration(javafx.util.Duration.seconds(0.5));
-        rotate.setAxis(Rotate.Y_AXIS);
-        rotate.setByAngle(180);
-        rotate.setAutoReverse(true);
-        rotate.play();
-
-        AudioClip player = new AudioClip(getClass().getResource("/utiles/flip.wav").toExternalForm());
-        player.play();
-
-        rotate.setOnFinished(event -> {
-            toggleFlashCard.setOnAction(event1 -> majFlashCard());
-            RotateTransition bonSensRotate = new RotateTransition();
-            bonSensRotate.setNode(toggleFlashCard);
-            bonSensRotate.setDuration(javafx.util.Duration.millis(1));
-            bonSensRotate.setByAngle(180);
-            bonSensRotate.play();
-            if (toggleFlashCard.isSelected()) {
-                toggleFlashCard.setText(carteActuelle.getReponse());
-                if(!this.carteActuelle.getImageReponse().equals("")){
-                    Image image = new Image(carteActuelle.getImageReponse());
-                    ImageView icon = new ImageView(image);
-                    icon.setFitHeight(100);
-                    icon.setFitWidth(90);
-                    toggleFlashCard.setGraphic(icon);
-                    questionLoupeeBouton.setVisible(true);
-                    questionReussieBouton.setVisible(true);
-                } else if (taReponse.isVisible()) {
-                    if(compareReponses(taReponse.getText())){
-                        Alert gagne = new Alert(Alert.AlertType.INFORMATION);
-                        gagne.setTitle("Gagné ou perdu ?");
-                        gagne.setHeaderText(null);
-                        gagne.setContentText("Mot Correct");
-                        gagne.show();
-                        try {
-                            reussite();
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    else {
-                        Alert perdu = new Alert(Alert.AlertType.INFORMATION);
-                        perdu.setTitle("Gagné ou perdu ?");
-                        perdu.setHeaderText(null);
-                        perdu.setContentText("Perdu ! Le mot correct était : "+this.carteActuelle.getReponse());
-                        perdu.show();
-                        try {
-                            echec();
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                } else {
-                    toggleFlashCard.setGraphic(null);
-                }
-                if ( !carteActuelle.getAudioReponse().equals("") ) {
-                    ecouterSonBouton.setVisible(true);
-                } else {
-                    ecouterSonBouton.setVisible(false);
-                }
-                questionLoupeeBouton.setVisible(true);
-                questionReussieBouton.setVisible(true);
-                compteurLabel.setText("");
-
-            } else {
-                toggleFlashCard.setText(carteActuelle.getQuestion());
-                if(!this.carteActuelle.getImageQuestion().equals("")){
-                    Image image = new Image(carteActuelle.getImageQuestion());
-                    ImageView icon = new ImageView(image);
-                    icon.setFitHeight(100);
-                    icon.setFitWidth(90);
-                    toggleFlashCard.setGraphic(icon);
-                }
-                else {
-                    toggleFlashCard.setGraphic(null);
-                }
-                if ( !carteActuelle.getAudioQuestion().equals("") ) {
-                    ecouterSonBouton.setVisible(true);
-                } else {
-                    ecouterSonBouton.setVisible(false);
-                }
-                questionLoupeeBouton.setVisible(false);
-                questionReussieBouton.setVisible(false);
-            }
-        });
-    }
 
     public void MajStats(){
         MajStatsPaquet();
         MajStatsCarte();
         MajStatsEntrainement();
     }
-
     public void MajStatsCarte(){
 
         List<String> nom = Arrays.asList("Non Vue","Debut Apprentissage","à Revoir","Fin Apprentissage","Acquise Parfaite");
@@ -325,7 +203,6 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
 
     }
-
     public void MajStatsPaquet(){
         statsboxPaquet.getChildren().clear();
         Label label = new Label("Statistiques du Paquet:");
@@ -346,7 +223,6 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         statsboxPaquet.setPadding(new Insets(10,10,10,10));
 
     }
-
     public void MajStatsEntrainement(){
         statsboxEntrainement.getChildren().clear();
         Label label = new Label("Statistiques de l'Entrainement:");
@@ -376,14 +252,62 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
 
     }
-
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setPaquet(paquetActuel);
+    public double getPourcentageReussitePaquet(){
+        double nombreReussite = 0;
+        double nombreEchec = 0;
+        for (Carte carte : paquet.getCartes()) {
+            nombreReussite += carte.getStatsCarte().getNbReussite();
+            nombreEchec += carte.getStatsCarte().getNbEchec();
+        }
+        return (nombreReussite/(nombreReussite+nombreEchec))*100;
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setCarte(carteActuelle);
+    public double getPourcentageEchecPaquet(){
+        double nombreReussite = 0;
+        double nombreEchec = 0;
+        for (Carte carte : paquet.getCartes()) {
+            nombreReussite += carte.getStatsCarte().getNbReussite();
+            nombreEchec += carte.getStatsCarte().getNbEchec();
+        }
+        return (nombreEchec/(nombreReussite+nombreEchec))*100;
+    }
+    public int getNbEssaiPaquet(){
+        int nbEssai = 0;
+        for (Carte carte : paquet.getCartes()) {
+            nbEssai += carte.getStatsCarte().getNbEssaie();
+        }
+        return nbEssai;
+    }
+    public double getPourcentageReussiteEntrainement(){
+        if (nbReussite+nbEchec == 0){
+            return 0;
+        }
+        return ( ((double)nbReussite/ (double)(nbReussite+nbEchec))*100);
+    }
+    public double getPourcentageEchecEntrainement(){
+        if (nbReussite+nbEchec == 0){
+            return 0;
+        }
+        return ( ((double)nbEchec/ (double)(nbReussite+nbEchec))*100);
+    }
+    public double getPourcentageReussiteCarte(){
+        if (carteActuelle.getStatsCarte().getNbEssaie() == 0){
+            return 0;
+        }
+        return ((double)carteActuelle.getStatsCarte().getNbReussite()/(double)(carteActuelle.getStatsCarte().getNbReussite()+carteActuelle.getStatsCarte().getNbEchec()))*100;
+    }
+    public double getPourcentageEchecCarte(){
+        if (carteActuelle.getStatsCarte().getNbEssaie() == 0){
+            return 0;
+        }
+        return ( ((double)carteActuelle.getStatsCarte().getNbEchec()/(double)(carteActuelle.getStatsCarte().getNbReussite()+carteActuelle.getStatsCarte().getNbEchec()))*100);
+    }
+    public String getColor(String name){
+        if (name.equals("Réussite")){
+            return "green";
+        }
+        else{
+            return "red";
+        }
     }
     public boolean compareReponses(String reponse){
         if(reponse.equals(carteActuelle.getReponse())){
@@ -392,19 +316,124 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         return false;
     }
 
+
     @FXML
-    public void ecouterSon() {
+    public void quitterAppli() {
+        (new QuitterApplicationCommande()).execute();
+    }
+    @FXML
+    public void allerAccueil() throws Exception {
+        new AllerAccueilCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void voirPaquet() throws Exception {
+        new VoirPaquetCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void ecouterSon() throws Exception {
         if ( toggleFlashCard.isSelected() ) {
-            AudioClip player = new AudioClip(getClass().getResource(carteActuelle.getAudioReponse()).toExternalForm());
-            player.play();
+            new JouerSonCommande(globalControleur, "reponse").execute();
         } else if ( !toggleFlashCard.isSelected() ) {
-            AudioClip player = new AudioClip(getClass().getResource(carteActuelle.getAudioQuestion()).toExternalForm());
-            player.play();
+            new JouerSonCommande(globalControleur, "question").execute();
         }
+    }
+    // too complicated to put in command pattern
+    @FXML
+    public void majFlashCard() {
+        toggleFlashCard.setText("");
+        toggleFlashCard.setGraphic(null);
+        toggleFlashCard.setOnAction(null);
+        RotateTransition rotate = new RotateTransition();
+        rotate.setNode(toggleFlashCard);
+        rotate.setDuration(javafx.util.Duration.seconds(0.5));
+        rotate.setAxis(Rotate.Y_AXIS);
+        rotate.setByAngle(180);
+        rotate.setAutoReverse(true);
+        rotate.play();
+
+        AudioClip player = new AudioClip(getClass().getResource("/utiles/flip.wav").toExternalForm());
+        player.play();
+
+        rotate.setOnFinished(event -> {
+            toggleFlashCard.setOnAction(event1 -> majFlashCard());
+            RotateTransition bonSensRotate = new RotateTransition();
+            bonSensRotate.setNode(toggleFlashCard);
+            bonSensRotate.setDuration(javafx.util.Duration.millis(1));
+            bonSensRotate.setByAngle(180);
+            bonSensRotate.play();
+            bonSensRotate.setOnFinished(event2 -> {
+                if (toggleFlashCard.isSelected()) {
+                    toggleFlashCard.setText(carteActuelle.getReponse());
+                    if (!this.carteActuelle.getImageReponse().equals("")) {
+                        Image image = new Image(carteActuelle.getImageReponse());
+                        ImageView icon = new ImageView(image);
+                        icon.setFitHeight(100);
+                        icon.setFitWidth(90);
+                        toggleFlashCard.setGraphic(icon);
+                        questionLoupeeBouton.setVisible(true);
+                        questionReussieBouton.setVisible(true);
+                    } else if (taReponse.isVisible()) {
+                        if (compareReponses(taReponse.getText())) {
+                            Alert gagne = new Alert(Alert.AlertType.INFORMATION);
+                            gagne.setTitle("Gagné ou perdu ?");
+                            gagne.setHeaderText(null);
+                            gagne.setContentText("Mot Correct");
+                            gagne.show();
+                            try {
+                                reussite();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        } else {
+                            Alert perdu = new Alert(Alert.AlertType.INFORMATION);
+                            perdu.setTitle("Gagné ou perdu ?");
+                            perdu.setHeaderText(null);
+                            perdu.setContentText("Perdu ! Le mot correct était : " + this.carteActuelle.getReponse());
+                            perdu.show();
+                            try {
+                                echec();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else {
+                        toggleFlashCard.setGraphic(null);
+                        questionLoupeeBouton.setVisible(true);
+                        questionReussieBouton.setVisible(true);
+                        compteurLabel.setText("");
+                    }
+                    if (!carteActuelle.getAudioReponse().equals("")) {
+                        ecouterSonBouton.setVisible(true);
+                    } else {
+                        ecouterSonBouton.setVisible(false);
+                    }
+
+
+                } else {
+                    toggleFlashCard.setText(carteActuelle.getQuestion());
+                    if (!this.carteActuelle.getImageQuestion().equals("")) {
+                        Image image = new Image(carteActuelle.getImageQuestion());
+                        ImageView icon = new ImageView(image);
+                        icon.setFitHeight(100);
+                        icon.setFitWidth(90);
+                        toggleFlashCard.setGraphic(icon);
+                    } else {
+                        toggleFlashCard.setGraphic(null);
+                    }
+                    if (!carteActuelle.getAudioQuestion().equals("")) {
+                        ecouterSonBouton.setVisible(true);
+                    } else {
+                        ecouterSonBouton.setVisible(false);
+                    }
+                    questionLoupeeBouton.setVisible(false);
+                    questionReussieBouton.setVisible(false);
+                }
+            });
+        });
     }
     @FXML
     public void reussite() throws Exception {
-        majPaquetGlobalControleur(paquet);
+        new MajPaquetGlobalCommande(globalControleur, paquet).execute();
         nbReussite++;
         carteActuelle.getStatsCarte().MajStatsCarteReussite();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
@@ -416,7 +445,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @FXML
     public void echec() throws Exception {
-        majPaquetGlobalControleur(paquet);
+        new MajPaquetGlobalCommande(globalControleur, paquet).execute();
         nbEchec++;
         carteActuelle.getStatsCarte().MajStatsCarteEchec();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
@@ -426,72 +455,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         toggleFlashCard.setSelected(false);
         majFlashCard();
     }
-
-    public double getPourcentageReussitePaquet(){
-        double nombreReussite = 0;
-        double nombreEchec = 0;
-        for (Carte carte : paquet.getCartes()) {
-            nombreReussite += carte.getStatsCarte().getNbReussite();
-            nombreEchec += carte.getStatsCarte().getNbEchec();
-        }
-        return (nombreReussite/(nombreReussite+nombreEchec))*100;
-    }
-
-    public double getPourcentageEchecPaquet(){
-        double nombreReussite = 0;
-        double nombreEchec = 0;
-        for (Carte carte : paquet.getCartes()) {
-            nombreReussite += carte.getStatsCarte().getNbReussite();
-            nombreEchec += carte.getStatsCarte().getNbEchec();
-        }
-        return (nombreEchec/(nombreReussite+nombreEchec))*100;
-    }
-
-    public int getNbEssaiPaquet(){
-        int nbEssai = 0;
-        for (Carte carte : paquet.getCartes()) {
-            nbEssai += carte.getStatsCarte().getNbEssaie();
-        }
-        return nbEssai;
-    }
-
-    public double getPourcentageReussiteEntrainement(){
-        if (nbReussite+nbEchec == 0){
-            return 0;
-        }
-        return ( ((double)nbReussite/ (double)(nbReussite+nbEchec))*100);
-    }
-
-    public double getPourcentageEchecEntrainement(){
-        if (nbReussite+nbEchec == 0){
-            return 0;
-        }
-        return ( ((double)nbEchec/ (double)(nbReussite+nbEchec))*100);
-    }
-
-    public double getPourcentageReussiteCarte(){
-        if (carteActuelle.getStatsCarte().getNbEssaie() == 0){
-            return 0;
-        }
-        return ((double)carteActuelle.getStatsCarte().getNbReussite()/(double)(carteActuelle.getStatsCarte().getNbReussite()+carteActuelle.getStatsCarte().getNbEchec()))*100;
-    }
-
-    public double getPourcentageEchecCarte(){
-        if (carteActuelle.getStatsCarte().getNbEssaie() == 0){
-            return 0;
-        }
-        return ( ((double)carteActuelle.getStatsCarte().getNbEchec()/(double)(carteActuelle.getStatsCarte().getNbReussite()+carteActuelle.getStatsCarte().getNbEchec()))*100);
-    }
-
-    public String getColor(String name){
-        if (name.equals("Réussite")){
-            return "green";
-        }
-        else{
-            return "red";
-        }
-    }
-
+    @FXML
     public void showcarte(){
         if (statsboxCarte.isVisible()){
             carteVisibility.setText("    Stats carte");
@@ -502,6 +466,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         statsboxCarte.setVisible(!statsboxCarte.isVisible());
         graphCarte.setVisible(!graphCarte.isVisible());
     }
+    @FXML
     public void showPaquet(){
         if (statsboxPaquet.isVisible()){
             paquetVisibility.setText("    Stats paquet");

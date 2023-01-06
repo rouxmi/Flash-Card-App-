@@ -17,6 +17,7 @@ public class SceneCreation implements ChangeScene {
         fxmlLoader.setController(creationControleur);
         Main.mainStage.setResizable(true);
         newScene = new Scene(fxmlLoader.load());
+        newScene.getStylesheets().add(Main.class.getResource("/style.css").toExternalForm());
     }
 
 

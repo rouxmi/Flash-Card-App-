@@ -25,15 +25,26 @@
 
 .titre{
     -fx-font-weight: bold;
-    -fx-text-fill: linear-gradient(to right, #006400,#006400, gold, #FF0000, #FF0000);
+    -fx-text-fill: #1e468c;
 }
 
 .texte {
-    -fx-text-fill: linear-gradient(to right, #006400,#006400, gold,#FF0000, #FF0000);
+    -fx-text-fill: #1e468c;
 
 }
 .button1 {
-    -fx-background-color: #006400;
+    -fx-background-color: #a4c0ce;
+    -fx-padding: 10px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 0);
+}
+
+.button2 {
+    -fx-background-color: #1e468c;
     -fx-padding: 10px;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
@@ -44,18 +55,15 @@
 }
 
 .toggle-button {
-    -fx-background-color: transparent;
-    -fx-border-color: #FF0000;
-    -fx-border-radius: 20px;
-    -fx-text-fill: #FF0000;
+    -fx-background-color: #a4c0ce;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #1e468c;
     -fx-font-weight: bold;
 }
 
 .toggle-button:selected {
-    -fx-background-color: transparent;
-    -fx-border-color: #006400;
-    -fx-border-radius: 20px;
-    -fx-text-fill: #006400;
+    -fx-background-color: #1e468c;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #a4c0ce;
     -fx-font-weight: bold;
 }
-

@@ -13,24 +13,33 @@ public class Carte {
     @Expose
     private StatsCarte statsCarte;
     @Expose
-    private String imageQuestion = "";
+    private String imageQuestion;
     @Expose
-    private String imageReponse = "";
+    private String imageReponse;
     @Expose
-    private String audioQuestion = "";
+    private String audioQuestion;
     @Expose
-    private String audioReponse = "";
+    private String audioReponse;
 
 
     public Carte(String question, String reponse) {
         this.question = question;
         this.reponse = reponse;
         statsCarte = new StatsCarte();
+        this.imageQuestion = "";
+        this.imageReponse = "";
+        this.audioQuestion = "";
+        this.audioReponse = "";
     }
     public Carte(){
         this.question = "";
         this.reponse = "";
         statsCarte = new StatsCarte();
+        this.imageQuestion = "";
+        this.imageReponse = "";
+        this.audioQuestion = "";
+        this.audioReponse = "";
+
     }
 
     //getters

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="fond">
    <children>
       <BorderPane layoutY="-1.0" prefHeight="650.0" prefWidth="1000.0">
          <left>
@@ -83,7 +83,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" text="Valider" fx:id="valideReponse" onAction="#validerReponse">
+                        <Button mnemonicParsing="false" text="Valider" fx:id="valideReponse" onAction="#majFlashCard">
                            <VBox.margin>
                               <Insets left="50.0" top="15.0" />
                            </VBox.margin>
