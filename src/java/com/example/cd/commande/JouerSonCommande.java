@@ -9,7 +9,7 @@ public class JouerSonCommande extends Commande {
     GlobalControleur globalControleur;
     String coteCarte;
 
-    public JouerSonCommande(GlobalControleur globalControleur, String cote, Carte carte) {
+    public JouerSonCommande(GlobalControleur globalControleur, Carte carte, String cote) {
         super(null, null, carte);
         this.globalControleur = globalControleur;
         this.coteCarte = cote;

@@ -199,11 +199,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void ecouterQuestion() throws Exception {
-        new JouerSonCommande(globalControleur, "question").execute();
+        new JouerSonCommande(globalControleur, globalControleur.getCarte(), "question").execute();
     }
     @FXML
     public void ecouterReponse() throws Exception {
-        new JouerSonCommande(globalControleur, "reponse").execute();
+        new JouerSonCommande(globalControleur, globalControleur.getCarte(), "reponse").execute();
     }
 
     // try to command pattern this
