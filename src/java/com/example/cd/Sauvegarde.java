@@ -132,7 +132,7 @@ public class Sauvegarde {
 
         if (selectedFile != null) {
             File cheminCreation = new File("src/ressources/audios/" + selectedFile.getName());
-            String path= cheminCreation.toURI().toString();
+
             InputStream input = new FileInputStream(selectedFile.getPath());
             OutputStream output = new FileOutputStream(cheminCreation);
             byte[] buffer = new byte[1024];
