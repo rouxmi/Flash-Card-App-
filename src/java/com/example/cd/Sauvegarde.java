@@ -186,7 +186,7 @@ public class Sauvegarde {
 
     public static String choisirFichierImage() throws IOException {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Image File");
+        fileChooser.setTitle("Choisir une image");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(Main.mainStage);
