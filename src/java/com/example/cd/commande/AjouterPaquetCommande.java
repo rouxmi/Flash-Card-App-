@@ -18,7 +18,6 @@ public class AjouterPaquetCommande extends Commande {
         paquets.add(new PaquetDeCartes());
         paquetDeCartes = paquets.get(paquets.size()-1);
         new MajPaquetGlobalCommande(this.globalControleur, paquetDeCartes).execute();
-     //   majPaquetGlobalControleur(paquetActuel);
         dialogBoxNouveauPaquet();
         if ( !paquetDeCartes.getTitre().equals("") ) {
             dialogBoxNouvelleDescription();
@@ -42,6 +41,15 @@ public class AjouterPaquetCommande extends Commande {
         infoDescription.setHeaderText("Renseigne la description");
         infoDescription.showAndWait();
         paquetDeCartes.setDescription(infoDescription.getEditor().getText());
+    }
+
+    private void dialogBoxNouveauTags() {
+        TextInputDialog infoTitre = new TextInputDialog();
+        infoTitre.setTitle("Modification Tags");
+        infoTitre.setHeaderText("Renseigne tes tags séparés par un '/'");
+        infoTitre.setContentText(paquetDeCartes.getTag());
+        infoTitre.showAndWait();
+        paquetDeCartes.setTag(infoTitre.getEditor().getText());
     }
 
 
