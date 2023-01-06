@@ -377,11 +377,11 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
 
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }

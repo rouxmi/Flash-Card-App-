@@ -68,7 +68,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
         globalControleur.changeSceneVersGestion();
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }

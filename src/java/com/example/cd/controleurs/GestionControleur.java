@@ -316,12 +316,12 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         paquet.setApprentissageStrategie(new MasterStrategie());
     }
 
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
+    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setPaquet(paquetActuel);
     }
 
-    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
+    public void majCarteGlobalControleur(Carte carteActuelle) throws Exception {
         globalControleur.sauvegarder();
         this.globalControleur.setCarte(carteActuelle);
     }
