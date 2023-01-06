@@ -205,6 +205,7 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             Optional<ButtonType> result = alert.showAndWait();
             if ( result.get() == ButtonType.OK){
                 new SupprimerCarteCommande(globalControleur).execute();
+                carteActuelle = paquet.getCarte(paquet.taillePaquet()-1);
                 return true;
             } else {
                 return false;
