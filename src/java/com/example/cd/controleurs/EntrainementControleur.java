@@ -107,7 +107,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         }
         Timeline compteur = new Timeline((new KeyFrame(javafx.util.Duration.seconds(1), event -> {
             compteurLabel.setText(String.valueOf(decompte));
-            compteurLabel.setStyle("-fx-text-alignment: center; -fx-font-size: 50px; -fx-font-weight: bold; -fx-text-fill: #000000;");
+            compteurLabel.getStyleClass().add("texte");
             decompte--;
         })));
         compteur.setCycleCount(decompte+1);
