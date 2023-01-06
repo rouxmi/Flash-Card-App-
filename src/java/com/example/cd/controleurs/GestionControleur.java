@@ -146,6 +146,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
         }
     }
 
+    // FXML Boutons fonctions
     @FXML
     public void versEntrainement() throws Exception {
         new AllerEntrainementCommande(globalControleur, paquet).execute();
