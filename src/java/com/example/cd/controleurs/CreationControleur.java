@@ -145,9 +145,10 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void voirPaquet() throws Exception {
-        validerCarte();
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersGestion();
+        if (isCarteValide()) {
+            majPaquetGlobalControleur(paquet);
+            globalControleur.changeSceneVersGestion();
+        }
     }
     @FXML
     public void supprimerCarte() throws Exception {
@@ -157,9 +158,10 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     public void allerPrec() throws Exception{
         int indicePrec = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())-1;
         if (indicePrec>=0) {
-            validerCarte();
-            majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indicePrec));
-            globalControleur.changeSceneVersCreation();
+            if (isCarteValide()) {
+                majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indicePrec));
+                globalControleur.changeSceneVersCreation();
+            }
         }
     }
 
@@ -167,10 +169,11 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     public void allerSuiv() throws Exception{
         int indiceSuiv = this.globalControleur.findIndice(globalControleur.getPaquet(),globalControleur.getCarte())+1;
         if(indiceSuiv<this.globalControleur.getPaquet().taillePaquet()) {
-            validerCarte();
-            majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indiceSuiv));
-            majPaquetGlobalControleur(paquet);
-            globalControleur.changeSceneVersCreation();
+            if (isCarteValide()) {
+                majCarteGlobalControleur(this.globalControleur.getPaquet().getCarte(indiceSuiv));
+                majPaquetGlobalControleur(paquet);
+                globalControleur.changeSceneVersCreation();
+            }
         }
         else{
             versCreation();
@@ -180,16 +183,22 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     public void versCreation() throws Exception{
         paquet.ajouterCarte(new Carte());
         carteActuelle = paquet.getCarte(paquet.taillePaquet()-1);
-        validerCarte();
-        new MajPaquetGlobalCommande(globalControleur, paquet).execute();
-        new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
+        if (isCarteValide()) {
+            new MajPaquetGlobalCommande(globalControleur, paquet).execute();
+            new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
 //        majPaquetGlobalControleur(paquet);
 //        majCarteGlobalControleur(carteActuelle);
-        globalControleur.changeSceneVersCreation();
+            globalControleur.changeSceneVersCreation();
+        }
     }
     @FXML
     public void validerCarte() throws Exception {
-        //new ValiderCarteCommande(globalControleur, carteActuelle, question.getText(), reponse.getText()).execute();
+        if (isCarteValide()){
+            new ValiderCarteCommande(globalControleur,carteActuelle).execute();
+        }
+    }
+
+    public boolean isCarteValide() throws Exception {
         try {
             this.paquet.getCarte(this.indice).setQuestion(question.getText());
             this.paquet.getCarte(this.indice).setReponse(reponse.getText());
@@ -204,14 +213,16 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             alert.setContentText("Êtes vous sur ?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if ( !(result.get() == ButtonType.CANCEL) ){
-                supprimerCarte();
-                globalControleur.changeSceneVersGestion();
+            if ( result.get() == ButtonType.OK){
+                new SupprimerCarteCommande(globalControleur).execute();
+                return true;
             } else {
-                new MajCarteGlobalCommande(globalControleur, carteActuelle).execute();
+                return false;
             }
         }
-        globalControleur.changeSceneVersCreation();
+        else {
+            return true;
+        }
     }
 
     public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {

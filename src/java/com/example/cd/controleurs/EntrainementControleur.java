@@ -2,7 +2,7 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
-import com.example.cd.commande.QuitterApplicationCommande;
+import com.example.cd.commande.*;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.statistiques.EtatCarte;
@@ -31,13 +31,13 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private GlobalControleur globalControleur;
     private int decompte;
     public Observateur observateur;
-
     private Carte carteActuelle;
     private Queue<Carte> futurCartes;
     private String typeEntrainement;
-
     private int nbReussite;
     private int nbEchec;
+    private int index;
+
     @FXML
     private ToggleButton toggleFlashCard;
     @FXML
@@ -46,28 +46,20 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     private Button questionReussieBouton;
     @FXML
     private Button questionLoupeeBouton;
-
     @FXML
     private PieChart graphPaquet;
-
     @FXML
     private PieChart graphCarte;
-
     @FXML
     private VBox statsboxEntrainement;
     @FXML
     private VBox statsboxCarte;
     @FXML
     private VBox statsboxPaquet;
-
-    private int index;
-
     @FXML
     private MenuItem carteVisibility;
-
     @FXML
     private MenuItem paquetVisibility;
-
     @FXML
     private MenuItem entrainementVisibility;
     @FXML
@@ -103,9 +95,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @Override
     public void reagir() {
-
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         decompte = globalControleur.getPaquet().getDecompte();
@@ -168,25 +158,186 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         questionLoupeeBouton.setVisible(false);
         questionReussieBouton.setVisible(false);
     }
-    @FXML
-    public void validerReponse(){
-        majFlashCard();
+
+    public void MajStats(){
+        MajStatsPaquet();
+        MajStatsCarte();
+        MajStatsEntrainement();
     }
+    public void MajStatsCarte(){
+
+        List<String> nom = Arrays.asList("Non Vue","Debut Apprentissage","à Revoir","Fin Apprentissage","Acquise Parfaite");
+        Label label = new Label("Statistiques de la carte:");
+        label.getStyleClass().add("texte");
+        label.setFont(new Font("Arial", 20));
+
+
+        PieChart.Data slice1 = new PieChart.Data("Réussite", getPourcentageReussiteCarte());
+        PieChart.Data slice2 = new PieChart.Data("Echec", getPourcentageEchecCarte());
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(slice1, slice2);
+        graphCarte.setData(pieChartData);
+        for (PieChart.Data data : graphCarte.getData()) {
+            data.getNode().setStyle("-fx-pie-color: " + getColor(data.getName()) + ";");
+        }
+        statsboxCarte.getChildren().clear();
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussiteCarte())+"%");
+        Label echec = new Label("Pourcentage d'échec: "+numberFormat.format(getPourcentageEchecCarte())+"%");
+        Label nbvue = new Label("Nombre d'essai: "+carteActuelle.getStatsCarte().getNbEssaie());
+        Label etat = new Label("Etat de la carte: "+nom.get(EtatCarte.valueOf(carteActuelle.getStatsCarte().getEtatCarte().toString()).ordinal()));
+        Reussite.setPadding(new Insets(0, 0, 0, 10));
+        echec.setPadding(new Insets(0, 0, 0, 10));
+        nbvue.setPadding(new Insets(8, 0, 0, 10));
+        etat.setPadding(new Insets(0, 0, 0, 10));
+
+        nbvue.setWrapText(true);
+        echec.setWrapText(true);
+        Reussite.setWrapText(true);
+        statsboxCarte.getChildren().addAll(label,nbvue,echec,Reussite,etat);
+        statsboxCarte.setSpacing(2);
+        statsboxCarte.setPadding(new Insets(10,10,10,10));
+
+
+
+
+
+    }
+    public void MajStatsPaquet(){
+        statsboxPaquet.getChildren().clear();
+        Label label = new Label("Statistiques du Paquet:");
+        label.getStyleClass().add("texte");
+        label.setFont(new Font("Arial", 20));
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussitePaquet())+"%");
+        Label echec = new Label("Pourcentage d'échec: "+numberFormat.format(getPourcentageEchecPaquet())+"%");
+        Label nbvue = new Label("Nombre d'essai: "+getNbEssaiPaquet());
+        Reussite.setPadding(new Insets(0, 0, 0, 10));
+        echec.setPadding(new Insets(0, 0, 0, 10));
+        nbvue.setPadding(new Insets(8, 0, 0, 10));
+        nbvue.setWrapText(true);
+        echec.setWrapText(true);
+        Reussite.setWrapText(true);
+        statsboxPaquet.getChildren().addAll(label,nbvue,echec,Reussite);
+        statsboxPaquet.setSpacing(2);
+        statsboxPaquet.setPadding(new Insets(10,10,10,10));
+
+    }
+    public void MajStatsEntrainement(){
+        statsboxEntrainement.getChildren().clear();
+        Label label = new Label("Statistiques de l'Entrainement:");
+        label.getStyleClass().add("texte");
+        label.setFont(new Font("Arial", 20));
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussiteEntrainement())+"%");
+        Label echec = new Label("Pourcentage d'échec: "+numberFormat.format(getPourcentageEchecEntrainement())+"%");
+        Label nbvue = new Label("Nombre d'essai: "+(nbReussite+nbEchec));
+        Reussite.setPadding(new Insets(0, 0, 0, 10));
+        echec.setPadding(new Insets(0, 0, 0, 10));
+        nbvue.setPadding(new Insets(8, 0, 0, 10));
+        nbvue.setWrapText(true);
+        echec.setWrapText(true);
+        Reussite.setWrapText(true);
+        statsboxEntrainement.getChildren().addAll(label,nbvue,echec,Reussite);
+        statsboxEntrainement.setSpacing(2);
+        statsboxEntrainement.setPadding(new Insets(10,10,10,10));
+
+        PieChart.Data slice1 = new PieChart.Data("Réussite", getPourcentageReussiteEntrainement());
+        PieChart.Data slice2 = new PieChart.Data("Echec", getPourcentageEchecEntrainement());
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(slice1, slice2);
+        graphPaquet.setData(pieChartData);
+        for (PieChart.Data data : graphPaquet.getData()) {
+            data.getNode().setStyle("-fx-pie-color: " + getColor(data.getName()) + ";");
+        }
+
+
+    }
+    public double getPourcentageReussitePaquet(){
+        double nombreReussite = 0;
+        double nombreEchec = 0;
+        for (Carte carte : paquet.getCartes()) {
+            nombreReussite += carte.getStatsCarte().getNbReussite();
+            nombreEchec += carte.getStatsCarte().getNbEchec();
+        }
+        return (nombreReussite/(nombreReussite+nombreEchec))*100;
+    }
+    public double getPourcentageEchecPaquet(){
+        double nombreReussite = 0;
+        double nombreEchec = 0;
+        for (Carte carte : paquet.getCartes()) {
+            nombreReussite += carte.getStatsCarte().getNbReussite();
+            nombreEchec += carte.getStatsCarte().getNbEchec();
+        }
+        return (nombreEchec/(nombreReussite+nombreEchec))*100;
+    }
+    public int getNbEssaiPaquet(){
+        int nbEssai = 0;
+        for (Carte carte : paquet.getCartes()) {
+            nbEssai += carte.getStatsCarte().getNbEssaie();
+        }
+        return nbEssai;
+    }
+    public double getPourcentageReussiteEntrainement(){
+        if (nbReussite+nbEchec == 0){
+            return 0;
+        }
+        return ( ((double)nbReussite/ (double)(nbReussite+nbEchec))*100);
+    }
+    public double getPourcentageEchecEntrainement(){
+        if (nbReussite+nbEchec == 0){
+            return 0;
+        }
+        return ( ((double)nbEchec/ (double)(nbReussite+nbEchec))*100);
+    }
+    public double getPourcentageReussiteCarte(){
+        if (carteActuelle.getStatsCarte().getNbEssaie() == 0){
+            return 0;
+        }
+        return ((double)carteActuelle.getStatsCarte().getNbReussite()/(double)(carteActuelle.getStatsCarte().getNbReussite()+carteActuelle.getStatsCarte().getNbEchec()))*100;
+    }
+    public double getPourcentageEchecCarte(){
+        if (carteActuelle.getStatsCarte().getNbEssaie() == 0){
+            return 0;
+        }
+        return ( ((double)carteActuelle.getStatsCarte().getNbEchec()/(double)(carteActuelle.getStatsCarte().getNbReussite()+carteActuelle.getStatsCarte().getNbEchec()))*100);
+    }
+    public String getColor(String name){
+        if (name.equals("Réussite")){
+            return "green";
+        }
+        else{
+            return "red";
+        }
+    }
+    public boolean compareReponses(String reponse){
+        if(reponse.equals(carteActuelle.getReponse())){
+            return true;
+        }
+        return false;
+    }
+
+
     @FXML
     public void quitterAppli() {
         (new QuitterApplicationCommande()).execute();
     }
     @FXML
     public void allerAccueil() throws Exception {
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersAccueil();
+        new AllerAccueilCommande(globalControleur, paquet).execute();
     }
     @FXML
     public void voirPaquet() throws Exception {
-        // TODO : verifier le paquet courant
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersGestion();
+        new VoirPaquetCommande(globalControleur, paquet).execute();
     }
+    @FXML
+    public void ecouterSon() throws Exception {
+        if ( toggleFlashCard.isSelected() ) {
+            new JouerSonCommande(globalControleur, "reponse").execute();
+        } else if ( !toggleFlashCard.isSelected() ) {
+            new JouerSonCommande(globalControleur, "question").execute();
+        }
+    }
+    // too complicated to put in command pattern
     @FXML
     public void majFlashCard() {
         toggleFlashCard.setText("");
@@ -280,132 +431,9 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
             });
         });
     }
-
-    public void MajStats(){
-        MajStatsPaquet();
-        MajStatsCarte();
-        MajStatsEntrainement();
-    }
-
-    public void MajStatsCarte(){
-
-        List<String> nom = Arrays.asList("Non Vue","Debut Apprentissage","à Revoir","Fin Apprentissage","Acquise Parfaite");
-        Label label = new Label("Statistiques de la carte:");
-        label.getStyleClass().add("texte");
-        label.setFont(new Font("Arial", 20));
-
-
-        PieChart.Data slice1 = new PieChart.Data("Réussite", getPourcentageReussiteCarte());
-        PieChart.Data slice2 = new PieChart.Data("Echec", getPourcentageEchecCarte());
-
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(slice1, slice2);
-        graphCarte.setData(pieChartData);
-        for (PieChart.Data data : graphCarte.getData()) {
-            data.getNode().setStyle("-fx-pie-color: " + getColor(data.getName()) + ";");
-        }
-        statsboxCarte.getChildren().clear();
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-        Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussiteCarte())+"%");
-        Label echec = new Label("Pourcentage d'échec: "+numberFormat.format(getPourcentageEchecCarte())+"%");
-        Label nbvue = new Label("Nombre d'essai: "+carteActuelle.getStatsCarte().getNbEssaie());
-        Label etat = new Label("Etat de la carte: "+nom.get(EtatCarte.valueOf(carteActuelle.getStatsCarte().getEtatCarte().toString()).ordinal()));
-        Reussite.setPadding(new Insets(0, 0, 0, 10));
-        echec.setPadding(new Insets(0, 0, 0, 10));
-        nbvue.setPadding(new Insets(8, 0, 0, 10));
-        etat.setPadding(new Insets(0, 0, 0, 10));
-
-        nbvue.setWrapText(true);
-        echec.setWrapText(true);
-        Reussite.setWrapText(true);
-        statsboxCarte.getChildren().addAll(label,nbvue,echec,Reussite,etat);
-        statsboxCarte.setSpacing(2);
-        statsboxCarte.setPadding(new Insets(10,10,10,10));
-
-
-
-
-
-    }
-
-    public void MajStatsPaquet(){
-        statsboxPaquet.getChildren().clear();
-        Label label = new Label("Statistiques du Paquet:");
-        label.getStyleClass().add("texte");
-        label.setFont(new Font("Arial", 20));
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-        Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussitePaquet())+"%");
-        Label echec = new Label("Pourcentage d'échec: "+numberFormat.format(getPourcentageEchecPaquet())+"%");
-        Label nbvue = new Label("Nombre d'essai: "+getNbEssaiPaquet());
-        Reussite.setPadding(new Insets(0, 0, 0, 10));
-        echec.setPadding(new Insets(0, 0, 0, 10));
-        nbvue.setPadding(new Insets(8, 0, 0, 10));
-        nbvue.setWrapText(true);
-        echec.setWrapText(true);
-        Reussite.setWrapText(true);
-        statsboxPaquet.getChildren().addAll(label,nbvue,echec,Reussite);
-        statsboxPaquet.setSpacing(2);
-        statsboxPaquet.setPadding(new Insets(10,10,10,10));
-
-    }
-
-    public void MajStatsEntrainement(){
-        statsboxEntrainement.getChildren().clear();
-        Label label = new Label("Statistiques de l'Entrainement:");
-        label.getStyleClass().add("texte");
-        label.setFont(new Font("Arial", 20));
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-        Label Reussite = new Label("Pourcentage de réussite: "+numberFormat.format(getPourcentageReussiteEntrainement())+"%");
-        Label echec = new Label("Pourcentage d'échec: "+numberFormat.format(getPourcentageEchecEntrainement())+"%");
-        Label nbvue = new Label("Nombre d'essai: "+(nbReussite+nbEchec));
-        Reussite.setPadding(new Insets(0, 0, 0, 10));
-        echec.setPadding(new Insets(0, 0, 0, 10));
-        nbvue.setPadding(new Insets(8, 0, 0, 10));
-        nbvue.setWrapText(true);
-        echec.setWrapText(true);
-        Reussite.setWrapText(true);
-        statsboxEntrainement.getChildren().addAll(label,nbvue,echec,Reussite);
-        statsboxEntrainement.setSpacing(2);
-        statsboxEntrainement.setPadding(new Insets(10,10,10,10));
-
-        PieChart.Data slice1 = new PieChart.Data("Réussite", getPourcentageReussiteEntrainement());
-        PieChart.Data slice2 = new PieChart.Data("Echec", getPourcentageEchecEntrainement());
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(slice1, slice2);
-        graphPaquet.setData(pieChartData);
-        for (PieChart.Data data : graphPaquet.getData()) {
-            data.getNode().setStyle("-fx-pie-color: " + getColor(data.getName()) + ";");
-        }
-
-
-    }
-
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws IOException {
-        globalControleur.sauvegarder();
-        this.globalControleur.setPaquet(paquetActuel);
-    }
-    public void majCarteGlobalControleur(Carte carteActuelle) throws IOException {
-        globalControleur.sauvegarder();
-        this.globalControleur.setCarte(carteActuelle);
-    }
-    public boolean compareReponses(String reponse){
-        if(reponse.equals(carteActuelle.getReponse())){
-            return true;
-        }
-        return false;
-    }
-
-    @FXML
-    public void ecouterSon() {
-        if ( toggleFlashCard.isSelected() ) {
-            AudioClip player = new AudioClip(getClass().getResource(carteActuelle.getAudioReponse()).toExternalForm());
-            player.play();
-        } else if ( !toggleFlashCard.isSelected() ) {
-            AudioClip player = new AudioClip(getClass().getResource(carteActuelle.getAudioQuestion()).toExternalForm());
-            player.play();
-        }
-    }
     @FXML
     public void reussite() throws Exception {
-        majPaquetGlobalControleur(paquet);
+        new MajPaquetGlobalCommande(globalControleur, paquet).execute();
         nbReussite++;
         carteActuelle.getStatsCarte().MajStatsCarteReussite();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
@@ -417,7 +445,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
     }
     @FXML
     public void echec() throws Exception {
-        majPaquetGlobalControleur(paquet);
+        new MajPaquetGlobalCommande(globalControleur, paquet).execute();
         nbEchec++;
         carteActuelle.getStatsCarte().MajStatsCarteEchec();
         futurCartes.add(paquet.getApprentissageStrategie().getCarte(this.paquet, futurCartes));
@@ -427,72 +455,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         toggleFlashCard.setSelected(false);
         majFlashCard();
     }
-
-    public double getPourcentageReussitePaquet(){
-        double nombreReussite = 0;
-        double nombreEchec = 0;
-        for (Carte carte : paquet.getCartes()) {
-            nombreReussite += carte.getStatsCarte().getNbReussite();
-            nombreEchec += carte.getStatsCarte().getNbEchec();
-        }
-        return (nombreReussite/(nombreReussite+nombreEchec))*100;
-    }
-
-    public double getPourcentageEchecPaquet(){
-        double nombreReussite = 0;
-        double nombreEchec = 0;
-        for (Carte carte : paquet.getCartes()) {
-            nombreReussite += carte.getStatsCarte().getNbReussite();
-            nombreEchec += carte.getStatsCarte().getNbEchec();
-        }
-        return (nombreEchec/(nombreReussite+nombreEchec))*100;
-    }
-
-    public int getNbEssaiPaquet(){
-        int nbEssai = 0;
-        for (Carte carte : paquet.getCartes()) {
-            nbEssai += carte.getStatsCarte().getNbEssaie();
-        }
-        return nbEssai;
-    }
-
-    public double getPourcentageReussiteEntrainement(){
-        if (nbReussite+nbEchec == 0){
-            return 0;
-        }
-        return ( ((double)nbReussite/ (double)(nbReussite+nbEchec))*100);
-    }
-
-    public double getPourcentageEchecEntrainement(){
-        if (nbReussite+nbEchec == 0){
-            return 0;
-        }
-        return ( ((double)nbEchec/ (double)(nbReussite+nbEchec))*100);
-    }
-
-    public double getPourcentageReussiteCarte(){
-        if (carteActuelle.getStatsCarte().getNbEssaie() == 0){
-            return 0;
-        }
-        return ((double)carteActuelle.getStatsCarte().getNbReussite()/(double)(carteActuelle.getStatsCarte().getNbReussite()+carteActuelle.getStatsCarte().getNbEchec()))*100;
-    }
-
-    public double getPourcentageEchecCarte(){
-        if (carteActuelle.getStatsCarte().getNbEssaie() == 0){
-            return 0;
-        }
-        return ( ((double)carteActuelle.getStatsCarte().getNbEchec()/(double)(carteActuelle.getStatsCarte().getNbReussite()+carteActuelle.getStatsCarte().getNbEchec()))*100);
-    }
-
-    public String getColor(String name){
-        if (name.equals("Réussite")){
-            return "green";
-        }
-        else{
-            return "red";
-        }
-    }
-
+    @FXML
     public void showcarte(){
         if (statsboxCarte.isVisible()){
             carteVisibility.setText("    Stats carte");
@@ -503,6 +466,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         statsboxCarte.setVisible(!statsboxCarte.isVisible());
         graphCarte.setVisible(!graphCarte.isVisible());
     }
+    @FXML
     public void showPaquet(){
         if (statsboxPaquet.isVisible()){
             paquetVisibility.setText("    Stats paquet");
@@ -512,6 +476,7 @@ public class EntrainementControleur extends SujetObserve implements Initializabl
         }
         statsboxPaquet.setVisible(!statsboxPaquet.isVisible());
     }
+    @FXML
     public void showEntrainement(){
         if (statsboxEntrainement.isVisible()){
             entrainementVisibility.setText("    Stats entrainement");
