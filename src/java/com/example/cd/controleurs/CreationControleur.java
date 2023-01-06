@@ -240,10 +240,10 @@ public class CreationControleur extends SujetObserve implements Initializable, O
     }
     @FXML
     public void ecouterQuestion() throws Exception {
-        new JouerSonQuestionCommande(globalControleur).execute();
+        new JouerSonCommande(globalControleur, "question").execute();
     }
     @FXML
     public void ecouterReponse() throws Exception {
-        new JouerSonReponseCommande(globalControleur).execute();
+        new JouerSonCommande(globalControleur, "reponse").execute();
     }
 }
