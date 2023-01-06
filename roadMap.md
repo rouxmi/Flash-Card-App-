@@ -116,16 +116,16 @@
 
 ### Matin
 
-| Status | Objectifs                                                                                                                                         | Responsable                                                                |
-|:------:|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-|   ❌    | [Remmettre pattern Command](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                                         | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard) |
-|   ✔    | [Copier/Coller](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/836c5cec98f33a98e7e7b7e9a8bb76f6226d7e42)             |    [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier) |
-|   ❌    | [Choisir Style Carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                                               |     |
-|   ❌    | [Style Application](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                                                 |   [Lucie Boucher](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher) |
-|   ✔    | [Curseur timer](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/275e864ce352d45782fcf070cbfe007e2699dfa5)             |  [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier) |
-|   ✔    | [Import de fichiers .apkg](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/0bdb47e0f4223d77eb9c94e83304049d3665ebb3)  |   [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais) |
-|   ❌    | [Créer un dossier si dossier n'existe pas pour charger les médias ](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) |     |
-|   ❌    | [Mettre les médias en zip dans le zip ](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                             |     |
+| Status  | Objectifs                                                                                                                                         | Responsable                                                                    |
+|:-------:|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+|    ❌    | [Remmettre pattern Command](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                                         | [Louis Chatard](https://gitlab.telecomnancy.univ-lorraine.fr/Louis.Chatard)    |
+|    ✔    | [Copier/Coller](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/836c5cec98f33a98e7e7b7e9a8bb76f6226d7e42)             | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier) |
+|    ❌    | [Choisir Style Carte](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                                               |                                                                                |
+|    ❌    | [Style Application](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                                                 | [Lucie Boucher](https://gitlab.telecomnancy.univ-lorraine.fr/Lucie.Boucher)    |
+|    ✔    | [Curseur timer](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/275e864ce352d45782fcf070cbfe007e2699dfa5)             | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier) |
+|    ✔    | [Import de fichiers .apkg](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/0bdb47e0f4223d77eb9c94e83304049d3665ebb3)  | [Rémi Bourdais](https://gitlab.telecomnancy.univ-lorraine.fr/Remi.Bourdais)    |
+|    ✔    | [Créer un dossier si dossier n'existe pas pour charger les médias ](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/) |                                                                                |
+|    ❌    | [Mettre les médias en zip dans le zip ](https://gitlab.telecomnancy.univ-lorraine.fr/pcd2k23/codingweek-13/-/commit/)                             | [Lola Montignier](https://gitlab.telecomnancy.univ-lorraine.fr/Lola.Montignier)                                                          |
 
 
 ### Après-midi

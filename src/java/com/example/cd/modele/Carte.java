@@ -77,4 +77,5 @@ public class Carte {
         this.audioReponse = audioReponse;
     }
 
+    public void setStatsCarte(StatsCarte statsCarte) {this.statsCarte = statsCarte;}
 }
