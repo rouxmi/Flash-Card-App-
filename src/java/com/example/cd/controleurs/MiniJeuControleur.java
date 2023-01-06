@@ -6,6 +6,7 @@ import com.example.cd.commande.QuitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
 import com.example.cd.modele.apprentissage.FreeApprentissage;
+import com.example.cd.modele.apprentissage.MiniJeuApprentissage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -28,7 +29,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
     private boolean question = false;
     private boolean reponse = false;
 
-    private FreeApprentissage strategie;
+    private MiniJeuApprentissage strategie;
 
     private int cmpInvisible;
 
@@ -42,7 +43,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
         this.paquet = paquet;
         this.globalControleur = globalControleur;
         this.cartes = new LinkedList<>();
-        strategie = new FreeApprentissage(20,20,20,20,20);
+        strategie = new MiniJeuApprentissage();
         Carte c = strategie.getCarte(this.paquet, cartes);
         this.cartes.add(c);
         for (int i = 0; i < 7; i++) {
