@@ -143,7 +143,7 @@ public class GestionControleur extends SujetObserve implements Initializable, Ob
                 button.getStyleClass().add("button2");
                 button.setText(paquet.getCarte(i).getQuestion());
                 if(!paquet.getCarte(i).getImageQuestion().equals("")){
-                    final Image image = new Image("utiles/image1.png");
+                    final Image image = new Image("utiles/media.png");
 
                     final ImageView icon = new ImageView(image);
                     icon.setFitHeight(50);

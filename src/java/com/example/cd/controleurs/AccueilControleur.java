@@ -326,10 +326,12 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void triercouleur(){
         colormode = !colormode;
+        nbmode = false;
         if(colormode) {
             paquets.sort(Comparator.comparing(PaquetDeCartes::getEtatMoyenPaquet));
         }
         else{
+            avancee.setSelected(false);
             paquets.sort(Comparator.comparing(PaquetDeCartes::getTitre));
         }
         table.getChildren().clear();
@@ -362,10 +364,12 @@ public class AccueilControleur extends SujetObserve implements Initializable, Ob
     @FXML
     public void triernb(){
         nbmode = !nbmode;
+        colormode = false;
         if(nbmode) {
             paquets.sort(Comparator.comparing(PaquetDeCartes::taillePaquet));
         }
         else{
+            nb.setSelected(false);
             paquets.sort(Comparator.comparing(PaquetDeCartes::getTitre));
         }
         table.getChildren().clear();

@@ -27,7 +27,7 @@ $ java -jar out/artifacts/codingweek_jar/codingweek.jar
 
 L’application permet :
 
-• de créer une carte, d’éditer son contenu (face question, face réponse), de supprimer une carte. Chaque carte est associée à ses statistiques (nombre de fois où la carte a été vue, nombre de fois où la carte a été correctement répondu, nombre de fois où la carte a été mal répondu).
+• de créer une carte, d’éditer son contenu (face question, face réponse), de supprimer une carte.
 
 
 • de créer un paquet de carte (possedant un titre, une description, et des étiquettes), de modifier un paquet, de supprimer un paquet ;
@@ -44,22 +44,20 @@ laisser un temps de réflexion(choisi par l'utilisateur dans le mode révision e
     - Libre : L'utilisateur choisit le pourcentage de cartes qu'il souhaite travailler parmi les 5 états de carte différents (non vue, a revoir, debut apprentissage, fin apprentissage, aquise parfaite)
     - Master: favorise les cartes qui peuvent changer d'état (non vue, a revoir, debut apprentissage, fin apprentissage), ensuite priorise les cartes qui sont le plus loin de l'état acquise parfaite
 
-• de consulter les statistiques d’apprentissage d’une pile ou de l’ensemble des piles. Ces statistiques pourront être
-présentées sous forme de graphiques.
+• de consulter les statistiques d’apprentissage d’un paquet de cartes, d'une carte et d'une session d'entraînement.
 
-Il est possible d’envisager un certain nombre d’extensions aux fonctionnalités basiques présentées ci-dessous :
-• partager en ligne des piles de cartes (dans un répertoire GoogleDrive, un dépôt DropBox, un dépôt Git, etc.) ;
+### Les extensions implémentées
 
-• intégrer des données multimédia à vos cartes (images, sons, vidéos, etc.) ;
+L'application permet également :
 
-• ajouter différents formats de rendu du contenu de vos cartes (rendu de formules mathématiques, de diagramme
-plantuml, etc.) ;
+• de partager en ligne des paquets de cartes dans un drive google en ligne. ;
 
-• importer les piles de cartes provenant d’une autre application (par exemple le format .apkg d’Anki) ;
+• de intégrer des données multimédia à vos cartes (images (.png,.jpeg,.gif), sons (.wav)). Pour les données sons, il faut recharger la charge afin que le son puisse être lu;
 
-• proposer une meilleure organisation des cartes et des piles de cartes (en partageant des cartes entre différentes
-piles, en ajoutant des étiquettes (tags) sur les cartes et les piles, en organisant les piles par leçons) ;
+• d'importer les piles de cartes provenant d'Anki avec le format .apkg ;
 
-• modifier le style de présentation de cartes ;
+• de proposer une organisation des paquets de cartes par avancement dans l'apprentissage.
 
-• proposer un mode où l’apprenant doit saisir la réponse.
+. de copier/coller des cartes entre paquets.
+
+• de proposer un mode où l’apprenant doit saisir la réponse.
