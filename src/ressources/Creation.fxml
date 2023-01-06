@@ -37,7 +37,7 @@
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <Button fx:id="imageGauche" mnemonicParsing="false" onAction="#ajouterImageQuestion">
+                                          <Button fx:id="imageGauche" mnemonicParsing="false" onAction="#ajouterImageQuestion" prefHeight="50" prefWidth="50" minHeight="50" minWidth="50">
                                              <padding>
                                                 <Insets right="10.0" />
                                              </padding>
@@ -45,7 +45,7 @@
                                                 <Insets left="20.0" top="50.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="audioGauche" mnemonicParsing="false" onAction="#ajouterAudioQuestion">
+                                          <Button fx:id="audioGauche" mnemonicParsing="false" onAction="#ajouterAudioQuestion" prefHeight="50" prefWidth="50" minHeight="50" minWidth="50">
                                              <padding>
                                                 <Insets right="10.0" />
                                              </padding>
@@ -63,7 +63,7 @@
                                           <Insets right="20.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <TextArea fx:id="question" prefHeight="100.0" prefWidth="100.0" promptText="Question">
+                                    <TextArea fx:id="question" prefHeight="150.0" prefWidth="200.0" promptText="Question">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -71,7 +71,7 @@
                                           <Insets bottom="100.0" right="20.0" top="100.0" />
                                        </HBox.margin>
                                     </TextArea>
-                                    <TextArea fx:id="reponse" prefHeight="100.0" prefWidth="100.0" promptText="Reponse">
+                                    <TextArea fx:id="reponse" prefHeight="150.0" prefWidth="200.0" promptText="Reponse">
                                        <HBox.margin>
                                           <Insets bottom="100.0" top="100.0" />
                                        </HBox.margin>
@@ -83,7 +83,7 @@
                                     </Button>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <Button fx:id="imageDroit" mnemonicParsing="false" onAction="#ajouterImageReponse">
+                                          <Button fx:id="imageDroit" mnemonicParsing="false" onAction="#ajouterImageReponse" prefHeight="50" prefWidth="50" minHeight="50" minWidth="50">
                                              <padding>
                                                 <Insets right="10.0" />
                                              </padding>
@@ -91,7 +91,7 @@
                                                 <Insets left="20.0" top="50.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="audioDroit" mnemonicParsing="false" onAction="#ajouterAudioReponse">
+                                          <Button fx:id="audioDroit" mnemonicParsing="false" onAction="#ajouterAudioReponse" prefHeight="50" prefWidth="50" minHeight="50" minWidth="50">
                                              <padding>
                                                 <Insets right="10.0" />
                                              </padding>
@@ -118,7 +118,7 @@
                <top>
                   <VBox prefHeight="76.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="nomPaquet" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="1151.0" text="Paquet">
+                        <Label fx:id="nomPaquet" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="1151.0" text="Paquet" styleClass="titre">
                            <padding>
                               <Insets left="70.0" right="70.0" />
                            </padding>
@@ -126,7 +126,7 @@
                               <Font size="29.0" />
                            </font>
                         </Label>
-                        <Label fx:id="numCarte" alignment="CENTER" contentDisplay="CENTER" prefWidth="1151.0" text="Carte n°1">
+                        <Label fx:id="numCarte" alignment="CENTER" contentDisplay="CENTER" prefWidth="1151.0" text="Carte n°1" styleClass="texte">
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
                            </font>
