@@ -5,6 +5,7 @@ import com.example.cd.SujetObserve;
 import com.example.cd.commande.*;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
+import com.example.cd.statistiques.StatsCarte;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -268,7 +269,9 @@ public class CreationControleur extends SujetObserve implements Initializable, O
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 for(int i=0; i<paquets.size();i++){
                     if(t1.equals(paquets.get(i))){
-                        globalControleur.getPaquets().get(i).ajouterCarte(globalControleur.getCarte());
+                        Carte carteAColler = globalControleur.getCarte();
+                        carteAColler.setStatsCarte(new StatsCarte());
+                        globalControleur.getPaquets().get(i).ajouterCarte(carteAColler);
                     }
                 }
             }
