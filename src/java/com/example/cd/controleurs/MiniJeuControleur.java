@@ -2,6 +2,8 @@ package com.example.cd.controleurs;
 
 import com.example.cd.Observateur;
 import com.example.cd.SujetObserve;
+import com.example.cd.commande.AllerAccueilCommande;
+import com.example.cd.commande.AllerGestionCommande;
 import com.example.cd.commande.QuitterApplicationCommande;
 import com.example.cd.modele.Carte;
 import com.example.cd.modele.PaquetDeCartes;
@@ -23,20 +25,16 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
 
     private PaquetDeCartes paquet;
     private GlobalControleur globalControleur;
-
     private Queue<Carte> cartes;
-
     private boolean question = false;
     private boolean reponse = false;
-
     private MiniJeuApprentissage strategie;
-
     private int cmpInvisible;
-
     private long startTime;
 
     @FXML
     private GridPane grille;
+
 
     public MiniJeuControleur(PaquetDeCartes paquet, GlobalControleur globalControleur) {
         this.cmpInvisible = 0;
@@ -50,28 +48,6 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
             this.cartes.add(strategie.getCarte(this.paquet, cartes));
         }
         paquet.ajouterObservateur(this);
-    }
-
-    @FXML
-    public void quitterAppli() {
-        (new QuitterApplicationCommande()).execute();
-    }
-
-    @FXML
-    public void allerAccueil() throws Exception {
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersAccueil();
-    }
-
-    @FXML
-    public void voirPaquet() throws Exception {
-        majPaquetGlobalControleur(paquet);
-        globalControleur.changeSceneVersGestion();
-    }
-
-    public void majPaquetGlobalControleur(PaquetDeCartes paquetActuel) throws Exception {
-        globalControleur.sauvegarder();
-        this.globalControleur.setPaquet(paquetActuel);
     }
 
     @Override
@@ -132,9 +108,6 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
             }
         }
     }
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         startTime = System.nanoTime();
@@ -151,6 +124,7 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
                 randomDejaTombes.add(random);
                 ToggleButton Bouton = new ToggleButton();
                 Bouton.setId(""+random);
+                Bouton.getStyleClass().add("toggle-button1");
                 if(random-8 >= 0){
                     Bouton.setText(listeCartes.get(random%8).getQuestion());
                     Bouton.setToggleGroup(groupQ);
@@ -165,5 +139,19 @@ public class MiniJeuControleur extends SujetObserve implements Initializable, Ob
                 grille.add(Bouton, i, j);}
         }
 
+    }
+
+    // FXML Boutons Fonctions
+    @FXML
+    public void quitterAppli() {
+        (new QuitterApplicationCommande()).execute();
+    }
+    @FXML
+    public void allerAccueil() throws Exception {
+        new AllerAccueilCommande(globalControleur, paquet).execute();
+    }
+    @FXML
+    public void voirPaquet() throws Exception {
+        new AllerGestionCommande(globalControleur, paquet).execute();
     }
 }

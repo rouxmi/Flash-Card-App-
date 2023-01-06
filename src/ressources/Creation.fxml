@@ -18,11 +18,11 @@
          <top>
             <ToolBar prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" />
-                  <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" />
-                  <Button fx:id="supprimerCarteBouton" mnemonicParsing="false" onAction="#supprimerCarte" text="Supprimer la carte" />
-                  <Button mnemonicParsing="false" onAction="#copierCarte" text="Copier cette carte" />
-                  <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" />
+                  <Button mnemonicParsing="false" onAction="#allerAccueil" text="Accueil" styleClass="boutonTool"/>
+                  <Button mnemonicParsing="false" onAction="#voirPaquet" text="Voir le paquet" styleClass="boutonTool"/>
+                  <Button fx:id="supprimerCarteBouton" mnemonicParsing="false" onAction="#supprimerCarte" text="Supprimer la carte" styleClass="boutonTool"/>
+                  <Button mnemonicParsing="false" onAction="#copierCarte" text="Copier cette carte" styleClass="boutonTool"/>
+                  <Button mnemonicParsing="false" onAction="#quitterAppli" text="Quitter" styleClass="boutonTool"/>
                </items>
             </ToolBar>
          </top>
@@ -108,8 +108,8 @@
                               </HBox>
                               <ImageView fx:id="imageQuestion" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="397.0" AnchorPane.topAnchor="300.0" />
                               <ImageView fx:id="imageReponse" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="381.0" AnchorPane.topAnchor="300.0" />
-                              <Button fx:id="ecouterQuestionBouton" layoutX="232.0" layoutY="330.0" mnemonicParsing="false" onAction="#ecouterQuestion" text="Ecouter la question" AnchorPane.topAnchor="330.0" />
-                              <Button fx:id="ecouterReponseBouton" layoutX="636.0" layoutY="327.0" mnemonicParsing="false" onAction="#ecouterReponse" text="Ecouter la reponse" AnchorPane.topAnchor="327.0" />
+                              <Button fx:id="ecouterQuestionBouton" layoutX="232.0" layoutY="330.0" mnemonicParsing="false" onAction="#ecouterQuestion" text="Ecouter la question" AnchorPane.topAnchor="330.0" styleClass="button1"/>
+                              <Button fx:id="ecouterReponseBouton" layoutX="636.0" layoutY="327.0" mnemonicParsing="false" onAction="#ecouterReponse" text="Ecouter la reponse" AnchorPane.topAnchor="327.0" styleClass="button1"/>
                            </children>
                         </AnchorPane>
                     </items>
