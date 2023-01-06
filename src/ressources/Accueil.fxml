@@ -17,13 +17,13 @@
        <VBox>
       <ToolBar prefHeight="32.0" prefWidth="600.0">
          <items>
-            <ToggleButton fx:id="toggleBouton" mnemonicParsing="false" onAction="#majToggle" text="Gestion" styleClass="boutonTool" />
-             <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage">
+            <ToggleButton fx:id="toggleBouton" mnemonicParsing="false" onAction="#majToggle" text="Gestion" styleClass="toggle-button2" />
+             <SplitMenuButton fx:id="splitMenu" mnemonicParsing="false" text="Technique d'Apprentissage" styleClass="split-menu-button">
                    <items>
-                      <MenuItem mnemonicParsing="false" text="Aléatoire" onAction="#random" styleClass="boutonTool" />
-                      <MenuItem mnemonicParsing="false" text="Classique" onAction="#classique" styleClass="boutonTool"/>
-                       <MenuItem mnemonicParsing="false" text="Libre" onAction="#avancement" styleClass="boutonTool"/>
-                       <MenuItem mnemonicParsing="false" onAction="#master" text="Master" styleClass="boutonTool"/>
+                      <MenuItem mnemonicParsing="false" text="Aléatoire" onAction="#random"  styleClass="split-menu-button-arrow"/>
+                      <MenuItem mnemonicParsing="false" text="Classique" onAction="#classique" styleClass="split-menu-button-arrow" />
+                       <MenuItem mnemonicParsing="false" text="Libre" onAction="#avancement" styleClass="split-menu-button-arrow"/>
+                       <MenuItem mnemonicParsing="false" onAction="#master" text="Master" styleClass="split-menu-button-arrow"/>
                    </items>
             </SplitMenuButton>
              <Button mnemonicParsing="false" onAction="#importerPaquet" text="Importer" fx:id="importPaquet" styleClass="boutonTool" />
