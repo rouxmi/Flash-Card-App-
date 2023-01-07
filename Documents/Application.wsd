@@ -1,0 +1,457 @@
+@startuml Lisbangers
+
+
+top to bottom direction
+skinparam linetype ortho
+
+class AccueilControleur {
+  + AccueilControleur(ArrayList<PaquetDeCartes>, GlobalControleur):
+  + quitterAppli(): void
+  + initialize(URL, ResourceBundle): void
+  + ajouterNouveauPaquet(): void
+  + Partager(): void
+  + importerPaquet(): void
+  + creationBoutons(): void
+  - checkifpaquetintaglist(PaquetDeCartes): boolean
+  - getimagepath(int): String
+  - creationsmenu(): void
+  + classique(): void
+  + reagir(): void
+  + random(): void
+  + triernb(): void
+  + visiterPaquet(): void
+  + triercouleur(): void
+  + avancement(): void
+  + majToggle(): void
+  + master(): void
+}
+class AjouterCarteCommande {
+  + AjouterCarteCommande(GlobalControleur, Carte, String, String):
+  + execute(): void
+}
+class AjouterPaquetCommande {
+  + AjouterPaquetCommande(GlobalControleur):
+  + execute(): void
+  + dialogBoxNouvelleDescription(): void
+  - dialogBoxNouveauTags(): void
+  + dialogBoxNouveauPaquet(): void
+}
+class AllerAccueilCommande {
+  + AllerAccueilCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+class AllerCreationCommande {
+  + AllerCreationCommande(GlobalControleur, PaquetDeCartes, Carte):
+  + execute(): void
+}
+class AllerEcritureCommande {
+  + AllerEcritureCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+class AllerEntrainementCommande {
+  + AllerEntrainementCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+class AllerGestionCommande {
+  + AllerGestionCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+class AllerMiniJeuCommande {
+  + AllerMiniJeuCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+class AllerRevisionCommande {
+  + AllerRevisionCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+class Ankiloader {
+  + Ankiloader():
+  + loadAnki(String): ArrayList<PaquetDeCartes>
+  - deleteDirectory(File): boolean
+}
+interface ApprentissageStrategie << interface >> {
+  + toString(): String
+  + getCarte(PaquetDeCartes, Queue<Carte>): Carte
+}
+class Carte {
+  + Carte():
+  + Carte(String, String):
+  - imageQuestion: String
+  - question: String
+  - audioQuestion: String
+  - reponse: String
+   imageQuestion: String
+   audioQuestion: String
+   question: String
+   reponse: String
+}
+interface ChangeScene << interface >> {
+  + changetoScene(): void
+}
+class ChangeurScene {
+  + ChangeurScene(ArrayList<PaquetDeCartes>, PaquetDeCartes, Carte, GlobalControleur):
+  + changeSceneGestion(): void
+  + changeSceneAcceuil(): void
+  + changeSceneCreation(): void
+  + changeSceneEntrainement(String): void
+  + execute(): void
+  + changeSceneMiniJeu(): void
+}
+class ClassiqueApprentissage {
+  + ClassiqueApprentissage():
+  + toString(): String
+  + getCarte(PaquetDeCartes, Queue<Carte>): Carte
+}
+class Commande {
+  + Commande(ArrayList<PaquetDeCartes>, PaquetDeCartes, Carte):
+  + execute(): void
+   
+}
+class CopierCarteCommande {
+  + CopierCarteCommande(GlobalControleur):
+  + execute(): void
+}
+class CreationControleur {
+  + CreationControleur(PaquetDeCartes, GlobalControleur):
+  + reagir(): void
+  + ajouterCarte(): void
+  + initialize(URL, ResourceBundle): void
+  + ajouterAudioQuestion(): void
+  + copierCarte(): void
+  + allerSuiv(): void
+  + voirPaquet(): void
+  + ajouterImageQuestion(): void
+  + ecouterReponse(): void
+  + supprimerCarte(): void
+  + ecouterQuestion(): void
+  + quitterAppli(): void
+  + allerAccueil(): void
+  + allerPrec(): void
+   carteValide: boolean
+}
+class EntrainementControleur {
+  + EntrainementControleur(PaquetDeCartes, GlobalControleur, String):
+  + notifierObservateur(): void
+  + majStatsCarte(): void
+  + showEntrainement(): void
+  + majStatsPaquet(): void
+  + reussite(): void
+  + showPaquet(): void
+  + voirPaquet(): void
+  + echec(): void
+  + ecouterSon(): void
+  + compareReponses(String): boolean
+  + allerAccueil(): void
+  + majStats(): void
+  + initialize(URL, ResourceBundle): void
+  + majStatsEntrainement(): void
+  + reagir(): void
+  + getColor(String): String
+  + showcarte(): void
+  + quitterAppli(): void
+  + majFlashCard(): void
+   pourcentageEchecPaquet: double
+   pourcentageReussiteEntrainement: double
+   nbEssaiPaquet: int
+   pourcentageReussiteCarte: double
+   pourcentageReussitePaquet: double
+   pourcentageEchecEntrainement: double
+   pourcentageEchecCarte: double
+}
+enum EtatCarte << enumeration >> {
+  + EtatCarte():
+  + values(): EtatCarte[]
+  + valueOf(String): EtatCarte
+}
+class FreeApprentissage {
+  + FreeApprentissage(double, double, double, double, double):
+  + getCarte(PaquetDeCartes, Queue<Carte>): Carte
+  + toString(): String
+}
+class GestionControleur {
+  + GestionControleur(PaquetDeCartes, GlobalControleur):
+  + modifTitre(): void
+  - InitialisationCamenbert(): void
+  + miniJeu(): void
+  + versRevision(): void
+  + versEcriture(): void
+  + initialize(URL, ResourceBundle): void
+  + versCreation(): void
+  + quitterAppli(): void
+  + modifDescription(): void
+  - dialogBoxNouveauTags(): void
+  + allerAccueil(): void
+  + visiterCarte(): void
+  + avancement(): void
+  + master(): void
+  + exporterPaquet(): void
+  + supprimerPaquet(): void
+  + handlemodifTag(): void
+  + reagir(): void
+  + versEntrainement(): void
+  + classique(): void
+  + random(): void
+  + affichageCartes(): void
+}
+class GlobalControleur {
+  + GlobalControleur():
+  + changeSceneVersCreation(): void
+  + supprimerCarte(Carte): void
+  + sauvegarder(): void
+  + sauvegarderImageQuestion(): void
+  + reagir(): void
+  + changeSceneVersAccueil(): void
+  + supprimerPaquet(PaquetDeCartes): void
+  + findIndice(PaquetDeCartes, Carte): int
+  + changeSceneVersMiniJeu(): void
+  + setPaquetActuelAccueil(): void
+  + sauvegarder1paquet(): void
+  + changeSceneVersGestion(): void
+  + importerPaquets(): void
+  + InitialisationChangeurScene(): void
+  + sauvegarderAudioQuestion(): void
+  + changeSceneVersEntrainement(String): void
+}
+class ImporterCommande {
+  + ImporterCommande(GlobalControleur, ArrayList<PaquetDeCartes>):
+  + execute(): void
+}
+class JouerSonCommande {
+  + JouerSonCommande(GlobalControleur, Carte, String):
+  + execute(): void
+}
+class Launcher {
+  + Launcher():
+  + main(String[]): void
+}
+class Listpaquets {
+  + Listpaquets(ArrayList<PaquetDeCartes>, String):
+}
+class Main {
+  + Main():
+  + start(Stage): void
+  + main(String[]): void
+}
+class MajCarteGlobalCommande {
+  + MajCarteGlobalCommande(GlobalControleur, Carte):
+  + execute(): void
+}
+class MajPaquetGlobalCommande {
+  + MajPaquetGlobalCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+class MasterStrategie {
+  + MasterStrategie():
+  + getCarte(PaquetDeCartes, Queue<Carte>): Carte
+  + toString(): String
+}
+class MiniJeuApprentissage {
+  + MiniJeuApprentissage():
+  + getCarte(PaquetDeCartes, Queue<Carte>): Carte
+  + toString(): String
+}
+class MiniJeuControleur {
+  + MiniJeuControleur(PaquetDeCartes, GlobalControleur):
+  + quitterAppli(): void
+  + allerAccueil(): void
+  + voirPaquet(): void
+  + reagir(): void
+  + initialize(URL, ResourceBundle): void
+}
+class ModifDescriptionCommande {
+  + ModifDescriptionCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+  + dialogBoxNouvelleDescription(): void
+}
+class ModifTitreCommande {
+  + ModifTitreCommande(GlobalControleur, PaquetDeCartes):
+  + dialogBoxNouveauTitre(): void
+  + execute(): void
+}
+interface Observateur << interface >> {
+  + reagir(): void
+}
+class PaquetDeCartes {
+  + PaquetDeCartes(String, String):
+  + PaquetDeCartes():
+  + PaquetDeCartes(ArrayList<Carte>, String, String):
+  - tag: String
+  - titre: String
+  - description: String
+  - decompte: int
+  - cartes: ArrayList<Carte>
+  + getlistTags(): String[]
+  + getIndiceOfCartes(Carte): int
+  + ajouterCarte(Carte): void
+  + supprimerCarte(Carte): void
+  + taillePaquet(): int
+  + supprimerCarteSelonIndex(int): void
+  + getCarte(int): Carte
+   description: String
+   etatMoyenPaquet: int
+   tag: String
+   decompte: int
+   titre: String
+}
+class PartagerCommande {
+  + PartagerCommande():
+  + execute(): void
+}
+class QuitterApplicationCommande {
+  + QuitterApplicationCommande():
+  + execute(): void
+}
+class RandomApprentissage {
+  + RandomApprentissage():
+  + getCarte(PaquetDeCartes, Queue<Carte>): Carte
+  + toString(): String
+}
+class Sauvegarde {
+  + Sauvegarde():
+  + chargerPaquets(): ArrayList<PaquetDeCartes>
+  + choisirFichierImage(): String
+  + deZipMediaZip(): void
+  + sauvegarderMediaZip(ArrayList<PaquetDeCartes>): void
+  + chargerTousPaquets(): ArrayList<PaquetDeCartes>
+  + sauvegardeTousPaquets(ArrayList<PaquetDeCartes>): void
+  + sauvegarde(PaquetDeCartes): void
+  + choisirFichierAudio(): String
+}
+class SceneAccueil {
+  + SceneAccueil(ArrayList<PaquetDeCartes>, GlobalControleur):
+  + changetoScene(): void
+}
+class SceneCreation {
+  + SceneCreation(PaquetDeCartes, GlobalControleur):
+  + changetoScene(): void
+}
+class SceneEntrainement {
+  + SceneEntrainement(PaquetDeCartes, GlobalControleur, String):
+  + changetoScene(): void
+}
+class SceneGestion {
+  + SceneGestion(PaquetDeCartes, GlobalControleur):
+  + changetoScene(): void
+}
+class SceneMiniJeu {
+  + SceneMiniJeu(PaquetDeCartes, GlobalControleur):
+  + changetoScene(): void
+}
+class StatsCarte {
+  + StatsCarte():
+  + addDateReussite(LocalDate): void
+  + ValidableAujourdhui(): boolean
+  + addBeforeReussite(LocalDate): void
+  + MajStatsCarteReussite(): void
+  + addDateEchec(LocalDate): void
+  + MajStatsCarteEchec(): void
+   nbEssaie: int
+   pourcentageReussite: double
+   lastDate: LocalDate
+   lastDateReussite: LocalDate
+   nbReussite: int
+   nbEchec: int
+   lastDateEchec: LocalDate
+   pourcentageEchec: double
+}
+class SujetObserve {
+  + SujetObserve():
+  + ajouterObservateur(Observateur): void
+  + notifierObservateur(): void
+}
+class SupprimerCarteCommande {
+  + SupprimerCarteCommande(GlobalControleur):
+  + execute(): void
+}
+class SupprimerPaquetCommande {
+  + SupprimerPaquetCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+class VoirPaquetCommande {
+  + VoirPaquetCommande(GlobalControleur, PaquetDeCartes):
+  + execute(): void
+}
+
+
+Main -[#000000,plain]-"1" GlobalControleur
+GlobalControleur "1"-[#000000,plain]-"1"  AccueilControleur
+GlobalControleur "1"-[#000000,plain]-"1"  GestionControleur
+GlobalControleur "1"-[#000000,plain]-"1"  EntrainementControleur
+GlobalControleur "1"-[#000000,plain]-"1"  CreationControleur
+GlobalControleur "1"-[#000000,plain]-"1"  MiniJeuControleur
+
+AccueilControleur           -[#008200,dashed]-^  Observateur
+AccueilControleur           -[#000082,plain]-^  SujetObserve
+AjouterCarteCommande        -[#000082,plain]-^  Commande
+AjouterPaquetCommande       -[#000082,plain]-^  Commande
+AllerAccueilCommande        -[#000082,plain]-^  Commande
+AllerCreationCommande       -[#000082,plain]-^  Commande
+AllerEcritureCommande       -[#000082,plain]-^  Commande
+AllerEntrainementCommande   -[#000082,plain]-^  Commande
+AllerGestionCommande        -[#000082,plain]-^  Commande
+AllerMiniJeuCommande        -[#000082,plain]-^  Commande
+AllerRevisionCommande       -[#000082,plain]-^  Commande
+ChangeurScene               -[#000082,plain]-^  Commande
+ChangeurScene               -[#000082,plain]-  ChangeScene
+ClassiqueApprentissage      -[#008200,dashed]-^  ApprentissageStrategie
+CopierCarteCommande         -[#000082,plain]-^  Commande
+CreationControleur          -[#008200,dashed]-^  Observateur
+CreationControleur          -[#000082,plain]-^  SujetObserve
+EntrainementControleur      -[#008200,dashed]-^  Observateur
+EntrainementControleur      -[#000082,plain]-^  SujetObserve
+FreeApprentissage           -[#008200,dashed]-^  ApprentissageStrategie
+GestionControleur           -[#008200,dashed]-^  Observateur
+GestionControleur           -[#000082,plain]-^  SujetObserve
+GlobalControleur            -[#008200,dashed]-^  Observateur
+GlobalControleur            -[#000082,plain]-^  Sauvegarde
+ImporterCommande            -[#000082,plain]-^  Commande
+JouerSonCommande            -[#000082,plain]-^  Commande
+MajCarteGlobalCommande      -[#000082,plain]-^  Commande
+MajPaquetGlobalCommande     -[#000082,plain]-^  Commande
+MasterStrategie             -[#008200,dashed]-^  ApprentissageStrategie
+MiniJeuApprentissage        -[#008200,dashed]-^  ApprentissageStrategie
+MiniJeuControleur           -[#008200,dashed]-^  Observateur
+MiniJeuControleur           -[#000082,plain]-^  SujetObserve
+ModifDescriptionCommande    -[#000082,plain]-^  Commande
+ModifTitreCommande          -[#000082,plain]-^  Commande
+PaquetDeCartes              -[#000082,plain]-^  SujetObserve
+PartagerCommande            -[#000082,plain]-^  Commande
+QuitterApplicationCommande  -[#000082,plain]-^  Commande
+RandomApprentissage         -[#008200,dashed]-^  ApprentissageStrategie
+SceneAccueil                -[#008200,dashed]-^  ChangeScene
+SceneCreation               -[#008200,dashed]-^  ChangeScene
+SceneEntrainement           -[#008200,dashed]-^  ChangeScene
+SceneGestion                -[#008200,dashed]-^  ChangeScene
+SceneMiniJeu                -[#008200,dashed]-^  ChangeScene
+SupprimerCarteCommande      -[#000082,plain]-^  Commande
+SupprimerPaquetCommande     -[#000082,plain]-^  Commande
+VoirPaquetCommande          -[#000082,plain]-^  Commande
+GlobalControleur -[#000000,plain]-"0*"  PaquetDeCartes
+GlobalControleur -[#000000,plain]-"1"  PaquetDeCartes
+GlobalControleur -[#000000,plain]-"1"  Carte
+PaquetDeCartes -[#000000,plain]-"0*"  Carte
+AccueilControleur -[#000000,plain]-"1"  PaquetDeCartes
+Carte -[#000000,plain]-"1"  StatsCarte
+PaquetDeCartes -[#000000,plain]-"1"  ApprentissageStrategie
+StatsCarte -[#000000,plain]-* "1"  EtatCarte
+Commande -[#000000,plain]- "1" Carte
+Commande -[#000000,plain]-"1" PaquetDeCartes
+EntrainementControleur -[#000000,plain]-"1"  PaquetDeCartes
+GestionControleur -[#000000,plain]-"1"  PaquetDeCartes
+MiniJeuControleur -[#000000,plain]-"1"  PaquetDeCartes
+CreationControleur -[#000000,plain]-"1"  PaquetDeCartes
+CreationControleur -[#000000,plain]-"1"  Carte
+Sauvegarde -[#000000,plain]-"1"  Listpaquets
+Sauvegarde -[#000000,plain]-"1"  Ankiloader
+SceneAccueil -[#000000,plain]-"1"  AccueilControleur
+SceneCreation -[#000000,plain]-"1"  CreationControleur
+SceneEntrainement -[#000000,plain]-"1"  EntrainementControleur
+SceneGestion -[#000000,plain]-"1"  GestionControleur
+SceneMiniJeu -[#000000,plain]-"1"  MiniJeuControleur
+SceneMiniJeu -[#000000,plain]-"1"  GlobalControleur
+SceneGestion -[#000000,plain]-"1"  GlobalControleur
+SceneEntrainement -[#000000,plain]-"1"  GlobalControleur
+SceneCreation -[#000000,plain]-"1"  GlobalControleur
+SceneAccueil -[#000000,plain]-"1"  GlobalControleur
+MiniJeuApprentissage "1"-[#000000,plain]-  MiniJeuControleur
+@enduml

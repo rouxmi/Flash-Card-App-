@@ -15,7 +15,14 @@ Ce projet implémente une application de Flash Cards. Les Flash Cards sont un sy
 
 [Le sujet détaillé est disponible en version PDF](./Documents/CodingWeek%202022-2023%20-%20Sujet.pdf)
 
-### Lancement du programme
+## Vidéo de présentation
+
+Vidéo d'une dizaine de minutes présentant le projet et les fonctionnalités implémentées.
+
+[![Vidéo de présentation](https://img.youtube.com/vi/0Z0Z0Z0Z0Z0/0.jpg)](https://youtu.be/kiIzWanBTbM)
+
+
+### Lancement du programme Jar
 
 Le fichier .jar se trouve dans le dossier out/artifacts/codingweek_jar, et doit etre lancé depuis le répertoire source du projet pour pouvoir charger toutes les ressources avec les paquets de FlashCards avec la commande suivante.
 
@@ -23,6 +30,43 @@ Le fichier .jar se trouve dans le dossier out/artifacts/codingweek_jar, et doit 
 $ java -jar out/artifacts/codingweek_jar/codingweek.jar
 ```
 
+### Compilation du Code
+
+Le code source se trouve dans le dossier src, il faut ensuite compiler le code,
+en ajoutant les dépendances suivantes :
+
+-sqlite-jdbc-3.7.2.jar
+-javafx.base
+-javafx.fxml
+-javafx.controls
+-javafx.media
+-gson-2.8.6.jar
+
+
+### Utilisation de l'application par fenêtre
+
+L'application se lance avec une fenêtre contenant le menu principal avec les boutons suivants :
+
+- Importer: Charger un paquet de FlashCards (à partir d'un fichier .json ou .apkg)
+- Quitter: permet de quitter l'application
+- Trier: Tri des paquets de FlashCards
+- Partager: Partager un paquet de FlashCards
+- Techniques D'apprentissages: Choisir la technique d'apprentissage de tout les paquets (par défaut : aléatoire)
+- Gestion/Apprentissage: Choisir si en cliquant sur un paquet on arrive sur la gestion des cartes ou sur l'apprentissage
+- Cliquer sur un paquet pour l'ouvrir
+- Nouveau paquet de FlashCards (Paquet vide) en cliquant sur le paquet avec un + dessus
+
+En cliquant un paquet, on arrive sur une fenêtre de gestion avec les cartes du paquet, avec les boutons suivants :
+
+- Ajouter une carte: Ajouter une carte au paquet
+- Supprimer le paquet: Supprimer le paquet
+- Accueil: Retourner au menu principal
+- Cliquer sur une carte pour l'ouvrir
+- Quitter: Quitter l'application
+- Technique d'apprentissage: Choisir la technique d'apprentissage (par défaut : aléatoire) du paquet.
+- Exporter: Exporter le paquet de FlashCards (en .json)
+- Modification du nom/de la description/des tags du paquet
+- 
 ### Fonctionnalités implémentées
 
 L’application permet :
