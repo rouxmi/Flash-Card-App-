@@ -9,6 +9,11 @@
 * Louis Chatard <<louis.chatard@telecomnancy.eu>>
 * Lola Montignier <<lola.montignier@telecomnancy.eu>>
 
+
+## Guide d'utilisation
+
+Le pdf est disponible dans le dossier `Documents` du projet avec le reste des documents de conception.
+
 ## Description du projet
 
 Ce projet implémente une application de Flash Cards. Les Flash Cards sont un système d'apprentissage qui utilise des cartes avec d'un côté une question et la réponse associée au dos. L'intérêt de cette méthode est de la pratiquer régulièrement, en triant les cartes et en mettant en premier les cartes posant des difficultés.
@@ -20,6 +25,8 @@ Ce projet implémente une application de Flash Cards. Les Flash Cards sont un sy
 Vidéo d'une dizaine de minutes présentant le projet et les fonctionnalités implémentées.
 
 [![Vidéo de présentation](https://img.youtube.com/vi/0Z0Z0Z0Z0Z0/0.jpg)](https://youtu.be/kiIzWanBTbM)
+
+cliquer sur l'image pour lancer la vidéo ou (https://youtu.be/kiIzWanBTbM)
 
 
 ### Lancement du programme Jar
@@ -66,7 +73,107 @@ En cliquant un paquet, on arrive sur une fenêtre de gestion avec les cartes du 
 - Technique d'apprentissage: Choisir la technique d'apprentissage (par défaut : aléatoire) du paquet.
 - Exporter: Exporter le paquet de FlashCards (en .json)
 - Modification du nom/de la description/des tags du paquet
-- 
+- Bouton pour Accéder au différents modes d'apprentissage:
+    - Entrainement: Mode d'apprentissage où l'on peut voir la question et la réponse
+    - Révision: Mode d'apprentissage où l'on peut voir la question et la réponse mais avec un temps limité
+    - Ecriture: Mode d'apprentissage où l'on peut voir la question et la réponse et où l'on doit écrire la réponse
+    - Mini-jeu: Mode d'apprentissage où l'on peut voir 8 questions et 8 réponses et où l'on doit cliquer pour former les paires de question/réponse
+
+En cliquant sur une carte, on arrive sur une fenêtre de création/modification de la carte du paquet, avec les boutons suivants :
+
+- Accueil: Retourner au menu principal
+- Quitter: Quitter l'application
+- Voir le paquet: Retourner à la fenêtre de gestion du paquet
+- Supprimer la carte: Supprimer la carte
+- Copier la carte: Copier la carte dans un autre paquet
+- Modification de la question/de la réponse de la carte
+- Ajout/Gestion de la ressource audio de la carte
+- Ecouter la ressource audio de la carte (cette fonctionnalité peut ne pas fonctionner sur toutes les machines)
+- Ajout/Gestion de la ressource image de la carte
+- Enregistrer la carte: Enregistrer la carte
+- Suivant: Passer à la carte suivante (Ou crée une nouvelle carte si on est sur la dernière carte)
+- Précédent: Passer à la carte précédente
+
+Et si on arrive sur le mode d'apprentissage, on arrive sur une fenêtre d'apprentissage avec les boutons suivants :
+
+- Accueil: Retourner au menu principal
+- Quitter: Quitter l'application
+- Voir le paquet: Retourner à la fenêtre de gestion du paquet
+- Voir les statistiques: Afficher les statistiques du paquet/carte/entrainement
+- cliquer sur la carte pour la retourner et voir la réponse
+- Réussite: Cliquer sur le bouton pour indiquer que l'on a réussi à répondre à la question
+- Echec: Cliquer sur le bouton pour indiquer que l'on a échoué à répondre à la question
+- Ecouter la ressource audio de la carte (cette fonctionnalité peut ne pas fonctionner sur toutes les machines)
+- ecrire la réponse de la carte (si on est en mode écriture)
+
+En mode mini-jeu, on arrive sur une fenêtre de mini-jeu avec les boutons suivants :
+
+- Accueil: Retourner au menu principal
+- Quitter: Quitter l'application
+- Voir le paquet: Retourner à la fenêtre de gestion du paquet
+- cliquer sur deux cartes pour les associer
+- Abandonner: Abandonner le mini-jeu
+
+
+### Affichage de chaque fenêtre
+
+#### Menu Principal
+
+![Menu Principal](Documents/Image/acceuil.png)
+
+Les différents boutons sont décrits dans la partie précédente.
+
+Les paquets sont triés par le dernier tri effectué (par défaut : par ordre d'ajout).
+
+Le titre du paquet est affiché en haut à gauche du paquet.
+
+La description du paquet est affichée au centre du paquet.
+
+#### Fenêtre de gestion du paquet
+
+![Fenêtre de gestion du paquet](Documents/Image/gestion.png)
+
+Les différents boutons sont décrits dans la partie précédente.
+
+Les cartes sont triées par ordre d'ajout.
+
+La question de la carte est affichée au centre de la carte.
+
+Les tags/titre/description du paquet sont affichés en haut au centre de la fenêtre.
+
+Les statistiques du paquet (Etats des cartes) sont affichées en bas à droite de la fenêtre.
+
+#### Fenêtre de création/modification de la carte
+
+![Fenêtre de création/modification de la carte](Documents/Image/creation.png)
+
+Les différents boutons sont décrits dans la partie précédente.
+
+Les champs de la question et de la réponse sont affichés au centre de la fenêtre.
+
+#### Fenêtre d'apprentissage
+
+![Fenêtre d'apprentissage](Documents/Image/entrainement.png)
+
+Les différents boutons sont décrits dans la partie précédente.
+
+La question de la carte est affichée au centre de la fenêtre.
+
+La réponse de la carte est affichée au centre de la fenêtre(une fois la carte retournée).
+
+Les statistiques de la carte (pourcentage de réussite, etat de la carte...) sont affichées à gauche de la fenêtre.
+
+#### Fenêtre de mini-jeu
+
+![Fenêtre de mini-jeu](Documents/Image/mini-jeu.png)
+
+Les différents boutons sont décrits dans la partie précédente.
+
+Les cartes sont affichées au centre de la fenêtre.
+
+le bouton "Abandonner" est affiché en haut à gauche de la fenêtre.
+    
+
 ### Fonctionnalités implémentées
 
 L’application permet :
